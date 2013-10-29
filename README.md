@@ -1,27 +1,163 @@
-Guides
-======
+# Coding style and standards
 
-Coding style and standards
+The following are the coding style and standards for the code written and maintained by the CloudForms team.
 
-High level guidelines:
+## Table of Contents
+
+* [High Level Guidelines](#high-level-guidelines)
+* [Ruby Style Guide](#ruby-style-guide)
+* [Logging](#logging)
+* [Commits](#commits)
+* [Pull Requests and Branches](#pull-requests-and-branches)
+* [Gems](#gems)
+* [Error and Issue Reporting](#error-and-issue-reporting)
+  * [Bugzilla Tickets](#bugzilla-tickets)
+
+## High Level Guidelines
 
 * Be consistent.
-* This guide describes general guidelines to follow for new code.
+* These guides describes general guidelines to follow for new code.  For existing code, stay consistent with the conventions of the code you are changing.
 * Prefer readability over performance and conciseness until you can't.
 * If you can convince others why we should violate a guideline, then violate the guideline.
+* This document is a living document and is subject to change.  Feel free to comment or submit pull requests for changes, additions, or removals.
 
-Commits:
+## Ruby Style Guide
 
-* Keep commits small by committing often and only include related changes/tests together.
-* Squash(combine) commits to keep logical units of changes grouped together in the same commit.  Don't squash unrelated changes.
-* Avoid mixing logical changes with style changes of unrelated code.  Keep them as separate commits or pull request.
-* Make logical changes in one commit.  Modify the style of the changed code in another commit.  If the style change makes it hard to see the logical change, do the style change in a different pull request.
-* Move a method in one commit.  Modify the moved method in another commit.  If the moved method has high churn(change), perhaps move the method in a separate pull request.
-* Write a [good commit message](http://goo.gl/w11us).
+* Refer to [our fork](http://github.com/ManageIQ/ruby-style-guide) of the [original Ruby style guide](https://github.com/bbatsov/ruby-style-guide).
 
-Pull Requests:
+## Logging
 
-* All pull requests should have tests or mention that there are existing tests that cover your code changes.
-* Avoid large pull requests (1000+ lines changed minus any generated files such as test data).
-* Use a feature branch with a descriptive name as they are included in our git history: change_ems_amazon_to_be_region_specific (good), faster_tests(not so good).
+* Log messages should be prefixed consistently.
 
+    ```Ruby
+    # in a class method (notice the . notation)
+    $log.info("MIQ(#{self.name}).#{__method__}) The rest of the log message.")
+
+    # in an instance method (notice the # notation)
+    $log.info("MIQ(#{self.class.name})##{__method__}) The rest of the log message.")
+    ```
+
+* If the same log prefix will be used many times within the same method, consider using a variable named log_prefix.
+
+    ```Ruby
+    log_prefix = "MIQ(#{self.class.name})##{__method__})"
+    ...
+    $log.info("#{log_prefix} The rest of the log message.")
+    ```
+
+* When wrapping a block of code in logging, consider using the same string with ellipses, to make it easier to search them in the logs.  As a corollary, avoid using words that would not make sense on both ends, such as "Starting".  Attach any extra information after the latter message using `" - #{extra_info}"`
+
+    ```Ruby
+    $log.info("#{log_prefix} Refreshing EMS #{name}...")
+    ...
+    $log.info("#{log_prefix} Refreshing EMS #{name}...Complete")
+
+    # with extra information, such as timings or counts
+    $log.info("#{log_prefix} Refreshing EMS #{name}...")
+    ...
+    $log.info("#{log_prefix} Refreshing EMS #{name}...Complete - Timings: #{timings.inspect}")
+    ```
+
+## Commits
+
+* Write a [good commit message](http://goo.gl/w11us).  In short, with additions,
+  * A short summary of the commit under 72 characters.  Do not use a ticket number as the subject alone.
+  * A blank line.
+  * References to any Bugzilla tickets or Github Issues, one per line if there are multiple.
+    * Bugzilla tickets should be in the form of a full URL to the ticket.
+    * Github issues should be of the form "Issue #n", where n is the issue number.
+  * Another blank line.
+  * A body of text, preferably wrapped at 72 characters.  The line length is flexible, particularly in cases where data such as tables or URLs are being copied.  The body's purpose is to convey more detailed information about the commit, especially to someone who may need to search the code history for changes.  Feel free to include URLs, Git SHA references to other commits, and even raw data to make the purpose of the commit clearer (e.g. "Was broken by commit 0f3a459b").
+* Each commit should have it's own unique subject.  Do not use the same subject for a series of commits in a branch of work.
+* Keep commits small by committing often and only include related changes and tests together.
+* You may be doing too much in a commit if...
+  * You can't get the subject of the commit message under 72 characters
+  * You are using a lot of "ands" or "ors" in the commit message
+  * You find yourself using lots of bullet points to enumerate all the work the commit does.
+* Squash (combine) commits to keep logical units of changes grouped together in the same commit.  Don't squash unrelated changes.
+* Avoid mixing logical changes with style changes of unrelated code.  Keep them as separate commits.  If the style change makes it hard to see the logical change, do the style change in a different pull request.
+* Avoid mixing code changes with code relocation.  Keep them as separate commits.  If the moved method has high churn, perhaps move the method in a separate pull request.
+
+## Pull Requests and Branches
+
+* Use descriptive names for feature branches as they are included in the Git history.
+
+    ```
+    # bad
+    faster_tests
+    rework_amazon_code
+
+    # good
+    remove_test_duplication_for_performance
+    change_ems_amazon_to_be_region_specific
+    ```
+* Write a good pull request message.  By default, Github will use your branch name as the title.  Adjust the title if this is not appropriate for the pull request.
+  * See [writing a good commit message](#commits) for information about writing a good pull request message, exchanging the word "subject" with "title".
+* All pull requests should have tests or mention that there are existing tests that cover the code changes.
+* Avoid large pull requests (e.g. 1000+ lines changed not counting any generated files such as test data).
+  * Consider if the changes should be done in separate pull request.
+  * Use the number of lines added/removed as an indicator of possible code smells.
+* Try to avoid having a commit with, say, a spelling mistake, that is fixed in a subsequent commit in the same pull request.  Use `git rebase -i` to clean up those commits to keep the history clean.
+* If a pull request involves UI changes, consider adding a before/after set of screenshots to show what has changed visually.
+* Use [@-mentions](https://github.com/blog/821) to request reviews from specific people.
+* When you add new commits to a pull request, be sure to @-mention others so they know you are ready for a new review.
+
+## Error and Issue Reporting
+
+* Treat all issues as if they are public as much as possible.  This means avoid customer names, and avoid logs and information with customer-specific details.  If you HAVE to put customer information into a ticket, be sure to mark those comments and attachments as private.
+* For UI errors, the error message and stack trace are usually in production.log.  A snippet from there with the entire UI transaction is needed, including the error message and the stack trace.  A UI transaction starts with something that looks like
+
+    ```
+    [----] I, [2013-08-22T04:39:11.910803 #24340:3fd36e0349dc]  INFO -- : Started GET "/ems_infra/show/7" for 127.0.0.1 at 2013-08-22 00:39:11 -0400
+    [----] I, [2013-08-22T04:39:11.929926 #24340:3fd36e0349dc]  INFO -- : Processing by EmsInfraController#show as HTML
+    ```
+
+  and ends with something that looks like
+
+    ```
+    [----] I, [2013-08-22T04:39:12.127578 #24340:3fd36e0349dc]  INFO -- :   Rendered layouts/_global_footer.html.erb (0.1ms)
+    [----] I, [2013-08-22T04:39:12.127794 #24340:3fd36e0349dc]  INFO -- : Completed 200 OK in 198ms (Views: 110.1ms | ActiveRecord: 15.4ms)
+    ```
+
+  Everything in between with the same PID (the number between the # and : symbols in the log line header) is important.
+* For non-UI errors (or errors that appear in the UI but are really backend errors), the error message is usually in the evm.log.  Typically, we need more information than just the error message and stack trace, so it is helpful to have some extra context lines above and below the error.  The amount is hard to quantify, so we will have to build up a list of things as time moves forward.
+  Most items are handled by a queue worker of some type, so for those it is most useful to have:
+  * The MiqQueue.put or MiqQueue.merge line from the worker that placed the item on the queue.
+  * Context around why the item was placed on the queue.  For example, if some operation caused a policy item to be placed on the queue, is useful to have the log lines around what that operation was that triggered a policy check.  This trail going backwards usually continues until you get a UI action or a scheduler action.
+  * The MiqQueue.get line from the worker that picked up the queue item.
+  * All work from the PID of the worker that picked up the item, up to and including the error message and stack trace.
+  * On occasion, incidental work done by other workers in the same time frame.  Since all logs are UTC based, it makes it easier to coordinate log times from multiple appliances, regardless of where the logs live.  This type of information is usually needed when there are environmental or coincidental errors occurring across all or part of the system.
+* Screenshots of the UI error screen are not useful at all, as all it shows is the exact error that is in the logs, but without all of the rest of the required information listed above.
+* For bugs on an old version of the product, it is helpful to know if the behavior is repeatable on the latest version on that z-stream.  In addition, it is helpful to know if the behavior is repeatable on the latest of the next release, or even upstream.
+
+### Bugzilla tickets
+
+* The field "Version-Release number of selected component (if applicable):" must be set with the full version number.  For upstream code, write "upstream: " followed by the Git SHA number, so we know at which commit the error was found.
+* Logs and log snippets should be attached to a Bugzilla ticket instead of pasted into a comment.  Due to the length of the log lines, massive wrapping occurs in BZ, making it difficult to read.
+
+## Gems
+
+When extracting code into a new gem or creating a new gem:
+
+* Follow [SemVer](http://semver.org/).
+* Follow the internal guide for a creating a new gem.
+  * Create a CONTRIBUTING.md that references these guides.  Project-specific changes or additions to the guides can be put here.
+  * Create a LICENSE.txt with an appropriate license.
+
+## TODO
+
+* Rails style guide see https://github.com/bbatsov/rails-style-guide
+* Bugzilla how-to
+  * how to copy commit details / clone a ticket
+* Git how-to
+  * reword a commit
+  * amend a commit
+  * squashing
+  * reordering
+  * deleting a commit
+  * uncommit a file from an existing commit
+
+# License
+
+![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
+This work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US)
