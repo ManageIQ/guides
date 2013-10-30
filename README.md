@@ -17,9 +17,9 @@ The following are the coding style and standards for the code written and mainta
 
 * Be consistent.
 * These guides describes general guidelines to follow for new code.  For existing code, stay consistent with the conventions of the code you are changing.
-* Prefer readability over performance and conciseness until you can't.
+* Prefer readability over performance and conciseness when the performance difference is minimal.
 * If you can convince others why we should violate a guideline, then violate the guideline.
-* This document is a living document and is subject to change.  Feel free to comment or submit pull requests for changes, additions, or removals.
+* These guides are living documents and are subject to change.  Feel free to comment or submit pull requests for changes, additions, or removals.
 
 ## Ruby Style Guide
 
@@ -60,7 +60,7 @@ The following are the coding style and standards for the code written and mainta
 
 ## Commits
 
-* Write a [good commit message](http://goo.gl/w11us).  In short, with additions,
+* Write a good commit message.  The format for a commit message is as follows.  Also [read more](http://goo.gl/w11us) on writing good commit messages.
   * A short summary of the commit under 72 characters.  Do not use a ticket number as the subject alone.
   * A blank line.
   * References to any Bugzilla tickets or Github Issues, one per line if there are multiple.
@@ -97,14 +97,14 @@ The following are the coding style and standards for the code written and mainta
 * Avoid large pull requests (e.g. 1000+ lines changed not counting any generated files such as test data).
   * Consider if the changes should be done in separate pull request.
   * Use the number of lines added/removed as an indicator of possible code smells.
-* Try to avoid having a commit with, say, a spelling mistake, that is fixed in a subsequent commit in the same pull request.  Use `git rebase -i` to clean up those commits to keep the history clean.
+* Try to avoid having a commit with, for example, a spelling mistake, that is fixed in a subsequent commit in the same pull request.  Use `git rebase -i` to clean up those commits to keep the history clean.
 * If a pull request involves UI changes, consider adding a before/after set of screenshots to show what has changed visually.
 * Use [@-mentions](https://github.com/blog/821) to request reviews from specific people.
 * When you add new commits to a pull request, be sure to @-mention others so they know you are ready for a new review.
 
 ## Error and Issue Reporting
 
-* Treat all issues as if they are public as much as possible.  This means avoid customer names, and avoid logs and information with customer-specific details.  If you HAVE to put customer information into a ticket, be sure to mark those comments and attachments as private.
+* Under no circumstances should customer names or customer related information be referenced in Github issues.
 * For UI errors, the error message and stack trace are usually in production.log.  A snippet from there with the entire UI transaction is needed, including the error message and the stack trace.  A UI transaction starts with something that looks like
 
     ```
@@ -127,11 +127,12 @@ The following are the coding style and standards for the code written and mainta
   * The MiqQueue.get line from the worker that picked up the queue item.
   * All work from the PID of the worker that picked up the item, up to and including the error message and stack trace.
   * On occasion, incidental work done by other workers in the same time frame.  Since all logs are UTC based, it makes it easier to coordinate log times from multiple appliances, regardless of where the logs live.  This type of information is usually needed when there are environmental or coincidental errors occurring across all or part of the system.
-* Screenshots of the UI error screen are not useful at all, as all it shows is the exact error that is in the logs, but without all of the rest of the required information listed above.
+* Screenshots of the "UI error screen" are not useful at all, as all it shows is the exact error that is in the logs, but without all of the rest of the required information listed above.
 * For bugs on an old version of the product, it is helpful to know if the behavior is repeatable on the latest version on that z-stream.  In addition, it is helpful to know if the behavior is repeatable on the latest of the next release, or even upstream.
 
 ### Bugzilla tickets
 
+* Treat all Bugzilla issues as if they are public as much as possible.  This means avoid customer names, and avoid logs and information with customer-specific details in Bugzilla tickets.  If you HAVE to put customer information into a ticket, be sure to mark those comments and attachments as private.
 * The field "Version-Release number of selected component (if applicable):" must be set with the full version number.  For upstream code, write "upstream: " followed by the Git SHA number, so we know at which commit the error was found.
 * Logs and log snippets should be attached to a Bugzilla ticket instead of pasted into a comment.  Due to the length of the log lines, massive wrapping occurs in BZ, making it difficult to read.
 
