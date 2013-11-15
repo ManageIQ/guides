@@ -104,7 +104,7 @@ The following are the coding style and standards for the code written and mainta
 
 ## Error and Issue Reporting
 
-* Under no circumstances should customer names or customer related information be referenced in Github issues.
+* Under no circumstances should customer names or customer related information be referenced in Github issues, error reports, commits, or pull requests.
 * For UI errors, the error message and stack trace are usually in production.log.  A snippet from there with the entire UI transaction is needed, including the error message and the stack trace.  A UI transaction starts with something that looks like
 
     ```
@@ -132,7 +132,7 @@ The following are the coding style and standards for the code written and mainta
 
 ### Bugzilla tickets
 
-* Treat all Bugzilla issues as if they are public as much as possible.  This means avoid customer names, and avoid logs and information with customer-specific details in Bugzilla tickets.  If you HAVE to put customer information into a ticket, be sure to mark those comments and attachments as private.
+* Treat all Bugzilla issues as if they are public as much as possible.  This means avoid customer names, and avoid logs and information with customer-specific details in Bugzilla tickets.  If you HAVE to put customer information into a ticket, be sure to mark those comments and attachments as private. If you see other comments not marked private when they should be, then mark them private.
 * The field "Version-Release number of selected component (if applicable):" must be set with the full version number.  For upstream code, write "upstream: " followed by the Git SHA number, so we know at which commit the error was found.
 * Logs and log snippets should be attached to a Bugzilla ticket instead of pasted into a comment.  Due to the length of the log lines, massive wrapping occurs in BZ, making it difficult to read.
 
