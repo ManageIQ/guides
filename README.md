@@ -63,11 +63,11 @@ The following are the coding style and standards for the code written and mainta
 * Write a good commit message.  The format for a commit message is as follows.  Also [read more](http://goo.gl/w11us) on writing good commit messages.
   * A short summary of the commit under 72 characters.  Do not use a ticket number as the subject alone.
   * A blank line.
+  * An optional body of text, preferably wrapped at 72 characters.  The line length is flexible, particularly in cases where data such as tables or URLs are being copied.  The body's purpose is to convey more detailed information about the commit, especially to someone who may need to search the code history for changes.  Feel free to include URLs, Git SHA references to other commits, and even raw data to make the purpose of the commit clearer (e.g. "Was broken by commit 0f3a459b").
+  * A blank line if you've written a body.
   * References to any Bugzilla tickets or Github Issues, one per line if there are multiple.
     * Bugzilla tickets should be in the form of a full URL to the ticket.
     * Github issues should be of the form "Issue #n", where n is the issue number.
-  * Another blank line.
-  * A body of text, preferably wrapped at 72 characters.  The line length is flexible, particularly in cases where data such as tables or URLs are being copied.  The body's purpose is to convey more detailed information about the commit, especially to someone who may need to search the code history for changes.  Feel free to include URLs, Git SHA references to other commits, and even raw data to make the purpose of the commit clearer (e.g. "Was broken by commit 0f3a459b").
 * Each commit should have it's own unique subject.  Do not use the same subject for a series of commits in a branch of work.
 * Keep commits small by committing often and only include related changes and tests together.
 * You may be doing too much in a commit if...
