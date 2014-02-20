@@ -19,6 +19,8 @@ HashSyntax:
   EnforcedStyle: hash_rockets
 LineLength:
   Max: 120
+MethodLength:
+  Max: 25
 RedundantReturn:
   AllowMultipleReturnValues: true
 SignalException:
