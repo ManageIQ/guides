@@ -18,8 +18,8 @@ GlobalVars:
   - $rails_log
   - $rhevm_log
   - $vim_log
-  # In Automated methods
-  - $evm.log
+  # In Automate methods
+  - $evm
 HashSyntax:
   EnforcedStyle: hash_rockets
 LineLength:
