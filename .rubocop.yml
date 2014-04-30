@@ -6,7 +6,10 @@ AlignHash:
   EnforcedColonStyle: table
 CollectionMethods:
   PreferredMethods:
-    find_all: 'select'
+    find: detect
+    find_all: select
+    map: collect
+    reduce: inject
 GlobalVars:
   AllowedVariables:
   # Loggers  
