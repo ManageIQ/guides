@@ -12,7 +12,7 @@ CollectionMethods:
     reduce: inject
 GlobalVars:
   AllowedVariables:
-  # Loggers  
+  # Loggers
   - $api_log
   - $aws_log
   - $fog_log
@@ -43,6 +43,8 @@ SpaceInsideHashLiteralBraces:
 Documentation:
   Enabled: false
 Encoding:
+  Enabled: false
+SingleLineBlockParams:
   Enabled: false
 StringLiterals:
   Enabled: false
