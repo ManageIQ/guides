@@ -1,4 +1,7 @@
-# [Coding Style and Standards](https://github.com/ManageIQ/guides/blob/master/coding_style_and_standards.md)
+# Guides
+
+* [Coding Style and Standards](coding_style_and_standards.md)
+* [Roadmap](roadmap.md)
 
 # License
 
