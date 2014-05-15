@@ -1,109 +1,110 @@
-Appliance Contents
-------------------
-- Apache
-- Thin
-- PostgreSQL
-- Memcached
-- Console
+# Architecture
 
-Appliance Architecture
-----------------------
-- Region/Zone/Server
-- Server/Worker/Role
+## Appliance Contents
 
-Server Roles
-------------
-- Generic and Priority Workers
-- User Interface
-- Web Services
-  - SOAP
-  - REST
-- Provider
-  - Event Catcher/Handler
-  - EMS Refresh
-  - EMS Metrics
-  - EMS Operations
-- SmartState Analysis (Fleecing)
-- Automate
-- Reporting
-- Scheduling
-- Notifier
-- Database
-  - DB Synchronization (Replication)
-  - DB Owner
-  - DB Operations
-- Storage
-  - Storage Inventory
-  - Storage Metrics
-  - Storage Bridge
+* Apache
+* Thin
+* PostgreSQL
+* Memcached
+* Console
 
-Insight/Control/Automate
-------------------------
+## Appliance Architecture
 
-UI Layout
----------
-- Cloud Intelligence
-  - Dashboard
-  - Reports
-  - Chargeback
-  - Timelines
-  - RSS
-- Services
-  - My Services
-  - Catalogs
-  - Workloads
-  - Requests
-- Clouds
-  - Providers
-  - Availability Zones
-  - Flavors
-  - Security Groups
-  - Instances
-- Infrastructure
-  - Providers
-  - Clusters
-  - Hosts
-  - Virtual Machines
-  - Resource Pools
-  - Datastores
-  - Repositories
-  - PXE
-  - Requests
-- Storage
-  - Filers
-  - Volumes
-  - LUNs
-  - File Shares
-  - Storage Managers
-- Control
-  - Explorer
-  - Simulation
-  - Import/Export
-  - Log
-- Automate
-  - Explorer
-  - Simulation
-  - Customization
-  - Import/Export
-  - Log
-  - Requests
-- Optimize
-  - Utilization
-  - Planning
-  - Bottlenecks
-- Configure
-  - My Settings
-  - Tasks
-  - Configuration
-  - SmartProxies
-  - About
+* Region/Zone/Server
+* Server/Worker/Role
 
-Database Architecture
----------------------
-- Schema Layout
-  - 64-bit ids
-- MiqQueue
-- MiqTask and Job
-- ExtManagementSystem and subclasses
-- VmOrTemplate and subclasses
-- Host and subclasses
+## Server Roles
+
+* Generic and Priority Workers
+* User Interface
+* Web Services
+  * SOAP
+  * REST
+* Provider
+  * Event Catcher/Handler
+  * EMS Refresh
+  * EMS Metrics
+  * EMS Operations
+* SmartState Analysis (Fleecing)
+* Automate
+* Reporting
+* Scheduling
+* Notifier
+* Database
+  * DB Synchronization (Replication)
+  * DB Owner
+  * DB Operations
+* Storage
+  * Storage Inventory
+  * Storage Metrics
+  * Storage Bridge
+
+## Insight/Control/Automate
+
+## UI Layout
+
+* Cloud Intelligence
+  * Dashboard
+  * Reports
+  * Chargeback
+  * Timelines
+  * RSS
+* Services
+  * My Services
+  * Catalogs
+  * Workloads
+  * Requests
+* Clouds
+  * Providers
+  * Availability Zones
+  * Flavors
+  * Security Groups
+  * Instances
+* Infrastructure
+  * Providers
+  * Clusters
+  * Hosts
+  * Virtual Machines
+  * Resource Pools
+  * Datastores
+  * Repositories
+  * PXE
+  * Requests
+* Storage
+  * Filers
+  * Volumes
+  * LUNs
+  * File Shares
+  * Storage Managers
+* Control
+  * Explorer
+  * Simulation
+  * Import/Export
+  * Log
+* Automate
+  * Explorer
+  * Simulation
+  * Customization
+  * Import/Export
+  * Log
+  * Requests
+* Optimize
+  * Utilization
+  * Planning
+  * Bottlenecks
+* Configure
+  * My Settings
+  * Tasks
+  * Configuration
+  * SmartProxies
+  * About
+
+## Database Architecture
+
+* Schema Layout
+  * 64-bit ids
+* MiqQueue
+* MiqTask and Job
+* ExtManagementSystem and subclasses
+* VmOrTemplate and subclasses
+* Host and subclasses
