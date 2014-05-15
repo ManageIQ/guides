@@ -28,34 +28,34 @@ The following are the coding style and standards for the code written and mainta
 
 * Log messages should be prefixed consistently.
 
-```ruby
-# in a class method (notice the . notation)
-$log.info("MIQ(#{self.name}).#{__method__}) The rest of the log message.")
+    ```Ruby
+    # in a class method (notice the . notation)
+    $log.info("MIQ(#{self.name}).#{__method__}) The rest of the log message.")
 
-# in an instance method (notice the # notation)
-$log.info("MIQ(#{self.class.name})##{__method__}) The rest of the log message.")
-```
+    # in an instance method (notice the # notation)
+    $log.info("MIQ(#{self.class.name})##{__method__}) The rest of the log message.")
+    ```
 
 * If the same log prefix will be used many times within the same method, consider using a variable named log_prefix.
 
-```ruby
-log_prefix = "MIQ(#{self.class.name})##{__method__})"
-...
-$log.info("#{log_prefix} The rest of the log message.")
-```
+    ```Ruby
+    log_prefix = "MIQ(#{self.class.name})##{__method__})"
+    ...
+    $log.info("#{log_prefix} The rest of the log message.")
+    ```
 
 * When wrapping a block of code in logging, consider using the same string with ellipses, to make it easier to search them in the logs.  As a corollary, avoid using words that would not make sense on both ends, such as "Starting".  Attach any extra information after the latter message using `" - #{extra_info}"`
 
-```ruby
-$log.info("#{log_prefix} Refreshing EMS #{name}...")
-...
-$log.info("#{log_prefix} Refreshing EMS #{name}...Complete")
+    ```Ruby
+    $log.info("#{log_prefix} Refreshing EMS #{name}...")
+    ...
+    $log.info("#{log_prefix} Refreshing EMS #{name}...Complete")
 
-# with extra information, such as timings or counts
-$log.info("#{log_prefix} Refreshing EMS #{name}...")
-...
-$log.info("#{log_prefix} Refreshing EMS #{name}...Complete - Timings: #{timings.inspect}")
-```
+    # with extra information, such as timings or counts
+    $log.info("#{log_prefix} Refreshing EMS #{name}...")
+    ...
+    $log.info("#{log_prefix} Refreshing EMS #{name}...Complete - Timings: #{timings.inspect}")
+    ```
 
 ## Commits
 
@@ -81,16 +81,15 @@ $log.info("#{log_prefix} Refreshing EMS #{name}...Complete - Timings: #{timings.
 
 * Use descriptive names for feature branches as they are included in the Git history.
 
-```ruby
-# bad
-faster_tests
-rework_amazon_code
+    ```
+    # bad
+    faster_tests
+    rework_amazon_code
 
-# good
-remove_test_duplication_for_performance
-change_ems_amazon_to_be_region_specific
-```
-
+    # good
+    remove_test_duplication_for_performance
+    change_ems_amazon_to_be_region_specific
+    ```
 * Write a good pull request message.  By default, Github will use your branch name as the title.  Adjust the title if this is not appropriate for the pull request.
   * See [writing a good commit message](#commits) for information about writing a good pull request message, exchanging the word "subject" with "title".
 * All pull requests should have tests or mention that there are existing tests that cover the code changes.
@@ -107,17 +106,17 @@ change_ems_amazon_to_be_region_specific
 * Under no circumstances should customer names or customer related information be referenced in Github issues, error reports, commits, or pull requests.
 * For UI errors, the error message and stack trace are usually in production.log.  A snippet from there with the entire UI transaction is needed, including the error message and the stack trace.  A UI transaction starts with something that looks like
 
-```
-[----] I, [2013-08-22T04:39:11.910803 #24340:3fd36e0349dc]  INFO -- : Started GET "/ems_infra/show/7" for 127.0.0.1 at 2013-08-22 00:39:11 -0400
-[----] I, [2013-08-22T04:39:11.929926 #24340:3fd36e0349dc]  INFO -- : Processing by EmsInfraController#show as HTML
-```
+    ```
+    [----] I, [2013-08-22T04:39:11.910803 #24340:3fd36e0349dc]  INFO -- : Started GET "/ems_infra/show/7" for 127.0.0.1 at 2013-08-22 00:39:11 -0400
+    [----] I, [2013-08-22T04:39:11.929926 #24340:3fd36e0349dc]  INFO -- : Processing by EmsInfraController#show as HTML
+    ```
 
   and ends with something that looks like
 
-```
-[----] I, [2013-08-22T04:39:12.127578 #24340:3fd36e0349dc]  INFO -- :   Rendered layouts/_global_footer.html.erb (0.1ms)
-[----] I, [2013-08-22T04:39:12.127794 #24340:3fd36e0349dc]  INFO -- : Completed 200 OK in 198ms (Views: 110.1ms | ActiveRecord: 15.4ms)
-```
+    ```
+    [----] I, [2013-08-22T04:39:12.127578 #24340:3fd36e0349dc]  INFO -- :   Rendered layouts/_global_footer.html.erb (0.1ms)
+    [----] I, [2013-08-22T04:39:12.127794 #24340:3fd36e0349dc]  INFO -- : Completed 200 OK in 198ms (Views: 110.1ms | ActiveRecord: 15.4ms)
+    ```
 
   Everything in between with the same PID (the number between the # and : symbols in the log line header) is important.
 * For non-UI errors (or errors that appear in the UI but are really backend errors), the error message is usually in the evm.log.  Typically, we need more information than just the error message and stack trace, so it is helpful to have some extra context lines above and below the error.  The amount is hard to quantify, so we will have to build up a list of things as time moves forward.
