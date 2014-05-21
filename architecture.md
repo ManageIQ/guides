@@ -1,7 +1,7 @@
 # Architecture
 
-### [Source Code Layout](architecture/source_code_layout.md)
-
+* [Source Code Layout](architecture/source_code_layout.md)
+* [Enterprise Architecture](architecture/enterprise.md)
 
 ## Appliance Contents
 
@@ -10,11 +10,6 @@
 * PostgreSQL
 * Memcached
 * Console
-
-## Appliance Architecture
-
-* Region/Zone/Server
-* Server/Worker/Role
 
 ## Server Roles
 
