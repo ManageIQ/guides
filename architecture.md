@@ -1,5 +1,8 @@
 # Architecture
 
+### [Source Code Layout](architecture/source_code_layout.md)
+
+
 ## Appliance Contents
 
 * Apache
