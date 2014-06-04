@@ -3,6 +3,7 @@
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Architecture](architecture.md)
 * [Roadmap](roadmap.md)
+* [REST API](rest_api.md)
 
 # License
 
