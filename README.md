@@ -1,4 +1,4 @@
-# Guides
+# Developing ManageIQ
 
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Architecture](architecture.md)
