@@ -64,9 +64,9 @@ The following are the coding style and standards for the code written and mainta
   * A blank line.
   * An optional body of text, preferably wrapped at 72 characters.  The line length is flexible, particularly in cases where data such as tables or URLs are being copied.  The body's purpose is to convey more detailed information about the commit, especially to someone who may need to search the code history for changes.  Feel free to include URLs, Git SHA references to other commits, and even raw data to make the purpose of the commit clearer (e.g. "Was broken by commit 0f3a459b").
   * A blank line if you've written a body.
-  * References to any Bugzilla tickets or Github Issues, one per line if there are multiple.
+  * References to any Bugzilla tickets or GitHub Issues, one per line if there are multiple.
     * Bugzilla tickets should be in the form of a full URL to the ticket.
-    * Github issues should be of the form "Issue #n", where n is the issue number.
+    * GitHub issues should be of the form "Issue #n", where n is the issue number.
 * Each commit should have it's own unique subject.  Do not use the same subject for a series of commits in a branch of work.
 * Keep commits small by committing often and only include related changes and tests together.
 * You may be doing too much in a commit if...
@@ -91,7 +91,7 @@ The following are the coding style and standards for the code written and mainta
   change_ems_amazon_to_be_region_specific
   ```
 
-* Write a good pull request message.  By default, Github will use your branch name as the title.  Adjust the title if this is not appropriate for the pull request.
+* Write a good pull request message.  By default, GitHub will use your branch name as the title.  Adjust the title if this is not appropriate for the pull request.
   * See [writing a good commit message](#commits) for information about writing a good pull request message, exchanging the word "subject" with "title".
 * All pull requests should have tests or mention that there are existing tests that cover the code changes.
 * Avoid large pull requests (e.g. 1000+ lines changed not counting any generated files such as test data).
@@ -104,7 +104,7 @@ The following are the coding style and standards for the code written and mainta
 
 ## Error and Issue Reporting
 
-* Under no circumstances should customer names or customer related information be referenced in Github issues, error reports, commits, or pull requests.
+* Under no circumstances should customer names or customer related information be referenced in GitHub issues, error reports, commits, or pull requests.
 * For UI errors, the error message and stack trace are usually in production.log.  A snippet from there with the entire UI transaction is needed, including the error message and the stack trace.  A UI transaction starts with something that looks like
 
   ```
