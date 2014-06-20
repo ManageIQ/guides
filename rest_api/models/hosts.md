@@ -77,7 +77,7 @@ auth_type=remote|ws|ipmi
 | edit | Edit a Host |
 | refresh | Refresh Relationships and Power States |
 | standby | Enter Standby Mode |
-| shutdown | Shuwdown a Host | 
+| shutdown | Shutdown a Host |
 | restart | Restart a Host | 
 | poweron | Power On a Host | 
 | poweroff | Power Off a Host |

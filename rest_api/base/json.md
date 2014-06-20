@@ -36,7 +36,7 @@ The following are basic data types and type combinators that are used throughout
 | `URL`         | Absolute URL                                   | `{ "href" : "http://SERVER/vms/1/start" }`      |
 | `Timestamp`   | Timestamp in ISO8601 format                    | `{ "created" : "2013-12-05T08:15:30Z" }`        |
 | `Array[T]`    | Array where each entry has type T              | `{ "vms" : [ { "id" : "1" }, { "id" : "2" }] }` |
-| `Ref[T]`      | A reference to a T, used to model relations, the T is a valid Resource indentifier  | `{ "vm" : { "href" : URL } }` |
+| `Ref[T]`      | A reference to a T, used to model relations, the T is a valid Resource identifier  | `{ "vm" : { "href" : URL } }` |
 | `Collection`  | Array[T] where T represents a Ref[T], this might allow actions to be executed on all members as a single unit | `{ "vms" : { "count" : "2", "resources" : [ { "href" : URL}, { "href" : URL } ], "actions" : [] }`|
 | `Struct`      | A structure with sub-attributes                | `"power_state": {"state": "ON", "last_boot_time": "2013-05-29T15:28Z","state_change_time":"2013-05-29T15:28Z"}` |
 
@@ -133,7 +133,7 @@ action definition has a rel, method and a href attribute.
   be performed against
 * *form* an optional attribute that references a JSON document which describes
   the resource attributes that can be provided in the message body when performing
-  this action. This decription will indicate which of those attributes are mandatory
+  this action. This description will indicate which of those attributes are mandatory
   and which are optional.
 
 #### Collection actions

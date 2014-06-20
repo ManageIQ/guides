@@ -52,7 +52,7 @@ enterprise.
 To give a worldwide "single pane of glass" view, one extra region is usually
 added to act as a "master" region.  This region is referred to as the Enterprise
 region.  The other regions then enable the database synchronization role in
-order to replicate their data into the "master" region. In this way, invididual
+order to replicate their data into the "master" region. In this way, individual
 regions get the benefit of being co-located with the database, whereas the
 enterprise region can provide a high-level reporting view where needed.  See the
 database synchronization role for more information.
