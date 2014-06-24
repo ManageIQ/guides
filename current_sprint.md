@@ -11,7 +11,8 @@
 
 ## Control/Automate
 * Event Switchboard (@lfu, @bzwei)
-* Automate UI Import/Export (@h-kataria, @mkanoor)
+* Autonate UI class/instance/method copy (@h-kataria, @mkanoor)
+* Automate UI Import/Export (@eclarizio, @mkanoor) - needs design work
 * Domain Content Cleanup (@tinafitz)
 
 ## Services
