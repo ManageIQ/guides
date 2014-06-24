@@ -2,6 +2,7 @@
 
 ### Developer information
 * [Coding Style and Standards](coding_style_and_standards.md)
+* [Developer Setup](developer_setup.md)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 * [Proposals](proposals)
 
