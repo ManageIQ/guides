@@ -1,4 +1,4 @@
-##REST API Design Specification [*v0.1*](./versioning.md)
+## REST API Design Specification [*v0.1*](./versioning.md)
 
 
 This document represents the design specification of the RESTful API.
@@ -11,7 +11,7 @@ This document represents the design specification of the RESTful API.
 1. [JSON Specification](./base/json.md)
 1. [Query Specification](./base/query.md)
 
-#####[ManageIQ Model:](id:model)
+##### [ManageIQ Model:](id:model)
 
 1. [ManageIQ Features & Class Mapping](./models/features.md)
 1. Infrastructure
