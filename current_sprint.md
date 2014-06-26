@@ -1,5 +1,7 @@
 # Current Sprint (Sprint 9 ending July 7)
 
+The purpose of this document is to list the intended work for the current sprint.  It will continue to evolve as the sprint continues.
+
 ## Providers
 * OpenStack Tenant Inventory (@blomquisg)
 * OpenStack Storage Inventory (@roliveri)
