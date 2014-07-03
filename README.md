@@ -5,6 +5,7 @@
 * [Architecture](architecture.md)
 * [Roadmap](roadmap.md)
 * [REST API](rest_api.md)
+* [External Authentication (httpd)](external_auth.md)
 
 ## License
 
