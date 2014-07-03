@@ -64,6 +64,7 @@ features please refer to the [Design Specification](./design.md).
 | Roles              | /api/roles             |
 | Requests           | /api/requests          |
 | Service Requests   | /api/service_requests  |
+| Request Tasks      | /api/request_tasks     |
 
 ### Sub-Collection Queries
 
