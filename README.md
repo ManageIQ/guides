@@ -2,6 +2,7 @@
 
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Current Sprint](current_sprint.md)
+* [Past Sprints](past_sprints.md)
 * [Architecture](architecture.md)
 * [Roadmap](roadmap.md)
 * [REST API](rest_api.md)
