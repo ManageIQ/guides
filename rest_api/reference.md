@@ -43,35 +43,47 @@ features please refer to the [Design Specification](./design.md).
 
 ### Collection Queries:
 
-| Collection         | URL |
-|:-------------------|:----|
-| Services           | /api/services          |
-| Service Templates  | /api/service_templates |
-| Service Catalogs   | /api/service_catalogs  |
-| Providers          | /api/providers         |
-| Clusters           | /api/clusters          |
-| Hosts              | /api/hosts             |
-| Vms                | /api/vms               |
-| Templates          | /api/templates         |
-| Resource Pools     | /api/resource_pools    |
-| Datastores         | /api/data_stores       |
-| Policy Profiles    | /api/policy_profiles   |
-| Policies           | /api/policies          |
-| Zones              | /api/zones             |
-| EVM Servers        | /api/servers           |
-| Users              | /api/users             |
-| Groups             | /api/groups            |
-| Roles              | /api/roles             |
-| Requests           | /api/requests          |
-| Service Requests   | /api/service_requests  |
-| Request Tasks      | /api/request_tasks     |
+| Collection          |  URL |
+|:--------------------|:-----|
+| Services            | /api/services            |
+| Service Templates   | /api/service_templates   |
+| Service Catalogs    | /api/service_catalogs    |
+| | |
+| Clusters            | /api/clusters            |
+| Datastores          | /api/data_stores         |
+| Hosts               | /api/hosts               |
+| Providers           | /api/providers           |
+| Resource Pools      | /api/resource_pools      |
+| EVM Servers         | /api/servers             |
+| Templates           | /api/templates           |
+| Vms                 | /api/vms                 |
+| Zones               | /api/zones               |
+| | |
+| Policies            | /api/policies            |
+| Policy Profiles     | /api/policy_profiles     |
+| | |
+| Groups              | /api/groups              |
+| Roles               | /api/roles               |
+| Users               | /api/users               |
+| | |
+| Requests            | /api/requests            |
+| Service Requests    | /api/service_requests    |
+| Request Tasks       | /api/request_tasks       |
+| | |
+| Automation Requests | /api/automation_requests |
+| Provision Requests  | /api/provision_requests  |
 
 ### Sub-Collection Queries
 
-| Sub-Collection     | URL|
-|:-------------------|:---|
-| Service Templates  | /api/\<collection\>/\<id\>/service_templates |
-| Tags               | /api/\<collection\>/\<id\>/tags              |
+| Sub-Collection           | URL|
+|:-------------------------|:---|
+| Service Templates        | /api/\<collection\>/\<id\>/service_templates                     |
+| Tags                     | /api/\<collection\>/\<id\>/tags                                  |
+| | |
+| Automation Request Tasks | /api/automation_requests/\<id\>/request_tasks                    |
+|                          | /api/automation_requests/\<id\>/tasks (*alias of request_tasks*) |
+| Provision Request Tasks  | /api/provision_requests/\<id\>/request_tasks                     |
+|                          | /api/provision_requests/\<id\>/tasks  (*alias of request_tasks*) |
 
 ### Available Actions
 
@@ -104,7 +116,13 @@ features please refer to the [Design Specification](./design.md).
 | UnAssign Service Templates          | POST   | [/api/service_catalogs/\<id\>/service_templates](./examples/unassign_service_templates.md) |
 | Order Service                       | POST   | [/api/service_catalogs/\<id\>/service_templates](./examples/order_service.md)              |
 | Order Services                      | POST   | [/api/service_catalogs/\<id\>/service_templates](./examples/order_services.md)             |
-| Delete Service Catalog              | DELETE | /api/service_catalogs/\<id\>                                        |
+| Delete Service Catalog              | DELETE | /api/service_catalogs/\<id\>                                                               |
 | Delete Service Catalogs             | POST   | [/api/service_catalogs](./examples/delete_service_catalogs.md)                             |
+| | |
+| Automation Request                  | POST   | [/api/automation_requests](./examples/automation_request.md)                               |
+| Automation Requests                 | POST   | [/api/automation_requests](./examples/automation_requests.md)                              |
+| Provision Request                   | POST   | [/api/provision_requests](./examples/provision_request.md)                                 |
+| Provision Requests                  | POST   | [/api/provision_requests](./examples/provision_requests.md)                                |
+ 
 
 ##### [API Version History](./versioning.md)

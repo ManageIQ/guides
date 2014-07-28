@@ -54,10 +54,16 @@ GET /api/services?by_tag=/department/finance
 GET /api/services/1/tags?expand=resources
 ```
 
-### Get of the first service catalog and get details on the assigned service templates
+### Get details of the first service catalog and related details on the assigned service templates
 
 ```
 GET /api/service_catalogs/1?expand=service_templates
+```
+
+### Get a specific provision request with expanded details on the associated provision request tasks
+
+```
+GET /api/provision_requests/120?expand=tasks
 ```
 
 Back to [Reference Guide](../reference.md)
