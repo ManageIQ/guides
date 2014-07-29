@@ -51,3 +51,5 @@ StringLiterals:
   Enabled: false
 TrailingComma:
   Enabled: false
+SingleSpaceBeforeFirstArg:
+  Enabled: false
