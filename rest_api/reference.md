@@ -1,4 +1,4 @@
-## REST API Reference Guide [*v0.1*](./versioning.md)
+## REST API Reference Guide [*v1.0*](./versioning.md)
 
 This document presents the currently available features and capabilities of the
 RESTful API. For further details on the implementation as well a complete list of the proposed

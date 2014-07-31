@@ -3,8 +3,8 @@
 This document presents the currently available features and capabilities of the Appliance
 RESTful API.
 
-* For quick information on accessing the REST API, the entrypoint, authentication and supported actions, please refer to [Reference Guide](./rest_api/reference.md)
-* For further details on the implementation as well as a complete list of the proposed features please refer to the [Design Specification](./rest_api/design.md)
+* For quick information on accessing the REST API, the entrypoint, authentication, supported actions and examples, please refer to [Reference Guide](./rest_api/reference.md)
+* For further details on the implementation as well as the original list of the proposed features please refer to the [Design Specification](./rest_api/design.md)
 
 # License
 
