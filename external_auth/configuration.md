@@ -1,37 +1,6 @@
 
-# External Authentication Configuration
+# External Authentication (httpd) Configuration
 
-This document describes the steps needed to enable External
-Authentication (httpd) on the Appliance against with an IPA Server.
-
-Once external authentication is enabled, users will be able
-to login to the Appliance using their IPA Server credentials.
-User accounts will be automatically created on the Appliance
-and relevant information imported from the IPA Server.
-
-The Appliance comes pre-loaded with the necessary IPA Client
-software to be able to connect to the IPA Server. The software
-is just not configured by default.
-
----
-### Appliance Requirements
-
-* For an Appliance to leverage an IPA Server on the network,
-the Appliance **must** have time synchronization enabled.
-This can be done by either configuring NTP in the Appliance UI,
-from Configure-Configuration-Zone-Server-NTP Settings or by using
-the Virtual Machine's hosting provider's Advanced Setting
-to Synchronize Time. Both Appliance and IPA Server must have
-their clocks synchronized otherwise Kerberos and LDAP based
-authentication will fail.
-
-
-* The IPA Server needs to be known by DNS and accessible by name.
-If DNS is not configured accordingly, the hosts files need to be
-updated to reflect both IPA server and the Appliance on
-both virtual machines.
-
----
 ### Sample Domain and Systems
 
 For the purpose of these instructions, the following
@@ -170,6 +139,31 @@ LoadModule lookup_identity_module modules/mod_lookup_identity.so
   LookupUserGroups             REMOTE_USER_GROUPS ":"
   LookupDbusTimeout            5000
 </Location>
+
+<LocationMatch ^/api|^/vmdbws/wsdl|^/vmdbws/api>
+  SetEnvIf Authorization '^Basic +YWRtaW46' let_admin_in
+  SetEnvIf X-Auth-Token  '^.+$'             let_api_token_in
+
+  AuthType Basic
+  AuthName "External Authentication (httpd) for API"
+  AuthBasicProvider PAM
+
+  AuthPAMService httpd-auth
+  Require valid-user
+  Order Allow,Deny
+  Allow from env=let_admin_in
+  Allow from env=let_api_token_in
+  Satisfy Any
+
+  LookupUserAttr   mail        REMOTE_USER_EMAIL
+  LookupUserAttr   givenname   REMOTE_USER_FIRSTNAME
+  LookupUserAttr   sn          REMOTE_USER_LASTNAME
+  LookupUserAttr   displayname REMOTE_USER_FULLNAME
+
+  LookupUserGroups             REMOTE_USER_GROUPS ":"
+  LookupDbusTimeout            5000
+
+</LocationMatch>
 ```
 
 #### Update the Appliance Apache Configuration to enable External Authentication
