@@ -80,6 +80,10 @@ features please refer to the [Design Specification](./design.md).
 | Service Templates        | /api/\<collection\>/\<id\>/service_templates                     |
 | Tags                     | /api/\<collection\>/\<id\>/tags                                  |
 | | |
+| Service Requests         | /api/service_templates/\<id\>/service_requests                   |
+| | |
+| Service Request Tasks    | /api/service_requests/\<id\>/request_tasks                       |
+|                          | /api/service_requests/\<id\>/tasks  (*alias of request_tasks*)   |
 | Automation Request Tasks | /api/automation_requests/\<id\>/request_tasks                    |
 |                          | /api/automation_requests/\<id\>/tasks (*alias of request_tasks*) |
 | Provision Request Tasks  | /api/provision_requests/\<id\>/request_tasks                     |

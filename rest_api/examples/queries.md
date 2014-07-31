@@ -60,6 +60,12 @@ GET /api/services/1/tags?expand=resources
 GET /api/service_catalogs/1?expand=service_templates
 ```
 
+### Get services requests created from a specific template and get details on all related request tasks.
+
+```
+GET /api/service_templates/25/service_requests?expand=resources,request_tasks
+```
+
 ### Get a specific provision request with expanded details on the associated provision request tasks
 
 ```
