@@ -1,4 +1,4 @@
-## REST API Design Specification [*v0.1*](./versioning.md)
+## REST API Design Specification [*v1.0*](./versioning.md)
 
 
 This document represents the design specification of the RESTful API.

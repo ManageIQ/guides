@@ -1,4 +1,4 @@
-## REST API Reference Guide [*v0.1*](./versioning.md)
+## REST API Reference Guide [*v1.0*](./versioning.md)
 
 This document presents the currently available features and capabilities of the
 RESTful API. For further details on the implementation as well a complete list of the proposed
@@ -80,6 +80,10 @@ features please refer to the [Design Specification](./design.md).
 | Service Templates        | /api/\<collection\>/\<id\>/service_templates                     |
 | Tags                     | /api/\<collection\>/\<id\>/tags                                  |
 | | |
+| Service Requests         | /api/service_templates/\<id\>/service_requests                   |
+| | |
+| Service Request Tasks    | /api/service_requests/\<id\>/request_tasks                       |
+|                          | /api/service_requests/\<id\>/tasks  (*alias of request_tasks*)   |
 | Automation Request Tasks | /api/automation_requests/\<id\>/request_tasks                    |
 |                          | /api/automation_requests/\<id\>/tasks (*alias of request_tasks*) |
 | Provision Request Tasks  | /api/provision_requests/\<id\>/request_tasks                     |
