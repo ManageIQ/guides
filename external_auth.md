@@ -7,14 +7,23 @@ Authentication (httpd) on the Appliance against an IPA Server.
 Once external authentication is enabled, users will be able
 to login to the Appliance using their IPA Server credentials.
 User accounts will be automatically created on the Appliance
-and relevant information imported from the IPA Server.
+and relevant information imported from the IPA Server. 
+
+To allow IPA server defined users to login to the Appliance,
+they must be members of at least one group on the IPA server
+which needs to be defined in the Appliance under
+*Configure->Configuration->Access Control->Groups* with the
+appropriate role assigned to that group.
 
 The Appliance comes pre-loaded with the necessary IPA Client
 software to be able to connect to the IPA Server. The software
 is just not configured by default.
 
-Enabling and Disabling External Authentication is done via the Appliance
-UI as well as the Appliance Console.
+Enabling External Authentication is done by first enabling it
+in the Appliance Web UI then via the Appliance Console.
+Disabling External Authentication and returning to Internal
+Database Authentication also needs to be done in both the
+Appliance Web UI and then the Appliance Console.
 
 ---
 
