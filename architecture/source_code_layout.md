@@ -1,6 +1,6 @@
 # Source Code Layout
 
-The source code has 6 main directories
+The source code has the following top level directories
 * [build](#build)
 * [host](#host)
 * [lib](#lib)
