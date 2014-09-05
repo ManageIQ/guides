@@ -2,7 +2,6 @@
 
 The source code has 6 main directories
 * [build](#build)
-* [ca](#ca)
 * [host](#host)
 * [lib](#lib)
 * [system](#system)
@@ -11,11 +10,6 @@ The source code has 6 main directories
 ## build
 
 Code used to build the virtual appliance.
-
-## ca
-
-Code used on the virtual appliance to enable a local certificate authority for
-SSL.
 
 ## host
 
