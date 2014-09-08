@@ -1,10 +1,12 @@
 ## ManageIQ Developer Documentation
 
+### Developer information
 * [Coding Style and Standards](coding_style_and_standards.md)
-* [Current Sprint](current_sprint.md)
-* [Past Sprints](past_sprints.md)
+* [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
+* [Proposals](proposals)
+
+### ManageIQ technical documentation
 * [Architecture](architecture.md)
-* [Roadmap](roadmap.md)
 * [REST API](rest_api.md)
 * [External Authentication (httpd)](external_auth.md)
 
