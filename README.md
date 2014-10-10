@@ -2,13 +2,14 @@
 
 ### Developer information
 * [Coding Style and Standards](coding_style_and_standards.md)
-* [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
+* [Developer Setup](developer_setup.md)
 * [Proposals](proposals)
+* [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)
-* [REST API](rest_api.md)
 * [External Authentication (httpd)](external_auth.md)
+* [REST API](rest_api.md)
 
 ## License
 
