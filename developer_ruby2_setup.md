@@ -63,6 +63,13 @@ Try the folllowing links:
 * http://www.zlu.me/gcc/ruby/yosemite/2014/08/28/yosemite-gcc-woe.html
 
 
+#### Linux: build a ruby shared library (libruby.so)
+
+`ruby-install ruby 2.0.0 -- --enable-shared`
+
+`--enable-shared` is important otherwise you won't get libruby.so and won't be able to build the shared objects
+
+
 #### Upgrading an existing 2.0.0 or 1.9.3 to a new patch release
 
 Note: ruby 2.1 and newer use semantic versioning and don't have this issue.
