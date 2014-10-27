@@ -9,7 +9,7 @@
 
 ## Issues
 
-#### openssl with Mac's homebrew and ruby-install
+#### Mac: openssl with homebrew and ruby-install
 
 Symptom:
 openssl provided by homebrew is not found when launch ruby/bundling/etc.
@@ -25,7 +25,7 @@ ruby-install ruby 2.0.0-p576
 ruby-install ruby 2.1.3  # This is the goal...
 ```
 
-#### readline (bin/rails c or irb)
+#### Mac: readline (bin/rails c or irb)
 Symptom: error when launching rails console or irb.
 
 You may have to use `--no-install-deps` after removing readline that's in homebrew.
@@ -35,7 +35,7 @@ You may have to use `--no-install-deps` after removing readline that's in homebr
 See: https://github.com/postmodern/ruby-install/issues/144
 
 
-#### 'couldn't understand kern.osversion `14.0.0' on OSX Yosemite' building ruby/gems
+#### Mac: 'couldn't understand kern.osversion `14.0.0' on OSX Yosemite' building ruby/gems
 
 For example:
 
