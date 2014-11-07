@@ -74,7 +74,7 @@
 
 ## Getting the rails environment up and running.
   ```sh
-  gem install bundler -v 1.3.5
+  gem install bundler -v "~>1.3"
   cd vmdb
   bundle install --without qpid
   cd ..
