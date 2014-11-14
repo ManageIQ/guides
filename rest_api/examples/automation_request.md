@@ -17,14 +17,14 @@ POST /api/automation_requests
     "class" : "Request",
     "instance" : "InspectME",
     "message" : "create"
-  }
+  },
   "parameters" : {
     "var1" : "xxxxx",
     "var2" : "yyyyy",
     "var3" : 1024,
     "var4" : true,
     "var5" : "last value"
-  }
+  },
   "requester" : {
     "user_name" : "jdoe",
     "auto_approve" : true
@@ -48,14 +48,14 @@ POST /api/automation_requests
       "class" : "Request",
       "instance" : "InspectME",
       "message" : "create"
-    }
+    },
     "parameters" : {
       "var1" : "xxxxx",
       "var2" : "yyyyy",
       "var3" : 1024,
       "var4" : true,
       "var5" : "last value"
-    }
+    },
     "requester" : {
       "user_name" : "jdoe",
       "auto_approve" : true
