@@ -5,13 +5,13 @@
   1.  Install packages
 
       ```bash
-      sudo yum -y install xchat                                                         # For IRC
-      sudo yum -y install adobe-source-code-pro-fonts                                   # Nicer fonts to work with
-      sudo yum -y install git-all                                                       # Git and components
-      sudo yum -y install memcached                                                     # Memcached for the session store
-      sudo yum -y install postgresql postgresql-libs postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
-      sudo yum -y install libxml2-devel libxslt-devel                                     # For Nokogiri Gem
-      sudo yum -y install gcc-c++                                                       # For event-machine Gem
+      sudo yum -y install xchat                              # For IRC
+      sudo yum -y install adobe-source-code-pro-fonts        # Nicer fonts to work with
+      sudo yum -y install git-all                            # Git and components
+      sudo yum -y install memcached                          # Memcached for the session store
+      sudo yum -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
+      sudo yum -y install libxml2-devel libxslt-devel        # For Nokogiri Gem
+      sudo yum -y install gcc-c++                            # For event-machine Gem
       ```
 
   2.  Enable Memcached
