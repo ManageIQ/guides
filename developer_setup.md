@@ -96,7 +96,7 @@ bundle install --without qpid
 cd ..
 rake build:shared_objects
 cd vmdb
-cp config/database.pg_dev.yml config/database.yml
+cp config/database.pg.yml config/database.yml
 ```
 
 * Edit config/database.yml changing the user "root" to "evm" (the postgres role created above)
