@@ -8,29 +8,29 @@ configuration changes.
 
 The instructions for enabling the AWS Config service are provided in [Amazon's
 documentation](http://aws.amazon.com/config/details/#Getting_Started).  An
-overview of those instructions is provided here.
+overview is provided here.
 
 1. Create an AWS SNS Topic called `AWSConfig_topic`.
-  * log into the AWS Console
-  * navigate to the SNS tab
-  * click the "Create and Add" button, and select "Create new topic"
-  * in the dialog, enter "AWSConfig_topic" as the topic name
-  * click "Create topic" to close the dialog
-2. Create an AWS S3 bucket for AWS Config
-  * navigate to the S3 tag in the AWS Console
-  * click the "Actions" button, and select "Create Bucket..."
-  * in the dialog, enter a bucket name in the "Bucket Name" field
-  * select the region appropriate for your AWS account
-  * click "Create" to close the dialog
-3. Enable the AWS Config service
-  * navigate to the Config tab
-  * click the gear icon next to the "Status" link
-  * under the "Amazon SNS Topic" heading, select "Choose a topic from your
-    account" and select the `AWSConfig_topic`
-  * under the "Amazon S3 Bucket" heading, select "Choose a bucket from my
-    account" and select the correct bucket name
-  * enter an optional subdirectory
-  * click "Allow" to allow the AWS Config service read resource configurations
+  * Log in to the AWS Console.
+  * Navigate to the SNS tab.
+  * Click the "Create and Add" button, and select "Create new topic".
+  * In the dialog, enter "AWSConfig_topic" as the topic name.
+  * Click "Create topic" to close the dialog.
+2. Create an AWS S3 bucket for AWS Config.
+  * Navigate to the S3 tag in the AWS Console.
+  * Click the "Actions" button, and select "Create Bucket...".
+  * In the dialog, enter a bucket name in the "Bucket Name" field.
+  * Select the region appropriate for your AWS account.
+  * Click "Create" to close the dialog.
+3. Enable the AWS Config service.
+  * Navigate to the Config tab.
+  * Click the gear icon next to the "Status" link.
+  * Under the "Amazon SNS Topic" heading, select "Choose a topic from your.
+    account" and select the `AWSConfig_topic`.
+  * Under the "Amazon S3 Bucket" heading, select "Choose a bucket from my.
+    account" and select the correct bucket name.
+  * Enter an optional subdirectory.
+  * Click "Allow" to allow the AWS Config service read resource configurations.
 
 ### How ManageIQ Uses AWS Config
 
