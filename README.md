@@ -11,6 +11,7 @@
 * [Architecture](architecture.md)
 * [External Authentication (httpd)](external_auth.md)
 * [REST API](rest_api.md)
+* [Working with Amazon AWS Config service](providers/amazon_aws_config.md)
 
 ## License
 
