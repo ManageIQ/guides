@@ -109,3 +109,9 @@ would cause db_suffix to be nil.  Changing it to $db_suffix made it global and w
 # <%   puts "** EVM v#{evm_version}; Database: adapter=#{c["adapter"]}, name=#{c["database"]}, host=#{c["host"]}" %>
 # <% end %>
 ```
+
+#### Don't forget `Gemfile.dev.rb` if you encouter problems when running `bundle install` 
+
+One example is `debugger-1.6.8` with latest ruby versions. You may get errors to do with `debugger-ruby_core_source` or `debugger-1.6.8`. Examine `Gemfile.dev.rb` whether any gem has a dependency on `debugger-1.6.8`. A known such gem is `pry-plus`. Remove such gems from `Gemfile.dev.rb`.
+
+Gem `debugger-1.6.8` cannot be installed in ruby `2.0.0-p576` or later, nor in ruby `2.1.3`. It was reported that `2.0.0-p481` did not have this problem. 
