@@ -53,6 +53,7 @@ be filled with EMS_Refresh.
   * [OrchestrationStackResource](providers_database_architecture/orchestration_stack_resource.md)
   * [OrchestrationTemplate](providers_database_architecture/orchestration_template.md)
 * [Host](providers_database_architecture/host.md) (STI)
+  * HostOpenstackInfra
   * HostKvm
   * HostMicrosoft
   * HostRedhat
