@@ -59,6 +59,7 @@ be filled with EMS_Refresh.
   * HostRedhat
   * HostVmware
     * HostVmwareEsx
+* [Hardware](providers_database_architecture/hardware.md)
 * [AvailabilityZone](providers_database_architecture/availability_zone.md) (STI)
   * AvailabilityZoneAmazon
   * AvailabilityZoneOpenstack
