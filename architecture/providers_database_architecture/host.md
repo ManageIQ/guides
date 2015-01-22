@@ -1,8 +1,12 @@
 # Host model documentation
 
+OpenstackInfra host is tied to Ironic service, allowing management and
+inventory collection over Ironic API.
+
 * Table: hosts
-* Used in: Kvm, Microsoft, Redhat, Vmware
+* Used in: Kvm, Microsoft, Redhat, Vmware, OpenstackInfra
 * STI models:
+  * HostOpenstackInfra
   * HostKvm
   * HostMicrosoft
   * HostRedhat
@@ -11,19 +15,19 @@
 
 | Column                  | Type      | Used in           | Comment |
 | ----------------------- | --------- | ----------------- | ------- |
-| name                    | string    |                   |         |
+| name                    | string    | OpenstackInfra    | Name of the host |
 | hostname                | string    |                   |         |
-| ipaddress               | string    |                   |         |
+| ipaddress               | string    | OpenstackInfra    | IP address of the host        |
 | vmm_vendor              | string    |                   |         |
 | vmm_version             | string    |                   |         |
 | vmm_product             | string    |                   |         |
 | vmm_buildnumber         | string    |                   |         |
-| created_on              | datetime  |                   |         |
-| updated_on              | datetime  |                   |         |
+| created_on              | datetime  | All               | Created on timestamp of ManageIQ object |
+| updated_on              | datetime  | All               | Updated on timestamp of ManageIQ object |
 | guid                    | string    |                   |         |
-| ems_id                  | integer   |                   |         |
+| ems_id                  | integer   | All               | ForeignKey |
 | user_assigned_os        | string    |                   |         |
-| power_state             | string    |                   |         |
+| power_state             | string    | OpenstackInfra    | Power state of the host |
 | smart                   | integer   |                   |         |
 | settings                | string    |                   |         |
 | last_perf_capture_on    | datetime  |                   |         |
@@ -34,9 +38,9 @@
 | admin_disabled          | boolean   |                   |         |
 | service_tag             | string    |                   |         |
 | asset_tag               | string    |                   |         |
-| ipmi_address            | string    |                   |         |
-| mac_address             | string    |                   |         |
-| type                    | string    |                   | STI class |
+| ipmi_address            | string    | OpenstackInfra    | IP address of IPMI interface of the host |
+| mac_address             | string    | OpenstackInfra    | Mac address of the host |
+| type                    | string    | All               | STI class |
 | failover                | boolean   |                   |         |
 | ems_ref                 | string    |                   |         |
 | hyperthreading          | boolean   |                   |         |
