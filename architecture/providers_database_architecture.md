@@ -73,4 +73,6 @@ be filled with EMS_Refresh.
 
 ## Metric Models
 
+* [Metric](providers_database_architecture/metric.md)
+
 ## Event Models
