@@ -49,6 +49,9 @@
 * Forking ManageIQ/manageiq:
   * Go to [ManageIQ/mangeiq](https://github.com/ManageIQ/manageiq)
   * Click the Fork button and choose "Fork to \<yourname\>"
+* Go to [the Members page](https://github.com/ManageIQ?tab=members).
+  * Verify you are listed.
+  * Optionally click Publicize Membership.
 
 * Git configuration and default settings.
 
