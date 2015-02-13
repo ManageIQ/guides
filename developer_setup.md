@@ -36,7 +36,7 @@
 ### Mac
 
 
-#### Setup Git and Github
+## Setup Git and Github
 
 * The most reliable authentication mechanism for git uses SSH keys.
   * [SSH Key Setup](https://help.github.com/articles/generating-ssh-keys) Set up a SSH keypair for authentication.  Note: If you enter a passphrase, you will be prompted every time you authenticate with it.
@@ -68,12 +68,12 @@
   git config user.email joe.smith@example.com
   ```
 
-#### Install Ruby
+## Install Ruby
 
 * chruby: <https://github.com/postmodern/chruby>
 * RVM: <http://rvm.io/>
 
-#### Clone the Code
+## Clone the Code
 
 ```zsh
 git clone git@github.com:JoeSmith/manageiq.git # Use "-o my_fork" if you don't want the remote to be named origin
@@ -90,7 +90,7 @@ git fetch upstream
 ```
 
 
-#### Get the Rails environment up and running
+## Get the Rails environment up and running
 
 ```zsh
 gem install bundler -v "~>1.3"
