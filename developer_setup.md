@@ -34,38 +34,29 @@
       ```
 
 ### Mac
-  1. Install PostgreSQL
-    - Download and install the .dmg for 9.2.4 for MacOSX:  http://www.enterprisedb.com/products-services-training/pgdownload#osx
-    - Open the dmg and run the installer (It will update your shared memory settings and prompt for a reboot, reboot it)
-    - Open the dmg and run the installer again after the reboot.
-    - Don't install the "stack builder" addon at the end of the PostgreSQL installation.
-    - sudo modify your /etc/profile and add the following:
-      ```bash
-      export DYLD_LIBRARY_PATH=/Library/PostgreSQL/9.2/lib/postgresql:$DYLD_LIBRARY_PATH
-      export PATH=/Library/PostgreSQL/9.2/bin:$PATH
-      ```
-    - Restart your terminal, and do the following:
-      ```bash
-      sudo chown postgres /Library/PostgreSQL/9.2/data/
-      sudo -u postgres initdb -D /Library/PostgreSQL/9.2/data
-      psql --version (should be the version you downloaded)
-      ```
 
-  2. Install Navicat
-    - Install Navicat Premium Essentials:  http://www.navicat.com/en/download/download.html
-    - Select Navicat Premium, and download Navicat Premium Essentials
-    - Get a license key
-    - Add a PostgreSQL connection in Navicat to localhost with the postgres user
-    - Create the root user
-      - Open localhost, and click Role.
-      - Right-click postgres and choose Duplicate User
-      - Set Role name to root and the password to smartvm
-      - Click save, and although you will get an error, it will be created correctly.
-      - Close the window, and when prompted click "Don't Save"
-      - Right-click localhost and choose Close Connection-
-      - Right-click localhost and choose Connection Properties
-      - Change the User Name to root, and the password to smartvm
+* Install [Homebrew](http://brew.sh/)
 
+  If you do not have Homebrew installed, go to the Homebrew website and install it.
+
+* Install Packages
+
+  ```bash
+  brew install git
+  brew install memcached
+  brew install postgresql
+  ```
+
+* Configure PostgreSQL
+
+  ```bash
+  # Enable PostgreSQL on boot
+  mkdir -p ~/Library/LaunchAgents
+  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+  psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  ```
 
 #### Setup Git and Github
 
