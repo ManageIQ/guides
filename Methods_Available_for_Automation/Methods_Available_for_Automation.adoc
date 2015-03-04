@@ -8,11 +8,10 @@ Methods Available for Automation
 // asciidoc -a toc -n -a toclevels=3 Methods_Available_for_Automation.ad
 
 .Abstract
-This guide provides advanced methods for CloudForms Management Engine's
-automation functions. Methods can be used from within CloudForms
-Management Engine to create custom actions and workflows for the objects
-managed by CloudForms Management Engine. Information and procedures in
-this book are relevant to CloudForms Management Engine administrators.
+This guide provides advanced methods for ManageIQ's
+automation functions. Methods can be used from within ManageIQ to create custom actions and workflows for the objects
+managed by ManageIQ. Information and procedures in
+this book are relevant to ManageIQ administrators.
 This document is organized by the object hierarchy in the Automate
 Model.
 
@@ -21,11 +20,11 @@ Terminology
 
 Account Role::
   A designation assigned to a user allowing or restricting a user to
-  parts and functions of the CloudForms Management Engine console.
+  parts and functions of the ManageIQ console.
 Action::
   An execution that is performed after a condition is evaluated.
 Alert::
-  CloudForms Management Engine alerts notify administrators and
+  ManageIQ alerts notify administrators and
   monitoring systems of critical configuration changes and threshold
   limits in the virtual environment. The notification can take the form
   of either an email or an SNMP trap.
@@ -37,16 +36,16 @@ Cloud::
   A pool of on-demand and highly available computing resources. The
   usage of these resources are scaled depending on the user requirements
   and metered for cost.
-CloudForms Management Engine Appliance::
+ManageIQ Appliance::
   A virtual machine on which the virtual management database (VMDB) and
-  CloudForms Management Engine server reside.
-CloudForms Management Engine Console::
-  A web-based interface into the CloudForms Management Engine Appliance.
-CloudForms Management Engine Role::
-  A designation assigned to a CloudForms Management Engine server that
-  defines what a CloudForms Management Engine server can do.
-CloudForms Management Engine Server::
-  The application that runs on the CloudForms Management Engine
+  ManageIQ server reside.
+ManageIQ Console::
+  A web-based interface into the ManageIQ Appliance.
+ManageIQ Role::
+  A designation assigned to a ManageIQ server that
+  defines what a ManageIQ server can do.
+ManageIQ Server::
+  The application that runs on the ManageIQ
   Appliance and communicates with the SmartProxy and the VMDB.
 Cluster::
   Hosts that are grouped together to provide high availability and load
@@ -54,7 +53,7 @@ Cluster::
 Condition::
   A test of criteria triggered by an event.
 Discovery::
-  Process run by the CloudForms Management Engine server which finds
+  Process run by the ManageIQ server which finds
   virtual machine and cloud providers.
 Drift::
   The comparison of a virtual machine, instance, host, cluster to itself
@@ -62,9 +61,8 @@ Drift::
 Event::
   A trigger to check a condition.
 Event Monitor::
-  Software on the CloudForms Management Engine Appliance which monitors
-  external providers for events and sends them to the CloudForms
-  Management Engine server.
+  Software on the ManageIQ Appliance which monitors
+  external providers for events and sends them to the ManageIQ server.
 Host::
   A computer on which virtual machine monitor software is loaded.
 Instance/Cloud Instance::
@@ -90,7 +88,7 @@ Policy::
 Policy Profile::
   A set of policies.
 Refresh::
-  A process run by the CloudForms Management Engine server which checks
+  A process run by the ManageIQ server which checks
   for relationships of the provider or host to other resources, such as
   storage locations, repositories, virtual machines, or instances. It
   also checks the power states of those resources.
@@ -107,23 +105,22 @@ Repository::
   A place on a datastore resource which contains virtual machines.
 SmartProxy::
   The SmartProxy is a software agent that acts on behalf of the
-  CloudForms Management Engine Appliance to perform actions on hosts,
+  ManageIQ Appliance to perform actions on hosts,
   providers, storage and virtual machines.
   +
-  The SmartProxy can be configured to reside on the CloudForms
-  Management Engine Appliance or on an ESX server version. The
-  SmartProxy can be deployed from the CloudForms Management Engine
+  The SmartProxy can be configured to reside on the ManageIQ Appliance or on an ESX server version. The
+  SmartProxy can be deployed from the ManageIQ
   Appliance, and provides visibility to the VMFS storage. Each storage
   location must have a SmartProxy with visibility to it. The SmartProxy
-  acts on behalf of the CloudForms Management Engine Appliance. If the
-  SmartProxy is not embedded in the CloudForms Management Engine server,
-  it communicates with the CloudForms Management Engine Appliance over
+  acts on behalf of the ManageIQ Appliance. If the
+  SmartProxy is not embedded in the ManageIQ server,
+  it communicates with the ManageIQ Appliance over
   HTTPS on standard port 443.
 SmartState Analysis::
   Process run by the SmartProxy which collects the details of a virtual
   machine or instance. Such details include accounts, drivers, network
   information, hardware, and security patches. This process is also run
-  by the CloudForms Management Engine server on hosts and clusters. The
+  by the ManageIQ server on hosts and clusters. The
   data is stored in the VMDB.
 SmartTags::
   Descriptors that allow you to create a customized, searchable index
@@ -132,7 +129,7 @@ Storage Location::
   A device, such as a VMware datastore, where digital information
   resides that is connected to a resource.
 Tags::
-  Descriptive terms defined by a CloudForms Management Engine user or
+  Descriptive terms defined by a ManageIQ user or
   the system used to categorize a resource.
 Template::
   A template is a copy of a preconfigured virtual machine, designed to
@@ -141,7 +138,7 @@ Template::
 Unmanaged Virtual Machine::
   Files discovered on a datastore that do not have a virtual machine
   associated with them in the VMDB. These files may be registered to a
-  provider that the CloudForms Management Engine server does not have
+  provider that the ManageIQ server does not have
   configuration information on. Possible causes may be that the provider
   has not been discovered or that the provider has been discovered, but
   no security credentials have been provided.
@@ -151,40 +148,37 @@ Virtual Machine::
   of a physical host, or a set of physical hosts, to provide a scalable
   and on-demand method of system provisioning.
 Virtual Management Database (VMDB)::
-  Database used by the CloudForms Management Engine Appliance to store
+  Database used by the ManageIQ Appliance to store
   information about your resources, users, and anything else required to
   manage your virtual enterprise.
 Virtual Thumbnail::
   An icon divided into smaller areas that summarize the properties of a
   resource.
 Zones::
-  CloudForms Management Engine Infrastructure can be organized into
+  ManageIQ Infrastructure can be organized into
   zones to configure failover and to isolate traffic. Zones can be
   created based on your environment. Zones can be based on geographic
   location, network location, or function. When first started, new
   servers are put into the default zone.
 
-Methods Available for Use with CloudForms Management Engine
+Methods Available for Use with ManageIQ
 -----------------------------------------------------------
-Methods can be used from within CloudForms Management Engine to create
-custom actions and workflows for the objects managed for your CloudForms
-Management Engine Infrastructure. This document describes the methods
-available for use in CloudForms Management Engine. This document is
+Methods can be used from within ManageIQ to create
+custom actions and workflows for the objects managed for your ManageIQ Infrastructure. This document describes the methods
+available for use in ManageIQ. This document is
 organized by the object hierarchy in the Automate Model.
 
 $evm.root
 ~~~~~~~~~
 When an Automate method is launched, it has one global variable: `$evm`.
-The `$evm` variable allows the method to communicate back to CloudForms
-Management Engine. The `$evm.root` is the root object in the workspace,
-it provides access to the data currently loaded in the CloudForms
-Management Engine model. It use the objects data to solve more complex
-problems by integrating with CloudForms Management Engine methods.
+The `$evm` variable allows the method to communicate back to ManageIQ. The `$evm.root` is the root object in the workspace,
+it provides access to the data currently loaded in the ManageIQ model. It use the objects data to solve more complex
+problems by integrating with ManageIQ methods.
 
 The following is an excerpt from the *InspectMe* method that can be
 found in the *ManageIQ\System\Request* namespace. The dumpRoot method
 accesses the `$evm.root` object, and sends all of its attributes to the
-CloudForms Management Engine Automate log for review. In the dumpServer
+ManageIQ Automate log for review. In the dumpServer
 Method, the inspect method is run based on the value of the miq_server
 obtained from the `$evm.root` object.
 
@@ -381,8 +375,7 @@ Model.
 |====================================================================
 
 The *InspectMe* *Sample Method* uses many of the Methods shown in this
-document. The method returns attributes of the CloudForms Management
-Engine Server and then returns attributes for the host, cluster, and
+document. The method returns attributes of the ManageIQ Server and then returns attributes for the host, cluster, and
 virtual machine from the provider of invocation. In many environments it
 is linked to a button.
 
@@ -790,9 +783,9 @@ pwd_str => "pwd"`
 |ems_custom_keys            |Returns Management Systems custom keys
 |ems_custom_get(key)        |Gets Value for specified Management Systems custom key
 |ems_custom_set(attribute, value)   |Sets value for specified custom key of the Management System
-|custom_keys                |Lists CloudForms Management Engine Server custom keys
-|custom_get(key)            |Gets value for specified CloudForms Management Engine Server custom key
-|custom_set(key, value)     |Sets value for specified CloudForms Management Engine Server custom key
+|custom_keys                |Lists ManageIQ Server custom keys
+|custom_get(key)            |Gets value for specified ManageIQ Server custom key
+|custom_set(key, value)     |Sets value for specified ManageIQ Server custom key
 |ssh_exec(script)           |Runs the specified script on the host
 |get_realtime_metric(metric, range, function)   |Returns specified realtime metric
 |current_memory_usage       |Returns current memory usage
@@ -959,7 +952,7 @@ cpu_rdy = host.get_realtime_metric(:v_pct_cpu_ready_delta_summation, [15.minutes
 [[Request (miq_request)]] Request (miq_request)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Request objects are submitted to CloudForms Management Engine Server for
+Request objects are submitted to ManageIQ Server for
 processing. After the request phase, the request becomes a task object.
 The table below shows the relationship between a request object and a
 task object.
@@ -1556,13 +1549,13 @@ _Example:_
 
 [[Servers (miq_server)]] Servers (miq_server)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-These methods are available to the CloudForms Management Engine Server.
+These methods are available to the ManageIQ Server.
 [options="header"]
 |====================================================================
 |Method             |Use
-|zone               |Returns CloudForms Management Engine Servers Zone
-|region_number      |Returns CloudForms Management Engine Servers Region Number
-|region_name        |Returns CloudForms Management Engine Servers Region Name
+|zone               |Returns ManageIQ Servers Zone
+|region_number      |Returns ManageIQ Servers Region Number
+|region_name        |Returns ManageIQ Servers Region Name
 |====================================================================
 
 [source,ruby]
@@ -1812,9 +1805,9 @@ object.
 |changed_vm_value?              |Checks the 2 most recent drift state captures, and answers whether the specified value changed between them
 |collect_running_processes      |Collects the running processes of the object
 |create_snapshot(name, desc = nil)  |Create a snapshot of the object
-|custom_get(key)                |Get the value of specified CloudForms Management Engine Server key from the object
-|custom_keys                    |List all CloudForms Management Engine Server custom keys for the object
-|custom_set(key, value)         |Set a custom CloudForms Management Engine Server key value
+|custom_get(key)                |Get the value of specified ManageIQ Server key from the object
+|custom_keys                    |List all ManageIQ Server custom keys for the object
+|custom_set(key, value)         |Set a custom ManageIQ Server key value
 |datacenter                     |Returns objects Datacenter
 |direct_service                 |Show the direct service relationship of the virtual machine
 |directories                    |Returns number of directories on the object
@@ -1853,7 +1846,7 @@ _Example:_
 |hardware                       |Returns objects Hardware
 |host                           |Returns objects Host
 |migrate(host, pool = nil, priority = "defaultPriority", state = nil)    |Migrates the object to another host. The only required parameter is host
-|miq_provision                  |If VM was created using CloudForms Management Engine Server provisioning, this is the miq_provision task instance that created the VM
+|miq_provision                  |If VM was created using ManageIQ Server provisioning, this is the miq_provision task instance that created the VM
 |operating_system               |Returns objects Operating System
 |owner                          |Return objects owner
 |owner=(owner)                  |Sets objects owner
