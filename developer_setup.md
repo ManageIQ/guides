@@ -47,6 +47,15 @@
   brew install postgresql
   ```
 
+* Configure memcached
+
+ ```bash
+  $ mkdir ~/Library/LaunchAgents
+  $ cp /usr/local/Cellar/memcached/$version/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
+  $ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist.
+  $ /opt/local/bin/memcached -d -p 11211
+  ```
+  
 * Configure PostgreSQL
 
   ```bash
@@ -56,8 +65,12 @@
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
   psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  psql -c "alter database vmdb_development owner to root”
+  
+  env ARCHFLAGS="-arch x86_64" gem install pg
   ```
-
+ 
+ 
 ## Setup Git and Github
 
 * The most reliable authentication mechanism for git uses SSH keys.
@@ -93,9 +106,20 @@
 
 ## Install Ruby
 
-* chruby: <https://github.com/postmodern/chruby>
 * RVM: <http://rvm.io/>
-
+  ```bash
+  $ \curl -L https://get.rvm.io | bash -s stable —ruby
+  ```
+  
+* RUBY:
+  ```bash  
+  $ rvm install ruby-2.0.0
+  $ rvm --default use ruby-2.0.0
+  $ gem install rails
+  $ bundle install 
+  $ gem install rake -v '10.4.2'
+  $ bundle install 
+  ```
 ## Clone the Code
 
 ```zsh
