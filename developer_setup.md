@@ -35,6 +35,28 @@
 
 ### Mac
 
+* Install [Homebrew](http://brew.sh/)
+
+  If you do not have Homebrew installed, go to the Homebrew website and install it.
+
+* Install Packages
+
+  ```bash
+  brew install git
+  brew install memcached
+  brew install postgresql
+  ```
+
+* Configure PostgreSQL
+
+  ```bash
+  # Enable PostgreSQL on boot
+  mkdir -p ~/Library/LaunchAgents
+  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+  psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  ```
 
 ## Setup Git and Github
 
