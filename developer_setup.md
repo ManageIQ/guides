@@ -115,10 +115,6 @@
   ```bash  
   $ rvm install ruby-2.0.0
   $ rvm --default use ruby-2.0.0
-  $ gem install rails
-  $ bundle install 
-  $ gem install rake -v '10.4.2'
-  $ bundle install 
   ```
 ## Clone the Code
 
