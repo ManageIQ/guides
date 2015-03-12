@@ -23,8 +23,7 @@ echo
 
 # Precompile assets
 echo "**** Precompiling assets..."
-rake assets:clean || exit 1
-rake assets:precompile || exit 1
+rake evm:compile_assets || exit 1
 echo "**** done."
 echo
 
