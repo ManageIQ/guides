@@ -5,7 +5,7 @@
 * [Developer Setup](developer_setup.md)
 * [Developer Ruby 2 Setup](developer_ruby2_setup.md)
 * [Development Appliance Setup](miq-dev-appliance-setup/README.md)
-* [Proposals](proposals)
+* [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 
 ### ManageIQ technical documentation
