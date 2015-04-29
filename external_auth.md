@@ -113,6 +113,7 @@ Appliance Console CLI command and relevant options include:
 ```sh
 /bin/appliance_console_cli --host <appliance_fqdn>
                            --ipaserver <ipa_server_fqdn>
+                           --ipadomain <domain_of_ipa_server>
                            --iparealm <realm_of_ipa_server>
                            --ipaprincipal <ipa_server_principal>
                            --ipapassword <ipa_server_password>
@@ -125,6 +126,7 @@ Note:
 step was already performed via the Appliance Console and the necessary updates
 made to /etc/hosts if DNS is not properly configured, the \-\-host option
 can be omitted.
+* \-\-ipadomain will be based on the appliance domain name if not specified.
 * \-\-iparealm will be based on the domain name of the ipaserver if not specified.
 * \-\-ipaprincipal will default to **admin** if not specified.
 
@@ -134,6 +136,7 @@ can be omitted.
 $ ssh root@appliance.test.company.com
 appliance# /bin/appliance_console_cli --host appliance.test.company.com \
                                       --ipaserver ipaserver.test.company.com \
+                                      --ipadomain test.company.com \
                                       --iparealm TEST.COMPANY.COM \
                                       --ipaprincipal admin \
                                       --ipapassword smartvm1
