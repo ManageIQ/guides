@@ -126,7 +126,7 @@ Note:
 step was already performed via the Appliance Console and the necessary updates
 made to /etc/hosts if DNS is not properly configured, the \-\-host option
 can be omitted.
-* \-\-ipadomain will be based on the appliance domain name if not specified
+* \-\-ipadomain will be based on the appliance domain name if not specified.
 * \-\-iparealm will be based on the domain name of the ipaserver if not specified.
 * \-\-ipaprincipal will default to **admin** if not specified.
 
