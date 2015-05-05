@@ -1,0 +1,24 @@
+---
+- MiqAlert:
+    guid: 21a29458-6451-11e3-8f8f-005056bc3359
+    description: 'InstackAutoscale: Total Allocated Memory % Used > 50 '
+    options:
+      :notifications:
+        :delay_next_evaluation: 60
+        :evm_event: {}
+        :automate:
+          :event_name: InstackAutoscale_Processing
+    db: EmsCluster
+    expression:
+      :eval_method: realtime_performance
+      :mode: internal
+      :options:
+        :perf_column: mem_usage_absolute_average
+        :operator: "<"
+        :value_threshold: '50'
+        :trend_direction: none
+        :trend_steepness: 
+        :debug_trace: 'true'
+        :rt_time_threshold: 60
+    responds_to_events: ems_cluster_perf_complete
+    enabled: true
