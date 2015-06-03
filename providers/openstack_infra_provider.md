@@ -84,30 +84,6 @@ Follow these steps to enable host fleecing.  Note that the OpenStack infrastruct
       * sed -i 's/no-port-forwarding.*10" //' .ssh/authorized_keys
    * In the ‘RSA KEY pair tab’ of Infra provider add root User ID and the private file from step 2
 
-##### Add Alert and Event for Autoscaling through Automate (Optional)
+##### Add Alert and Event for Auto-Acaling through Automate (Optional)
 
-Follow these steps to enable autoscaling:
-
-* Enable the appropriate Server roles:
-   * Go to Configure -> Configuration
-   * Under 'Server Roles', select 'Automation Engine', 'Notifier', and all 'Capacity & Utilization' Roles.  Then save the form.
-* Create the memory alert:
-   * Go to Control -> Import/Export
-   * Upload 'role_memory_usage.yaml' ([download](openstack_infra_files/role_memory_usage.yaml)) using the Import form and commit the import
-   * Go to Control -> Explorer
-   * In the left navigation select Alerts, and then click on 'InstackAutoscale: Total Allocated Memory % Used > 50'
-      * Note that the comparison operator is '<' instead of '>'; this is due to a Ceilometer bug that reports inverse usage 
-* Create an alert profile with the imported alert:
-   * Go to Control -> Explorer
-   * In the left navigation select Alert Profiles -> Cluster/Deployment Role Alert Profiles
-   * Under Configuration, choose to Add a New Cluster/Deployment Role Alert Profile
-      * Use ComputeMemoryCheck as the description, and select the InstackAutoscale alert; then submit the form
-   * Click on the new ComputeMemoryCheck alert profile; under Configuration select 'Edit assignments for this Alert Profile'
-      * Choose to assign the Alert Profile to 'Selected Cluster / Deployment Roles'; then select 'overcloud NovaCompute' and submit the form
-* Create Automate action:
-   * Go to Automate -> Import/Export
-   * Upload 'autoscale_datastore.zip' ([download](openstack_infra_files/autoscale_datastore.zip)) using the Import form
-   * Toggle All namespaces and submit the form
-   * Go to Automate -> Explorer
-   * In the left navigation select Datastore, then select Instack
-   * Under Configuration, choose 'Edit this Domain'; toggle 'Enabled' and submit the form
+To enable auto-scaling, follow [the instructions in the ManageIQ depot](http://manageiq.org/depot/extension/openstack_infrastructure_auto_scale/).
