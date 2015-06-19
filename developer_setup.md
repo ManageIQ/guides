@@ -31,6 +31,35 @@
   su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
   ```
 
+#### Fedora 22
+
+* Install packages
+
+  ```bash
+  sudo dnf -y install git-all                            # Git and components
+  sudo dnf -y install memcached                          # Memcached for the session store
+  sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
+  sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
+  sudo dnf -y install gcc-c++                            # For event-machine Gem
+  ```
+
+* Enable Memcached
+
+  ```bash
+  sudo systemctl enable memcached
+  sudo systemctl start memcached
+  ```
+
+* Configure PostgreSQL
+
+  ```bash
+  sudo passwd postgres <new_password>
+  su postgres -c 'initdb -D /var/lib/pgsql/data'
+  sudo systemctl enable postgresql
+  sudo systemctl start postgresql
+  su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
+  ```
+
 #### Mac
 
 * Install [Homebrew](http://brew.sh/)
