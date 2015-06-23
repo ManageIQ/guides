@@ -6,7 +6,7 @@ cd $MIQ_DIR/vmdb || exit 1
 
 # Update gems.
 echo "**** Updating gems..."
-bundle update || exit 1
+bundle install --without qpid:metric_fu || exit 1
 echo "**** done."
 echo
 
