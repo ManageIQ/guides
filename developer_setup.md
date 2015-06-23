@@ -2,7 +2,7 @@
 
 ### Install System Packages
 
-#### Fedora 20
+#### Fedora 20+
 
 * Install packages
 
@@ -29,6 +29,20 @@
   sudo systemctl enable postgresql
   sudo systemctl start postgresql
   su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
+  ```
+
+#### Fedora 22+
+
+As per 20+, with the following changes:
+
+* Install packages
+
+  ```bash
+  sudo dnf -y install git-all                            # Git and components
+  sudo dnf -y install memcached                          # Memcached for the session store
+  sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
+  sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
+  sudo dnf -y install gcc-c++                            # For event-machine Gem
   ```
 
 #### Mac
