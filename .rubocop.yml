@@ -32,6 +32,7 @@ GlobalVars:
   - $miq_ae_logger
   - $rails_log
   - $rhevm_log
+  - $kube_log
   - $scvmm_log
   - $vim_log
   # In Automate methods
@@ -65,6 +66,10 @@ Documentation:
   Enabled: false
 Encoding:
   Enabled: false
+GuardClause:
+  Enabled: false
+IfUnlessModifier:
+  Enabled: false
 SingleLineBlockParams:
   Enabled: false
 SingleSpaceBeforeFirstArg:
@@ -74,4 +79,6 @@ StringLiterals:
 StringLiteralsInInterpolation:
   Enabled: false
 TrailingComma:
+  Enabled: false
+WhileUntilModifier:
   Enabled: false
