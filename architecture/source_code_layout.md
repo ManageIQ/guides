@@ -1,91 +1,74 @@
 # Source Code Layout
 
-The source code has the following top level directories
-* [build](#build)
-* [host](#host)
-* [lib](#lib)
-* [system](#system)
-* [vmdb](#vmdb)
+ManageIQ is a Rails application with the following standard layout
 
-## build
+| File/Folder | Purpose |
+|:----------- |:------- |
+| app/        | Contains the controllers, models, views, helpers, mailers and assets. |
+| bin/        | Contains the rails script that starts the app and can contain other scripts to setup, deploy or run the application. |
+| certs/      | Certificates needed by ManageIQ Appliance. |
+| config/     | Configuration of the ManageIQ application's routes, database and more. |
+| config.ru   | Rack configuration for Rack based servers used to start the application. |
+| db/         | Contains the current database schema, as well as the database migrations. |
+| [gems/](#gems) | Libraries planned for extraction to standalone gems. |
+| Gemfile     | Specification of the ManageIQ application's gem dependencies. These files are used by the Bundler gem. For more information about Bundler, see the [Bundler website](http://bundler.io).|
+| [lib/](#lib)| Extended modules for the ManageIQ application. |
+| log/        | ManageIQ application log files. |
+| public/     | The only folder seen by the world as-is. Contains static files and compiled assets. |
+| Rakefile    | This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of Rails. Rather than changing Rakefile, you should add your own tasks by adding files to the lib/tasks directory of your application. |
+| README.md   | Overview of the ManageIQ project. |
+| [spec/](#spec)       | Tests using RSpec. |
+| [tools/](#tools) | Special purpose Ruby scripts that should not be executed without full understanding of what they do. |
+| tmp/        | Temporary files (like cache, pid, and session files). |
+| vendor/     | A place for all third-party code. |
 
-Code used to build the virtual appliance.
 
-## host
+## gems
 
-The "host" or SmartProxy is a component installed on a physical machine.  It
-provides facilities to scan VMs or provide operations that are only accessible
-from the physical machine.  This includes the abilities to run PowerShell
-commands on Windows, to "heartbeat" to the ManageIQ server, and other features.
-
-On VMWare, the VM scanning facilities of the standalone SmartProxy are less
-important when the VMware Virtual Disk Development Kit (VDDK) is installed,
-allowing remote access to virtual disks.  The standalone SmartProxy will
-continue to be used for scanning other systems where the hypervisor's storage is
-not accessible from the ManageIQ appliance.
-
-Since the SmartProxy is generally used co-located with the ManageIQ server for
-scanning, the PowerShell proxy is the primary remaining feature of the
-standalone SmartProxy.
-
-## lib
-
-This directory contains libraries for
+This directory contains libraries (planned for extraction to gems) for the following:
 
 * interfacing with various clouds and infrastructure providers
-  * lib/Amazon
-  * lib/RedHatEnterpriseVirtualizationManagerAPI
-  * lib/openstack
-  * lib/VMwareWebService
+  * gems/pending/Amazon
+  * gems/pending/openstack
+  * gems/pending/VMwareWebService
     * Client and broker server for connecting to the VMware Virtual
       Infrastructure Management (VIM) API/Framework
 * VM scanning
-  * lib/disk
-  * lib/fs
-  * lib/metadata
-  * lib/VixDiskLib
+  * gems/pending/disk
+  * gems/pending/fs
+  * gems/pending/metadata
+  * gems/pending/VixDiskLib
     * Ruby bindings to the VIX Disk API for connecting to the VMware virtual
       disks remotely
 * standalone utility libraries
-  * lib/util
+  * gems/pending/util
     * Typically, utility libraries that are NOT tied to Rails are put here. The
       benefit is that most of the code automatically loads many of the libraries
       here, so if you want to add a new Exception class, for example, look in
       miq-exception.rb, and Rails code will automatically find it.
-  * lib/util/extensions
+  * gems/pending/util/extensions
     * Extensions for Ruby core classes.  Note that extensions to Rails core live
       in vmdb/lib/extensions.
 
-## system
+## lib
 
-Tools and configuration files that for the virtual appliance.  This includes
-daemon scripts, log managers, scripts for setting up ManageIQ, and application
-configurations.
-
-## vmdb
-
-This directory contains the ManageIQ Rails application.
-
-* The familiar Rails directories, such as app, config, vendor, etc
-* Mixins for models and controllers
-  * vmdb/app/models/mixins
-  * vmdb/app/controllers/mixins
-* Libraries for the application are found in vmdb/lib
-  * vmdb/lib/workers
+  * lib/workers
     * Contains the "worker" scripts for the various types of workers as well as
       the base EVM server.  When we start a worker, these are the scripts that
       are invoked with various arguments.  Each worker has a corresponding model
-      found in vmdb/app/models.  Additionally, the workers have a class
-      inheritance structure found in each script which directly matches the
-      inheritance structure in the current configuration.  This way you can set
-      a specific setting at the "worker_base" level and have it inherit for all
+      found in app/models.  Additionally, the workers have a class inheritance
+      structure found in each script which directly matches the inheritance
+      structure in the current configuration.  This way you can set a specific
+      setting at the "worker_base" level and have it inherit for all
       subclasses, allowing overloading of configuration values when needed.
       See the documentation on the worker architecture for more details.
-  * vmdb/lib/extensions
+  * lib/extensions
     * Extensions to Rails core classes.
-* Testing
+
+## spec
+
   * spec
-    * Specs in the vmdb/spec directory typically match the class path of the
+    * Specs in the spec directory typically match the class path of the
       model to make it easy to find the specs.  For example, the
       ExtManagementSystem model, which lives in models/ext_management_system.rb
       would have its specs in spec/models/ext_management_system_spec.rb
