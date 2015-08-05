@@ -1,95 +1,202 @@
 ## Provider Overview
 
-### What's a Provider?
+### What is a Provider?
 
-`Provider == ExtManagementSystem`
+Providers are a grouping of *management systems*.
 
-In [ManageIQ](https://github.com/ManageIQ/manageiq), providers are "external management systems".  To be fair, this is a legacy description and will be [changing over time](https://github.com/ManageIQ/manageiq/issues/1272).  However, for this documentation, the legacy description will suffice.
+Management systems are at the center of ManageIQ's Provider Integration story.
 
-From a simple point of view, an [ExtManagementSystem](https://github.com/ManageIQ/manageiq/blob/08e4424951a6d229bc7c55a412dbb5f9befd7e7e/vmdb/app/models/ext_management_system.rb) is a model object representing the details of connecting to and interacting with a provider.
+`Manager == ExtManagementSystem`
 
-Conceptually, a provider is any system that ManageIQ integrates with for the purpose of collecting data and performing operations.
+In [ManageIQ](https://github.com/ManageIQ/manageiq), managers are the *external management systems*.  This description has changed slightly over time.  Originally, providers were external management systems.  But, this has rapidly changed as providers became more complex (like OpenStack) and less clearly defined as a manager of a single set of resources.  As providers began managing more than one type of main resource, it became clear that providers could be broken down into separate managers.
 
-An example of a provider is OpenStack Cloud, known in ManageIQ as [EmsOpenstack](https://github.com/ManageIQ/manageiq/blob/e4cdcfcf46b93794bd4b6cd0f0e3e0b53d1568c6/vmdb/app/models/ems_openstack.rb).
+From a simple point of view, an [ExtManagementSystem](https://github.com/ManageIQ/manageiq/blob/3f41a6089380f2395057e8e100a2b4ccd2fbbc7a/app/models/ext_management_system.rb) is a model object representing the details of connecting to and interacting with a provider's manager.
+
+Conceptually, a manager is any system that ManageIQ integrates with for the purpose of collecting data and performing operations.
+
+An example of a manager is Amazon Cloud Manager, known in ManageIQ as [Amazon::CloudManager](https://github.com/ManageIQ/manageiq/blob/master/app/models/manageiq/providers/amazon/cloud_manager.rb).
+
+## Provider Manager Types
+
+ManageIQ currently knows about a few different types of Provider Managers:
+
+* Virtual Infrastructure Manager
+* Cloud Manager
+* Configuration Manager
+* Baremetal Provisioning Manager
+* Containers Manager
+
+For each type, we have at least one reference implementation:
+
+* Virtual Infrastructure Manager :: VMWare
+* Cloud Manager :: Amazon
+* Configuration Manager :: Foreman (Puppet)
+* Baremetal Provisioning Manager :: Foreman
+* Containers Manager :: Kubernetes / OpenShift
+
+When a new manager is being integrated, it's important to understand whether the new manager is also a new manager type.  New manager types take significantly more effort to on-board because it involves understanding what possibly new data models are required for inventory collection, as well as what possibly new event and metrics requirements will crop up.
+
+## Provider Implementation
+
+Integrating with a provider requires looking at six separate areas:
+
+1. Inventory
+2. Event Collection and Handling
+3. Metric Collection and Handling
+4. Provisioning
+5. Power operations
+6. SmartState Analysis
 
 ### Inventory
 
-Every provider has an associated inventory.  One of the main goals with adding a provider to ManageIQ is to collect the inventory of the provider.  Some examples of inventory objects are:
+Every manager has an associated inventory.  One of the main goals with adding a manager to ManageIQ is to collect the inventory of the manager.  Some examples of inventory objects are:
 
-* [VMs](https://github.com/ManageIQ/manageiq/blob/4f557f06ac78756e5b6e4e876f8e103932e4d65a/vmdb/app/models/vm.rb)
-* [Hosts](https://github.com/ManageIQ/manageiq/blob/5a8570608536ed6441a9d1ff45c8e23f286e64d7/vmdb/app/models/host.rb)
-* [Containers](https://github.com/ManageIQ/manageiq/blob/bfdf9c5e05ce8b00a75bcb2b62f1e627d954ae6b/vmdb/app/models/container.rb)
+* [VMs](https://github.com/ManageIQ/manageiq/blob/b20bb4ae37883cecb271ecf34c92d53ebf55fe45/app/models/vm.rb)
+* [Hosts](https://github.com/ManageIQ/manageiq/blob/b20bb4ae37883cecb271ecf34c92d53ebf55fe45/app/models/host.rb)
+* [Containers](https://github.com/ManageIQ/manageiq/blob/b20bb4ae37883cecb271ecf34c92d53ebf55fe45/app/models/container.rb)
 
-### Workers
+### Events
 
-As a model object, ExtManagementSystem is relatively mundane.  It defines some operations that can be executed against its various inventory objects.  Various workers are used to capture inventory, events, and metrics for providers.
+Where inventory collection is essential for understanding what is in a manager, events are essential for understanding what is changing inside the provider over time.
 
-#### Worker Layout
+Events can be used to build timelines to view a history of changes over time.  Events can also be used to react to those changes by either refreshing the manager's inventory or enforcing policies that apply to the changes witnessed in the events.
+
+### Metrics
+
+Metrics provide details of System Utilization for the manager's inventory objects.  For instance, in a Virtual Infrastructure Manager, utilization data can be collected for VMs, Hosts, and Clusters.  The utilization data generally comes in the form of one of the following:
+
+* CPU utilization
+* Memory utilization
+* Disk reads and writes
+* Network traffic
+
+These metrics can be used to enforce policies related to capacity planning.
+
+After the metrics are collected, different [rollup](https://github.com/ManageIQ/guides/blob/b82b341d67e47752113bfc2223371dd311ce5910/architecture/capacity_and_utilization_collection_explanation.md#rollups) mechanisms take hold.
+
+Rollups are especially important to understand when implementing a new manager type, because rollups for new manager types may involve infrastructure-based rollups that have not previously exist in ManageIQ.
+
+### Provisioning
+
+Provisioning refers to creating new objects in a manager's inventory.
+
+#### Orchestration
+
+Orchestration is somewhat like provisioning, but on a bigger scale.  It can involve provisioning multiple systems in a coordinated effort to accomplish a combined goal.
+
+Orchestration is generally lumped in with provisioning because it tends to share several concepts.
+
+### Power operations
+
+Power operations are the actions that can be performed on existing objects in a manager's inventory.  Power operations are separated from provisioning to highlight that the work involved in integrating power operations is generally quite different from the work involved in integrating provisioning capabilities.
+
+### SmartState Analysis
+
+SmartState is perhaps the most unique type of manager integration with ManageIQ.  SmartState Analysis is the process of examining and collecting details from dormant images and disks.
+
+SmartState integration generally has one main requirement:  the appliance running SmartState Analysis needs access to the raw bytes from the images and disks that should be analyzed.  Some managers provide this via an API, while other managers provide this with NFS mounts.
+
+## Workers
+
+When integrating a new manager, it is important to understand two important integration points:
+
+1. Data models that represent manager inventory
+2. Workers that collect data from managers
+
+While the data model is important, the workers are the core to the integration, since they perform all of the tasks for collecting inventory, events, and metrics.
+
+### Worker Layout
 
 Workers are broken down into three different pieces:
 
-1. Model class: [app/models/miq_worker.rb](https://github.com/ManageIQ/manageiq/blob/0ca567d46b850f14129a3866619a26040bb75752/vmdb/app/models/miq_worker.rb)
-2. Worker class: [lib/workers/worker_base.rb](https://github.com/ManageIQ/manageiq/blob/b1ed1c3799ccf7d03aeeda887d9f3e40c2b4367d/vmdb/lib/workers/queue_worker_base.rb)
-3. Executable: [lib/workers/bin/worker.rb](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/bin/worker.rb)
+1. Model class: [app/models/miq_worker.rb](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/app/models/miq_worker.rb)
+2. Worker class: [lib/workers/worker_base.rb](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/lib/workers/worker_base.rb)
+3. Executable: [lib/workers/bin/worker.rb](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/lib/workers/bin/worker.rb)
 
 Workers are all separate processes started and managed by the [main server](https://github.com/ManageIQ/guides/blob/master/architecture/enterprise.md#appliance).  Worker processes are tracked in the `miq_workers` table as instances of the `MiqWorker` model object.  These records are used by the main server to track the actual worker processes.
 
-An instance of `WorkerBase` is where the actual work happens.  Each `WorkerBase` instance can indentify the `MiqWorker` record and the `MiqWorker` instance can identify its corresponding `WorkerBase` class.
+An instance of `WorkerBase` is where the actual work happens.  Each `WorkerBase` instance can identify the `MiqWorker` record and the `MiqWorker` instance can identify its corresponding `WorkerBase` class.
 
 Each worker has subclasses that implement specific worker functionality, such as Refresh Workers, Event Catcher Workers, and Metrics Collector Workers.
 
-In many cases, workers are further subclassed by provider to implement provider-specific functionality.
+In many cases, workers are further subclassed by manager to implement manager-specific functionality.
 
-#### Worker Types
+### Worker Types
 
-##### Refresh Worker
+There are three main groups of workers involved in manager integrations:
 
-* Model Class: [MiqEmsRefreshWorker](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/app/models/miq_ems_refresh_worker.rb)
-* Worker Class: [EmsRefreshWorker](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/ems_refresh_worker.rb)
+1. Refresh worker, which collects manager inventory
+2. Event workers, which catch and handle events from managers
+3. Metrics workers, which collect and process metrics
 
-The Refresh Worker is a queue-based worker.  This means that the worker responds to specific messages that appear on the [worker queue](https://github.com/ManageIQ/manageiq/blob/98bf676b79f51003ca0404e51d92a8d72bc555d9/vmdb/app/models/miq_queue.rb).  Other processes will enqueue a message requesting a refresh of a particular provider.
+#### Refresh Worker
 
-The Refresh Worker responds to the request to refresh a provider's inventory.  These requests can come from several different places:
+* Model Class: [BaseManager::RefreshWorker](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/app/models/manageiq/providers/base_manager/refresh_worker.rb)
+* Worker Class: [BaseManager::RefreshWorker::Runner](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/app/models/manageiq/providers/base_manager/refresh_worker/runner.rb)
 
-1. Refreshes are triggered for all registered providers when the appliance starts
+The Refresh Worker is a queue-based worker, which means that the worker responds to specific messages that appear on the [worker queue](https://github.com/ManageIQ/manageiq/blob/98bf676b79f51003ca0404e51d92a8d72bc555d9/vmdb/app/models/miq_queue.rb).  Other processes will enqueue a message requesting a refresh of a particular manager.
+
+The Refresh Worker responds to the request to refresh a manager's inventory.  These requests can come from several different places:
+
+1. Refreshes are triggered for all registered managers when the appliance starts
 2. Users can initiate a refresh from the Web UI
-3. Events received from the provider can trigger a refresh
+3. Events received from the manager can trigger a refresh
 4. Refreshes are scheduled to occur once every 24 hours, for all providers, by default
 
-When a refresh request is received by a Refresh Worker, the worker uses the [`EmsRefresh`](https://github.com/ManageIQ/manageiq/blob/a6175c6d5e3b00e87b2e883c835ac7acd6e3e224/vmdb/app/models/ems_refresh.rb) module to perform the actual refresh.  Each provider implements a refresh process.
+When a refresh request is received by a Refresh Worker, the worker uses the [`EmsRefresh`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/ems_refresh.rb) module to perform the actual refresh.  Each manager implements a refresh process.
 
-Refresh Workers are created for each registered provider.  In other words, if you have registered two OpenStack Cloud providers, there will be two unique Openstack Refresh Worker processes running.
+Refresh Workers are created for each registered manager.  In other words, if you have registered two Amazon Cloud managers, there will be two unique Amazon Refresh Worker processes running.
 
-OpenStack Example:
-* Model Class: [`MiqEmsRefreshWorkerOpenstack`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/app/models/miq_ems_refresh_worker_openstack.rb)
-* Worker Class: [`EmsRefreshWorkerOpenstack`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/ems_refresh_worker_openstack.rb)
+Amazon Example:
+* Model Class: [`Amazon::CloudManager::RefreshWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/refresh_worker.rb)
+* Worker Class: [`Amazon::CloudManager::RefreshWorker::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/refresh_worker/runner.rb)
 
-##### Event Catcher Worker
+#### Event Workers
 
-* Model Class: [`MiqEventCatcher`](https://github.com/ManageIQ/manageiq/blob/e18c49a777beb0ee7e81d24cd00803f5be786bcb/vmdb/app/models/miq_event_catcher.rb)
-* Worker Class: [`EventCatcher`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/event_catcher.rb)
+TODO
 
+##### Event Catcher
 
+TODO
 
-OpenStack Example:
-* Model Class: [`MiqEventCatcherOpenstack`](https://github.com/ManageIQ/manageiq/blob/e18c49a777beb0ee7e81d24cd00803f5be786bcb/vmdb/app/models/miq_event_catcher.rb)
-* Worker Class: [`EventCatcherOpenstack`](https://github.com/ManageIQ/manageiq/blob/e18c49a777beb0ee7e81d24cd00803f5be786bcb/vmdb/app/models/miq_event_catcher.rb)
+* Model Class: [`BaseManager::EventCatcher`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/base_manager/event_catcher.rb)
+* Worker Class: [`BaseManager::EventCatcher::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/base_manager/event_catcher/runner.rb)
 
-##### Event Handler Worker
+Amazon Example:
+* Model Class: [`Amazon::CloudManager::EventCatcher`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/event_catcher.rb)
+* Worker Class: [`Amazon::CloudManager::EventCatcher::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/event_catcher/runner.rb)
 
-* Model Class: [`MiqEventHandler`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/app/models/miq_event_handler.rb)
-* Worker Class: [`EventHandler`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/event_handler.rb)
+##### Event Handler
 
-##### Metrics Collector Worker
+The first thing to notice about the `EventHandler` is that its parts are still located in the legacy locations with legacy names.
 
-* Model Class: [`MiqEmsMetricsCollectorWorker`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/app/models/miq_ems_metrics_collector_worker.rb)
-* Worker Class: [`EmsMetricsCollectorWorker`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/ems_metrics_collector_worker.rb)
+The second thing to notice about the `EventHandler` is that there is no manager-specific implementation.  All events are handled by the same handler.
 
-OpenStack Example:
-* Model Class: [`MiqEmsMetricsCollectorWorkerOpenstack`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/app/models/miq_ems_metrics_collector_worker_openstack.rb)
-* Worker Class: [`EmsMetricsCollectorWorkerOpenstack`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/ems_metrics_collector_worker_openstack.rb)
+* Model Class: [`MiqEventHandler`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/miq_event_handler.rb)
+* Worker Class: [`EventHandler`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/lib/workers/event_handler.rb)
 
-##### Metrics Processor Worker
+###### Event Mappings
 
-* Model Class: [`MiqEmsMetricsProcessorWorker`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/app/models/miq_ems_metrics_processor_worker.rb)
-* Worker Class: [`EmsMetricsProcessorWorker`](https://github.com/ManageIQ/manageiq/blob/d34d87219092431c22c88a5865f25f9942ebe1ea/vmdb/lib/workers/ems_metrics_processor_worker.rb)
+TODO
+
+#### Metrics Workers
+
+TODO
+
+##### Metrics Collector
+
+TODO
+
+* Model Class: [`BaseManager::MetricsCollectorWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/base_manager/metrics_collector_worker.rb)
+* Worker Class: [`BaseManager::MetricsCollectorWorker::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/base_manager/metrics_collector_worker/runner.rb)
+
+Amazon Example:
+* Model Class: [`Amazon::CloudManager::MetricsCollectorWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/metrics_collector_worker.rb)
+* Worker Class: [`Amazon::CloudManager::MetricsCollectorWorker::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/metrics_collector_worker/runner.rb)
+
+##### Metrics Processor
+
+The `MetricsProcessor` worker is similar to the `EventHandler`.  Its parts are still in the legacy locations, and there is no manager-specific implementation.
+
+* Model Class: [`MiqEmsMetricsProcessorWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/miq_ems_metrics_processor_worker.rb)
+* Worker Class: [`EmsMetricsProcessorWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/lib/workers/ems_metrics_processor_worker.rb)
