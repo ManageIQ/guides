@@ -1,10 +1,6 @@
 # REST API
 
-This document presents the currently available features and capabilities of the Appliance
-RESTful API.
-
-* For quick information on accessing the REST API, the entrypoint, authentication, supported actions and examples, please refer to [Reference Guide](./rest_api/reference.md)
-* For further details on the implementation as well as the original list of the proposed features please refer to the [Design Specification](./rest_api/design.md)
+The Appliance REST API guide has moved to the [manageiq_docs](https://github.com/ManageIQ/manageiq_docs) repo.
 
 # License
 
