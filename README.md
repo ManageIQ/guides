@@ -3,7 +3,6 @@
 ### Developer information
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Developer Setup](developer_setup.md)
-* [Developer Ruby 2 Setup](developer_ruby2_setup.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
