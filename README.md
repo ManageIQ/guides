@@ -4,6 +4,7 @@
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Developer Setup](developer_setup.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
+* [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 
