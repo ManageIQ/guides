@@ -128,7 +128,7 @@ git fetch other_user
 
 ```bash
 gem install bundler -v "~>1.7.4"
-bundle install --without qpid:metric_fu
+bundle install
 cp config/database.pg.yml config/database.yml
 bundle exec rake evm:db:reset
 bundle exec rake db:seed
