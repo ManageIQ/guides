@@ -2,6 +2,7 @@
 
 * [Source Code Layout](architecture/source_code_layout.md)
 * [Enterprise Architecture](architecture/enterprise.md)
+* [Providers and Workers](architecture/providers_overview.md)
 
 ## Appliance Contents
 
