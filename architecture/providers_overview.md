@@ -43,8 +43,8 @@ Integrating with a provider requires looking at six separate areas:
 1. Inventory
 2. Event Collection and Handling
 3. Metric Collection and Handling
-4. Provisioning
-5. Power operations
+4. Provisioning and Orchestration
+5. Lifecycle
 6. SmartState Analysis
 
 ### Inventory
@@ -76,7 +76,7 @@ After the metrics are collected, different [rollup](https://github.com/ManageIQ/
 
 Rollups are especially important to understand when implementing a new manager type, because rollups for new manager types may involve infrastructure-based rollups that have not previously exist in ManageIQ.
 
-### Provisioning
+### Provisioning and Orchestration
 
 Provisioning refers to creating new objects in a manager's inventory.
 
@@ -86,9 +86,21 @@ Orchestration is somewhat like provisioning, but on a bigger scale.  It can invo
 
 Orchestration is generally lumped in with provisioning because it tends to share several concepts.
 
-### Power operations
+### Lifecycle
+
+The lifecycle of provider objects can include power operations, retirement, and reconfiguration.
+
+#### Power Operations
 
 Power operations are the actions that can be performed on existing objects in a manager's inventory.  Power operations are separated from provisioning to highlight that the work involved in integrating power operations is generally quite different from the work involved in integrating provisioning capabilities.
+
+#### Retirement
+
+Retirement is a manual or scheduled event that runs an automate state machine to decommission a manager's resource.  For instance, a user might decide to retire a cloud instance after two weeks.
+
+#### Reconfiguration
+
+Reconfiguration allows users to change the settings of a already-running object in a manager's inventory.  For instance, reconfiguring a cloud instance might increase the instance's memory or disk space.
 
 ### SmartState Analysis
 
