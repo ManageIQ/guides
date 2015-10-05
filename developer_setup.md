@@ -75,6 +75,8 @@ As per 20+, with the following changes:
 * Use a Ruby version manager
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
+  * [rbenv](https://github.com/sstephenson/rbenv)
+* Required Ruby version is 2.2
 
 ### Setup Git and Github
 
@@ -134,4 +136,5 @@ bundle exec rake evm:db:reset
 bundle exec rake db:seed
 ```
 
-* Now you can start the full application with `bundle exec rake evm:start`
+* Now you can start the full application with `bundle exec rake evm:start`.
+  You can access it at <IP_ADDRESS>:3000. Default username is `admin` and password `smartvm`
