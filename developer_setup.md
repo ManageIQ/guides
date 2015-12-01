@@ -138,3 +138,4 @@ bundle exec rake db:seed
 
 * Now you can start the full application with `bundle exec rake evm:start`.
   You can access it at <IP_ADDRESS>:3000. Default username is `admin` and password `smartvm`
+* [Running in minimal mode](developer_setup/minimal_mode.md)
