@@ -93,7 +93,7 @@ As per 20+, with the following changes:
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
-  psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  psql -d postgres -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
   ```
 
 ### Install Ruby
