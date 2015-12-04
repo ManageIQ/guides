@@ -83,7 +83,16 @@ As per 20+, with the following changes:
   brew install git
   brew install memcached
   brew install postgresql
+  brew install graphviz
   ```
+
+If `bundle install` (when running `bin/setup` below) fails in installing the `eventmachine` gem,
+you may want to run the following and then retry `bundle install`:
+
+  ```bash
+  brew link openssl --force # If installation of eventmachine gem fails
+  ```
+
 
 * Configure PostgreSQL
 
@@ -91,9 +100,17 @@ As per 20+, with the following changes:
   # Enable PostgreSQL on boot
   mkdir -p ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
-  psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  psql -d postgres -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  ```
+
+* Start memcached
+
+  ```bash
+  # Enable Memcached on boot
+  ln -sfv /usr/local/opt/memcached/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents
+  launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
   ```
 
 ### Install Ruby
