@@ -83,18 +83,10 @@ As per 20+, with the following changes:
   brew install git
   brew install memcached
   brew install postgresql
-  brew install graphviz
-  ```
-
-If `bundle install` (when running `bin/setup` below) fails in installing the `eventmachine` gem,
-you may want to run the following and then retry `bundle install`:
-
-  ```bash
-  brew link openssl --force # If installation of eventmachine gem fails
   ```
 
 
-* Configure PostgreSQL
+* Configure and start PostgreSQL
 
   ```bash
   # Enable PostgreSQL on boot
@@ -178,3 +170,22 @@ bin/setup
 * Now you can start the full application with `bundle exec rake evm:start`.
   You can access it at <IP_ADDRESS>:3000. Default username is `admin` and password `smartvm`
 * [Running in minimal mode](developer_setup/minimal_mode.md)
+
+
+#### Some troubleshooting notes
+
+* First login fails
+
+Make sure you have memcached running. If not stop the server with `bundle exec rake evm:stop`,
+start memcached and retry.
+
+* OS/X install is failing on  the `eventmachine` gem
+
+If `bundle install` (when running `bin/setup` below) fails in installing the `eventmachine` gem,
+you may want to run the following and then retry `bundle install`:
+
+  ```bash
+  brew link openssl --force # If installation of eventmachine gem fails
+  ```
+
+
