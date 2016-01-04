@@ -177,6 +177,7 @@ maintained by the ManageIQ team.
 
   Most items are handled by a queue worker of some type, so for those it
   is most useful to have:
+  
   * The MiqQueue.put or MiqQueue.merge line from the worker that placed
     the item on the queue.
   * Context around why the item was placed on the queue.  For example, if
