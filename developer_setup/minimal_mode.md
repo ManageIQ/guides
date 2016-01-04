@@ -7,6 +7,7 @@ In development, to start the application in standard mode, run:
     $> rake evm:start
 
 This command will start the following workers:
+
 * two generic workers
 * two priority workers
 * two reporting workers
@@ -23,6 +24,7 @@ In development, to start the application in minimal mode, run:
     $> MIQ_SPARTAN=minimal rake evm:start
 
 The `MIQ_SPARTAN` environment variable is inspected by the `MiqServer` class (specifically, the `EnvironmentManagement` mixin), which determines whether the application is starting in a minimal mode.  In this strict minimal mode, the following workers are started:
+
 * one generic worker
 * one UI worker
 
@@ -62,6 +64,7 @@ For example, to start in minimal mode with event catching and EMS refreshing ena
     $> MIQ_SPARTAN=minimal:event:ems_inventory rake evm:start
 
 Note:
+
 * A value specified in MIQ_SPARTAN will not start the worker if the server is not configured with that role.  All MIQ_SPARTAN does is filter down the existing list of assigned server roles to a smaller set.
 * Some of the workers can be started with different roles
     * For example, `miq_vim_broker_worker` can be started with any of
