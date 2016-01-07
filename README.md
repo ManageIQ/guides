@@ -7,6 +7,7 @@
   - [Running the test suites](developer_setup/running_test_suites.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
+* [Internationalization Guidelines](i18n.md)
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 
