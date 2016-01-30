@@ -2,16 +2,24 @@
 
 ### Install System Packages
 
-#### Fedora 20+
+#### Fedora / CentOS 7
+
+* CentOS only - Enable EPEL & install DNF
+
+  ```bash
+  sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  sudo yum -y install dnf
+  ```
 
 * Install packages
 
   ```bash
-  sudo yum -y install git-all                            # Git and components
-  sudo yum -y install memcached                          # Memcached for the session store
-  sudo yum -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
-  sudo yum -y install libxml2-devel libxslt-devel        # For Nokogiri Gem
-  sudo yum -y install gcc-c++                            # For event-machine Gem
+  sudo dnf -y install git-all                            # Git and components
+  sudo dnf -y install memcached                          # Memcached for the session store
+  sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
+  sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
+  sudo dnf -y install gcc-c++                            # For event-machine Gem
+  sudo dnf -y install openssl-devel                      # For rubygems
   ```
 
 * Enable Memcached
@@ -25,50 +33,12 @@
 
   ```bash
   sudo passwd postgres <new_password>
-  su postgres -c 'initdb -D /var/lib/pgsql/data'
+  sudo postgresql-setup initdb
+  grep -q '^local\s' pg_hba.conf || echo "local all all trust" > /var/lib/pgsql/data/pg_hba.conf
+  sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /var/lib/pgsql/data/pg_hba.conf
   sudo systemctl enable postgresql
   sudo systemctl start postgresql
   su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
-  ```
-
-#### Fedora 22+
-
-As per 20+, with the following changes:
-
-* Install packages
-
-  ```bash
-  sudo dnf -y install git-all                            # Git and components
-  sudo dnf -y install memcached                          # Memcached for the session store
-  sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
-  sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
-  sudo dnf -y install gcc-c++                            # For event-machine Gem
-  ```
-
-#### CentOS 7
-
-* Enable EPEL
-
-  ```bash
-  sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  ```
-
-* Install packages
-
-  ```bash
-  sudo yum -y install git-all memcached postgresql-devel postgresql-server \
-  libxml2-devel libxslt-devel gcc-c++ patch
-  ```
-* Initialize postgresql and enable services
-
-  ```bash
-  sudo postgresql-setup initdb
-  sudo su postgres -c "echo local all all trust > /var/lib/pgsql/data/pg_hba.conf"
-  sudo systemctl start memcached
-  sudo systemctl enable memcached
-  sudo systemctl start postgresql
-  sudo systemctl enable postgresql
-  sudo su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
   ```
 
 #### Mac
