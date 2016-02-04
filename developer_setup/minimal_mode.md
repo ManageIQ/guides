@@ -84,3 +84,15 @@ Note:
 |`minimal:ems_inventory:event`|Testing EMS Refresh and Eventing from a provider|
 |`minimal:no_ui:reporting`|Testing UI changes, when needed to run the UI through a debugger instead of a worker|
 |`minimal:schedule`|Testing real world schedules|
+
+## Enabling Direct URLs
+
+By default the ManageIQ console does not allow direct browsing to most URLs (you must be referred by using a link in the
+UI). This can be cumbersome in a development environment when a request is unsuccessful and you wish to simply refresh
+the page after making changes necessary changes - you will be given a `403 - Forbidden` response and be required to log
+in again.
+
+You can set the environment variable `MIQ_DISABLE_RRS` to disable this behavior and allow for direct URL browsing:
+
+    $> MIQ_DISABLE_RRS=1 rails server
+
