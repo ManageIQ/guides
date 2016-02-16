@@ -17,8 +17,10 @@
   sudo dnf -y install git-all                            # Git and components
   sudo dnf -y install memcached                          # Memcached for the session store
   sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
+  sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
   sudo dnf -y install gcc-c++                            # For event-machine Gem
+  sudo dnf -y install nodejs                             # For ExecJS Gem used by sprockets/es6 Gem
   sudo dnf -y install openssl-devel                      # For rubygems
   ```
 
@@ -32,13 +34,15 @@
 * Configure PostgreSQL
 
   ```bash
-  sudo passwd postgres <new_password>
+  sudo passwd postgres
+  # ↑ will ask to choose a password
   sudo postgresql-setup initdb
-  grep -q '^local\s' pg_hba.conf || echo "local all all trust" > /var/lib/pgsql/data/pg_hba.conf
+  grep -q '^local\s' /var/lib/pgsql/data/pg_hba.conf || echo "local all all trust" | sudo tee /var/lib/pgsql/data/pg_hba.conf
   sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /var/lib/pgsql/data/pg_hba.conf
   sudo systemctl enable postgresql
   sudo systemctl start postgresql
   su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
+  # ↑ type the password you chose above
   ```
 
 #### Mac
