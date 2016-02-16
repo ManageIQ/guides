@@ -160,4 +160,10 @@ you may want to run the following and then retry `bundle install`:
   brew link openssl --force # If installation of eventmachine gem fails
   ```
 
+* `bin/setup fails` while trying to load the gem 'sprockets/es6' 
+
+If this happens check the log for
+`ExecJS::RuntimeUnavailable: Could not find a JavaScript runtime` a few lines down.
+When this message is present, then the you need to install `node.js` and re-try
+
 
