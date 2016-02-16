@@ -81,7 +81,7 @@
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/sstephenson/rbenv)
-* Required Ruby version is 2.2
+* Required Ruby version is 2.2.2+
 
 ### Setup Git and Github
 
