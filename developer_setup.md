@@ -37,8 +37,17 @@
   sudo passwd postgres
   # ↑ will ask to choose a password
   sudo postgresql-setup initdb
+  # if the above usage of postgresql-setup fails with 'command not found', use the following command with the relevant postgres 9.x version - below an example for postgres 9.1:
+  # for rhel:
+  sudo service postgresql-9.1 initdb
+  # for fedora:
+  sudo systemctl postgresql-9.1 initdb
+  
+  # Configuring pg_hba.conf - make sure where the file is located, for some distributions it is located under /var/lib/pgsql/<pg_version>/data/pg_hba.conf
+  # You can also do manually (instead of the command below) 'vi <file location>' and change the value under the METHOD column to 'trust' in all entries
   grep -q '^local\s' /var/lib/pgsql/data/pg_hba.conf || echo "local all all trust" | sudo tee /var/lib/pgsql/data/pg_hba.conf
   sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /var/lib/pgsql/data/pg_hba.conf
+  
   sudo systemctl enable postgresql
   sudo systemctl start postgresql
   su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
