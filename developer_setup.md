@@ -20,6 +20,7 @@
   sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
   sudo dnf -y install gcc-c++                            # For event-machine Gem
+  sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
   sudo dnf -y install nodejs                             # For ExecJS Gem used by sprockets/es6 Gem
   sudo dnf -y install openssl-devel                      # For rubygems
   ```
