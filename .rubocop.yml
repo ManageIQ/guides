@@ -47,8 +47,6 @@ TrivialAccessors:
 #
 # Enabled/Disabled
 #
-AllCops:
-  RunRailsCops: true
 ClassAndModuleChildren:
   Enabled: false
 DefEndAlignment:
@@ -73,13 +71,15 @@ ParallelAssignment:
   Enabled: false
 PerlBackrefs:
   Enabled: false
+Rails:
+  Enabled: true
 ReadWriteAttribute:
   AutoCorrect: false
 RescueModifier:
   AutoCorrect: false
 SingleLineBlockParams:
   Enabled: false
-SingleSpaceBeforeFirstArg:
+SpaceBeforeFirstArg:
   Enabled: false
 SpecialGlobalVars:
   AutoCorrect: false
@@ -87,7 +87,9 @@ StringLiterals:
   Enabled: false
 StringLiteralsInInterpolation:
   Enabled: false
-TrailingComma:
+TrailingCommaInLiteral:
+  Enabled: false
+TrailingCommaInArguments:
   Enabled: false
 WhileUntilModifier:
   Enabled: false
