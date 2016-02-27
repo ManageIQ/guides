@@ -58,6 +58,7 @@
   brew install git
   brew install memcached
   brew install postgresql
+  brew install iproute2mac
   ```
 
 
