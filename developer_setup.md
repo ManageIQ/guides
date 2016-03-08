@@ -23,6 +23,7 @@
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
   sudo dnf -y install nodejs                             # For ExecJS Gem used by sprockets/es6 Gem
   sudo dnf -y install openssl-devel                      # For rubygems
+  sudo dnf -y install cmake                              # For rugged Gem
   ```
 
 * Enable Memcached
