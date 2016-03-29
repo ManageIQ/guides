@@ -82,13 +82,14 @@
   launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
   ```
 
-### Install Ruby
+### Install Ruby and Bundler
 
 * Use a Ruby version manager
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/sstephenson/rbenv)
 * Required Ruby version is 2.2.2+
+* With Ruby installed, `gem install bundler` to install the latest Bundler. Required Bundler version is 1.8.7+
 
 ### Setup Git and Github
 
