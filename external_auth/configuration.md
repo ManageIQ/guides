@@ -116,7 +116,7 @@ account required pam_sss.so
 
 #### Create an Apache Authentication file for the Appliance
 
-**/etc/httpd/conf.d/cfme-external-auth**
+**/etc/httpd/conf.d/manageiq-external-auth**
 
 ```
 LoadModule authnz_pam_module modules/mod_authnz_pam.so
@@ -169,14 +169,14 @@ LoadModule lookup_identity_module modules/mod_lookup_identity.so
 #### Update the Appliance Apache Configuration to enable External Authentication
 
 
-Modify /etc/httpd/conf.d/cfme-https-application.conf as follows:
+Modify /etc/httpd/conf.d/manageiq-https-application.conf as follows:
 
-**/etc/httpd/conf.d/cfme-https-application.conf**
+**/etc/httpd/conf.d/manageiq-https-application.conf**
 
 * add this line before the *VirtualHost* directive:
 
 ```
-Include conf.d/cfme-external-auth
+Include conf.d/manageiq-external-auth
 ```
 
 * Within the VirtualHost section, after this line:
