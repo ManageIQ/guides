@@ -21,7 +21,7 @@
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
   sudo dnf -y install gcc-c++                            # For event-machine Gem
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
-  sudo dnf -y install nodejs                             # For ExecJS Gem used by sprockets/es6 Gem
+  sudo dnf -y install nodejs npm                         # For ExecJS Gem and bower
   sudo dnf -y install openssl-devel                      # For rubygems
   sudo dnf -y install cmake                              # For rugged Gem
   ```
