@@ -26,6 +26,12 @@
   sudo dnf -y install cmake                              # For rugged Gem
   ```
 
+* Install the _Bower_ package manager
+
+  ```
+  sudo npm install -g bower
+  ```
+
 * Enable Memcached
 
   ```bash
