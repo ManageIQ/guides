@@ -66,8 +66,14 @@
   brew install memcached
   brew install postgresql
   brew install cmake
+  brew install node
   ```
 
+* Install the _Bower_ package manager
+
+  ```
+  npm install -g bower
+  ```
 
 * Configure and start PostgreSQL
 
@@ -76,7 +82,7 @@
   mkdir -p ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
   launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-
+  # Create the ManageIQ superuser 
   psql -d postgres -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
   ```
 
