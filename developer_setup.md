@@ -164,6 +164,14 @@ bundle exec rails s        # Starts the application server
 targeted end-user testing. See the [minimal mode guide](developer_setup/minimal_mode.md) for details.
 * To run the test suites, see [the guide on that topic](developer_setup/running_test_suites.md).
 
+### Update dependencies and migrate db
+
+* You can update ruby and javascript dependencies as well as run migrations using one command
+
+```bash
+bin/update                # Updates dependencies using bundler and bower, runs migrations, prepares test db.
+```
+
 #### Some troubleshooting notes
 
 * First login fails
