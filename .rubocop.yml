@@ -44,6 +44,8 @@ SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 TrivialAccessors:
   AllowPredicates: true
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
 #
 # Enabled/Disabled
 #
