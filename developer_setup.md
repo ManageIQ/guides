@@ -156,7 +156,6 @@ git fetch other_user
 ```bash
 bin/setup                  # Installs dependencies, config, prepares database, etc
 bundle exec rake evm:start # Starts the ManageIQ EVM Application in the background
-bundle exec rails s        # Starts the application server
 ```
 
 * You can now access the application at `http://localhost:3000`. The default username is `admin` with password `smartvm`.
