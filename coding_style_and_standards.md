@@ -37,17 +37,17 @@ maintained by the ManageIQ team.
 
   ```ruby
   # in a class method (notice the . notation)
-  $log.info("MIQ(#{self.name}).#{__method__}) The rest of the log message.")
+  $log.info("MIQ(#{self.name}.#{__method__}) The rest of the log message.")
 
   # in an instance method (notice the # notation)
-  $log.info("MIQ(#{self.class.name})##{__method__}) The rest of the log message.")
+  $log.info("MIQ(#{self.class.name}##{__method__}) The rest of the log message.")
   ```
 
 * If the same log prefix will be used many times within the same method,
   consider using a variable named log_prefix.
 
   ```ruby
-  log_prefix = "MIQ(#{self.class.name})##{__method__})"
+  log_prefix = "MIQ(#{self.class.name}##{__method__})"
   ...
   $log.info("#{log_prefix} The rest of the log message.")
   ```
