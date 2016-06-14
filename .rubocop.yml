@@ -86,7 +86,7 @@ SpaceBeforeFirstArg:
 SpecialGlobalVars:
   AutoCorrect: false
 StringLiterals:
-  Enabled: false
+  Enabled: true
 StringLiteralsInInterpolation:
   Enabled: false
 TrailingCommaInLiteral:
