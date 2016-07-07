@@ -60,7 +60,7 @@ Encoding:
 EndAlignment:
   AutoCorrect: true
 ExtraSpacing:
-  AutoCorrect: false # https://github.com/bbatsov/rubocop/issues/2280
+  AutoCorrect: true
 FindEach:
   Enabled: false
 GuardClause:
