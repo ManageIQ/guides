@@ -40,6 +40,7 @@
   ```
 
 * Configure PostgreSQL
+  * Required PostgreSQL version is 9.4+
 
   ```bash
   sudo passwd postgres
@@ -76,6 +77,7 @@
   ```
 
 * Configure and start PostgreSQL
+  * Required PostgreSQL version is 9.4+
 
   ```bash
   # Enable PostgreSQL on boot
