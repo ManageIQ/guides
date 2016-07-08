@@ -19,9 +19,9 @@
   sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
   sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
-  sudo dnf -y install gcc-c++                            # For event-machine Gem
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
-  sudo dnf -y install nodejs npm                         # For ExecJS Gem and bower
+  sudo dnf -y install nodejs                             # For ExecJS Gem and bower
+  rpm -q --whatprovides npm || sudo dnf install npm      # For CentOS 7, Fedora 23 and older
   sudo dnf -y install openssl-devel                      # For rubygems
   sudo dnf -y install cmake                              # For rugged Gem
   ```
@@ -84,7 +84,7 @@
   mkdir -p ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
   launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-  # Create the ManageIQ superuser 
+  # Create the ManageIQ superuser
   psql -d postgres -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
   ```
 
@@ -180,16 +180,7 @@ bin/update                # Updates dependencies using bundler and bower, runs m
 Make sure you have memcached running. If not stop the server with `bundle exec rake evm:stop`,
 start memcached and retry.
 
-* OS/X install is failing on  the `eventmachine` gem
-
-If `bundle install` (when running `bin/setup` below) fails in installing the `eventmachine` gem,
-you may want to run the following and then retry `bundle install`:
-
-  ```bash
-  brew link openssl --force # If installation of eventmachine gem fails
-  ```
-
-* `bin/setup fails` while trying to load the gem 'sprockets/es6' 
+* `bin/setup fails` while trying to load the gem 'sprockets/es6'
 
 If this happens check the log for
 `ExecJS::RuntimeUnavailable: Could not find a JavaScript runtime` a few lines down.
