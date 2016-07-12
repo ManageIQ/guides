@@ -40,7 +40,9 @@
   ```
 
 * Configure PostgreSQL
-  * Required PostgreSQL version is 9.4+
+  * Required PostgreSQL version is 9.4+. See
+  [here](developer_setup/postgresql_software_collection.md) how to install
+  it in Linux distributions like CentOS 7, using _SoftwareCollections.org_.
 
   ```bash
   sudo passwd postgres
