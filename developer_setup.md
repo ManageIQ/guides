@@ -153,6 +153,21 @@ git remote add other_user git@github.com:OtherUser/manageiq.git
 git fetch other_user
 ```
 
+### Clone the pluggable providers
+
+If you want to do a providers development, clone them locally.
+
+```bash
+git clone git@github.com:JoeSmith/manageiq-providers-amazon.git providers/manageiq-providers-amazon
+```
+
+In your local Gemfile.dev.rb add:
+
+```bash
+dependencies.reject!{|d| d.name == 'manageiq-providers-amazon'}
+gem "manageiq-providers-amazon", :path => File.expand_path("providers/manageiq-providers-amazon", __dir__)
+```
+
 ### Get the Rails environment up and running
 
 ```bash
