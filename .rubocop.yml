@@ -40,6 +40,8 @@ SignalException:
   EnforcedStyle: only_raise
 SingleLineMethods:
   AllowIfMethodIsEmpty: false
+SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
 TrivialAccessors:
   AllowPredicates: true
 Style/BracesAroundHashParameters:
