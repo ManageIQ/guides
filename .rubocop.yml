@@ -81,6 +81,8 @@ SingleLineBlockParams:
   Enabled: false
 SpaceBeforeFirstArg:
   Enabled: false
+SpaceInsideHashLiteralBraces:
+  Enabled: false
 SpecialGlobalVars:
   AutoCorrect: false
 StringLiterals:
