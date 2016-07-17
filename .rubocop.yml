@@ -40,8 +40,6 @@ SignalException:
   EnforcedStyle: only_raise
 SingleLineMethods:
   AllowIfMethodIsEmpty: false
-SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
 TrivialAccessors:
   AllowPredicates: true
 Style/BracesAroundHashParameters:
@@ -82,6 +80,8 @@ RescueModifier:
 SingleLineBlockParams:
   Enabled: false
 SpaceBeforeFirstArg:
+  Enabled: false
+SpaceInsideHashLiteralBraces:
   Enabled: false
 SpecialGlobalVars:
   AutoCorrect: false
