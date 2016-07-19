@@ -204,7 +204,4 @@ When this message is present, then the you need to install `node.js` and re-try
 * `bin/setup` fails while trying to install the 'nokogiri' gem
 
 If this happens, you may be missing developer tools in your OS X. Try to install them with
-```bash
-xcode-select --install
-```
-and then run `bin/setup` again.
+`xcode-select --install` and re-try.
