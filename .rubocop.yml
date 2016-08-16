@@ -2,6 +2,7 @@
 # Overrides
 #
 AbcSize:
+  Max: 20
   Severity: refactor
 AlignHash:
   EnforcedHashRocketStyle: table
