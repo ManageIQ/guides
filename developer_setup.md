@@ -22,6 +22,7 @@
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
   sudo dnf -y install nodejs                             # For ExecJS Gem and bower
   sudo dnf -y install libcurl-devel                      # For Curb
+  sudo dnf install redhat-rpm-config
   rpm -q --whatprovides npm || sudo dnf -y install npm   # For CentOS 7, Fedora 23 and older
   sudo dnf -y install openssl-devel                      # For rubygems
   sudo dnf -y install cmake                              # For rugged Gem
