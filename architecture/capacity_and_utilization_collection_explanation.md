@@ -1,3 +1,5 @@
+# Capacity And Utilization
+
 1. A capture request is kicked off by the schedule worker every so often (configurable, I think 10 minutes with a 50 minute threshold or something).  
 1. The capture request finds all VMS and Hosts (and Storages, but those are different) enabled for capture (configurable).  
 1. For each target it then queues up a capture.  
