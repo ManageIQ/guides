@@ -20,8 +20,8 @@ rake test:automation:setup       # Setup environment for automation specs
 rake test:automation             # Run all automation specs
 rake test:migrations:setup       # Setup environment for migration specs
 rake test:migrations             # Run all migration specs
-rake test:providers:amazon       # Run all Amazon provider specs
 rake test:providers:amazon:setup # Setup environment for Amazon provider specs
+rake test:providers:amazon       # Run all Amazon provider specs
 rake test:replication:setup      # Setup environment for replication specs
 rake test:replication            # Run all replication specs
 rake test:javascript:setup       # Setup environment for javascript specs
