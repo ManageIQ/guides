@@ -14,7 +14,7 @@ From a simple point of view, an [ExtManagementSystem](https://github.com/ManageI
 
 Conceptually, a manager is any system that ManageIQ integrates with for the purpose of collecting data and performing operations.
 
-An example of a manager is Amazon Cloud Manager, known in ManageIQ as [Amazon::CloudManager](https://github.com/ManageIQ/manageiq/blob/master/app/models/manageiq/providers/amazon/cloud_manager.rb).
+An example of a manager is Amazon Cloud Manager, known in ManageIQ as [Amazon::CloudManager](https://github.com/ManageIQ/manageiq-providers-amazon/blob/master/app/models/manageiq/providers/amazon/cloud_manager.rb).
 
 ## Provider Manager Types
 
