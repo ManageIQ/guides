@@ -39,7 +39,7 @@ newer) of _PostgreSQL_:
 
     $ sudo yum -y install \
     rh-postgresql94-postgresql-server \
-    rh-postgresql94rh-postgresql-devel
+    rh-postgresql94-postgresql-devel
 
 This will install the required files under `/opt/rh/rh-postgresql94`, so
 each time you need to use a command like `pgsql` you will have to use
