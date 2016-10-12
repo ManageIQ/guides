@@ -24,7 +24,7 @@ ManageIQ currently knows about a few different types of Provider Managers:
 * Cloud Manager
 * Configuration Manager
 * Baremetal Provisioning Manager
-* [Containers Manager](/providers/containers.md)
+* [Containers Manager](../providers/containers.md)
 
 For each type, we have at least one reference implementation:
 
