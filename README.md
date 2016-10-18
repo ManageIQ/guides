@@ -15,7 +15,7 @@
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)
 * [External Authentication (httpd)](external_auth.md)
-* [REST API](rest_api.md)
+* [REST API](http://manageiq.org/docs/api)
 * [Working with Amazon AWS Config service](providers/amazon_aws_config.md)
 
 ## License
