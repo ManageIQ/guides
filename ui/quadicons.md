@@ -4,7 +4,7 @@ Quadicons are a condensed graphical way to represent information about various e
 
 Example: 4 VM quadicons:
 
-Quadicons are presen in Explorer trees, in GTLs in Listnavs at least.
+Quadicons are present, but not limited to Explorer trees, GTLs and Listnavs.
 
 ![Textual Summary Example](../images/quadicon.png)
 

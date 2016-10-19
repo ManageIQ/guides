@@ -12,7 +12,7 @@
 * [Service UI Skinning](/service_ui/skinning.md)
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
-* [Updating this documentation](writing_guides.md)
+* [Updating this Documentation](writing_guides.md)
 
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)

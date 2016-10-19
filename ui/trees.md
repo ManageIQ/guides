@@ -1,6 +1,6 @@
 ### Trees
 
-Trees are displayed in various places in the UI. Most notable are trees in explorer-like pages. Other examples include snapshot tree for VMs and RBAC feature tree under Settings/Access Controll/Roles.
+Trees are displayed in various places in the UI. Most notable are trees in explorer-like pages. Other examples include the snapshot tree for VMs and RBAC feature tree under Settings/Access Controll/Roles.
 
 Trees are built using `TreeBuilder` subclasses located in `app/presenters/tree_builder*`.
 

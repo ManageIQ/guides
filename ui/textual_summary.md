@@ -6,7 +6,7 @@ Hardware for Host etc.).
 
 ![Textual Summary Example](../images/textual-summary.png)
 
-Textual summaries consists of groups of related information and each group consists of properties.
+Textual summaries consist of groups of related information and each group consist of properties.
 
 Definitions of these can be found in modules named according to scheme
 `XxxHelper::TextualSummary` in `app/helpers/*_helper/textual_summary.rb`.

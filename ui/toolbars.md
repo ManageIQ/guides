@@ -1,6 +1,6 @@
 ### Toolbars and Buttons
 
-Most screens have toolbars on them. The whole toolbar line is split into up to 3 toolbars.
+Most screens have toolbars on them. The whole toolbar line is split up into to 3 toolbars.
 
  * History toolbar
  * Center toolbar
@@ -46,7 +46,7 @@ There are 3 types of buttons:
 
 See `ApplicationHelper::Toolbar::Basic` for details.
 
-The first 4 arguments for any or "button", "select", "twostate" are:
+The first 4 arguments for any of "button", "select", "twostate" are:
  * identifier,
  * text,
  * hover text,
@@ -71,8 +71,8 @@ Very important key is
  
 Toolbars are rendered into JSON by the ManageIQ and then processed by toolbar component from the [ui-components repository](https://github.com/ManageIQ/ui-components)
 
-For some buttons more complex logic is need to decide if those shall be
-displayed, enabled, what are the texts etc. In this case we use the key :klass
+For some buttons more complex logic is needed to decide if they should be
+displayed and enabled and what are the texts etc. In this case we use the key :klass
 to determine a button class that implements the behavior.
 
 These button classes live under `app/helpers/application_helper/button` and are descendants of `ApplicationHelper::Button::Basic`.

@@ -1,6 +1,6 @@
 ### Menus
 
-The menu system allow definition of multiple menus. Currently we use 2:
+The menu system allows definition of multiple menus. Currently we use two:
 
 * Main menu
 * Top right menu
@@ -25,9 +25,9 @@ Identifier is the same as the [RBAC feature](rbac_features.md) that is checked w
 
 Text needs to be marked for translation but not translated at the time of definition, therefor ``N_`` see [I18n](i18n.md)
 
-Menu section structure (tree) forms the base of the RBAC tree that is avaliable in Role Editor. (See [RBAC features](rbac_features.md).)
+Menu section structure (tree) forms the base of the RBAC tree that is available in the Role Editor. (See [RBAC features](rbac_features.md).)
 
-Available menu section can be further limited on an appliance via PermissionStores. The Yaml permission store checks the menu section identifier agaist a list of supported RBAC features effectively limiting what is available.
+Available menu section can be further limited on an appliance via PermissionStores. The YAML permission store checks the menu section identifier against a list of supported RBAC features effectively limiting what is available.
 
 Items are a list of sections and items.
 

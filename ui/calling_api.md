@@ -1,12 +1,17 @@
 ### Calling the API
 
-Moving forward we want to use the API from the UI, not the other Rails
-controller where possible. To do so when user is logged in besides normal
-session there's also the API token created.
+Moving forward we want to use the API from the UI.
 
-To access the API there's a Angular service available.
+To interface with the API, please observe the following best practice:
 
-To use it you have to inject the "API" into the Angular controller:
+**Do**: In your Angularcontroller or factory, inject the API service.
+
+**Don't** Use the Rails controller.
+
+This is possible by an API token that is created in addition to a normal session on user login.
+
+Injection example:
+
 ```
 ManageIQ.angular.app.controller('arbitrationProfileFormController', ['$scope', '$location', 'arbitrationProfileFormId', 'miqService', 'postService', 'API', 'arbitrationProfileDataFactory', function($scope, $location, arbitrationProfileFormId, miqService, postService, API, arbitrationProfileDataFactory) {
 ```

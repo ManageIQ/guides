@@ -1,16 +1,17 @@
 ### Running through the Queue and Busy Waiting
 
-General usecase for the UI is to display stuff from the database and queue
+General usecase for the UI is to display information from the database and queue
 request to the database.
 
-The state in the database is maintained by workers as well as various taks that
+The state in the database is maintained by workers in addition to various tasks that
 are queued are handled by various workers.
 
-The UI calls methods on models or services and and those methods queue things
-that are then done by the workers and later the UI can see the updated state.
+The UI calls methods on models or services, those methods queue tasks 
+that are then acted on by the workers. The workers update the database. Later
+the UI can see the updated state.
 
-Example: If we power off a VM we realy don't do the API call to RHEV or EC2 or
-VMware straight. But we queue duch action. In the UI we display a flash message
+Example: If we power off a VM we really don't do the API call to RHEV or EC2 or
+VMware straight. Instead we queue such action and display a flash message
 or notification saying that the task was queued.
 
 Later the UI will see the updated state in the database (the VM will be down).
@@ -19,7 +20,7 @@ In some cases however it is necessary to wait for the result of such task. The
 task still cannot be done directly as the Appliance running the UI might not be
 even able to reach the API endpoint of the underlying provider.
 
-Examles of this might be:
+Examples of this might be:
  * verifying credentials when adding a provider,
  * opening a remote console to a VM.
 
