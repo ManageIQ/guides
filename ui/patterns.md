@@ -11,7 +11,7 @@ quick start for new contributors for the UI.
 * [Textual Summaries](textual_summary.md)
 * [GTL -- Grid, Table, List](gtl.md)
 * [Calling the API](calling_api.md)
-* [Running through the Queue and Busy Waiting]()
+* [Running through the Queue and Busy Waiting](queue_wait.md)
 * [Quadicons](quadicons.md)
 * [Reports and Charts](reports_charts.md)
 * [Remote Consoles]()
