@@ -1,6 +1,6 @@
 ### Writing this Guide
 
-Docs are writtein in Mardown. See e.g. this nice [guide](https://guides.github.com/features/mastering-markdown/).
+Docs are written in Mardown. See e.g. this nice [guide](https://guides.github.com/features/mastering-markdown/).
 
 Markdown syntax is supported by many editors including [VIM](http://www.vim.org/).
 
