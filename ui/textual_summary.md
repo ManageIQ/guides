@@ -4,6 +4,8 @@ Textual summaries display details about a selected entity (such as VM, Host,
 Network, Cluster, Container etc.) and also related entities (Snapshots for VM,
 Hardware for Host etc.).
 
+![Textual Summary Example](../images/textual-summary.png)
+
 Textual summaries consists of groups of related information and each group consists of properties.
 
 Definitions of these can be found in modules named according to scheme
