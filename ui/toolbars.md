@@ -47,12 +47,12 @@ There are 3 types of buttons:
 See `ApplicationHelper::Toolbar::Basic` for details.
 
 The first 4 arguments for any of "button", "select", "twostate" are:
- * identifier,
- * text,
- * hover text,
- * icon.
+ * **identifier**,
+ * **text**,
+ * **hover text**,
+ * **icon**.
 
-Identifier identifies the button, button action. For normal and twostate buttons it matches RBAC feature that needs to exist. See [RBAC feature](rbac_feature.md).
+Identifier identifies the button, [button action](button_actions.md). For normal and twostate buttons it matches RBAC feature that needs to exist. See [RBAC feature](rbac_feature.md).
 
 Text and hover text need to be marked for translation with `N_` (see
 [Internationalization Guidelines](../i18n.md)). Values for these can also be a

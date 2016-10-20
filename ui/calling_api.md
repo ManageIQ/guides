@@ -4,7 +4,7 @@ Moving forward we want to use the API from the UI.
 
 To interface with the API, please observe the following best practice:
 
-**Do**: In your Angularcontroller or factory, inject the API service.
+**Do**: In your Angular controller or factory, inject the API service.
 
 **Don't** Use the Rails controller.
 

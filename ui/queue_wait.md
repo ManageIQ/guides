@@ -6,7 +6,7 @@ request to the database.
 The state in the database is maintained by workers in addition to various tasks that
 are queued are handled by various workers.
 
-The UI calls methods on models or services, those methods queue tasks 
+The UI calls methods on models or services, those methods queue tasks
 that are then acted on by the workers. The workers update the database. Later
 the UI can see the updated state.
 
@@ -24,9 +24,10 @@ Examples of this might be:
  * verifying credentials when adding a provider,
  * opening a remote console to a VM.
 
-In such cases we have the 'wait\_for\_task` call.
+In such cases we have the `wait\_for\_task` call.
 
 Example in `create` we do a call that returns a `task\_id`. Then we call `initiate\_wait\_for\_task`.
+
 ```
 def create
   ...

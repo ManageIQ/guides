@@ -6,6 +6,7 @@ quick start for new contributors for the UI.
 * [Menus](menus.md)
 * [RBAC Features](rbac_features.md)
 * [Toolbar and Buttons](toolbars.md)
+* [Button Actions](button_actions.md)
 * [Page Layout](page_layout.md)
 * [Trees, Nodes, Accordions](trees.md)
 * [Textual Summaries](textual_summary.md)
@@ -14,4 +15,4 @@ quick start for new contributors for the UI.
 * [Running through the Queue and Busy Waiting](queue_wait.md)
 * [Quadicons](quadicons.md)
 * [Reports and Charts](reports_charts.md)
-* [Remote Consoles]()
+* [Remote Consoles](remote_consoles.md)
