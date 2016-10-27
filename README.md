@@ -13,6 +13,7 @@
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 * [Updating this Documentation](writing_guides.md)
+* [Developing using a Vagrant VM](vagrant_developer_vm.md)
 
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)
