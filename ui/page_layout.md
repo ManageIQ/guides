@@ -19,7 +19,7 @@ fully on click. These screens make heavy use of `ExplorerPresenter` -- a class
 that encapsulates the DOM manipulation on these screens.
 
 #### Non-explorer
-Non-explorer layout screen have 'listnav's in one or more accordions on the
+Non-explorer layout screen have [listnavs](listnav.md) in one or more accordions on the
 left side and mostly do a full reload on each click (unless in a form or
 Angular form).
 
