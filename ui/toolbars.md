@@ -85,7 +85,7 @@ These button classes live under [`app/helpers/application_helper/button`](5ttps:
 
 Important subclasses include e.g. [`ApplicationHelper::Button::ReadOnly`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/read_only.rb) and very important [`ApplicationHelper::Button::GenericFeatureButton`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/generic_feature_button.rb).
 
-[`ApplicationHelper::Button::GenericFeatureButton`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/generic_feature_button.rb) is a button that imlpements
+[`ApplicationHelper::Button::GenericFeatureButton`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/generic_feature_button.rb) is a button that implements
 logic to test if active entity in the UI such as VM, Host, Instance, Storage,
 etc. has particular **feature**.
 
