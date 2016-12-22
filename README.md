@@ -5,6 +5,7 @@
 * [Developer Setup](developer_setup.md)
   - [Running in minimal mode](developer_setup/minimal_mode.md)
   - [Running the test suites](developer_setup/running_test_suites.md)
+  - [Updating to the new split-UI repo](developer_setup/classic_ui_split.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
 * [Internationalization Guidelines](i18n.md)
