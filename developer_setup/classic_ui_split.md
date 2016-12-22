@@ -16,7 +16,7 @@ But if you do..
 1. `git remote add upstream git@github.com:ManageIQ/manageiq-ui-classic.git`
 1. `ln -s ../../manageiq spec/`
 1. `cd ../manageiq`
-1. `echo 'gem "manageiq-ui-classic", :path => "../manageiq-ui-classic/"' >> Gemfile.dev.rb`
+1. `echo 'gem "manageiq-ui-classic", :path => "'$(cd ../manageiq-ui-classic/; /bin/pwd)'"' >> Gemfile.dev.rb` (because you really need an absolute path there..)
 1. `bin/update`
 
 And you should be set :).
