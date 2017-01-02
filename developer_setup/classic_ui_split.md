@@ -24,4 +24,33 @@ And you should be set :).
 
 ### Migrating a PR from the old repo
 
-(coming soon)
+Needs `jq` to parse the github API output - `brew install jq` or `dnf install jq` or `apt install jq`.
+
+Optionally uses [hub](https://hub.github.com/) to create the pull request.
+
+
+```
+PR=123
+COMMITS=`wget -qO- https://api.github.com/repos/ManageIQ/manageiq/pulls/$PR/commits | jq -r .[].sha`
+TITLE=`wget -qO- https://api.github.com/repos/ManageIQ/manageiq/pulls/$PR | jq -r .title`
+DESCRIPTION=`wget -qO- https://api.github.com/repos/ManageIQ/manageiq/pulls/$PR | jq -r .body`
+
+cd manageiq-ui-classic/
+
+git remote add tmp https://github.com/ManageIQ/manageiq.git
+
+git fetch tmp pull/$PR/head
+git checkout -b miq_pr_$PR
+
+echo "Running cherry-pick - if there's a conflict, resolve it, commit, and do git cherry-pick --continue"
+git cherry-pick -x $COMMITS
+
+git push -u origin miq_pr_$PR
+[ -x "`which hub`" ] && hub pull-request -m "$TITLE
+
+$DESCRIPTION
+
+(converted from ManageIQ/manageiq#$PR)" || echo "hub not found, not creating PR"
+
+git remote rm tmp
+```
