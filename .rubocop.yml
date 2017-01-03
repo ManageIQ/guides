@@ -48,6 +48,8 @@ Style/BracesAroundHashParameters:
 #
 # Enabled/Disabled
 #
+Casecmp:
+  Enabled: false
 ClassAndModuleChildren:
   Enabled: false
 DefEndAlignment:
