@@ -157,19 +157,45 @@ git remote add other_user git@github.com:OtherUser/manageiq.git
 git fetch other_user
 ```
 
-### Clone the pluggable providers
+### Clone some plugins
 
-If you want to do a providers development, clone them locally.
+If you want to do ManageIQ plugin development, you clone plugins locally. E.g.
 
 ```bash
-git clone git@github.com:JoeSmith/manageiq-providers-amazon.git providers/manageiq-providers-amazon
+cd manageiq ; mkdir plugins
+git clone git@github.com:JoeSmith/manageiq-providers-amazon.git plugins/manageiq-providers-amazon
+git clone git@github.com:JoeSmith/manageiq-content.git plugins/manageiq-content
+git clone git@github.com:JoeSmith/manageiq-ui-classic.git plugins/manageiq-ui-classic
 ```
 
-In your local Gemfile.dev.rb add:
+In your local Gemfile.dev.rb in your ManageIQ checkout add:
 
 ```bash
-dependencies.reject!{|d| d.name == 'manageiq-providers-amazon'}
-gem "manageiq-providers-amazon", :path => File.expand_path("providers/manageiq-providers-amazon", __dir__)
+override_gem 'manageiq-providers-amazon', :path => File.expand_path('plugins/manageiq-providers-amazon', __dir__)
+override_gem 'manageiq-content', :path => File.expand_path('plugins/manageiq-providers-amazon', __dir__)
+override_gem 'manageiq-ui-classic', :path => File.expand_path('plugins/manageiq-ui-classic', __dir__)
+```
+
+In your plugin, just use `bin/setup` and `bin/update` as usual. This will checkout a shallow copy of ManageIQ as a
+dummy app to run the test.
+
+```bash
+cd plugins/manageiq-providers-amazon
+bin/setup
+# == Cloning manageiq sample app ==
+# Cloning into 'spec/manageiq'...
+bin/update
+# == Updating manageiq sample app ==
+```
+
+Alternatively you can symlink `spec/manageiq` to your local ManageIQ clone, which will allow you to run tests against
+a local manageiq feature branch.
+
+```bash
+cd plugins/manageiq-providers-amazon
+ln -s ~/src/manageiq spec/manageiq
+bin/update
+# == SKIPPING update of spec/manageiq because its symlinked ==
 ```
 
 ### Get the Rails environment up and running
