@@ -21,6 +21,12 @@ But if you do..
 
 And you should be set :).
 
+If you're working with manageiq prior to [ManageIQ/manageiq#13418](https://github.com/ManageIQ/manageiq/pull/13418), the `override_gem` bit needs to be replaced by...
+
+1. `echo 'unless dependencies.detect { |d| d.name == "manageiq-ui-classic" }' >> Gemfile.dev.rb`
+1. `echo '  gem "manageiq-ui-classic", :path => "'$(cd ../manageiq-ui-classic/; /bin/pwd)'"' >> Gemfile.dev.rb` (because you really need an absolute path there..)
+1. `echo 'end' >> Gemfile.dev.rb`
+
 ### Migrating a PR from the old repo
 
 Needs `jq` to parse the github API output - `brew install jq` or `dnf install jq` or `apt install jq`.
