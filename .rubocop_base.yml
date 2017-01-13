@@ -47,6 +47,8 @@ Style/CollectionMethods:
     reduce: inject
 Style/Documentation:
   Enabled: false
+Style/EmptyMethod:
+  Enabled: false
 Style/Encoding:
   Enabled: false
 Style/ExtraSpacing:
