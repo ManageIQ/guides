@@ -16,7 +16,7 @@ But if you do..
 1. `git remote add upstream git@github.com:ManageIQ/manageiq-ui-classic.git`
 1. `ln -s ../../manageiq spec/`
 1. `cd ../manageiq`
-1. `echo "override_gem 'manageiq-ui-classic', :path => File.expand_path('../manageiq-ui-classic', __dir__) >> Gemfile.dev.rb`
+1. `echo "override_gem 'manageiq-ui-classic', :path => File.expand_path('../manageiq-ui-classic', __dir__)" >> Gemfile.dev.rb`
 1. `bin/update`
 
 And you should be set :).
