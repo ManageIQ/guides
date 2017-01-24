@@ -172,7 +172,7 @@ In your local Gemfile.dev.rb in your ManageIQ checkout add:
 
 ```bash
 override_gem 'manageiq-providers-amazon', :path => File.expand_path('plugins/manageiq-providers-amazon', __dir__)
-override_gem 'manageiq-content', :path => File.expand_path('plugins/manageiq-providers-amazon', __dir__)
+override_gem 'manageiq-content', :path => File.expand_path('plugins/manageiq-content', __dir__)
 override_gem 'manageiq-ui-classic', :path => File.expand_path('plugins/manageiq-ui-classic', __dir__)
 ```
 
