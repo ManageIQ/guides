@@ -12,7 +12,7 @@ Code is copied from the host during provisioning, so you can test changes in you
 
 You will need some tools installed in your machine to use this method:
 
-- Install [Vagrant](http://vagrantup.com/) in your machine 
+- Install [Vagrant](http://vagrantup.com/) in your machine
 - The image we use needs [VirtualBox](https://www.virtualbox.org/)
 - We will provision the machine using [Ansible](https://www.ansible.com/), by default it will use the Ansible provisioner in your host, but it can be configured to run locally in the VM
 - The code to be run should be in `~/workspace/manageiq`
@@ -24,7 +24,7 @@ You will need some tools installed in your machine to use this method:
  Everything that is inside that folder will be copied into `/manageiq` in the VM
 
  2. Clone the repo into your machine (i.e. in `Vagrant/manageiq-dev`)
- 
+
  `git clone https://github.com/ManageIQ/manageiq-vagrant-dev.git ~/Vagrant/manageiq-dev`
 
  3. Verify that the Vagrant file is properly configured
@@ -57,7 +57,7 @@ You will need some tools installed in your machine to use this method:
 
   Run the server in full mode
 
-  ` cd /manageiq; bundle exec evm:start`
+  ` cd /manageiq; bundle exec rake evm:start`
 
 
 ## The process
