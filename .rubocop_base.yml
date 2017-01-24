@@ -6,24 +6,25 @@ Lint/DefEndAlignment:
 Lint/EndAlignment:
   AutoCorrect: true
 Metrics/AbcSize:
-  Max: 20
-  Severity: refactor
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 Metrics/BlockNesting:
-  Severity: refactor
+  Enabled: false
 Metrics/ClassLength:
-  Severity: refactor
+  Enabled: false
 Metrics/CyclomaticComplexity:
-  Severity: refactor
+  Enabled: false
 Metrics/LineLength:
-  Max: 120
-  Severity: refactor
+  Enabled: false
 Metrics/MethodLength:
-  Max: 25
-  Severity: refactor
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
 Metrics/ParameterLists:
-  Severity: refactor
+  Enabled: false
 Metrics/PerceivedComplexity:
-  Severity: refactor
+  Enabled: false
 Performance/Casecmp:
   Enabled: false
 Rails/FindEach:
