@@ -28,8 +28,10 @@ maintained by the ManageIQ team.
 
 ## Ruby Style Guide
 
-* Refer to [our fork](http://github.com/ManageIQ/ruby-style-guide) of the
-  [original Ruby style guide](https://github.com/bbatsov/ruby-style-guide).
+* We follow, with some exceptions, the [original Ruby style guide](https://github.com/bbatsov/ruby-style-guide).
+  Any changes we have that deviate from the default style guide are enumerated
+  in the [.rubocop_base.yml](.rubocop_base.yml) file, which is inherited by most
+  projects in the ManageIQ organization.
 
 ## Logging
 
