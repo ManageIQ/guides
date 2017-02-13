@@ -73,6 +73,24 @@ There are two options how to run hawkinit:
 }
 
  ```
+
+### Accessing Hawkular
+After **Hawkinit** tool will download, install and run docker images, wait couple of minutes before all services are up
+and running. Then the server will run on `localhost:8080` (if you have multiple localhost's registered in MiQ you can
+use `127.0.0.x` x=1-255).
+
+Password and login is `jdoe:password`.
+
+If you want to run curl/postman/check from browser you need to have `Hawkular-Tenant: Hawkular` header set up.
+Example of Curl (Fetch all metric gauges):
+```bash
+curl -X GET -H "Content-Type: application/json" \
+-H "Hawkular-Tenant: hawkular" \
+-H "Accept: application/json" \
+-H "Authorization: Basic amRvZTpwYXNzd29yZA==" \
+"http://127.0.0.1:8080/hawkular/metrics/gauges"
+```
+
  [1] <a name="domain-standalone" href="https://docs.jboss.org/author/display/WFLY8/Getting+Started+Guide">
    https://docs.jboss.org/author/display/WFLY8/Getting+Started+Guide
 </a>
