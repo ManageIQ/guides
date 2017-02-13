@@ -26,6 +26,7 @@
   rpm -q --whatprovides npm || sudo dnf -y install npm   # For CentOS 7, Fedora 23 and older
   sudo dnf -y install openssl-devel                      # For rubygems
   sudo dnf -y install cmake                              # For rugged Gem
+  sudo dnf -y install openscap                           # For openscap Gem
   ```
 
 * Install the _Bower_ package manager
