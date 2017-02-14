@@ -70,6 +70,8 @@ Style/ParallelAssignment:
   Enabled: false
 Style/RedundantReturn:
   AllowMultipleReturnValues: true
+Style/RegexpLiteral:
+  Enabled: false
 Style/RescueModifier:
   AutoCorrect: false
 Style/SignalException:
