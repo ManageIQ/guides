@@ -5,12 +5,12 @@ It's interactive command line tool which uses docker.
 
 For Requirements follow [Hawkinit requirements](https://github.com/Jiri-Kremser/hawkinit#requirements).
 
-### Running Hawkular with Hawkinit tool
+### 1) Running Hawkular with Hawkinit tool
 Install globally trough NPM [Hawkinit](https://www.npmjs.com/package/hawkinit)
 
 ```npm install hawkinit -g```
 
-There are two options how to run hawkinit:
+There are two options how to run **Hawkinit**:
  1. Answer questions from tool
   * Version of hawkular
   * Version of Cassandra
@@ -74,12 +74,26 @@ There are two options how to run hawkinit:
 
  ```
 
-### Accessing Hawkular
+### 2) Accessing Hawkular
 After **Hawkinit** tool will download, install and run docker images, wait couple of minutes before all services are up
 and running. Then the server will run on `localhost:8080` (if you have multiple localhost's registered in MiQ you can
 use `127.0.0.x` x=1-255).
 
 Password and login is `jdoe:password`.
+
+#### Shutting down Hawkular
+To gracefully shut down Hawkular, press `ctrl + C` once (SIGINT), to shut down it forcely press `ctrl +C` twice.
+
+#### Relunching stopped Hawkular
+Currently it is not supported to go back to your old data, so once you stop **Hawkinit** you loose all your data, however
+if you look closely while spinning up you will see something like:
+```
+Later, you can find your hawkular-services listening on http://localhost:8080
+Running 'docker-compose up --force-recreate' in directory: /tmp/tmp-11573k3ujXFLACh9z
+```
+So you can navigate to `/tmp/tmp-11573k3ujXFLACh9z`, you can run docker-dompose up to start it again. 
+
+#### Browsing Hawkular's metrics
 
 If you want to run curl/postman/check from browser you need to have `Hawkular-Tenant: Hawkular` header set up.
 Example of Curl (Fetch all metric gauges):
@@ -90,6 +104,7 @@ curl -X GET -H "Content-Type: application/json" \
 -H "Authorization: Basic amRvZTpwYXNzd29yZA==" \
 "http://127.0.0.1:8080/hawkular/metrics/gauges"
 ```
+
 
  [1] <a name="domain-standalone" href="https://docs.jboss.org/author/display/WFLY8/Getting+Started+Guide">
    https://docs.jboss.org/author/display/WFLY8/Getting+Started+Guide
