@@ -64,17 +64,17 @@
 * Install Packages
 
   ```bash
-  sudo apt-get install ruby git                         # Git and components
-  sudo apt-get install memcached                        # Memcached for the session store
-  sudo apt-get install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
-  sudo apt-get install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
-  sudo apt-get install libxml2-dev libxslt-dev patch    # For Nokogiri Gem
-  sudo apt-get install libsqlite-dev libsqlite3-dev     # For sqlite3 Gem
-  sudo apt-get install nodejs nodejs-legacy npm         # For ExecJS Gem and bower
-  sudo apt-get install g++                              # For unf Gem
-  sudo apt-get install libcurl4-gnutls-dev              # For Curb
-  sudo apt-get install cmake                            # For rugged Gem
-  sudo apt-get install libgit2-dev pkg-config
+  sudo apt install ruby git                         # Git and components
+  sudo apt install memcached                        # Memcached for the session store
+  sudo apt install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
+  sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
+  sudo apt install libxml2-dev libxslt-dev patch    # For Nokogiri Gem
+  sudo apt install libsqlite-dev libsqlite3-dev     # For sqlite3 Gem
+  sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem and bower
+  sudo apt install g++                              # For unf Gem
+  sudo apt install libcurl4-gnutls-dev              # For Curb
+  sudo apt install cmake                            # For rugged Gem
+  sudo apt install libgit2-dev pkg-config libtool
   ```
 
 * Install the _Bower_ and _Yarn_ package manager
