@@ -18,3 +18,4 @@ quick start for new contributors for the UI.
 * [Reports and Charts](reports_charts.md)
 * [Topology](topology.md)
 * [Remote Consoles](remote_consoles.md)
+* [Angular Components](angular_components.md)
