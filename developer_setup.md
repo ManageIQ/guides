@@ -11,7 +11,7 @@
   sudo yum -y install dnf
   ```
 
-* Install packages
+* Install Packages
 
   ```bash
   sudo dnf -y install git-all                            # Git and components
@@ -21,7 +21,7 @@
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
   sudo dnf -y install nodejs                             # For ExecJS Gem and bower
-  sudo dnf -y install gcc-c++                            # For unf gem
+  sudo dnf -y install gcc-c++                            # For unf Gem
   sudo dnf -y install libcurl-devel                      # For Curb
   rpm -q --whatprovides npm || sudo dnf -y install npm   # For CentOS 7, Fedora 23 and older
   sudo dnf -y install openssl-devel                      # For rubygems
@@ -57,6 +57,52 @@
   sudo systemctl start postgresql
   sudo -u postgres psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
   # This command can return with a "could not change directory to" error, but you can ignore it
+  ```
+
+#### Ubuntu / Debian
+
+* Install Packages
+
+  ```bash
+  sudo apt install ruby git                         # Git and components
+  sudo apt install memcached                        # Memcached for the session store
+  sudo apt install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
+  sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
+  sudo apt install libxml2-dev libxslt-dev patch    # For Nokogiri Gem
+  sudo apt install libsqlite-dev libsqlite3-dev     # For sqlite3 Gem
+  sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem and bower
+  sudo apt install g++                              # For unf Gem
+  sudo apt install libcurl4-gnutls-dev              # For Curb
+  sudo apt install cmake                            # For rugged Gem
+  sudo apt install libgit2-dev pkg-config libtool
+  ```
+
+* Install the _Bower_ and _Yarn_ package manager
+  ```bash
+  sudo npm install -g npm
+  sudo npm install -g bower yarn
+  ```
+
+* Install the _Gulp_ and _Webpack_ build system
+  ```bash
+  sudo npm install -g gulp-cli
+  sudo npm install -g webpack
+  ```
+
+* Enable Memcached
+
+  ```bash
+  sudo systemctl enable memcached
+  sudo systemctl start memcached
+  ```
+
+* Configure PostgreSQL
+
+  ```bash
+  sudo grep -q '^local\s' /etc/postgresql/9.5/main/pg_hba.conf || echo "local all all trust" | sudo tee -a /etc/postgresql/9.5/main/pg_hba.conf
+  sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /etc/postgresql/9.5/main/pg_hba.conf
+  sudo systemctl restart postgresql
+  sudo su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
   ```
 
 #### Mac
