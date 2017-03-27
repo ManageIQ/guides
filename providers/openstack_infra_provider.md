@@ -20,7 +20,7 @@ The OpenStack infrastructure provider is designed to work with a [TripleO-based 
 
 ##### Install a TripleO-based OpenStack deployment
 
-The recommended way to do this is to use Instack: https://openstack.redhat.com/Deploying_RDO_using_Instack
+The recommended way to do this can be found here: https://www.rdoproject.org/tripleo/
 
 Afterwards, you'll need to expose the undercloud's API endpoints: https://wiki.openstack.org/wiki/Tuskar/Instack#Connecting_to_Undercloud_from_external_place_.28e.g._your_laptop.29
 
