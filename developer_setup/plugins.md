@@ -15,23 +15,22 @@ Having the plugins and the core repository side by side, i.e. at the same direct
 lets you separate checkouts cleanly.
 
 ```bash
-cd ~/src
 git clone git@github.com:JoeSmith/manageiq-providers-amazon.git
 git clone git@github.com:JoeSmith/manageiq-content.git
 git clone git@github.com:JoeSmith/manageiq-ui-classic.git
 ```
 
-#### Inside the core manageiq checkout
+#### Inside the core ManageIQ checkout
 
 The `plugins/` directory inside the core repository is ignored by `.gitignore`. This means you can clone plugins
 into this directory. The benefit is, e.g. when working with a project oriented IDE, you have all code under one
 directory. This way you can easily search across the core _and_ plugin code base. 
 
-You still have to change into the plugin root directory to run the tests - running `rspec` from the manageiq root will
+You still have to change into the plugin root directory to run the tests - running `rspec` from the ManageIQ root will
 not pickup your plugin code, but the core code. This is a drawback which can lead to some confusion.
 
 ```bash
-cd ~/src/manageiq ; mkdir plugins
+cd /path/to/manageiq ; mkdir plugins
 git clone git@github.com:JoeSmith/manageiq-providers-amazon.git plugins/manageiq-providers-amazon
 git clone git@github.com:JoeSmith/manageiq-content.git plugins/manageiq-content
 git clone git@github.com:JoeSmith/manageiq-ui-classic.git plugins/manageiq-ui-classic
@@ -39,8 +38,8 @@ git clone git@github.com:JoeSmith/manageiq-ui-classic.git plugins/manageiq-ui-cl
 
 ### Running tests
 
-To run the tests for a plugin, we need an application context. Usually rails expects a dummy rails app. But because
-our plugins are only for manageiq, we run the tests inside the manageiq app. Therefore we need a checkout of manageiq
+To run the tests for a plugin, we need an application context. Usually Rails expects a dummy Rails app. But because
+our plugins are only for ManageIQ, we run the tests inside the ManageIQ app. Therefore we need a checkout of ManageIQ
 at `spec/manageiq`. The database used for tests is the same as for the core app. Keep that in mind when developing a
 feature that requires database migrations.
 
@@ -66,50 +65,50 @@ bin/update
 
 ### Cross repository dependencies
 
-Sometimes you need to develop your feature against a branch of manageiq that is not yet merged into master. This creates
+Sometimes you need to develop your feature against a branch of ManageIQ that is not yet merged into master. This creates
 cross repository dependencies, which can be handled from the plugin side or from the core side.
 
-#### Symlink you sample app
+#### Symlink your sample app
 
-Creating a symlink from `spec/manageiq` to your current checkout of manageiq will run the tests inside whatever branch
+Creating a symlink from `spec/manageiq` to your current checkout of ManageIQ will run the tests inside whatever branch
 you checked out in the core repo.
 
 ```bash
 # remove current sample app
 rm -rf spec/manageiq 
 # create a symlink
-ln -s ~/src/manageiq spec/manageiq
+ln -s /path/to/manageiq spec/manageiq
 ```
 
 #### Dependency on a local gem
 
-Inside manageiq core, you can override gem dependencies with `override_gem`. This is a small helper to be used inside
+Inside ManageIQ core, you can override gem dependencies with `override_gem`. This is a small helper to be used inside
 `Gemfile.dev.rb`. Use it to point the dependency to a local version of your plugin. 
 
 ```ruby
 # Gemfile.dev.rb:
-override_gem 'manageiq-providers-amazon', :path => '~/src/manageiq-providers-amazon'
+override_gem 'manageiq-providers-amazon', :path => File.expand_path("/path/to/manageiq-providers-amazon")
 ```
 
 #### Rails console
 
 Unfortunately Rails Engines don't support running `rails console` from the root of the plugin. To test your code you
-will have to change the dependency of manageiq to point to your local plugin. See above.
+will have to change the dependency of ManageIQ to point to your local plugin. See above.
 
-### Migrating a PR from manageiq
+### Migrating a PR from ManageIQ
 
-If you have an open PR on manageiq that has not been merged before the split, you can cherry-pick all commits from
+If you have an open PR on ManageIQ that has not been merged before the split, you can cherry-pick all commits from
 the feature branch into a new branch in the plugin repository.
 
 ```bash
 # get all commit shas that are not yet in master - or just look at https://github.com/ManageIQ/manageiq/pull/<id>
-cd ~/src/manageiq
+cd /path/to/manageiq
 git checkout feature_branch
 git log $(git rev-parse --abbrev-ref HEAD) --not refs/heads/master
 
-# add manageiq as a remote in your plugin
-cd ~/src/manageiq-providers-amazon
-git remote add miq ~/src/manageiq
+# add ManageIQ as a remote in your plugin
+cd /path/to/manageiq-providers-amazon
+git remote add miq /path/to/manageiq
 git fetch miq
 
 # create a new branch in the plugin and cherry-pick commits
