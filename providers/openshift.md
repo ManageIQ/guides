@@ -49,3 +49,84 @@ inventory/byo/hosts.example.
 ```console
 $ ansible-playbook playbooks/byo/config.yml -i path/to/inventory/file
 ```
+
+
+### Running with minishift
+
+
+For a simple single host setup for working with the openshift provider locally,
+you can use [`minishift`](https://github.com/minishift/minishift) to run a
+local openshift instance.
+
+
+#### Requirements
+
+* [`minishift`](https://github.com/minishift/minishift) >= 1.0.0.rc1 ([Installation Instructions](https://docs.openshift.org/latest/minishift/getting-started/installing.html#installing-instructions))
+* Virtualization host of your choice (see supported hypervisors [here](https://docs.openshift.org/latest/minishift/getting-started/installing.html#install-prerequisites))
+
+
+#### Quickstart
+
+Since VirtualBox is a consistent hypervisor across all platforms, this guide
+will assume that is being used, and updates to some commands might be
+necessary (most commands should be virtualization software agnostic and work
+regardless of the hypervisor).
+
+1. Download the manageiq.addon for minishift to a directory of your choosing:
+  
+  ```console
+  
+  $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176.git path/to/minishift-addons/manageiq
+  ```
+
+  You can inspect the addon here:
+  
+    https://gist.github.com/NickLaMuro/e2fac8be87ea0e9f429b6f5d75e02176
+  
+  It is recommended to keep a directory of your addons in one place.
+  
+2. Add and enable the manageiq addon to minishift:
+  
+  ```console
+  $ minishift addons install --force path/to/minishift-addons/manageiq
+  $ minishift addons enable manageiq
+  ```
+  
+3. Start minishift:
+  
+  ```console
+  $ minishift start --vm-driver virtualbox --openshift-version "v1.5.0-rc.0"
+  ```
+  
+4. Grab the minishift IP:
+  
+  ```console
+  $ minishift ip
+  ```
+  
+5. Grab the token to access openshift through `manageiq`:
+  
+  ```console
+  $ ~/.minishift/cache/oc/v1.5.0-rc.0/oc login -u system:admin
+  $ ~/.minishift/cache/oc/v1.5.0-rc.0/oc sa get-token -n management-infra management-admin
+  ```
+  
+  Or in a single command form:
+  
+  ```console
+  $ (export PATH="~/.minishift/cache/oc/v1.5.0-rc.0/:$PATH"; oc login -u system:admin > /dev/null; oc sa get-token -n management-infra management-admin)
+  ```
+  
+6. Configure a provider in ManageIQ, filling in your token and IP where
+   appropriate:
+  
+  ```console
+  $ bin/rails c
+  irb> token = '<<YOUR_TOKEN_FROM_ABOVE_HERE>>'
+  irb> host  = '<<YOUR_IP_FROM_ABOVE_HERE>>'
+  irb> os = ManageIQ::Providers::Openshift::ContainerManager
+  irb> os.create(:name => "Minishift", :hostname => host, :port => 8443, :ipaddress => host, :guid => MiqUUID.new_guid, :zone => Zone.first, :storage_profiles => [], :security_protocol => "ssl-without-validation")
+  irb> os.last.update_authentication(:bearer => {:auth_key => token, :save => true})
+  ```
+  
+  Or through the UI if you prefer.
