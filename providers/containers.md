@@ -1,5 +1,7 @@
 ## ManageIQ Container Providers
 
+See ![instructions](/providers/openshift) for installing an OpenShift origin container provider.
+
 ### Containers Smart State Analysis
 
 Current architecture diagram:
