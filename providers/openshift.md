@@ -1,5 +1,16 @@
 ## ManageIQ Openshift Container Provider
 
+Two deployment options are suggested here to deploy an openshift origin
+provider for ManageIQ:
+
+- using [openshift-ansible](https://github.com/openshift/openshift-ansible) to
+  deploy RPM packages on a cluster
+- using [minishift]((https://github.com/minishift/minishift)) to deploy
+  openshift source to a vm
+
+You can also use `oc cluster up` and configure it yourself (instructions not
+provided) as another alternative.
+
 ### Deploying OpenShift With Ansible
 
 Get openshift-ansible:
