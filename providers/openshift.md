@@ -42,7 +42,6 @@ nodes
 [OSEv3:vars]
 ansible_ssh_user=root
 deployment_type=origin
-openshift_use_manageiq=True
  
 [masters]
 master_hostname openshift_scheduleable=True
@@ -52,10 +51,11 @@ master_hostname
 node_hostname
 ```
 
-openshift_use_manageiq is set to True to configure the Service Account needed
-by ManageIQ. there are more like variables like use_metrics to enable other
-options in OpenShift.  A more detailed example will be found in
-inventory/byo/hosts.example.
+There are more like variables like `use_metrics` to enable other options in
+OpenShift.  A more detailed example can be found in
+`inventory/byo/hosts.origin.example`. Specifically, to deploy metrics and
+logging use `openshift_hosted_metrics_deploy=True` and
+`openshift_hosted_logging_deploy=True`
 
 ```console
 $ ansible-playbook playbooks/byo/config.yml -i path/to/inventory/file
