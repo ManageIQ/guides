@@ -7,6 +7,11 @@ controllers etc. are loaded during boot time of ManageIQ and are just available 
 
 ### Cloning plugins
 
+Before anything, you have to create a fork of the plugin on Github. 
+
+* Go to the plugins repository page, e.g. [ManageIQ/manageiq-ui-classic](https://github.com/ManageIQ/manageiq-ui-classic)
+* Click the Fork button and choose "Fork to \<yourname\>"
+
 It does not really matter _where_ you clone your plugins. Both approaches have their advantages.
 
 #### Side by side
@@ -34,6 +39,25 @@ cd /path/to/manageiq ; mkdir plugins
 git clone git@github.com:JoeSmith/manageiq-providers-amazon.git plugins/manageiq-providers-amazon
 git clone git@github.com:JoeSmith/manageiq-content.git plugins/manageiq-content
 git clone git@github.com:JoeSmith/manageiq-ui-classic.git plugins/manageiq-ui-classic
+```
+
+#### Setting the correct remotes
+
+Inside your checkout you will have the default remote origin pointing to your fork. Now add an upstream remote which
+points to the upstream repository. To keep your fork up to date, you will have to merge changes from upstream
+into your fork.
+
+```bash
+cd manageiq-ui-classic
+git remote -v
+# origin  git@github.com:JoeSmith/manageiq-ui-classic.git (fetch)
+# origin  git@github.com:JoeSmith/manageiq-ui-classic.git (push)
+git remote add upstream git@github.com:ManageIQ/manageiq-ui-classic
+git fetch upstream
+# merge upstream into your fork
+git checkout master
+git pull upstream master
+git push origin master
 ```
 
 ### Running tests
