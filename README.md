@@ -3,7 +3,7 @@
 ### Developer information
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Developer Setup](developer_setup.md)
-  - [Plugin development](developer_setup/plugins.md)
+  - [Plugin development](developer_setup/plugins.md) aka working with the split `manageiq*` repositories
   - [Running in minimal mode](developer_setup/minimal_mode.md)
   - [Running the test suites](developer_setup/running_test_suites.md)
   - Provider setup instructions
