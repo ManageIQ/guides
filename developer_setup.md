@@ -250,3 +250,8 @@ When this message is present, then the you need to install `node.js` and re-try
 
 If this happens, you may be missing developer tools in your OS X. Try to install them with
 `xcode-select --install` and re-try.
+
+* `bin/setup` fails to install the 'sys-proctable' gem, or installs the wrong version.
+
+If this happens it may be a Bundler issue. Try running `bundle config specific_platform true`
+and re-try.
