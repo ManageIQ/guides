@@ -163,6 +163,26 @@
   * [Install Ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions)
   * [Install bundler](https://github.com/rbenv/rbenv#installing-ruby-gems)
 
+#### Example using rbenv
+
+First get the requirements to perform a build of a newer Ruby version
+
+```bash
+sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$PATH:$HOME/.rbenv/bin"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+and then use the following to perform an install of Ruby 2.2.4
+```bash
+rbenv install -v 2.2.4
+rbenv global 2.2.4
+```
+
 ### Setup Git and Github
 
 * The most reliable authentication mechanism for git uses SSH keys.
