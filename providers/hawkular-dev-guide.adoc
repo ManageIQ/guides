@@ -1,6 +1,7 @@
 = Hawkular - The Developer Guide
-Purpose of this guide is to provide a quick introduction into MiQ, middleware provider and it can be also used
-as general guide for creating or extending other providers. It was written from the point of view of Java developer.
+The Purpose of this guide is to provide a quick introduction to the insides of ManageIQ, the concept of middleware providers,
+while also serving as a general guide to creating and extending other providers.
+It is written (mostly) by Java developers, but most, if not all, information is still valid for all backgrounds.
 
 If you are looking for a way to quickly spawn the Hawkular provider, continue on
 link:https://github.com/ManageIQ/guides/blob/master/providers/hawkular-hawkinit.md[hawkinit tool].
