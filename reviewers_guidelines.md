@@ -7,9 +7,9 @@ In such case the reviewer might not be aware of _The Right Way_ and approves the
 This can cause a significant growth in technical dept. As it is complicated to track all the ongoing refactoring approaches,
 this document is intended to summarize common pitfalls and also good examples.
 
-**Please update this document with simple `wrong` and `right` exapmles that you are aware of.**
+**Please update this document with simple `wrong` and `right` examples that you are aware of.**
 
-**When doing reviews, please try to go through these exaples to prevent introducing technical debt**
+**When doing reviews, please try to go through these examples to prevent introducing technical debt**
 
 Thank you, happy reviewers!
 
