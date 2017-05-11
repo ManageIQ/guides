@@ -136,7 +136,7 @@ regardless of the hypervisor).
   irb> token = '<<YOUR_TOKEN_FROM_ABOVE_HERE>>'
   irb> host  = '<<YOUR_IP_FROM_ABOVE_HERE>>'
   irb> os = ManageIQ::Providers::Openshift::ContainerManager
-  irb> os.create(:name => "Minishift", :hostname => host, :port => 8443, :ipaddress => host, :guid => MiqUUID.new_guid, :zone => Zone.first, :storage_profiles => [], :security_protocol => "ssl-without-validation")
+  irb> os.create(:name => "Minishift", :hostname => host, :port => 8443, :ipaddress => host, :zone => Zone.first, :storage_profiles => [], :security_protocol => "ssl-without-validation")
   irb> os.last.update_authentication(:bearer => {:auth_key => token, :save => true})
   ```
   
