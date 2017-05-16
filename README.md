@@ -9,6 +9,7 @@
   - Provider setup instructions
     - [Amazon AWS](providers/amazon_aws_config.md)
     - [Hawkular](providers/hawkular.md)
+    - [Openshift](providers/openshift.md)
     - [Openstack Infra](providers/openstack_infra_provider.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
