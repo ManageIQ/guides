@@ -8,19 +8,36 @@ Hardware for Host etc.).
 
 Textual summaries consist of groups of related information and each group consist of properties.
 
-Definitions of these can be found in modules named according to scheme
+In a controller a list of textual groups is declared:
+
+```
+class CloudNetworkController < ApplicationController
+
+...
+
+  private
+
+  def textual_group_list
+    [%i(properties relationships), %i(tags)]
+  end
+  helper_method :textual_group_list
+end
+```
+
+Definition of each group can found in modules named according to scheme
 `XxxHelper::TextualSummary` in `app/helpers/*_helper/textual_summary.rb`.
 
 Example group definition:
 ```
-def textual_group_properties
-  %i(vapp aggregate_cpu_speed aggregate_cpu_memory aggregate_physical_cpus aggregate_cpu_total_cores aggregate_vm_memory aggregate_vm_cpus)
+def textual_group_power_management
+  TextualGroup.new(_("Power Management"), %i(power_state boot_time state_changed_on))
 end
 
-def textual_group_relationships
-  %i(parent_datacenter parent_cluster parent_host direct_vms allvms_size total_vms)
-end
 ```
+
+The group definition consists of a formater -- `TextualGroup`, a label and a list of properties.
+
+Other formaters include `TextualMultilabel` and `TextualTags`.
 
 Example property definitions:
 ```
@@ -38,4 +55,3 @@ Example property definitions:
      :value => number_to_human_size(@record.aggregate_memory.megabytes, :precision => 0)}
   end
 ```
-
