@@ -40,7 +40,7 @@ class ApplicationHelper::Toolbar::VmCloudsCenter < ApplicationHelper::Toolbar::B
 
 ### Buttons
 
-Toolbars consist of button groups and button groups consist of buttons. 
+Toolbars consist of button groups and button groups consist of buttons.
 
 There are 3 types of buttons:
 
@@ -64,7 +64,7 @@ In toolbar definitions text and hover text need to be marked for translation wit
 instance variables are present and can be used to determine the values of the
 texts.
 
-Furher values have to be passed in as hash. In the example above it is
+Further values have to be passed in as hash. In the example above it is
   * `:url\_parms`,
   * `:confirm`,
   * `:enabled`,
@@ -72,7 +72,7 @@ Furher values have to be passed in as hash. In the example above it is
 
 Very important key is
   * :`klass`.
- 
+
 Toolbars are rendered into JSON by the ManageIQ and then processed by toolbar component from the [ui-components repository](https://github.com/ManageIQ/ui-components)
 
 #### Button details
@@ -91,16 +91,47 @@ etc. has particular **feature**.
 
 Example usage:
 ```ruby
-button(                                                                                     
-  :vm_collect_running_processes,                                                            
-  'fa fa-eyedropper fa-lg',                                                                 
-  N_('Extract Running Processes for this VM'),                                              
-  N_('Extract Running Processes'),                                                          
-  :confirm => N_("Extract Running Processes for this VM?"),                                 
-  :klass => ApplicationHelper::Button::GenericFeatureButtonWithDisable,                     
-  :options => {:feature => :collect_running_processes}),    
+button(
+  :vm_collect_running_processes,
+  'fa fa-eyedropper fa-lg',
+  N_('Extract Running Processes for this VM'),
+  N_('Extract Running Processes'),
+  :confirm => N_("Extract Running Processes for this VM?"),
+  :klass => ApplicationHelper::Button::GenericFeatureButtonWithDisable,
+  :options => {:feature => :collect_running_processes}),
 ```
 
 The feature to be tested is passed in the :options hash as :feature. All
 content of the :options is passed to the Button classes and can be used to
 parametrize generic button classes.
+
+### Javascript-only buttons
+
+You can create buttons that don't need a client--server roundtrip when pressed. Such buttons instead call some javascript function, talk to Angular components or send RxJS messages to perform their action.
+
+Example of such button definition:
+```
+  button_group('middleware_server_operations', [
+    select(
+      :middleware_server_power_choice,
+      'fa fa-power-off fa-lg',
+      t = N_('Power'),
+      t,
+      :items => [
+        button(
+          :middleware_server_shutdown,
+          nil,
+          N_('Gracefully shut this server down'),
+          N_('Gracefully shutdown Server'),
+          :image => 'guest_shutdown',
+          :data  => {'toggle'        => 'modal',
+                     'target'        => '#modal_param_div',
+                     'function'      => 'sendDataWithRx',
+                     'function-data' => '{"type": "mwServerOps", "operation": "shutdown", "timeout": 0}'},
+          :klass => ApplicationHelper::Button::MiddlewareStandaloneServerAction),
+...
+```
+
+Under `:data` you need to set 2 important keys:
+  * `:function`, defines javascript function to be called when the button is pressed,
+  * `:function-data`, defines arguments to be passed to the function.
