@@ -35,9 +35,9 @@ end
 
 ```
 
-The group definition consists of a formater -- `TextualGroup`, a label and a list of properties.
+The group definition consists of a formatter -- `TextualGroup`, a label and a list of properties.
 
-Other formaters include `TextualMultilabel` and `TextualTags`.
+Other formatters include `TextualMultilabel` and `TextualTags`.
 
 Example property definitions:
 ```
