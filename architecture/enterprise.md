@@ -5,9 +5,9 @@ performing different roles.  To understand how this is accomplished some new
 terms and concepts must be learned.  This document gives a high level overview
 of the enterprise architecture and hierarchy.
 
-* [Appliance](#Appliance)
-* [Zone](#Zone)
-* [Region / Enterprise](#Region-/-Enterprise)
+* [Appliance](#appliance)
+* [Zone](#zone)
+* [Region / Enterprise](#region--enterprise)
 
 ## Appliance
 
