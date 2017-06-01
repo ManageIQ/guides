@@ -81,7 +81,7 @@ For some buttons more complex logic is needed to decide if they should be
 displayed and enabled and what are the texts etc. In this case we use the key :klass
 to determine a button class that implements the behavior.
 
-These button classes live under [`app/helpers/application_helper/button`](5ttps://github.com/ManageIQ/manageiq/tree/master/app/helpers/application_helper/button) and are descendants of [`ApplicationHelper::Toolbar::Basic`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/basic.rb).
+These button classes live under [`app/helpers/application_helper/button`](https://github.com/ManageIQ/manageiq/tree/master/app/helpers/application_helper/button) and are descendants of [`ApplicationHelper::Toolbar::Basic`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/basic.rb).
 
 Important subclasses include e.g. [`ApplicationHelper::Button::ReadOnly`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/read_only.rb) and very important [`ApplicationHelper::Button::GenericFeatureButton`](https://github.com/ManageIQ/manageiq/blob/master/app/helpers/application_helper/button/generic_feature_button.rb).
 
