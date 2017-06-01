@@ -72,7 +72,7 @@ Metrics provide details of System Utilization for the manager's inventory object
 
 These metrics can be used to enforce policies related to capacity planning.
 
-After the metrics are collected, different [rollup](https://github.com/ManageIQ/guides/blob/b82b341d67e47752113bfc2223371dd311ce5910/architecture/capacity_and_utilization_collection_explanation.md#rollups) mechanisms take hold.
+After the metrics are collected, different [rollup](capacity_and_utilization_collection_explanation.md#rollups) mechanisms take hold.
 
 Rollups are especially important to understand when implementing a new manager type, because rollups for new manager types may involve infrastructure-based rollups that have not previously exist in ManageIQ.
 
@@ -125,7 +125,7 @@ Workers are broken down into three different pieces:
 2. Worker class: [lib/workers/worker_base.rb](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/lib/workers/worker_base.rb)
 3. Executable: [lib/workers/bin/worker.rb](https://github.com/ManageIQ/manageiq/blob/9456ba68a455a5a0501c1e9e0aef88c78dc83338/lib/workers/bin/worker.rb)
 
-Workers are all separate processes started and managed by the [main server](https://github.com/ManageIQ/guides/blob/master/architecture/enterprise.md#appliance).  Worker processes are tracked in the `miq_workers` table as instances of the `MiqWorker` model object.  These records are used by the main server to track the actual worker processes.
+Workers are all separate processes started and managed by the [main server](enterprise.md#appliance).  Worker processes are tracked in the `miq_workers` table as instances of the `MiqWorker` model object.  These records are used by the main server to track the actual worker processes.
 
 An instance of `WorkerBase` is where the actual work happens.  Each `WorkerBase` instance can identify the `MiqWorker` record and the `MiqWorker` instance can identify its corresponding `WorkerBase` class.
 
