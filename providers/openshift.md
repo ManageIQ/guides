@@ -5,7 +5,7 @@ provider for ManageIQ:
 
 - using [openshift-ansible](https://github.com/openshift/openshift-ansible) to
   deploy RPM packages on a cluster
-- using [minishift]((https://github.com/minishift/minishift)) to deploy
+- using [minishift](https://github.com/minishift/minishift) to deploy
   openshift source to a vm
 
 You can also use `oc cluster up` and configure it yourself (instructions not
