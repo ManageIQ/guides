@@ -8,7 +8,7 @@
   - [Running the test suites](developer_setup/running_test_suites.md)
   - Provider setup instructions
     - [Amazon AWS](providers/amazon_aws_config.md)
-    - [Hawkular](providers/hawkular.md)
+    - [Hawkular](providers/hawkular-hawkinit.md)
     - [Openshift](providers/openshift.md)
     - [Openstack Infra](providers/openstack_infra_provider.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
