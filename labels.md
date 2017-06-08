@@ -13,7 +13,7 @@ Color | Hex | Description
 ![](https://dummyimage.com/100x20/cc317c&amp;text=+) | `#cc317c` | Questions and discussions: "question"
 ![](https://dummyimage.com/100x20/5319e7&amp;text=+) | `#5319e7` | Component: Repo specific labels that categorize what parts of the application are being changed.  See the repos for specifics.
 ![](https://dummyimage.com/100x20/d4c5f9&amp;text=+) | `#d4c5f9` | Alternate component: A secondary, repo specific categorization (e.g. in manageiq-ui-classic, dark purple represents a specific UI tab being changed, whereas light purple is used for general components like toolbars or buttons)
-![](https://dummyimage.com/100x20/6a92bc&amp;text=+) | `#6a92bc` | Special component: A component that requires more careful handling and possibly a specific reviewer or merger. Right now this is only "gem changes" and "sql migration".
+![](https://dummyimage.com/100x20/6a92bc&amp;text=+) | `#6a92bc` | Special component: A component that requires more careful handling and possibly a specific reviewer or merger. Right now this is only "dependencies" and "sql migration".
 ![](https://dummyimage.com/100x20/000000&amp;text=+)</br>![](https://dummyimage.com/100x20/555555&amp;text=+)</br> ![](https://dummyimage.com/100x20/dddddd&amp;text=+) | `#000000`</br>`#555555`</br>`#dddddd` | Backporting and release: "blocker", "fine/yes", "fine/no", "darga/yes", "darga/no", etc.  The darkest color is for the most recent release, the middle color is the release before that, and the lightest color is for any release older than that.
 
 ### Common labels
@@ -24,6 +24,7 @@ blocker | ![](https://dummyimage.com/100x20/000000&amp;text=+) | `#000000` | Blo
 bug | ![](https://dummyimage.com/100x20/fc2929&amp;text=+) | `#fc2929` | A bug.
 bug/sporadic test failure | ![](https://dummyimage.com/100x20/fc2929&amp;text=+) | `#fc2929` | A bug that manifests as test failures in an unpredictable way.
 cleanup | ![](https://dummyimage.com/100x20/fef2c0&amp;text=+) | `#fef2c0` | Changes only making the code cleaner and that do not change how the code works nor the outputs produced (e.g. rubocop or eslint changes).
+dependencies | ![](https://dummyimage.com/100x20/6a92bc&amp;text=+) | `#6a92bc` | Changes that affect dependencies, such as gem changes.
 developer | ![](https://dummyimage.com/100x20/bcf5db&amp;text=+) | `#bcf5db` | Changes that affect developers only, including non-customer-facing tools (e.g. changes to bin/setup)
 documentation | ![](https://dummyimage.com/100x20/d4c5f9&amp;text=+) | `#d4c5f9` | Changes to documentation only (e.g. README.md).
 duplicate | ![](https://dummyimage.com/100x20/eeeeee&amp;text=+) | `#eeeeee` | The issue is a duplicate.  When applied, the duplicate issue should be referenced in a comment.
