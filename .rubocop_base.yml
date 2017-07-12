@@ -62,6 +62,101 @@ Style/HashSyntax:
   EnforcedStyle: hash_rockets
 Style/IfUnlessModifier:
   Enabled: false
+Style/MethodCallWithArgsParentheses:
+  Exclude:
+    - Gemfile
+    - lib/generators/**/*
+    - lib/resource_feeder/**/*
+    - lib/tasks/**/*
+    - spec/**/*
+  Enabled: true
+  IgnoredMethods:
+    # Ruby
+    - alias_method
+    - attr_accessor
+    - attr_reader
+    - attr_writer
+    - exit
+    - extend
+    - include
+    - load
+    - pp
+    - prepend
+    - print
+    - private
+    - private_class_method
+    - private_constant
+    - puts
+    - raise
+    - require
+    - sleep
+    # Rails
+    - accepts_nested_attributes_for
+    - after_action
+    - after_commit
+    - after_create
+    - after_create_commit
+    - after_destroy
+    - after_destroy
+    - after_destroy_commit
+    - after_initialize
+    - after_save
+    - after_save
+    - after_update
+    - after_update_commit
+    - alias_attribute
+    - around_destroy
+    - autoload
+    - before_action
+    - before_create
+    - before_destroy
+    - before_save
+    - before_update
+    - before_validation
+    - belongs_to
+    - cattr_accessor
+    - cattr_reader
+    - cattr_writer
+    - class_attribute
+    - delegate
+    - has_and_belongs_to_many
+    - has_many
+    - has_one
+    - identified_by
+    - mattr_accessor
+    - render
+    - require_dependency
+    - require_relative
+    - respond_to
+    - scope
+    - serialize
+    - skip_before_action
+    - validate
+    - validates
+    # Gems
+    - acts_as_tree
+    - default_value_for
+    - default_values
+    - has_ancestry
+    # MIQ
+    - api_relay_method
+    - attr_accessor_that_yamls
+    - deprecate_attribute
+    - encrypt_column
+    - include_concern
+    - require_nested
+    - signal
+    - supports
+    - supports_not
+    - virtual_aggregate
+    - virtual_attribute
+    - virtual_belongs_to
+    - virtual_belongs_to
+    - virtual_column
+    - virtual_delegate
+    - virtual_has_many
+    - virtual_has_one
+    - virtual_total
 Style/NumericLiterals:
   AutoCorrect: false
 Style/PerlBackrefs:
