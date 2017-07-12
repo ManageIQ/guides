@@ -79,15 +79,26 @@
   ```
 
 * Install the _Bower_ and _Yarn_ package manager
+
   ```bash
   sudo npm install -g npm
   sudo npm install -g bower yarn
   ```
 
 * Install the _Gulp_ and _Webpack_ build system
+
   ```bash
   sudo npm install -g gulp-cli
   sudo npm install -g webpack
+  ```
+
+* Ubuntu fix for failing Bundler
+
+  ```bash
+  sudo apt remove libssl-dev
+  wget http://ftp.cz.debian.org/debian/pool/main/o/openssl1.0/libssl1.0-dev_1.0.2l-2_amd64.deb
+  wget http://ftp.cz.debian.org/debian/pool/main/o/openssl1.0/libssl1.0.2_1.0.2l-2_amd64.deb
+  sudo dpkg -i libssl1.0-dev_1.0.2l-2_amd64.deb libssl1.0.2_1.0.2l-2_amd64.deb
   ```
 
 * Enable Memcached
