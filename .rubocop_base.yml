@@ -65,6 +65,7 @@ Style/IfUnlessModifier:
 Style/MethodCallWithArgsParentheses:
   Exclude:
     - Gemfile
+    - config/routes.rb
     - lib/generators/**/*
     - lib/resource_feeder/**/*
     - lib/tasks/**/*
@@ -80,6 +81,7 @@ Style/MethodCallWithArgsParentheses:
     - extend
     - include
     - load
+    - module_function
     - pp
     - prepend
     - print
@@ -90,8 +92,12 @@ Style/MethodCallWithArgsParentheses:
     - raise
     - require
     - sleep
+    - throw
+    - yield
     # Rails
     - accepts_nested_attributes_for
+    - add_column
+    - add_index
     - after_action
     - after_commit
     - after_create
@@ -114,16 +120,26 @@ Style/MethodCallWithArgsParentheses:
     - before_update
     - before_validation
     - belongs_to
+    - bigint
+    - boolean
     - cattr_accessor
     - cattr_reader
     - cattr_writer
+    - change_column
     - class_attribute
+    - create_table
+    - datetime
+    - decimal
     - delegate
+    - drop_table
     - has_and_belongs_to_many
     - has_many
     - has_one
     - identified_by
+    - integer
     - mattr_accessor
+    - remove_column
+    - remove_index
     - render
     - require_dependency
     - require_relative
@@ -131,14 +147,23 @@ Style/MethodCallWithArgsParentheses:
     - scope
     - serialize
     - skip_before_action
+    - string
+    - text
     - validate
     - validates
-    # Gems
+    # ActsAsTree Gem
     - acts_as_tree
+    # Ancestry Gem
+    - has_ancestry
+    # DefaultValue Gem
     - default_value_for
     - default_values
-    - has_ancestry
+    # Trollop Gem
+    - banner
+    - die
+    - opt
     # MIQ
+    - alias_with_relationship_type
     - api_relay_method
     - attr_accessor_that_yamls
     - deprecate_attribute
