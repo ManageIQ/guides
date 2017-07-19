@@ -29,10 +29,10 @@
   sudo dnf -y install openscap                           # Optional, for openscap Gem for container SSA
   ```
 
-* Install the _Bower_ package manager
+* Install the _Bower_ and _Yarn_ package manager
 
   ```
-  sudo npm install -g bower
+  sudo npm install -g bower yarn
   ```
 
 * Enable Memcached
