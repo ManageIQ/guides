@@ -29,10 +29,18 @@
   sudo dnf -y install openscap                           # Optional, for openscap Gem for container SSA
   ```
 
-* Install the _Bower_ and _Yarn_ package manager
+* Install the _Bower_ package manager
 
+  ```bash
+  sudo npm install -g bower
   ```
-  sudo npm install -g bower yarn
+
+* Install the _Yarn_ package manager
+
+  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
+
+  ```bash
+  sudo npm install -g yarn
   ```
 
 * Enable Memcached
@@ -78,11 +86,19 @@
   sudo apt install libssl1.0-dev                    # for puma < 3.7.0
   ```
 
-* Install the _Bower_ and _Yarn_ package manager
+* Install the _Bower_ package manager
 
   ```bash
   sudo npm install -g npm
-  sudo npm install -g bower yarn
+  sudo npm install -g bower
+  ```
+
+* Install the _Yarn_ package manager
+
+  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
+
+  ```bash
+  sudo npm install -g yarn
   ```
 
 * Install the _Gulp_ and _Webpack_ build system
@@ -131,11 +147,12 @@
   brew install postgresql
   brew install cmake
   brew install node
+  brew install yarn
   ```
 
 * Install the _Bower_ package manager
 
-  ```
+  ```bash
   npm install -g bower
   ```
 
