@@ -133,10 +133,10 @@
   brew install node
   ```
 
-* Install the _Bower_ package manager
+* Install the _Bower_ and _Yarn_ package manager
 
   ```
-  npm install -g bower
+  npm install -g bower yarn
   ```
 
 * Configure and start PostgreSQL
