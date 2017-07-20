@@ -214,6 +214,8 @@ Style/TrailingCommaInArguments:
   Enabled: false
 Style/TrailingCommaInLiteral:
   Enabled: false
+Style/TrailingUnderscoreVariable:
+  Enabled: false
 Style/TrivialAccessors:
   AllowPredicates: true
 Style/WhileUntilModifier:
