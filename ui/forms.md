@@ -42,7 +42,7 @@ For simplicity, I'm omitting any such afixes and using a `foo_` prefix when comp
     * calls `set_form_vars`
       * loads data from db
       * populates `@edit`
-    * render the form (`app/views/foo/
+    * renders the form (`app/views/foo/_form.html.haml`)
 
   * change a field - `form_field_changed`
     * calls `get_form_vars`
@@ -65,7 +65,7 @@ For simplicity, I'm omitting any such afixes and using a `foo_` prefix when comp
 
 #### code
 
-`app/controllers/foo_controller.rb`
+##### app/controllers/foo_controller.rb
 
 ```ruby
 def foo_new
@@ -178,7 +178,7 @@ end
 ```
 
 
-`app/views/foo/_form.html.haml`
+##### app/views/foo/_form.html.haml
 
 ```haml
 - url = url_for_only_path(:action => "form_field_changed", :id => @record.id || "new")
@@ -216,7 +216,7 @@ end
 ```
 
 
-`app/views/foo/_dynamic.html.haml`
+##### app/views/foo/_dynamic.html.haml
 
 ```haml
 = @edit[:current][:choice]
