@@ -1,4 +1,4 @@
-### Forms
+## Forms
 
 This attempts to document the state of forms in ui-classic, including all the stages of conversion, from pure rails to Angular.
 
@@ -13,9 +13,9 @@ Each stage's description should contain:
   * a recommended migration path
 
 
-#### Stage 1 - the Rails way
+### Stage 1 - the Rails way
 
-##### characteristics
+#### characteristics
 
   * the whole form is rendered in Rails
   * each input field's `value` attribute is pre-filled with the existing object's data if editing
@@ -31,7 +31,7 @@ Each stage's description should contain:
   * *some* forms also use tabs, tab change also propagates to the server and replaces the current tab with a new one
 
 
-##### actions
+#### actions
 
 Many of these action names will be prefixed with an entity type or a form name in real code (especially in explorer controllers with multiple entities) but not all of them. This is also true for the names of haml partials. In some rarer cases, suffixes or infixes are used instead (all of `foo_form_field_changed`, `form_field_changed_foo`, `form_foo_field_changed`, `form_field_changed` and `foo_field_changed` exist).
 
@@ -63,7 +63,7 @@ For simplicity, I'm omitting any such afixes and using a `foo_` prefix when comp
   * cancel & reset - handled by the same `create` or `update`
 
 
-##### code
+#### code
 
 `app/controllers/foo_controller.rb`
 
@@ -223,7 +223,7 @@ end
 ```
 
 
-##### migration
+#### migration
 
 A recommended migration from here is to go to the newest version which already exists:
 
