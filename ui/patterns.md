@@ -19,6 +19,7 @@ quick start for new contributors for the UI.
 * [Remote Consoles](remote_consoles.md)
 * [Angular Components](angular_components.md)
 * [Calling the API](calling_api.md) -- how to call the API from the client-side.
+* [Forms](forms.md) -- all the stages of forms, from pure rails to Angular
 
 To write new Javascript components for ManageIQ e.g. in Typescript and Angular, please, read
 * [UI Components Readme](https://github.com/ManageIQ/ui-components/blob/master/README.md)
