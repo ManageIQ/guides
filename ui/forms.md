@@ -219,7 +219,11 @@ end
 ##### app/views/foo/_dynamic.html.haml
 
 ```haml
-= @edit[:current][:choice]
+- if @edit[:current][:choice] === "foo"
+  = _("This could be a few more inputs")
+
+- if @edit[:current][:choice] === "bar"
+  = _("Or just a harmless message")
 ```
 
 
