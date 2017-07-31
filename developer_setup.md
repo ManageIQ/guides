@@ -251,6 +251,8 @@ bundle exec rake evm:start # Starts the ManageIQ EVM Application in the backgrou
 * You can now access the application at `http://localhost:3000`. The default username is `admin` with password `smartvm`.
 * There is also a minimal mode available to start the application with fewer services and workers for faster startup or
 targeted end-user testing. See the [minimal mode guide](developer_setup/minimal_mode.md) for details.
+* As an alternative to minimal mode, individual workers can also be started using [Foreman](https://ddollar.github.io/foreman/)
+  * See the [Foreman guide](developer_setup/foreman.md) for details.
 * To run the test suites, see [the guide on that topic](developer_setup/running_test_suites.md).
 
 ### Update dependencies and migrate db
