@@ -1,6 +1,5 @@
-Rails:
-  Enabled: true
-
+AllCops:
+  TargetRubyVersion: 2.2
 Lint/DefEndAlignment:
   AutoCorrect: true
 Lint/EndAlignment:
@@ -27,6 +26,8 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Performance/Casecmp:
   Enabled: false
+Rails:
+  Enabled: true
 Rails/FindEach:
   Enabled: false
 Rails/ReadWriteAttribute:
