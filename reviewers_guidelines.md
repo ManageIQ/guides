@@ -54,6 +54,15 @@ _related issue: https://github.com/ManageIQ/manageiq-ui-classic/issues/1134_
 find_records_with_rbac(CloudSubnet, checked_or_params)
 ```
 
+In case you want to check a single item, please use `find_record_with_rbac`, added in (https://github.com/ManageIQ/manageiq-ui-classic/pull/1636):
+
+```ruby
+# =====
+# right
+# =====
+find_record_with_rbac(CloudSubnet, checked_or_params)
+```
+
 more info:
 http://manageiq.org/docs/guides/ui/rbac_features
 
