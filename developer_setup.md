@@ -83,7 +83,7 @@
   sudo apt install libcurl4-gnutls-dev              # For Curb
   sudo apt install cmake                            # For rugged Gem
   sudo apt install libgit2-dev pkg-config libtool
-  sudo apt install libssl1.0-dev                    # for puma < 3.7.0
+  sudo apt install libssl-dev                    # for puma < 3.7.0
   ```
 
 * Install the _Bower_ package manager
