@@ -299,3 +299,32 @@ If this happens, you may be missing developer tools in your OS X. Try to install
 
 If this happens it may be a Bundler issue. Try running `bundle config specific_platform true`
 and re-try.
+
+* Can't install any gems during bundle install
+
+```
+# install all dependencies to a local path
+bundle install --path vendor/bundle
+```
+
+* Can't install `nokogiri-1.7.2` on a Mac
+
+```
+# install dependencies
+brew install pkgconfig
+brew install libxml2
+
+# test the gem can be compiled with the right libxml2
+export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig
+gem install nokogiri -v 1.7.2 -- --use-system-libraries
+
+# configure bundle to do so
+bundle config build.nokogiri --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
+```
+
+* Can't install `sys-proctable` on a Mac - a package missing even after bundle install succeeded
+
+```
+bundle config specific_platform true
+bundle install
+```
