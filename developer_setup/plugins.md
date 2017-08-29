@@ -109,9 +109,16 @@ ln -s /path/to/manageiq spec/manageiq
 Inside ManageIQ core, you can override gem dependencies with `override_gem`. This is a small helper to be used under
 `bundler.d` directory. Use it to point the dependency to a local version of your plugin. 
 
+Please, use absolute path in
 ```ruby
 # bundler.d/local_plugins.rb:
-override_gem 'manageiq-providers-amazon', :path => File.expand_path("/path/to/manageiq-providers-amazon")
+override_gem 'manageiq-providers-amazon', :path => File.expand_path('/home/developer/repos/manageiq-providers-amazon')
+```
+
+or use relative path to current file and `__dir__` like
+```ruby
+# bundler.d/local_plugins.rb:
+override_gem 'manageiq-providers-amazon', :path => File.expand_path('../../manageiq-providers-amazon', __dir__)
 ```
 
 #### Rails console
