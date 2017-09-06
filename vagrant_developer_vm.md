@@ -62,9 +62,9 @@ You will need some tools installed in your machine to use this method:
 
 ## The process
 
-The Vagrant file will create a VM using fedora24-cloud as a basis and proceed to configure it for development following the developer setup guide:
+The Vagrant file will create a VM using fedora25-cloud as a basis and proceed to configure it for development following the developer setup guide:
 
-- Configure the VM with 4 GB and 2 CPU
+- Configure the VM with 6 GB and 2 CPU
 - Open port 3000 for UI management
 - Open port 4000 for API management
 - Copy the contents of ~/workspace/manageiq to /manageiq inside the appliance
