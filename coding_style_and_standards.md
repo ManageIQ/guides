@@ -215,6 +215,9 @@ When extracting code into a new gem or creating a new gem:
 
 ## Git how-to
 
+Note after the changes in this section, you will need `git push -f `if you have 
+already pushed them before.
+
 * Reword/squashing/reordering a commit
 
   To modify with recent commit in current branch, first do 
