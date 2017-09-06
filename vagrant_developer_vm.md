@@ -49,15 +49,15 @@ You will need some tools installed in your machine to use this method:
 
  6. Developing
 
-  You have all the options in the development guide to test. The basic ones are:
+  You have all the options in the development guide to test. The basic ones are: (Running in `vagrant ssh`)
 
   Prepare the environment to be run (gems, migrations, etc)
 
-  ` cd /manageiq; bin/setup`
+  ` cd ~/manageiq; bin/setup`
 
   Run the server in full mode
 
-  ` cd /manageiq; bundle exec rake evm:start`
+  ` cd ~/manageiq; bundle exec rake evm:start`
 
 
 ## The process
