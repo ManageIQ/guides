@@ -213,18 +213,45 @@ When extracting code into a new gem or creating a new gem:
     changes or additions to the guides can be put here.
   * Create a LICENSE.txt with an appropriate license.
 
+## Git how-to
+
+* Reword/squashing/reordering a commit
+  To modify with recent commit in current branch, first do 
+  `git rebase -i origin branch-name`.
+  To modify a specific commit, use `git rebase -i SOME_COMMIT_ID^` instead.
+  git will popup a vi window to let you do modification on commits, press 
+  `:wq` after done.
+  * Reword a commit
+    Change the `pick` before the commit you want to reword to `edit` and edit 
+    its message in popup vi window.
+  * Squashing commits
+    Change the `pick` before the commit you want to squach to `squash` and edit 
+    the commit message after squash in a following popup vi window. A commit 
+    will be squashed with its previous commit.
+  * Reordering commits
+    Reordering them in this vi window will reorder the commits.
+
+* Amend a commit
+  You can commit first and rebase it in the previous section. Or if you want to
+  amend most recent commit, you can: `git commit some_file --amend`.
+  
+* Deleting a commit
+  You can delete commits by delete corresponding lines in `git rebase`. Or if
+  you want to delete most recent commit, you can `git reset --hard HEAD^`. If you
+  want to go back to a specific commit and delete commits after that, use
+  `git reset --hard commit-hash`.
+  
+* Uncommit a file from an existing commit
+  ```
+  git reset HEAD^ path/to/file/to/revert
+  git commit --amend
+  ```
+
 ## TODO
 
 * Rails style guide see https://github.com/bbatsov/rails-style-guide
 * Bugzilla how-to
   * how to copy commit details / clone a ticket
-* Git how-to
-  * reword a commit
-  * amend a commit
-  * squashing
-  * reordering
-  * deleting a commit
-  * uncommit a file from an existing commit
 
 # License
 
