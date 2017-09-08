@@ -183,6 +183,9 @@ Style/MethodCallWithArgsParentheses:
     - virtual_has_many
     - virtual_has_one
     - virtual_total
+    # Rake
+    - desc
+    - task
 Style/NumericLiterals:
   AutoCorrect: false
 Style/PerlBackrefs:
