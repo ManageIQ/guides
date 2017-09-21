@@ -37,7 +37,7 @@ maintained by the ManageIQ team.
 ## Documentation
 
 We use [yardoc](https://yardoc.org/) to create inline code documentation. For now documentation is scarce but
-we encourage contributors to add it whenever possible. Until more of the codebase is documented, we limi the created 
+we encourage contributors to add it whenever possible. Until more of the codebase is documented, we limit the created 
 documentation to those files that are well documented. 
 Please try to document methods that are used by external teams, like providers.
 These are the integration API for them and should be documented best.
