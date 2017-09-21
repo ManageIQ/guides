@@ -7,6 +7,7 @@ maintained by the ManageIQ team.
 
 * [High Level Guidelines](#high-level-guidelines)
 * [Ruby Style Guide](#ruby-style-guide)
+* [Documentation](#documentation)
 * [Logging](#logging)
 * [Commits](#commits)
 * [Pull Requests and Branches](#pull-requests-and-branches)
@@ -32,6 +33,19 @@ maintained by the ManageIQ team.
   Any changes we have that deviate from the default style guide are enumerated
   in the [.rubocop_base.yml](.rubocop_base.yml) file, which is inherited by most
   projects in the ManageIQ organization.
+
+## Documentation
+
+We use [yardoc](https://yardoc.org/) to create inline code documentation. For now documentation is scarce but
+we encourage contributors to add it whenever possible. Until more of the codebase is documented, we limit the created 
+documentation to those files that are well documented. 
+Please try to document methods that are used by external teams, like providers.
+These are the integration API for them and should be documented best.
+
+To view the documentation online visit [rubydoc.info](http://www.rubydoc.info/github/manageiq/manageiq). For a local
+version you can run `bundle exec yard` and view the html docs in `/doc/index.html`. When writing documentation you
+should add your source files to `/.yardopts` and run `bundle exec yard server -r`. This will create a local 
+documentation server which regenerates the docs on each request.
 
 ## Logging
 
