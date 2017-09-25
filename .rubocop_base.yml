@@ -49,6 +49,8 @@ Style/CollectionMethods:
     reduce: inject
 Style/Documentation:
   Enabled: false
+Style/DoubleNegation:
+  Enabled: false
 Style/EmptyMethod:
   Enabled: false
 Style/Encoding:
