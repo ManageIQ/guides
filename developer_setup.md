@@ -196,14 +196,8 @@
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/rbenv/rbenv)
-* Required Ruby version is 2.2.2+
-* Required Bundler version is 1.8.7+
-
-* Steps to install Ruby & Bundler using `rbenv`
-  * Install `rbenv` on [GNU/Linux](https://github.com/rbenv/rbenv#installation) or [Mac OS X](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x)
-  * [Install ruby-build](https://github.com/rbenv/ruby-build#installing-as-an-rbenv-plugin-recommended) which provides `rbenv install` command.
-  * [Install Ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions)
-  * [Install bundler](https://github.com/rbenv/rbenv#installing-ruby-gems)
+* Required Minimum Ruby version is 2.2.2+
+* Required Minimum Bundler version is 1.8.7+
 
 ### Setup Git and Github
 
