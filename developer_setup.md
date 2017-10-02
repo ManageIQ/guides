@@ -29,22 +29,6 @@
   sudo dnf -y install openscap                           # Optional, for openscap Gem for container SSA
   ```
 
-  Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
-
-* Install the _Bower_ package manager
-
-  ```bash
-  sudo npm install -g bower
-  ```
-
-* Install the _Yarn_ package manager
-
-  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
-
-  ```bash
-  sudo npm install -g yarn
-  ```
-
 * Enable Memcached
 
   ```bash
@@ -98,28 +82,6 @@
 
   Alternatively, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
 
-* Install the _Bower_ package manager
-
-  ```bash
-  sudo npm install -g npm
-  sudo npm install -g bower
-  ```
-
-* Install the _Yarn_ package manager
-
-  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
-
-  ```bash
-  sudo npm install -g yarn
-  ```
-
-* Install the _Gulp_ and _Webpack_ build system
-
-  ```bash
-  sudo npm install -g gulp-cli
-  sudo npm install -g webpack
-  ```
-
 * Ubuntu fix for failing Bundler
 
   ```bash
@@ -163,12 +125,6 @@
   ```
 
   If your node version is less than 6, you may need to `brew upgrade node` and `brew link node`.
-
-* Install the _Bower_ package manager
-
-  ```bash
-  npm install -g bower
-  ```
 
 * Configure and start PostgreSQL
   * Required PostgreSQL version is 9.4+
@@ -253,6 +209,30 @@ git remote add other_user git@github.com:OtherUser/manageiq.git
 git fetch other_user
 ```
 
+### Javascripty things
+
+  Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
+
+* Install the _Bower_ package manager
+
+  ```bash
+  sudo npm install -g bower
+  ```
+
+* Install the _Yarn_ package manager
+
+  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
+
+  ```bash
+  sudo npm install -g yarn
+  ```
+
+* Install the _Gulp_ and _Webpack_ build system
+
+  ```bash
+  sudo npm install -g gulp-cli
+  sudo npm install -g webpack
+  ```
 
 ### Get the Rails environment up and running
 
