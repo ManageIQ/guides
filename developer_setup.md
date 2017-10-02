@@ -58,7 +58,7 @@
 * Install Packages
 
   ```bash
-  sudo apt install ruby git                         # Git and components
+  sudo apt install git                              # Git and components
   sudo apt install memcached                        # Memcached for the session store
   sudo apt install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
   sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
