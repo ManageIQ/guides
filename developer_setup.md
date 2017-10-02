@@ -69,7 +69,7 @@
   sudo apt install libcurl4-gnutls-dev              # For Curb
   sudo apt install cmake                            # For rugged Gem
   sudo apt install libgit2-dev pkg-config libtool
-  sudo apt install libssl-dev                    # for puma < 3.7.0
+  sudo apt install libssl-dev                       # for puma < 3.7.0
   ```
 
   If your node version is less than 6.0 (debian currently has 4), you can either install it from the `experimental` repo:
