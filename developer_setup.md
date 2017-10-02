@@ -253,7 +253,6 @@ git remote add other_user git@github.com:OtherUser/manageiq.git
 git fetch other_user
 ```
 
-For provider, UI or other plugin development, see [the guide on that topic](developer_setup/plugins.md).
 
 ### Get the Rails environment up and running
 
@@ -276,6 +275,8 @@ targeted end-user testing. See the [minimal mode guide](developer_setup/minimal_
 ```bash
 bin/update                # Updates dependencies using bundler and bower, runs migrations, prepares test db.
 ```
+
+For provider, UI or other plugin development, see [the guide on that topic](developer_setup/plugins.md).
 
 #### Some troubleshooting notes
 
