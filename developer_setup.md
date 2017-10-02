@@ -29,22 +29,6 @@
   sudo dnf -y install openscap                           # Optional, for openscap Gem for container SSA
   ```
 
-  Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
-
-* Install the _Bower_ package manager
-
-  ```bash
-  sudo npm install -g bower
-  ```
-
-* Install the _Yarn_ package manager
-
-  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
-
-  ```bash
-  sudo npm install -g yarn
-  ```
-
 * Enable Memcached
 
   ```bash
@@ -74,7 +58,7 @@
 * Install Packages
 
   ```bash
-  sudo apt install ruby git                         # Git and components
+  sudo apt install git                              # Git and components
   sudo apt install memcached                        # Memcached for the session store
   sudo apt install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
   sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
@@ -85,7 +69,7 @@
   sudo apt install libcurl4-gnutls-dev              # For Curb
   sudo apt install cmake                            # For rugged Gem
   sudo apt install libgit2-dev pkg-config libtool
-  sudo apt install libssl-dev                    # for puma < 3.7.0
+  sudo apt install libssl-dev                       # for puma < 3.7.0
   ```
 
   If your node version is less than 6.0 (debian currently has 4), you can either install it from the `experimental` repo:
@@ -97,28 +81,6 @@
   ```
 
   Alternatively, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
-
-* Install the _Bower_ package manager
-
-  ```bash
-  sudo npm install -g npm
-  sudo npm install -g bower
-  ```
-
-* Install the _Yarn_ package manager
-
-  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
-
-  ```bash
-  sudo npm install -g yarn
-  ```
-
-* Install the _Gulp_ and _Webpack_ build system
-
-  ```bash
-  sudo npm install -g gulp-cli
-  sudo npm install -g webpack
-  ```
 
 * Ubuntu fix for failing Bundler
 
@@ -163,12 +125,6 @@
   ```
 
   If your node version is less than 6, you may need to `brew upgrade node` and `brew link node`.
-
-* Install the _Bower_ package manager
-
-  ```bash
-  npm install -g bower
-  ```
 
 * Configure and start PostgreSQL
   * Required PostgreSQL version is 9.4+
@@ -247,7 +203,30 @@ git remote add other_user git@github.com:OtherUser/manageiq.git
 git fetch other_user
 ```
 
-For provider, UI or other plugin development, see [the guide on that topic](developer_setup/plugins.md).
+### Javascripty things
+
+  Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
+
+* Install the _Bower_ package manager
+
+  ```bash
+  sudo npm install -g bower
+  ```
+
+* Install the _Yarn_ package manager
+
+  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
+
+  ```bash
+  sudo npm install -g yarn
+  ```
+
+* Install the _Gulp_ and _Webpack_ build system
+
+  ```bash
+  sudo npm install -g gulp-cli
+  sudo npm install -g webpack
+  ```
 
 ### Get the Rails environment up and running
 
@@ -270,6 +249,8 @@ targeted end-user testing. See the [minimal mode guide](developer_setup/minimal_
 ```bash
 bin/update                # Updates dependencies using bundler and bower, runs migrations, prepares test db.
 ```
+
+For provider, UI or other plugin development, see [the guide on that topic](developer_setup/plugins.md).
 
 #### Some troubleshooting notes
 
