@@ -17,7 +17,7 @@
   sudo dnf -y install git-all                            # Git and components
   sudo dnf -y install memcached                          # Memcached for the session store
   sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
-  sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
+  sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
   sudo dnf -y install nodejs                             # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
@@ -61,7 +61,7 @@
   sudo apt install git                              # Git and components
   sudo apt install memcached                        # Memcached for the session store
   sudo apt install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
-  sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
+  sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
   sudo apt install libxml2-dev libxslt-dev patch    # For Nokogiri Gem
   sudo apt install libsqlite-dev libsqlite3-dev     # For sqlite3 Gem
   sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
@@ -152,7 +152,7 @@
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/rbenv/rbenv)
-* Required Minimum Ruby version is 2.2.2+
+* Required Minimum Ruby version is 2.3.1+
 * Required Minimum Bundler version is 1.8.7+
 
 ### Setup Git and Github
