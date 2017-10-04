@@ -303,3 +303,12 @@ bundle config build.nokogiri --use-system-libraries --with-xml2-include=$(brew -
 bundle config specific_platform true
 bundle install
 ```
+
+* If everything is hosed after an OSX upgrade
+
+Install xcode developer tools
+
+```xcode-select --install```
+
+Uninstall existing ruby version with your version manager
+Reinstall rubies with version manager
