@@ -698,3 +698,31 @@ ManageIQ.angular.app.controller('hostFormController', ['$http', '$scope', '$attr
 #### migration
 
 TODO
+
+
+(from https://github.com/ManageIQ/manageiq-ui-classic/pull/1997#discussion_r140758135 :)
+
+Working on the guide, but for now, pretty much all you need to do is:
+
+rename init to $onInit - that gets called automagically by angular, so you no longer need to call it manually.
+move the templates under app/views/static/ - that way, you can reference it via templateUrl: '/static/....' from angular
+remove any controller-dependent logic from the moved template - that just means you can't use @record.id in your case
+make it into a component...
+ManageIQ.angular.app.controller("foo", **controller**);
+should become
+
+ManageIQ.angular.app.component("foo", {
+  bindings: {
+    recordId: "@",
+  }
+  templateUrl: "/static/foo.html.haml",
+  controller: **controller**,
+});
+then you no longer need to pass the id using value, you can provide it to the component as a parameter - hence the bindings entry - so no injecting vmCloudRemoveSecurityGroupFormId any more ;)
+replace the original template with just something that uses the component .. so, %my-component{:record-id => @record.id}, and initializes angular (so that miq_bootstrap stays here, not in static - we usually use the component name as the first arg in those cases (so you don't need an extra #div))
+don't leave the code in app/assets/javascripts/controllers, use the components dir for that - or if you're up to speed with the recent webpacker changes (talk), you can move it to app/javascript/ and use newer JS features.
+EDIT: oh, and remove ng-controller from the template too
+
+Also, that miqAjaxButton is an anti-pattern now, with angular components, you should no longer rely on the server generating javascript to redirect you/show a flash message/whatever... instead, you should be using render :json => ... in ruby, and read that json in JS to do the right thing.
+
+(But, it's not miqAjaxButton(url, true) which is the worst, so.. if the server-side logic to do that is not trivial, feel free to ignore this bit for now.)
