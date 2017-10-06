@@ -12,6 +12,7 @@
     - [Hawkular](providers/hawkular-hawkinit.md)
     - [Openshift](providers/openshift.md)
     - [Openstack Infra](providers/openstack_infra_provider.md)
+  - [Interactive debugging with Pry-Remote](developer_setup/debugging.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
 * [Internationalization Guidelines](i18n.md)
