@@ -59,6 +59,8 @@ Style/ExtraSpacing:
   AutoCorrect: true
 Style/FormatString:
   EnforcedStyle: percent
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Style/GuardClause:
   Enabled: false
 Style/HashSyntax:
