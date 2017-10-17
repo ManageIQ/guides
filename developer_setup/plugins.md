@@ -52,7 +52,7 @@ cd manageiq-ui-classic
 git remote -v
 # origin  git@github.com:JoeSmith/manageiq-ui-classic.git (fetch)
 # origin  git@github.com:JoeSmith/manageiq-ui-classic.git (push)
-git remote add upstream git@github.com:ManageIQ/manageiq-ui-classic
+git remote add upstream https://github.com/ManageIQ/manageiq-ui-classic.git
 git fetch upstream
 # merge upstream into your fork
 git checkout master
