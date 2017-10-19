@@ -140,6 +140,7 @@ Style/MethodCallWithArgsParentheses:
     - has_and_belongs_to_many
     - has_many
     - has_one
+    - head
     - identified_by
     - integer
     - mattr_accessor
