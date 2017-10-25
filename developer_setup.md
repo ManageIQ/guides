@@ -37,7 +37,7 @@
   ```
 
 * Configure PostgreSQL
-  * Required PostgreSQL version is 9.4, 9.5.
+  * Required PostgreSQL version is 9.4, 9.5
     * See [here](developer_setup/postgresql_software_collection.md) how to install
       it in Linux distributions like CentOS 7, using _SoftwareCollections.org_.
     * Or follow the directions [here](https://www.postgresql.org/download/linux/redhat/#yum)
@@ -127,7 +127,7 @@
   If your node version is less than 6, you may need to `brew upgrade node` and `brew link node`.
 
 * Configure and start PostgreSQL
-  * Required PostgreSQL version is 9.4+
+  * Required PostgreSQL version is 9.4, 9.5
 
   ```bash
   # Enable PostgreSQL on boot
