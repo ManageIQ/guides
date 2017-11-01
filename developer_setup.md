@@ -117,6 +117,7 @@
 
   ```bash
   brew install git
+  brew install pkg-config
   brew install memcached
   brew install postgresql
   brew install cmake
