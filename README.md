@@ -22,6 +22,7 @@
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 * [Updating this Documentation](writing_guides.md)
 * [Developing using a Vagrant VM](vagrant_developer_vm.md)
+* [Contributing to the API](https://github.com/ManageIQ/manageiq-api/blob/master/CONTRIBUTING.md)
 
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)
