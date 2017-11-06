@@ -49,22 +49,22 @@ You will need some tools installed in your machine to use this method:
 
  6. Developing
 
-  You have all the options in the development guide to test. The basic ones are:
+  You have all the options in the development guide to test. The basic ones are: (Running in `vagrant ssh`)
 
   Prepare the environment to be run (gems, migrations, etc)
 
-  ` cd /manageiq; bin/setup`
+  ` cd ~/manageiq; bin/setup`
 
   Run the server in full mode
 
-  ` cd /manageiq; bundle exec rake evm:start`
+  ` cd ~/manageiq; bundle exec rake evm:start`
 
 
 ## The process
 
-The Vagrant file will create a VM using fedora24-cloud as a basis and proceed to configure it for development following the developer setup guide:
+The Vagrant file will create a VM using fedora25-cloud as a basis and proceed to configure it for development following the developer setup guide:
 
-- Configure the VM with 4 GB and 2 CPU
+- Configure the VM with 6 GB and 2 CPU
 - Open port 3000 for UI management
 - Open port 4000 for API management
 - Copy the contents of ~/workspace/manageiq to /manageiq inside the appliance

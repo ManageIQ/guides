@@ -2,14 +2,17 @@
 
 ### Developer information
 * [Coding Style and Standards](coding_style_and_standards.md)
+* [Repository labels and label colors](labels.md)
 * [Developer Setup](developer_setup.md)
+  - [Plugin development](developer_setup/plugins.md) aka working with the split `manageiq*` repositories
   - [Running in minimal mode](developer_setup/minimal_mode.md)
   - [Running the test suites](developer_setup/running_test_suites.md)
-  - [Updating to the new split-UI repo](developer_setup/classic_ui_split.md)
   - Provider setup instructions
     - [Amazon AWS](providers/amazon_aws_config.md)
-    - [Hawkular](providers/hawkular.md)
+    - [Hawkular](providers/hawkular-hawkinit.md)
+    - [Openshift](providers/openshift.md)
     - [Openstack Infra](providers/openstack_infra_provider.md)
+  - [Interactive debugging with Pry-Remote](developer_setup/debugging.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
 * [Internationalization Guidelines](i18n.md)
@@ -20,6 +23,7 @@
 * [Updating this Documentation](writing_guides.md)
 * [Developing using a Vagrant VM](vagrant_developer_vm.md)
 * [Setting up Kubernetes for use with ManageIQ](providers/kubernetes.md)
+* [Contributing to the API](https://github.com/ManageIQ/manageiq-api/blob/master/CONTRIBUTING.md)
 
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)

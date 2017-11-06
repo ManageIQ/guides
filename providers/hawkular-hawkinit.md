@@ -1,9 +1,9 @@
-## ManageIQ Hawkular (middleware) Provider
+## Hawkinit - Tool for Spawning ManageIQ Hawkular (middleware) Provider
 
-If you wish to run locally Hawkular provider and don't want to set things up, we have easy to run tool called [Hawkinit tool](https://github.com/Jiri-Kremser/hawkinit).
+If you wish to run locally Hawkular provider and don't want to set things up, we have easy to run tool called [Hawkinit tool](https://github.com/hawkular/hawkinit).
 It's interactive command line tool which uses docker.
 
-For Requirements follow [Hawkinit requirements](https://github.com/Jiri-Kremser/hawkinit#requirements).
+For Requirements follow [Hawkinit requirements](https://github.com/hawkular/hawkinit#requirements).
 
 ### 1) Running Hawkular with Hawkinit tool
 Install globally trough NPM [Hawkinit](https://www.npmjs.com/package/hawkinit)
@@ -82,16 +82,16 @@ use `127.0.0.x` x=1-255).
 Password and login is `jdoe:password`.
 
 #### Shutting down Hawkular
-To gracefully shut down Hawkular, press `ctrl + C` once (SIGINT), to shut down it forcely press `ctrl +C` twice.
+To gracefully shut down Hawkular, press `ctrl + C` once (SIGINT), to shut down by force, press `ctrl + C` twice.
 
-#### Relunching stopped Hawkular
+#### Relaunching stopped Hawkular
 Currently it is not supported to go back to your old data, so once you stop **Hawkinit** you loose all your data, however
 if you look closely while spinning up you will see something like:
 ```
 Later, you can find your hawkular-services listening on http://localhost:8080
 Running 'docker-compose up --force-recreate' in directory: /tmp/tmp-11573k3ujXFLACh9z
 ```
-So you can navigate to `/tmp/tmp-11573k3ujXFLACh9z`, you can run docker-dompose up to start it again. 
+So you can navigate to `/tmp/tmp-11573k3ujXFLACh9z`, you can run docker-compose up to start it again.
 
 #### Browsing Hawkular's metrics
 

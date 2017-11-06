@@ -40,8 +40,6 @@ Following is a mapping of role names to worker types:
 
 |Role name                |Worker                                                                    |
 |-------------------------|--------------------------------------------------------------------------|
-|control                  |`miq_control_monitor`                                                     |
-|database_synchronization |`miq_replication_worker`                                                  |
 |ems_inventory            |`miq_vim_broker_worker`, `miq_ems_refresh_worker`, `miq_ems_refresh_core_worker`|
 |ems_metrics_collector    |`miq_vim_broker_worker`, `miq_ems_metrics_collector_worker`               |
 |ems_metrics_processor    |`miq_ems_metrics_processor_worker`                                        |
@@ -51,10 +49,7 @@ Following is a mapping of role names to worker types:
 |schedule                 |`miq_schedule_worker`                                                     |
 |smartproxy               |`miq_smart_proxy_worker`, `miq_vim_broker_worker`                         |
 |smartstate               |`miq_vim_broker_worker`                                                   |
-|storage_inventory        |`miq_netapp_refresh_worker`, `miq_smis_refresh_worker`                    |
-|storage_metrics_collector|`miq_storage_metrics_collector_worker`                                    |
 |user_interface           |`miq_ui_worker`                                                           |
-|vmdb_storage_bridge      |`miq_vim_broker_worker`, `miq_vmdb_storage_bridge_worker`                 |
 |web_services             |`miq_web_services_worker`                                                 |
 | | |
 |no_ui                    |Prevent starting the UI worker normally provided by minimal               |
@@ -68,7 +63,6 @@ Note:
 * A value specified in MIQ_SPARTAN will not start the worker if the server is not configured with that role.  All MIQ_SPARTAN does is filter down the existing list of assigned server roles to a smaller set.
 * Some of the workers can be started with different roles
     * For example, `miq_vim_broker_worker` can be started with any of
-        * vmdb_storage_bridge
         * smartstate
         * smartproxy
         * ems_operations
@@ -84,15 +78,3 @@ Note:
 |`minimal:ems_inventory:event`|Testing EMS Refresh and Eventing from a provider|
 |`minimal:no_ui:reporting`|Testing UI changes, when needed to run the UI through a debugger instead of a worker|
 |`minimal:schedule`|Testing real world schedules|
-
-## Enabling Direct URLs
-
-By default the ManageIQ console does not allow direct browsing to most URLs (you must be referred by using a link in the
-UI). This can be cumbersome in a development environment when a request is unsuccessful and you wish to simply refresh
-the page after making changes necessary changes - you will be given a `403 - Forbidden` response and be required to log
-in again.
-
-You can set the environment variable `MIQ_DISABLE_RRS` to disable this behavior and allow for direct URL browsing:
-
-    $> MIQ_DISABLE_RRS=1 rails server
-

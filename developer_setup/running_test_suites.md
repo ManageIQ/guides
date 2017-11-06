@@ -113,3 +113,9 @@ Note you do not need `PARALLEL=true` using `parallel_rspec`.
   make all of this possible - Go check out the documentation to learn even more
   things you can do with running ManageIQ tests in parallel!
 
+
+### Running JS specs
+
+The rake task (`rake spec:javascript` in ui-classic) runs all the JS specs in `spec/javascripts/**/*_spec.js` in a headless browser.
+
+For debugging, `rake environment jasmine` runs a webserver listening on `localhost:8888`.

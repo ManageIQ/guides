@@ -1,6 +1,5 @@
-Rails:
-  Enabled: true
-
+AllCops:
+  TargetRubyVersion: 2.3
 Lint/DefEndAlignment:
   AutoCorrect: true
 Lint/EndAlignment:
@@ -27,6 +26,8 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Performance/Casecmp:
   Enabled: false
+Rails:
+  Enabled: true
 Rails/FindEach:
   Enabled: false
 Rails/ReadWriteAttribute:
@@ -48,6 +49,8 @@ Style/CollectionMethods:
     reduce: inject
 Style/Documentation:
   Enabled: false
+Style/DoubleNegation:
+  Enabled: false
 Style/EmptyMethod:
   Enabled: false
 Style/Encoding:
@@ -56,12 +59,138 @@ Style/ExtraSpacing:
   AutoCorrect: true
 Style/FormatString:
   EnforcedStyle: percent
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Style/GuardClause:
   Enabled: false
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
 Style/IfUnlessModifier:
   Enabled: false
+Style/MethodCallWithArgsParentheses:
+  Exclude:
+    - Gemfile
+    - config/routes.rb
+    - lib/generators/**/*
+    - lib/resource_feeder/**/*
+    - lib/tasks/**/*
+    - spec/**/*
+  Enabled: true
+  IgnoredMethods:
+    # Ruby
+    - alias_method
+    - attr_accessor
+    - attr_reader
+    - attr_writer
+    - exit
+    - extend
+    - include
+    - load
+    - module_function
+    - pp
+    - prepend
+    - print
+    - private
+    - private_class_method
+    - private_constant
+    - puts
+    - raise
+    - require
+    - sleep
+    - throw
+    - yield
+    # Rails
+    - accepts_nested_attributes_for
+    - add_column
+    - add_index
+    - after_action
+    - after_commit
+    - after_create
+    - after_create_commit
+    - after_destroy
+    - after_destroy
+    - after_destroy_commit
+    - after_initialize
+    - after_save
+    - after_save
+    - after_update
+    - after_update_commit
+    - alias_attribute
+    - around_destroy
+    - autoload
+    - before_action
+    - before_create
+    - before_destroy
+    - before_save
+    - before_update
+    - before_validation
+    - belongs_to
+    - bigint
+    - boolean
+    - cattr_accessor
+    - cattr_reader
+    - cattr_writer
+    - change_column
+    - class_attribute
+    - create_table
+    - datetime
+    - decimal
+    - delegate
+    - drop_table
+    - has_and_belongs_to_many
+    - has_many
+    - has_one
+    - head
+    - identified_by
+    - integer
+    - mattr_accessor
+    - remove_column
+    - remove_index
+    - render
+    - require_dependency
+    - require_relative
+    - respond_to
+    - scope
+    - serialize
+    - skip_before_action
+    - string
+    - text
+    - validate
+    - validates
+    # ActsAsTree Gem
+    - acts_as_tree
+    # Ancestry Gem
+    - has_ancestry
+    # DefaultValue Gem
+    - default_value_for
+    - default_values
+    # Trollop Gem
+    - banner
+    - die
+    - opt
+    # MIQ
+    - alias_with_relationship_type
+    - api_relay_method
+    - attr_accessor_that_yamls
+    - deprecate_attribute
+    - encrypt_column
+    - include_concern
+    - require_nested
+    - signal
+    - supports
+    - supports_not
+    - virtual_aggregate
+    - virtual_attribute
+    - virtual_belongs_to
+    - virtual_belongs_to
+    - virtual_column
+    - virtual_delegate
+    - virtual_has_many
+    - virtual_has_one
+    - virtual_total
+    # Rake
+    - desc
+    - task
 Style/NumericLiterals:
   AutoCorrect: false
 Style/PerlBackrefs:
@@ -93,6 +222,8 @@ Style/StringLiteralsInInterpolation:
 Style/TrailingCommaInArguments:
   Enabled: false
 Style/TrailingCommaInLiteral:
+  Enabled: false
+Style/TrailingUnderscoreVariable:
   Enabled: false
 Style/TrivialAccessors:
   AllowPredicates: true

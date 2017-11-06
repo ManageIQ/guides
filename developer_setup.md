@@ -17,22 +17,16 @@
   sudo dnf -y install git-all                            # Git and components
   sudo dnf -y install memcached                          # Memcached for the session store
   sudo dnf -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
-  sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
+  sudo dnf -y install bzip2 libffi-devel readline-devel  # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
   sudo dnf -y install libxml2-devel libxslt-devel patch  # For Nokogiri Gem
   sudo dnf -y install sqlite-devel                       # For sqlite3 Gem
-  sudo dnf -y install nodejs                             # For ExecJS Gem and bower
+  sudo dnf -y install nodejs                             # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
   sudo dnf -y install gcc-c++                            # For unf Gem
   sudo dnf -y install libcurl-devel                      # For Curb
   rpm -q --whatprovides npm || sudo dnf -y install npm   # For CentOS 7, Fedora 23 and older
   sudo dnf -y install openssl-devel                      # For rubygems
   sudo dnf -y install cmake                              # For rugged Gem
   sudo dnf -y install openscap                           # Optional, for openscap Gem for container SSA
-  ```
-
-* Install the _Bower_ package manager
-
-  ```
-  sudo npm install -g bower
   ```
 
 * Enable Memcached
@@ -43,7 +37,7 @@
   ```
 
 * Configure PostgreSQL
-  * Required PostgreSQL version is 9.4+.
+  * Required PostgreSQL version is 9.4, 9.5
     * See [here](developer_setup/postgresql_software_collection.md) how to install
       it in Linux distributions like CentOS 7, using _SoftwareCollections.org_.
     * Or follow the directions [here](https://www.postgresql.org/download/linux/redhat/#yum)
@@ -64,29 +58,37 @@
 * Install Packages
 
   ```bash
-  sudo apt install ruby git                         # Git and components
+  sudo apt install git                              # Git and components
   sudo apt install memcached                        # Memcached for the session store
   sudo apt install postgresql libpq-dev             # PostgreSQL Database server and to build 'pg' Gem
-  sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.2.0 (might not be needed with other Ruby setups)
+  sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
   sudo apt install libxml2-dev libxslt-dev patch    # For Nokogiri Gem
   sudo apt install libsqlite-dev libsqlite3-dev     # For sqlite3 Gem
-  sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem and bower
+  sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
   sudo apt install g++                              # For unf Gem
   sudo apt install libcurl4-gnutls-dev              # For Curb
   sudo apt install cmake                            # For rugged Gem
   sudo apt install libgit2-dev pkg-config libtool
+  sudo apt install libssl-dev                       # for puma < 3.7.0
   ```
 
-* Install the _Bower_ and _Yarn_ package manager
+  If your node version is less than 6.0 (debian currently has 4), you can either install it from the `experimental` repo:
+
   ```bash
-  sudo npm install -g npm
-  sudo npm install -g bower yarn
+  echo 'deb http://ftp.debian.org/debian/ experimental main non-free contrib' | sudo tee /etc/apt/sources.list.d/experimental.list
+  sudo apt update
+  sudo apt install nodejs nodejs-legacy npm
   ```
 
-* Install the _Gulp_ and _Webpack_ build system
+  Alternatively, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
+
+* Ubuntu fix for failing Bundler
+
   ```bash
-  sudo npm install -g gulp-cli
-  sudo npm install -g webpack
+  sudo apt remove libssl-dev
+  wget http://ftp.cz.debian.org/debian/pool/main/o/openssl1.0/libssl1.0-dev_1.0.2l-2_amd64.deb
+  wget http://ftp.cz.debian.org/debian/pool/main/o/openssl1.0/libssl1.0.2_1.0.2l-2_amd64.deb
+  sudo dpkg -i libssl1.0-dev_1.0.2l-2_amd64.deb libssl1.0.2_1.0.2l-2_amd64.deb
   ```
 
 * Enable Memcached
@@ -119,16 +121,13 @@
   brew install postgresql
   brew install cmake
   brew install node
+  brew install yarn
   ```
 
-* Install the _Bower_ package manager
-
-  ```
-  npm install -g bower
-  ```
+  If your node version is less than 6, you may need to `brew upgrade node` and `brew link node`.
 
 * Configure and start PostgreSQL
-  * Required PostgreSQL version is 9.4+
+  * Required PostgreSQL version is 9.4, 9.5
 
   ```bash
   # Enable PostgreSQL on boot
@@ -152,9 +151,9 @@
 * Use a Ruby version manager
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
-  * [rbenv](https://github.com/sstephenson/rbenv)
-* Required Ruby version is 2.2.2+
-* With Ruby installed, `gem install bundler` to install the latest Bundler. Required Bundler version is 1.8.7+
+  * [rbenv](https://github.com/rbenv/rbenv)
+* Required Minimum Ruby version is 2.3.1+
+* Required Minimum Bundler version is 1.8.7+
 
 ### Setup Git and Github
 
@@ -204,46 +203,30 @@ git remote add other_user git@github.com:OtherUser/manageiq.git
 git fetch other_user
 ```
 
-### Clone some plugins
+### Javascripty things
 
-If you want to do ManageIQ plugin development, you clone plugins locally. E.g.
+  Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
 
-```bash
-cd manageiq ; mkdir plugins
-git clone git@github.com:JoeSmith/manageiq-providers-amazon.git plugins/manageiq-providers-amazon
-git clone git@github.com:JoeSmith/manageiq-content.git plugins/manageiq-content
-git clone git@github.com:JoeSmith/manageiq-ui-classic.git plugins/manageiq-ui-classic
-```
+* Install the _Bower_ package manager
 
-In your local Gemfile.dev.rb in your ManageIQ checkout add:
+  ```bash
+  sudo npm install -g bower
+  ```
 
-```bash
-override_gem 'manageiq-providers-amazon', :path => File.expand_path('plugins/manageiq-providers-amazon', __dir__)
-override_gem 'manageiq-content', :path => File.expand_path('plugins/manageiq-content', __dir__)
-override_gem 'manageiq-ui-classic', :path => File.expand_path('plugins/manageiq-ui-classic', __dir__)
-```
+* Install the _Yarn_ package manager
 
-In your plugin, just use `bin/setup` and `bin/update` as usual. This will checkout a shallow copy of ManageIQ as a
-dummy app to run the test.
+  Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
 
-```bash
-cd plugins/manageiq-providers-amazon
-bin/setup
-# == Cloning manageiq sample app ==
-# Cloning into 'spec/manageiq'...
-bin/update
-# == Updating manageiq sample app ==
-```
+  ```bash
+  sudo npm install -g yarn
+  ```
 
-Alternatively you can symlink `spec/manageiq` to your local ManageIQ clone, which will allow you to run tests against
-a local manageiq feature branch.
+* Install the _Gulp_ and _Webpack_ build system
 
-```bash
-cd plugins/manageiq-providers-amazon
-ln -s ~/src/manageiq spec/manageiq
-bin/update
-# == SKIPPING update of spec/manageiq because its symlinked ==
-```
+  ```bash
+  sudo npm install -g gulp-cli
+  sudo npm install -g webpack
+  ```
 
 ### Get the Rails environment up and running
 
@@ -255,6 +238,8 @@ bundle exec rake evm:start # Starts the ManageIQ EVM Application in the backgrou
 * You can now access the application at `http://localhost:3000`. The default username is `admin` with password `smartvm`.
 * There is also a minimal mode available to start the application with fewer services and workers for faster startup or
 targeted end-user testing. See the [minimal mode guide](developer_setup/minimal_mode.md) for details.
+* As an alternative to minimal mode, individual workers can also be started using [Foreman](https://ddollar.github.io/foreman/)
+  * See the [Foreman guide](developer_setup/foreman.md) for details.
 * To run the test suites, see [the guide on that topic](developer_setup/running_test_suites.md).
 
 ### Update dependencies and migrate db
@@ -264,6 +249,8 @@ targeted end-user testing. See the [minimal mode guide](developer_setup/minimal_
 ```bash
 bin/update                # Updates dependencies using bundler and bower, runs migrations, prepares test db.
 ```
+
+For provider, UI or other plugin development, see [the guide on that topic](developer_setup/plugins.md).
 
 #### Some troubleshooting notes
 
@@ -282,3 +269,46 @@ When this message is present, then the you need to install `node.js` and re-try
 
 If this happens, you may be missing developer tools in your OS X. Try to install them with
 `xcode-select --install` and re-try.
+
+* `bin/setup` fails to install the 'sys-proctable' gem, or installs the wrong version.
+
+If this happens it may be a Bundler issue. Try running `bundle config specific_platform true`
+and re-try.
+
+* Can't install any gems during bundle install
+
+```
+# install all dependencies to a local path
+bundle install --path vendor/bundle
+```
+
+* Can't install `nokogiri-1.7.2` on a Mac
+
+```
+# install dependencies
+brew install pkgconfig
+brew install libxml2
+
+# test the gem can be compiled with the right libxml2
+export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig
+gem install nokogiri -v 1.7.2 -- --use-system-libraries
+
+# configure bundle to do so
+bundle config build.nokogiri --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
+```
+
+* Can't install `sys-proctable` on a Mac - a package missing even after bundle install succeeded
+
+```
+bundle config specific_platform true
+bundle install
+```
+
+* If everything is hosed after an OSX upgrade
+
+Install xcode developer tools
+
+```xcode-select --install```
+
+Uninstall existing ruby version with your version manager
+Reinstall rubies with version manager

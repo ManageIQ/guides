@@ -7,6 +7,7 @@ maintained by the ManageIQ team.
 
 * [High Level Guidelines](#high-level-guidelines)
 * [Ruby Style Guide](#ruby-style-guide)
+* [Documentation](#documentation)
 * [Logging](#logging)
 * [Commits](#commits)
 * [Pull Requests and Branches](#pull-requests-and-branches)
@@ -32,6 +33,19 @@ maintained by the ManageIQ team.
   Any changes we have that deviate from the default style guide are enumerated
   in the [.rubocop_base.yml](.rubocop_base.yml) file, which is inherited by most
   projects in the ManageIQ organization.
+
+## Documentation
+
+We use [yardoc](https://yardoc.org/) to create inline code documentation. For now documentation is scarce but
+we encourage contributors to add it whenever possible. Until more of the codebase is documented, we limit the created 
+documentation to those files that are well documented. 
+Please try to document methods that are used by external teams, like providers.
+These are the integration API for them and should be documented best.
+
+To view the documentation online visit [rubydoc.info](http://www.rubydoc.info/github/manageiq/manageiq). For a local
+version you can run `bundle exec yard` and view the html docs in `/doc/index.html`. When writing documentation you
+should add your source files to `/.yardopts` and run `bundle exec yard server -r`. This will create a local 
+documentation server which regenerates the docs on each request.
 
 ## Logging
 
@@ -213,18 +227,58 @@ When extracting code into a new gem or creating a new gem:
     changes or additions to the guides can be put here.
   * Create a LICENSE.txt with an appropriate license.
 
+## Git how-to
+
+Note after the changes in this section, you will need `git push -f `if you have 
+already pushed them before.
+
+* Reword/squashing/reordering a commit
+
+  To modify with recent commit in current branch, first do 
+  `git rebase -i origin branch-name`.
+  To modify a specific commit, use `git rebase -i SOME_COMMIT_ID^` instead.
+  git will popup a vi window to let you do modification on commits, press 
+  `:wq` after done.
+  
+  * Reword a commit
+  
+    Change the `pick` before the commit you want to reword to `edit` and edit 
+    its message in popup vi window.
+    
+  * Squashing commits
+  
+    Change the `pick` before the commit you want to squach to `squash` and edit 
+    the commit message after squash in a following popup vi window. A commit 
+    will be squashed with its previous commit.
+    
+  * Reordering commits
+  
+    Reordering them in this vi window will reorder the commits.
+
+* Amend a commit
+
+  You can commit first and rebase it in the previous section. Or if you want to
+  amend most recent commit, you can: `git commit some_file --amend`.
+  
+* Deleting a commit
+
+  You can delete commits by delete corresponding lines in `git rebase`. Or if
+  you want to delete most recent commit, you can `git reset --hard HEAD^`. If you
+  want to go back to a specific commit and delete commits after that, use
+  `git reset --hard commit-hash`.
+  
+* Uncommit a file from an existing commit
+
+  ```
+  git reset HEAD^ path/to/file/to/revert
+  git commit --amend
+  ```
+
 ## TODO
 
 * Rails style guide see https://github.com/bbatsov/rails-style-guide
 * Bugzilla how-to
   * how to copy commit details / clone a ticket
-* Git how-to
-  * reword a commit
-  * amend a commit
-  * squashing
-  * reordering
-  * deleting a commit
-  * uncommit a file from an existing commit
 
 # License
 

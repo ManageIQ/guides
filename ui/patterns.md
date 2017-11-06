@@ -3,19 +3,22 @@
 This guide aims to provide information that allows a
 quick start for new contributors for the UI.
 
-* [Menus](menus.md)
-* [RBAC Features](rbac_features.md)
-* [Toolbar and Buttons](toolbars.md)
-* [Button Actions](button_actions.md)
-* [Page Layout](page_layout.md)
-* [Trees, Nodes, Accordions](trees.md)
-* [Textual Summaries](textual_summary.md)
+* [Page Layout](page_layout.md) -- basic page structure and elements.
+* [Menus](menus.md) -- menu sections, subsections, menu items.
+* [RBAC](rbac_features.md) -- permission system, verifying acces to features and items.
+* [Toolbar and Buttons](toolbars.md) -- how to define toolbars and toolbar buttons.
+* [Button Actions](button_actions.md) -- how to react on button presses.
+* [Textual Summaries](textual_summary.md) -- entities' details, relations, properties.
 * [Listnavs](listnav.md)
+* [Trees, Nodes, Accordions](trees.md)
 * [GTL -- Grid, Table, List](gtl.md)
-* [Calling the API](calling_api.md)
 * [Running through the Queue and Busy Waiting](queue_wait.md)
 * [Quadicons](quadicons.md)
 * [Reports and Charts](reports_charts.md)
 * [Topology](topology.md)
 * [Remote Consoles](remote_consoles.md)
 * [Angular Components](angular_components.md)
+* [Calling the API](calling_api.md) -- how to call the API from the client-side.
+
+To write new Javascript components for ManageIQ e.g. in Typescript and Angular, please, read
+* [UI Components Readme](https://github.com/ManageIQ/ui-components/blob/master/README.md)
