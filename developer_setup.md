@@ -4,29 +4,22 @@
 
 #### Fedora / CentOS 7
 
-* CentOS only - Enable EPEL & install DNF
-
-  ```bash
-  sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  sudo yum -y install dnf
-  ```
-
 * Install Packages
 
   ```bash
-  sudo dnf -y group install "C Development Tools and Libraries"  # For unf Gem and noi4r Gem
-  sudo dnf -y install git-all                                    # Git and components
-  sudo dnf -y install memcached                                  # Memcached for the session store
-  sudo dnf -y install postgresql-devel postgresql-server         # PostgreSQL Database server and to build 'pg' Gem
-  sudo dnf -y install bzip2 libffi-devel readline-devel          # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
-  sudo dnf -y install libxml2-devel libxslt-devel patch          # For Nokogiri Gem
-  sudo dnf -y install sqlite-devel                               # For sqlite3 Gem
-  sudo dnf -y install nodejs                                     # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
-  sudo dnf -y install libcurl-devel                              # For Curb
+  sudo yum -y group install "C Development Tools and Libraries"  # For unf Gem and noi4r Gem
+  sudo yum -y install git-all                                    # Git and components
+  sudo yum -y install memcached                                  # Memcached for the session store
+  sudo yum -y install postgresql-devel postgresql-server         # PostgreSQL Database server and to build 'pg' Gem
+  sudo yum -y install bzip2 libffi-devel readline-devel          # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
+  sudo yum -y install libxml2-devel libxslt-devel patch          # For Nokogiri Gem
+  sudo yum -y install sqlite-devel                               # For sqlite3 Gem
+  sudo yum -y install nodejs                                     # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
+  sudo yum -y install libcurl-devel                              # For Curb
   rpm -q --whatprovides npm || sudo dnf -y install npm           # For CentOS 7, Fedora 23 and older
-  sudo dnf -y install openssl-devel                              # For rubygems
-  sudo dnf -y install cmake                                      # For rugged Gem
-  sudo dnf -y install openscap                                   # Optional, for openscap Gem for container SSA
+  sudo yum -y install openssl-devel                              # For rubygems
+  sudo yum -y install cmake                                      # For rugged Gem
+  sudo yum -y install openscap                                   # Optional, for openscap Gem for container SSA
   ```
 
 * Enable Memcached
