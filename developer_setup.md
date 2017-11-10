@@ -4,7 +4,7 @@
 
 #### Fedora / CentOS 7
 
-* CentOS only - dnf is no longer available on CentOS 7. In the examples below, replace dnf with yum.
+* CentOS only - use yum instead of dnf.
 
 * Install Packages
 
