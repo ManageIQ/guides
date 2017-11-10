@@ -4,12 +4,7 @@
 
 #### Fedora / CentOS 7
 
-* CentOS only - Enable EPEL & install DNF
-
-  ```bash
-  sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  sudo yum -y install dnf
-  ```
+* CentOS only - use yum instead of dnf.
 
 * Install Packages
 
