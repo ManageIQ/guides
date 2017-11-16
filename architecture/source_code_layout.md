@@ -10,7 +10,6 @@ ManageIQ is a Rails application with the following standard layout
 | config/     | Configuration of the ManageIQ application's routes, database and more. |
 | config.ru   | Rack configuration for Rack based servers used to start the application. |
 | db/         | Contains the current database schema, as well as the database migrations. |
-| [gems/](#gems) | Libraries planned for extraction to standalone gems. |
 | Gemfile     | Specification of the ManageIQ application's gem dependencies. These files are used by the Bundler gem. For more information about Bundler, see the [Bundler website](http://bundler.io).|
 | [lib/](#lib)| Extended modules for the ManageIQ application. |
 | log/        | ManageIQ application log files. |
@@ -22,33 +21,6 @@ ManageIQ is a Rails application with the following standard layout
 | tmp/        | Temporary files (like cache, pid, and session files). |
 | vendor/     | A place for all third-party code. |
 
-
-## gems
-
-This directory contains libraries (planned for extraction to gems) for the following:
-
-* interfacing with various clouds and infrastructure providers
-  * gems/pending/Amazon
-  * gems/pending/openstack
-  * gems/pending/VMwareWebService
-    * Client and broker server for connecting to the VMware Virtual
-      Infrastructure Management (VIM) API/Framework
-* VM scanning
-  * gems/pending/disk
-  * gems/pending/fs
-  * gems/pending/metadata
-  * gems/pending/VixDiskLib
-    * Ruby bindings to the VIX Disk API for connecting to the VMware virtual
-      disks remotely
-* standalone utility libraries
-  * gems/pending/util
-    * Typically, utility libraries that are NOT tied to Rails are put here. The
-      benefit is that most of the code automatically loads many of the libraries
-      here, so if you want to add a new Exception class, for example, look in
-      miq-exception.rb, and Rails code will automatically find it.
-  * gems/pending/util/extensions
-    * Extensions for Ruby core classes.  Note that extensions to Rails core live
-      in vmdb/lib/extensions.
 
 ## lib
 
@@ -72,11 +44,6 @@ This directory contains libraries (planned for extraction to gems) for the follo
       model to make it easy to find the specs.  For example, the
       ExtManagementSystem model, which lives in models/ext_management_system.rb
       would have its specs in spec/models/ext_management_system_spec.rb
-  * spec/automation
-    * Specs that verify the internal ManageIQ domain for Automate.  These specs
-      work differently in that test import the ManageIQ domain in a before(:all)
-      once before executing the specs.  Be careful they are not run in parallel
-      with other tests outside of this directory.
   * spec/factories
     * [FactoryGirl](https://github.com/thoughtbot/factory_girl) factories for
       the test suite.
