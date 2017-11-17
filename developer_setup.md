@@ -203,10 +203,15 @@ git fetch other_user
 
   Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
 
+  Note: you may need to run the `npm install -g` commands using sudo if you get permission errors,
+  but if your node environment is up to date you should be able to install without sudo.
+  If you do get these errors and you don't want to use sudo,
+  [you can configure npm to install packages globally for a given user](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+
 * Install the _Bower_ package manager
 
   ```bash
-  sudo npm install -g bower
+  npm install -g bower
   ```
 
 * Install the _Yarn_ package manager
@@ -214,14 +219,14 @@ git fetch other_user
   Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
 
   ```bash
-  sudo npm install -g yarn
+  npm install -g yarn
   ```
 
 * Install the _Gulp_ and _Webpack_ build system
 
   ```bash
-  sudo npm install -g gulp-cli
-  sudo npm install -g webpack
+  npm install -g gulp-cli
+  npm install -g webpack
   ```
 
 ### Get the Rails environment up and running
