@@ -10,6 +10,7 @@
   - [Providers development guide](providers/dev-guide.md)
   - Provider setup instructions
     - [Amazon AWS](providers/amazon_aws_config.md)
+    - [Embedded Ansible](providers/embedded_ansible.md)
     - [Openshift](providers/openshift.md)
     - [Openstack Infra](providers/openstack_infra_provider.md)
   - [Interactive debugging with Pry-Remote](developer_setup/debugging.md)
