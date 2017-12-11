@@ -29,11 +29,15 @@ Your PostgreSQL must be configured to allow connections from the docker containe
 Your ManageIQ DB user (the one in `manageiq/config/database.yml`) must have the `SUPERUSER` privilege (or at least needs to be able to create roles and databases).
 
 
-Config file locations:
+Config file locations (where to expect it):
 
   * Debian: `/etc/postgresql/9.6/main/`
   * Fedora: `/var/lib/pgsql/data/`
   * MacOSX: `/usr/local/var/postgres/`
+
+Note that these may depend on your version, or oven on how you installed PostgreSQL.
+If you still can't find the right location, you may have luck running `psql -d postgres -c 'show config_file'`.
+
 
 
 Make sure your `postgresql.conf` contains this line:
