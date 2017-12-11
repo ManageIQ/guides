@@ -53,6 +53,9 @@ Make sure your `pg_hba.conf` contains:
 host	all	all	172.17.0.1/24	md5
 ```
 
+Note: that `172.17.0.1/24` may depend on the address of your docker network interface - run `ip addr show dev docker0` and you should see an `inet` line with a similar address - use that.
+
+
 Mac users: you may also need to add this one, for `docker-machine`.
 
 ```
