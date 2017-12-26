@@ -92,29 +92,30 @@ regardless of the hypervisor).
   $ minishift addons enable manageiq
   ```
   
-3. Start minishift:
+2. Start minishift:
   
   ```console
   $ minishift start --vm-driver virtualbox --openshift-version "v1.5.0-rc.0"
   ```
   
-4. Grab the minishift IP:
+3. Grab the minishift IP:
   
   ```console
   $ minishift ip
   ```
   
+4. Add `oc` and/or `docker` to your PATH, configured to the cluster (auto-detects correct shell):
+  
+  ```console
+  $ eval $(minishift oc-env)
+  $ eval $(minishift docker-env)
+  ```
+  
 5. Grab the token to access openshift through `manageiq`:
   
   ```console
-  $ ~/.minishift/cache/oc/v1.5.0-rc.0/oc login -u system:admin
-  $ ~/.minishift/cache/oc/v1.5.0-rc.0/oc sa get-token -n management-infra management-admin
-  ```
-  
-  Or in a single command form:
-  
-  ```console
-  $ (export PATH="~/.minishift/cache/oc/v1.5.0-rc.0/:$PATH"; oc login -u system:admin > /dev/null; oc sa get-token -n management-infra management-admin)
+  $ oc login -u system:admin
+  $ oc sa get-token -n management-infra management-admin
   ```
   
 6. Configure a provider in ManageIQ, filling in your token and IP where
