@@ -98,6 +98,10 @@ regardless of the hypervisor).
   $ minishift start --vm-driver virtualbox --openshift-version "v1.5.0-rc.0"
   ```
   
+  You might want to add `--metrics --memory 5G`.  As of this writing that only supports hawkular and doesn't work on 3.7.0.
+  
+  See https://hub.docker.com/r/openshift/origin/tags/ for possible versions.
+  
 3. Grab the minishift IP:
   
   ```console
@@ -131,3 +135,29 @@ regardless of the hypervisor).
   ```
   
   Or through the UI if you prefer.
+
+### Automated script to record new VCR
+
+https://github.com/ManageIQ/manageiq-providers-openshift/pull/75 added a script that creates things from template, records 1st vcr, deletes some things, records 2nd.
+
+Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec there assumes Hawkular metrics were running.
+
+- Easiest to use script with minishift.  
+  Have `minishift` in your PATH.
+  As described above, including manageiq addon, and `--metrics --memory 5G`.
+  Wait for metrics to start, as confirmed by:
+    ```console
+    oc get pods -n openshift-infra
+    ```
+- Alternatively bring your own openshift, with metrics. 
+  Set `OPENSHIFT_MASTER_HOST` env var.
+  Perform `oc login` as a user having `cluster-admin` role.
+
+Then run in manageiq-providers-openshift repo:
+```
+./spec/vcr_cassettes/manageiq/providers/openshift/container_manager/test_objects_record.sh
+```
+
+You may need to adjust specs if object counts and/or names changed (ideally, figure out why and how to make it more reproducible).
+
+There are text files near the .yml files that help tracking what changed vs previous VCRs, commit them together.
