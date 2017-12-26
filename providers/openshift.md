@@ -83,23 +83,12 @@ will assume that is being used, and updates to some commands might be
 necessary (most commands should be virtualization software agnostic and work
 regardless of the hypervisor).
 
-1. Download the manageiq.addon for minishift to a directory of your choosing:
+1. Download and enable the manageiq addon for minishift:
   
   ```console
-  
-  $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176.git path/to/minishift-addons/manageiq
-  ```
-
-  You can inspect the addon here:
-  
-    https://gist.github.com/NickLaMuro/e2fac8be87ea0e9f429b6f5d75e02176
-  
-  It is recommended to keep a directory of your addons in one place.
-  
-2. Add and enable the manageiq addon to minishift:
-  
-  ```console
-  $ minishift addons install --force path/to/minishift-addons/manageiq
+  $ mkdir -p ~/minishift/addons
+  $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176 ~/minishift/addons/manageiq
+  $ minishift addons install --force ~/minishift/addons/manageiq
   $ minishift addons enable manageiq
   ```
   
