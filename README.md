@@ -7,9 +7,9 @@
   - [Plugin development](developer_setup/plugins.md) aka working with the split `manageiq*` repositories
   - [Running in minimal mode](developer_setup/minimal_mode.md)
   - [Running the test suites](developer_setup/running_test_suites.md)
+  - [Providers development guide](providers/dev-guide.md)
   - Provider setup instructions
     - [Amazon AWS](providers/amazon_aws_config.md)
-    - [Hawkular](providers/hawkular-hawkinit.md)
     - [Openshift](providers/openshift.md)
     - [Openstack Infra](providers/openstack_infra_provider.md)
   - [Interactive debugging with Pry-Remote](developer_setup/debugging.md)
