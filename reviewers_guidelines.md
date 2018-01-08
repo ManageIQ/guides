@@ -66,3 +66,18 @@ find_record_with_rbac(CloudSubnet, checked_or_params)
 more info:
 http://manageiq.org/docs/guides/ui/rbac_features
 
+#### Double checking loaded records
+
+In [manageiq-ui-classic/pull/3131](https://github.com/ManageIQ/manageiq-ui-classic/pull/3131) the behavior of the fetching method was changed.
+
+In case that no records are found, the method raises an `ActiveRecord::RecordNotFound` exception.
+
+That means the double checking the variable with loaded records is not necessary, and therefore can be removed.
+
+```diff
+     scheds = find_records_with_rbac(MiqSchedule, checked_or_params)
+-    if scheds.empty?
+-      add_flash(msg1, :error)
+-      javascript_flash
+-    end
+```
