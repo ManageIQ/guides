@@ -5,6 +5,8 @@ Layout/AlignHash:
   EnforcedColonStyle: table
 Layout/ExtraSpacing:
   AutoCorrect: true
+Layout/PercentLiteralDelimiters:
+  Enabled: false
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
