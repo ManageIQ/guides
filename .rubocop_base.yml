@@ -5,8 +5,6 @@ Layout/AlignHash:
   EnforcedColonStyle: table
 Layout/ExtraSpacing:
   AutoCorrect: true
-Layout/PercentLiteralDelimiters:
-  Enabled: false
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
@@ -199,6 +197,9 @@ Style/MethodCallWithArgsParentheses:
     - task
 Style/NumericLiterals:
   AutoCorrect: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: '()'
 Style/PerlBackrefs:
   Enabled: false
 Style/ParallelAssignment:
