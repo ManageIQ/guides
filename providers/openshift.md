@@ -95,7 +95,7 @@ regardless of the hypervisor).
 2. Start minishift:
   
   ```console
-  $ minishift start --vm-driver virtualbox --openshift-version "v1.5.0-rc.0"
+  $ minishift start --vm-driver virtualbox --openshift-version "v3.6.1"
   ```
   
   You might want to add `--metrics --memory 5G`.  As of this writing that only supports hawkular and doesn't work on 3.7.0.
