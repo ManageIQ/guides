@@ -199,7 +199,10 @@ Style/NumericLiterals:
   AutoCorrect: false
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
-    default: '()'
+    '%i': ()
+    '%I': ()
+    '%w': ()
+    '%W': ()
 Style/PerlBackrefs:
   Enabled: false
 Style/ParallelAssignment:
