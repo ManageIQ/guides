@@ -1,4 +1,7 @@
 AllCops:
+  Exclude:
+    - spec/manageiq/**/*
+    - vendor/**/*
   TargetRubyVersion: 2.3
 Lint/DefEndAlignment:
   AutoCorrect: true
