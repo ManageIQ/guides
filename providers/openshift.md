@@ -144,12 +144,9 @@ Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec the
 
 - Easiest to use script with minishift.  
   Have `minishift` in your PATH.
-  As described above, including manageiq addon, and `--metrics --memory 5G`.
-  Wait for metrics to start, as confirmed by:
-    ```console
-    oc get pods -n openshift-infra
-    ```
-- Alternatively bring your own openshift, with metrics. 
+  As described above, including manageiq addon.  Don't need `--metrics`.
+
+- Alternatively bring your own openshift.
   Set `OPENSHIFT_MASTER_HOST` env var.
   Perform `oc login` as a user having `cluster-admin` role.
 
