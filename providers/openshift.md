@@ -83,49 +83,43 @@ will assume that is being used, and updates to some commands might be
 necessary (most commands should be virtualization software agnostic and work
 regardless of the hypervisor).
 
-1. Download the manageiq.addon for minishift to a directory of your choosing:
+1. Download and enable the manageiq addon for minishift:
   
   ```console
-  
-  $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176.git path/to/minishift-addons/manageiq
-  ```
-
-  You can inspect the addon here:
-  
-    https://gist.github.com/NickLaMuro/e2fac8be87ea0e9f429b6f5d75e02176
-  
-  It is recommended to keep a directory of your addons in one place.
-  
-2. Add and enable the manageiq addon to minishift:
-  
-  ```console
-  $ minishift addons install --force path/to/minishift-addons/manageiq
+  $ mkdir -p ~/minishift/addons
+  $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176 ~/minishift/addons/manageiq
+  $ minishift addons install --force ~/minishift/addons/manageiq
   $ minishift addons enable manageiq
   ```
   
-3. Start minishift:
+2. Start minishift:
   
   ```console
-  $ minishift start --vm-driver virtualbox --openshift-version "v1.5.0-rc.0"
+  $ minishift start --vm-driver virtualbox --openshift-version "v3.6.1"
   ```
   
-4. Grab the minishift IP:
+  You might want to add `--metrics --memory 5G`.  As of this writing that only supports hawkular and doesn't work on 3.7.0.
+  
+  See https://hub.docker.com/r/openshift/origin/tags/ for possible versions.
+  
+3. Grab the minishift IP:
   
   ```console
   $ minishift ip
   ```
   
+4. Add `oc` and/or `docker` to your PATH, configured to the cluster (auto-detects correct shell):
+  
+  ```console
+  $ eval $(minishift oc-env)
+  $ eval $(minishift docker-env)
+  ```
+  
 5. Grab the token to access openshift through `manageiq`:
   
   ```console
-  $ ~/.minishift/cache/oc/v1.5.0-rc.0/oc login -u system:admin
-  $ ~/.minishift/cache/oc/v1.5.0-rc.0/oc sa get-token -n management-infra management-admin
-  ```
-  
-  Or in a single command form:
-  
-  ```console
-  $ (export PATH="~/.minishift/cache/oc/v1.5.0-rc.0/:$PATH"; oc login -u system:admin > /dev/null; oc sa get-token -n management-infra management-admin)
+  $ oc login -u system:admin
+  $ oc sa get-token -n management-infra management-admin
   ```
   
 6. Configure a provider in ManageIQ, filling in your token and IP where
@@ -141,3 +135,26 @@ regardless of the hypervisor).
   ```
   
   Or through the UI if you prefer.
+
+### Automated script to record new VCR
+
+https://github.com/ManageIQ/manageiq-providers-openshift/pull/75 added a script that creates things from template, records 1st vcr, deletes some things, records 2nd.
+
+Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec there assumes Hawkular metrics were running.
+
+- Easiest to use script with minishift.  
+  Have `minishift` in your PATH.
+  As described above, including manageiq addon.  Don't need `--metrics`.
+
+- Alternatively bring your own openshift.
+  Set `OPENSHIFT_MASTER_HOST` env var.
+  Perform `oc login` as a user having `cluster-admin` role.
+
+Then run in manageiq-providers-openshift repo:
+```
+./spec/vcr_cassettes/manageiq/providers/openshift/container_manager/test_objects_record.sh
+```
+
+You may need to adjust specs if object counts and/or names changed (ideally, figure out why and how to make it more reproducible).
+
+There are text files near the .yml files that help tracking what changed vs previous VCRs, commit them together.
