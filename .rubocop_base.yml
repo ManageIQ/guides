@@ -66,6 +66,8 @@ Style/Encoding:
   Enabled: false
 Style/FormatString:
   EnforcedStyle: percent
+Style/FormatStringToken:
+  EnforcedStyle: template
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/GuardClause:
