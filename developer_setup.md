@@ -149,7 +149,7 @@
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/rbenv/rbenv)
 * Required Minimum Ruby version is 2.3.1+
-* Required Minimum Bundler version is 1.8.7+
+* Required Minimum Bundler version is 1.16.0+
 
 ### Setup Git and Github
 
