@@ -10,6 +10,7 @@
 
   ```bash
   sudo dnf -y group install "C Development Tools and Libraries"  # For unf Gem and noi4r Gem
+  sudo dnf -y install redhat-rpm-config                             # required for version after Fedora 22
   sudo dnf -y install git-all                                    # Git and components
   sudo dnf -y install memcached                                  # Memcached for the session store
   sudo dnf -y install postgresql-devel postgresql-server         # PostgreSQL Database server and to build 'pg' Gem
