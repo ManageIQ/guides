@@ -144,7 +144,7 @@
 
 ### Install Ruby and Bundler
 
-* Use a Ruby version manager
+* Use a Ruby version manager (choose one)
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/rbenv/rbenv)
