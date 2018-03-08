@@ -47,6 +47,29 @@
   sudo -u postgres psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
   # This command can return with a "could not change directory to" error, but you can ignore it
   ```
+#### Fedora 26 + PostgreSQL 9.5
+* Install packages
+  * Same as above
+  
+* Enable Memcached
+  * Same as above
+  
+* Configure PostgreSQL
+  * If you're installing PostgreSQL in version which is not included in distribution, directions are slightly different
+  * Based on instructions [here](https://www.postgresql.org/download/linux/redhat/#yum) and above:
+  
+  ```bash
+  sudo dnf install https://download.postgresql.org/pub/repos/yum/9.5/fedora/fedora-26-x86_64/pgdg-fedora95-9.5-5.noarch.rpm
+  sudo dnf install postgresql95
+  sudo dnf install postgresql95-server
+  sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
+  sudo grep -q '^local\s' /var/lib/pgsql/9.5/data/pg_hba.conf || echo "local all all trust" | sudo tee -a /var/lib/pgsql/9.5/data/pg_hba.conf
+  sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /var/lib/pgsql/9.5/data/pg_hba.conf
+  sudo systemctl enable postgresql-9.5
+  sudo systemctl start postgresql-9.5
+  sudo -u postgres psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
+  # This command can return with a "could not change directory to" error, but you can ignore it
+  ```
 
 #### Ubuntu / Debian
 
