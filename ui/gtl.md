@@ -32,5 +32,6 @@ User can change this in 2 different ways:
 There's a number of exceptions to the behavior:
  * VMs under a Service are always displayed as quadicons.
  * Users and Roles don't have quadicons so they are always displayed as lists even under Tagging.
+ * Policy assignment screens display GTLs as quadicons. (ref: https://github.com/ManageIQ/manageiq-ui-classic/pull/3554)
  * ... (problably more, please, document here if you hit into some).
 
