@@ -155,6 +155,7 @@ Style/MethodCallWithArgsParentheses:
     - mattr_accessor
     - remove_column
     - remove_index
+    - rename_column
     - render
     - require_dependency
     - require_relative
