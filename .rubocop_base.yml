@@ -93,6 +93,7 @@ Style/MethodCallWithArgsParentheses:
     - attr_writer
     - exit
     - extend
+    - gem
     - include
     - load
     - module_function
