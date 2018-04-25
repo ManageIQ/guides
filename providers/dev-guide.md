@@ -47,7 +47,7 @@ models MiQ, in order to be able to store the data from any external provider. We
 In Rails most often each entity has its own table in database. To manage the DB changes there is a support mechanism
 called migrations. Migrations allow easily migrate from one version of schema to an older one or upgrade to a new
 one. So the migration scripts basically contain the described change to the schema including the creation of a new
-table. They are stored in [here](https://github.com/ManageIQ/manageiq/tree/master/db/migrate) and each migration
+table. They are stored in [here](https://github.com/ManageIQ/manageiq-schema/tree/master/db/migrate) and each migration
 is prefixed by the time when it was created and then followed by a brief description of what it does. Rails provide
 a way to scaffold them using for instance:
 
