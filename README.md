@@ -17,6 +17,7 @@
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
 * [Internationalization Guidelines](i18n.md)
 * [UI Patterns](ui/patterns.md)
+* [Report data API](ui/report_data_api.md)
 * [Service UI Skinning](/service_ui/skinning.md)
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
