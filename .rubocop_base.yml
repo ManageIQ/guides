@@ -141,6 +141,8 @@ Style/MethodCallWithArgsParentheses:
     - cattr_reader
     - cattr_writer
     - change_column
+    - change_column_comment
+    - change_table_comment
     - class_attribute
     - create_table
     - datetime
