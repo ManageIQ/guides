@@ -1,11 +1,11 @@
 ### Report data API
-Report data is component which is reponsible for showing data inside Grid, Tile and List (refered to as GTL). This compont shows a lot of data so it comes with API along side of it. This API is for working with GTL and both changing it's state and getting data out of it.
+Report data is component which is reponsible for showing data inside Grid, Tile and List (refered to as GTL). This component shows a lot of data so it comes with API along side of it. This API is for working with GTL and both changing its state and getting data out of it.
 
 #### Sending data
 To initiate any action you just simply call specific function called `sendDataWithRx` which is hooked to `Rx.js`'s Subject and forwards these messeges to corresponding controller.
 
 You have to specify 3 attributes when comunicating with report data API
-1) controller - `reportDataController`, constant and should not be changes
+1) controller - `reportDataController`, constant and should not be changed
 2) action - what action should be initiated
 3) data - if action requires some data pass them via this attribute
 
@@ -24,7 +24,7 @@ Some actions will store data in `ManageIQ.qe.gtl.result`, it's either direct res
 #### Actions
 
 ##### `select_item`
-Action which selects item based on it's id. Data should be array with first attribut ID of item and second `true|false` to select|deselect item.
+Action which selects item based on its id. Data should be array with first attribut ID of item and second `true|false` to select|deselect item.
 ```javascript
 sendDataWithRx({
     controller: 'reportDataController',
