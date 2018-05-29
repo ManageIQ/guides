@@ -206,6 +206,8 @@ Style/MethodCallWithArgsParentheses:
     - task
 Style/NumericLiterals:
   AutoCorrect: false
+Style/NumericPredicate:
+  AutoCorrect: false
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%i': ()
