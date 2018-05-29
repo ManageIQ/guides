@@ -224,6 +224,8 @@ Style/RegexpLiteral:
   Enabled: false
 Style/RescueModifier:
   AutoCorrect: false
+Style/RescueStandardError:
+  EnforcedStyle: implicit
 Style/SignalException:
   EnforcedStyle: only_raise
 Style/SingleLineBlockParams:
