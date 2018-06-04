@@ -31,22 +31,12 @@ import { componentFactory } from 'helpers';
 componentFactory('YourComponentName', '#selector');
 ```
 
-This will mount new component into DOM element which might look like this.
+There is helper method in ManageIQ, which helps you do this automatically by calling `react` in .haml file. This will 
+result in div element with generic ID and it places component defined in step 1. over it.
+
 ```haml
-#selector{"data-something" => "some string",
-          "data-another"   => "another string"}
+= react 'YourComponentName', {:pro => 'ps'}
 ```
-
-To trigger the component creation either put the JS code into `-common` package if this is aplicable to all pages. Or create new pack which might look like this.
-```JS
-import { componentFactory } from 'helpers';
-
-document.addEventListener("DOMContentLoaded", function(event) { 
-  componentFactory('YourComponentName', '#selector');
-});
-```
-
-And to load such new pack use `= javascript_pack_tag 'manageiq-ui-classic/your-pack'` inside HAML with `selector` DOM element.
 
 ### Shared component API
 Abstract shared components has API controlling active components, this way you can define and create new component, later you can access to all active components on screen and use its shared interface to interact with it.
