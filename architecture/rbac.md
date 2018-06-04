@@ -35,15 +35,25 @@ The resources a user can see are decided from a number of sources.
 
     A user can be given access to various resources based on the resource hierarchy from the provider.  For example, a user can be given access to a virtual infrastructure Cluster.  In doing, so any child host or virtual machine instance that "belongs to" that Cluster can be see by the user.
 
+  These two filters combine together in such a way that if both are specifed they constrain each other, otherwise all resources can be seen.  That is,
+
+  - if a managed tag is specified without a belongs to, then all tagged resources can be seen
+  - if a belongs to is specified without a managed tag, then all resources in the resource hierarchy can be seen.
+  - if a managed tag is specified with a belongs to, then only tagged resources in that resource hierarchy are seen.
+
 - Match via descendants
 
   In a resource hierarchy a user may only have access to see the lowest level of resources, but in some instances, particularly for presentation purposes, the parent resources may need to be displayed even though the user does not have access to them directly.  For example, the UI may wish to present the folder hierarchy that a virtual machine instance lives under, but the user does not have access to those folders directly.  In this case, the UI may request the folders based on a "match via descendant" virtual machines.  That is, the user will be given the ability to see only those parent folders of the child virtual machines they can see.
 
 These various sources are combined together in the following expression
 
+    (ownership OR entitlements OR match_via_descendants) AND tenancy
 
+Put into words, a user can see
 
+  - resources they directly own or their group directly owns (ownership)
+  - tagged resources that live within a virtual hierarchy they can see (entitlements)
+  - parent resources of child resources they can see (match_via_descendants - only used for particular views)
+  - the above 3 are all filtered by the tenant the user is a part of, and the ancestor/descendant rules for that resource type
 
-
-
-### Ownership
+## What you can "see"
