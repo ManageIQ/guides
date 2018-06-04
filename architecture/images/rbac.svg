@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512pt" height="386pt" viewBox="0.00 0.00 511.61 386.24">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 382.2434)">
+<title>RBAC</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-382.2434 507.6133,-382.2434 507.6133,4 -4,4"/>
+<text text-anchor="middle" x="251.8066" y="-6.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00" fill="#000000">RBAC</text>
+<!-- tenants -->
+<g id="tenants" class="node">
+<title>tenants</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M130.4033,-339.5C130.4033,-339.5 171.4375,-339.5 171.4375,-339.5 177.4375,-339.5 183.4375,-345.5 183.4375,-351.5 183.4375,-351.5 183.4375,-363.5 183.4375,-363.5 183.4375,-369.5 177.4375,-375.5 171.4375,-375.5 171.4375,-375.5 130.4033,-375.5 130.4033,-375.5 124.4033,-375.5 118.4033,-369.5 118.4033,-363.5 118.4033,-363.5 118.4033,-351.5 118.4033,-351.5 118.4033,-345.5 124.4033,-339.5 130.4033,-339.5"/>
+<text text-anchor="middle" x="150.9204" y="-353.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Tenants</text>
+</g>
+<!-- tenants&#45;&#45;tenants -->
+<g id="edge1" class="edge">
+<title>tenants--tenants</title>
+<path fill="none" stroke="#000000" d="M183.4739,-364.2434C193.536,-364.1072 201.4375,-361.8594 201.4375,-357.5 201.4375,-353.1406 193.536,-350.8928 183.4739,-350.7566"/>
+<text text-anchor="middle" x="187.367" y="-353.5566" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">1</text>
+<text text-anchor="middle" x="186.198" y="-367.0434" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+</g>
+<!-- groups -->
+<g id="groups" class="node">
+<title>groups</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M161.9653,-265.5C161.9653,-265.5 199.8755,-265.5 199.8755,-265.5 205.8755,-265.5 211.8755,-271.5 211.8755,-277.5 211.8755,-277.5 211.8755,-289.5 211.8755,-289.5 211.8755,-295.5 205.8755,-301.5 199.8755,-301.5 199.8755,-301.5 161.9653,-301.5 161.9653,-301.5 155.9653,-301.5 149.9653,-295.5 149.9653,-289.5 149.9653,-289.5 149.9653,-277.5 149.9653,-277.5 149.9653,-271.5 155.9653,-265.5 161.9653,-265.5"/>
+<text text-anchor="middle" x="180.9204" y="-279.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Groups</text>
+</g>
+<!-- tenants&#45;&#45;groups -->
+<g id="edge2" class="edge">
+<title>tenants--groups</title>
+<path fill="none" stroke="#000000" d="M158.3361,-339.2079C162.9863,-327.7375 168.9561,-313.012 173.59,-301.5817"/>
+<text text-anchor="middle" x="170.8659" y="-304.3817" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+<text text-anchor="middle" x="154.4431" y="-328.0079" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- resources -->
+<g id="resources" class="node">
+<title>resources</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M12,-109.5C12,-109.5 125.8408,-109.5 125.8408,-109.5 131.8408,-109.5 137.8408,-115.5 137.8408,-121.5 137.8408,-121.5 137.8408,-141.5 137.8408,-141.5 137.8408,-147.5 131.8408,-153.5 125.8408,-153.5 125.8408,-153.5 12,-153.5 12,-153.5 6,-153.5 0,-147.5 0,-141.5 0,-141.5 0,-121.5 0,-121.5 0,-115.5 6,-109.5 12,-109.5"/>
+<text text-anchor="middle" x="41.4585" y="-127.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Resources</text>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="82.917,-109.5 82.917,-153.5 "/>
+<text text-anchor="middle" x="110.3789" y="-138.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">owner</text>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="82.917,-131.5 137.8408,-131.5 "/>
+<text text-anchor="middle" x="110.3789" y="-116.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">tenant</text>
+</g>
+<!-- tenants&#45;&#45;resources -->
+<g id="edge7" class="edge">
+<title>tenants:w--resources:se</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M117.9204,-357.5C62.6304,-357.5 177.0164,-70.404 137.9204,-109.5"/>
+</g>
+<!-- users -->
+<g id="users" class="node">
+<title>users</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M177.9204,-191.5C177.9204,-191.5 207.9204,-191.5 207.9204,-191.5 213.9204,-191.5 219.9204,-197.5 219.9204,-203.5 219.9204,-203.5 219.9204,-215.5 219.9204,-215.5 219.9204,-221.5 213.9204,-227.5 207.9204,-227.5 207.9204,-227.5 177.9204,-227.5 177.9204,-227.5 171.9204,-227.5 165.9204,-221.5 165.9204,-215.5 165.9204,-215.5 165.9204,-203.5 165.9204,-203.5 165.9204,-197.5 171.9204,-191.5 177.9204,-191.5"/>
+<text text-anchor="middle" x="192.6997" y="-205.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Users</text>
+</g>
+<!-- groups&#45;&#45;users -->
+<g id="edge3" class="edge">
+<title>groups--users</title>
+<path fill="none" stroke="#000000" d="M183.8867,-265.2079C185.7468,-253.7375 188.1347,-239.012 189.9882,-227.5817"/>
+<text text-anchor="middle" x="192.7124" y="-230.3817" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+<text text-anchor="middle" x="181.1626" y="-254.0079" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+</g>
+<!-- roles -->
+<g id="roles" class="node">
+<title>roles</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M249.9204,-191.5C249.9204,-191.5 279.9204,-191.5 279.9204,-191.5 285.9204,-191.5 291.9204,-197.5 291.9204,-203.5 291.9204,-203.5 291.9204,-215.5 291.9204,-215.5 291.9204,-221.5 285.9204,-227.5 279.9204,-227.5 279.9204,-227.5 249.9204,-227.5 249.9204,-227.5 243.9204,-227.5 237.9204,-221.5 237.9204,-215.5 237.9204,-215.5 237.9204,-203.5 237.9204,-203.5 237.9204,-197.5 243.9204,-191.5 249.9204,-191.5"/>
+<text text-anchor="middle" x="264.8169" y="-205.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Roles</text>
+</g>
+<!-- groups&#45;&#45;roles -->
+<g id="edge4" class="edge">
+<title>groups--roles</title>
+<path fill="none" stroke="#000000" d="M201.6845,-265.2079C214.7049,-253.7375 231.4204,-239.012 244.3952,-227.5817"/>
+<text text-anchor="middle" x="240.5021" y="-230.3817" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">1</text>
+<text text-anchor="middle" x="198.9603" y="-254.0079" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+</g>
+<!-- groups&#45;&#45;resources -->
+<g id="edge9" class="edge">
+<title>groups:w--resources:ne</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.9204,-283.5C91.897,-283.5 178.9492,-194.5287 137.9204,-153.5"/>
+</g>
+<!-- users&#45;&#45;resources -->
+<g id="edge8" class="edge">
+<title>users:w--resources:ne</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M165.9204,-209.5C147.9699,-209.5 159.4715,-187.7829 150.9204,-172 146.1332,-163.1642 145.0263,-160.6059 137.9204,-153.5"/>
+</g>
+<!-- entitlements -->
+<g id="entitlements" class="node">
+<title>entitlements</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M172.0898,-109.5C172.0898,-109.5 349.751,-109.5 349.751,-109.5 355.751,-109.5 361.751,-115.5 361.751,-121.5 361.751,-121.5 361.751,-141.5 361.751,-141.5 361.751,-147.5 355.751,-153.5 349.751,-153.5 349.751,-153.5 172.0898,-153.5 172.0898,-153.5 166.0898,-153.5 160.0898,-147.5 160.0898,-141.5 160.0898,-141.5 160.0898,-121.5 160.0898,-121.5 160.0898,-115.5 166.0898,-109.5 172.0898,-109.5"/>
+<text text-anchor="middle" x="206.6069" y="-127.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Entitlements</text>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="253.124,-109.5 253.124,-153.5 "/>
+<text text-anchor="middle" x="307.4375" y="-138.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">managed_tags</text>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="253.124,-131.5 361.751,-131.5 "/>
+<text text-anchor="middle" x="307.4375" y="-116.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">belongs_to</text>
+</g>
+<!-- roles&#45;&#45;entitlements -->
+<g id="edge6" class="edge">
+<title>roles--entitlements</title>
+<path fill="none" stroke="#000000" d="M263.9927,-191.4092C263.4157,-180.1582 262.6697,-165.6111 262.0573,-153.6691"/>
+<text text-anchor="middle" x="264.7814" y="-156.4691" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+<text text-anchor="middle" x="260.0996" y="-180.2092" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- product_features -->
+<g id="product_features" class="node">
+<title>product_features</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M392.2275,-113.5C392.2275,-113.5 491.6133,-113.5 491.6133,-113.5 497.6133,-113.5 503.6133,-119.5 503.6133,-125.5 503.6133,-125.5 503.6133,-137.5 503.6133,-137.5 503.6133,-143.5 497.6133,-149.5 491.6133,-149.5 491.6133,-149.5 392.2275,-149.5 392.2275,-149.5 386.2275,-149.5 380.2275,-143.5 380.2275,-137.5 380.2275,-137.5 380.2275,-125.5 380.2275,-125.5 380.2275,-119.5 386.2275,-113.5 392.2275,-113.5"/>
+<text text-anchor="middle" x="441.9204" y="-127.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Product Features</text>
+</g>
+<!-- roles&#45;&#45;product_features -->
+<g id="edge5" class="edge">
+<title>roles--product_features</title>
+<path fill="none" stroke="#000000" d="M292.1888,-197.4834C321.1835,-184.7061 367.3775,-164.3494 400.7942,-149.6234"/>
+<text text-anchor="middle" x="398.07" y="-152.4234" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+<text text-anchor="middle" x="294.9129" y="-200.2834" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">*</text>
+</g>
+<!-- child_resources -->
+<g id="child_resources" class="node">
+<title>child_resources</title>
+<path fill="#ffffff" stroke="#000000" stroke-width="2" d="M21.5654,-22.5C21.5654,-22.5 116.2754,-22.5 116.2754,-22.5 122.2754,-22.5 128.2754,-28.5 128.2754,-34.5 128.2754,-34.5 128.2754,-46.5 128.2754,-46.5 128.2754,-52.5 122.2754,-58.5 116.2754,-58.5 116.2754,-58.5 21.5654,-58.5 21.5654,-58.5 15.5654,-58.5 9.5654,-52.5 9.5654,-46.5 9.5654,-46.5 9.5654,-34.5 9.5654,-34.5 9.5654,-28.5 15.5654,-22.5 21.5654,-22.5"/>
+<text text-anchor="middle" x="68.9204" y="-36.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">Child Resources</text>
+</g>
+<!-- resources&#45;&#45;child_resources -->
+<g id="edge10" class="edge">
+<title>resources--child_resources</title>
+<path fill="none" stroke="#000000" d="M68.9204,-109.4714C68.9204,-93.9015 68.9204,-73.2821 68.9204,-58.6556"/>
+<text text-anchor="middle" x="144.4131" y="-79.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#000000">match_via_descendants</text>
+</g>
+</g>
+</svg>
