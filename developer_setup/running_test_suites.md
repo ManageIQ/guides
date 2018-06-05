@@ -1,33 +1,29 @@
 ## Running the test suites
 
-ManageIQ specs are split into several components:
+Each ManageIQ component (providers, UI, vmdb, automation engine, etc.)
+contains its own set of specs. Most of them can be run by executing
 
-* **vmdb**
-* **automation**
-* **migrations**
-* **providers**
-* **replication**
-* **javascript**
-* **brakeman**
+    $ bundle exec rake
 
-Each suite has a pair of Rake tasks to setup and run them, in the form of `test:<type>` and
-`test:<type>:setup` (if required):
+Components that require non-standard invocation of the test suite are
+documented in the remaining part of the document.
 
-```bash
-rake test:vmdb:setup             # Setup environment for vmdb specs
-rake test:vmdb                   # Run all specs except migrations, replication, and automation
-rake test:automation:setup       # Setup environment for automation specs
-rake test:automation             # Run all automation specs
-rake test:migrations:setup       # Setup environment for migration specs
-rake test:migrations             # Run all migration specs
-rake test:providers:amazon:setup # Setup environment for Amazon provider specs
-rake test:providers:amazon       # Run all Amazon provider specs
-rake test:replication:setup      # Setup environment for replication specs
-rake test:replication            # Run all replication specs
-rake test:javascript:setup       # Setup environment for javascript specs
-rake test:javascript             # Run all javascript specs
-rake test:brakeman               # Run Brakeman
-```
+
+### Running the vmdb suite
+
+The ManageIQ test database needs to be setup before the test suite can be run.
+This is automatically created if you run `bin/setup` or `bin/update`, but can
+also be created using `bundle exec rake test:vmdb:setup`.
+
+To run the suite, execute:
+
+    $ bundle exec rake
+
+There are some other test related tasks available and those can be listed by
+running
+
+    $ bundle exec rake -T test
+
 
 ### Running the vmdb suite in parallel
 
@@ -114,8 +110,39 @@ Note you do not need `PARALLEL=true` using `parallel_rspec`.
   things you can do with running ManageIQ tests in parallel!
 
 
-### Running JS specs
+### Running UI specs
 
-The rake task (`rake spec:javascript` in ui-classic) runs all the JS specs in `spec/javascripts/**/*_spec.js` in a headless browser.
+Running the test suite for `manageiq-ui-classic` requires a bit more
+preparation.
 
-For debugging, `rake environment jasmine` runs a webserver listening on `localhost:8888`.
+These instructions assume that you have `manageiq` and `manageiq-ui-classic`
+cloned into `/home/u/miq/manageiq` and `/home/u/miq/manageiq-ui-classic`
+respectively and that both repositores have the right branch checked out.
+
+First, you need to symlink the core repo into spec folder of the UI repo:
+
+    $ ln -s /home/u/miq/manageiq /home/u/miq/manageiq-ui-classic/spec/manageiq
+
+Next, you need to ensure that `/home/u/miq/manageiq/bundler.d/overrides.rb`
+file contains a block like this:
+
+    override_gem "manageiq-ui-classic", path: "/home/u/miq/manageiq-ui-classic"
+
+Now you must run `bin/update` from the `/home/u/miq/manageiq` folder, followed
+by `bin/update` from the `/home/u/miq/manageiq-ui-classic` folder.
+
+After all this is done, you can run tests as usual:
+
+    $ bundle exec rake
+
+To run the javascript specs in `spec/javascripts/**/*_spec.js` in a headless
+browser, you can run
+
+    $ bundle exec rake spec:javascript
+
+For debugging, `rake environment jasmine` runs a webserver listening on
+`localhost:8888`.
+
+You can also list all test-related rake tasks by running
+
+    $ bundle exec rake -T spec
