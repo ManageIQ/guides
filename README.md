@@ -17,6 +17,7 @@
 * [Developer Copr setup for CentOS6](developer_copr_setup_centos6.md)
 * [Internationalization Guidelines](i18n.md)
 * [UI Patterns](ui/patterns.md)
+* [UI Plugins](ui/plugins.md)
 * [Report data API](ui/report_data_api.md)
 * [Shared react component API](ui/register_react_component.md)
 * [Service UI Skinning](/service_ui/skinning.md)
