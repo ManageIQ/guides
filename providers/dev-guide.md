@@ -257,10 +257,6 @@ anything wrong with the migration, one can go back and undo it by `rake db:rollb
 
 [documentation](http://edgeguides.rubyonrails.org/active_record_migrations.html)
 
-## Defining Inventory
-
-Provider's inventories are defined by classes named **Persister**
-
 ## Handling the Refresh Logic and Saving to the DB
 
 Refresh logic mostly happens in a `refresh_parser.rb` class. Parsed entities are then processed by core `ems_refresh.rb`.
