@@ -257,12 +257,25 @@ anything wrong with the migration, one can go back and undo it by `rake db:rollb
 
 [documentation](http://edgeguides.rubyonrails.org/active_record_migrations.html)
 
+## Defining Inventory
+
+Provider's inventories are defined by classes named **Persister**
+
 ## Handling the Refresh Logic and Saving to the DB
 
 Refresh logic mostly happens in a `refresh_parser.rb` class. Parsed entities are then processed by core `ems_refresh.rb`.
 The logic in this class has
 quite strong assumptions on the data being stored. It assumes that it has the tree structure and each entity contains its kids as a nested hash.
 If you are able to achieve that structure in the `refresh_parser.rb`, you are halfway done. Otherwise, good luck :]
+
+### Defining Inventory
+
+Basically, refresh process consists of Collector, Persister and Parser classes (in most providers).
+When Collector loads data from external provider (like AWS), Persister defines structure of Inventory by InventoryCollection objects.  
+Inventory is then saved to VMDB (ManageIQ (also CFME) app database). Each inventory belons to certain ActiveRecord model.
+Parser maps collected data to these inventories.
+
+Persister's InventoryCollection definition is described [there](persister/inventory_collections.md).
 
 ## Registering the Features in for RBAC
 If everything is as it should be, but you still can't see anything in the UI, this may be the purpose. MiQ has the RBAC model
