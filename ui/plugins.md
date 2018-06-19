@@ -18,6 +18,8 @@ Since the plugins' javascript is built together with the rest of ui-classic, it 
 * lodash
 * patternfly-sass (and window-shared dependencies, such as bootstrap-switch, bootstrap-select, etc.)
 * patternfly-react
+* react
+* react-dom
 
 (For the actual versions, please see our [package.json](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json).)
 
