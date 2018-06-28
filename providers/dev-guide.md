@@ -266,10 +266,10 @@ If you are able to achieve that structure in the `refresh_parser.rb`, you are ha
 
 ### Defining Inventory
 
-Basically, refresh process consists of Collector, Persister and Parser classes (in most providers).
-When Collector loads data from external provider (like AWS), Persister defines structure of Inventory by InventoryCollection objects.  
-Inventory is then saved to VMDB (ManageIQ (also CFME) app database). Each inventory belons to certain ActiveRecord model.
-Parser maps collected data to these inventories.
+Providers which use graph refresh consists of Collector, Persister and Parser classes.
+When the Collector loads data from external provider, the Persister defines the inventory structure based on InventoryCollection objects. 
+Inventory is then saved to VMDB (ManageIQ (also CFME) app database). Each inventory collection is mapped to an ActiveRecord model.
+Parser maps data collected from the provider to the common format defined by the ActiveRecord model.
 
 Persister's InventoryCollection definition is described [there](persister/inventory_collections.md).
 

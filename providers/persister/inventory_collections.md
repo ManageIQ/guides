@@ -3,12 +3,12 @@
 
 [back](../dev-guide.md)
 
-**Inventory Collection** (```ManagerRefresh::InventoryCollection``` - next called **"IC"**) is an object used by Refresh process. 
-It represents properties of inventory like **VM**, **Hardware**, **Operating system**, **Host** etc.
+**Inventory Collection** (```ManagerRefresh::InventoryCollection``` - subsequently called **"IC"**) is an object used by Refresh process. 
+It represents types of inventory such as **VM**, **Hardware**, **Operating system**, **Host** etc.
 
-Each IC is defined by persister (```ManagerRefresh::Inventory::Persister```), stored in it (in hash ```@collections```) and accessible as persister's method. Its name equals IC's association property (will be described later). One persister usually contains many IC definitions.
+Each IC is defined by persister (```ManagerRefresh::Inventory::Persister```), stored in a hash called ```@collections``` and accessible as persister's method. It's name is equal to the IC's association property (will be described later). One persister usually contains many IC definitions.
 
-## Defining IC
+## Defining an Inventory Collection
 
 We can split this process into following areas:
 
@@ -35,11 +35,11 @@ which we'll see more detailed in this chapter.
 
 It creates ```ManagerRefresh::InventoryCollection```  and assigns it to **persister's @collections[:vms]**
 
-Method can throw exception **`ManagerRefresh::InventoryCollection::Builder::MissingModelClassError`**
+Method can throw exception **`ManagerRefresh::InventoryCollection::Builder::MissingModelClassError`** (described [later](#automatic-model_class))
 
 #### - builder_class [*mandatory*]
 
-There are 5 builder classes which groups ICs of the same manager(**TODO**, right?). Because they're used as parameter of ```add_collection()``` they are wrapped to methods with short name (persister's methods):
+There is a builder class for every manager type. Because they're used as parameter of ```add_collection()``` they are wrapped to methods with short name (persister's methods):
 - cloud
 - infra
 - network
