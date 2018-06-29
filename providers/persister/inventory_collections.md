@@ -136,8 +136,9 @@ Contains two basic things:
 Features for defining IC:
 - *add_properties*
   - basic function to add properties to IC
-- *add_builder_params* (TODO: will be renamed to *add_default_values*)
+- *add_default_values*
   - properties inside properties, usually containing lambdas with persister param.
+  - fills IC object with predefined values
   - lambdas evaluated in persister's add_collection()
 - *automatic model_class* derivation
 - *automatic inventory object attributes* derivation
@@ -222,7 +223,7 @@ add_collection(infra, :host_networks) do |builder|
     :strategy => :local_db_find_references,
     :targeted => false
   )
-  builder.add_builder_params(
+  builder.add_default_values(
     :ems_id => 1
   )
 ```
