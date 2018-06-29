@@ -268,7 +268,7 @@ If you are able to achieve that structure in the `refresh_parser.rb`, you are ha
 
 Providers which use graph refresh consists of Collector, Persister and Parser classes.
 When the Collector loads data from external provider, the Persister defines the inventory structure based on InventoryCollection objects. 
-Inventory is then saved to VMDB (ManageIQ (also CFME) app database). Each inventory collection is mapped to an ActiveRecord model.
+Inventory is then saved to VMDB (app database). Each inventory collection is mapped to an ActiveRecord model.
 Parser maps data collected from the provider to the common format defined by the ActiveRecord model.
 
 Persister's InventoryCollection definition is described [there](persister/inventory_collections.md).

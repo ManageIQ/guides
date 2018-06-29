@@ -284,7 +284,7 @@ It produces IC with attributes:
 
 ## Conclusion
 
-Definition of InventoryCollection objects in persisters ensures ```add_collection()``` method.   
+```add_collection()``` method is the way how to define `InventoryCollection` objects and add them to Persister.
 It simplifies definitions using several IC Builders and its common definitions.  
 Basic properties, like model class and its attributes can be derived automatically by name of persister's class and builder's class.  
 
