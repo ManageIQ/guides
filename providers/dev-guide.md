@@ -264,6 +264,15 @@ The logic in this class has
 quite strong assumptions on the data being stored. It assumes that it has the tree structure and each entity contains its kids as a nested hash.
 If you are able to achieve that structure in the `refresh_parser.rb`, you are halfway done. Otherwise, good luck :]
 
+### Defining Inventory
+
+Providers which use graph refresh consists of Collector, Persister and Parser classes.
+When the Collector loads data from external provider, the Persister defines the inventory structure based on InventoryCollection objects. 
+Inventory is then saved to VMDB (app database). Each inventory collection is mapped to an ActiveRecord model.
+Parser maps data collected from the provider to the common format defined by the ActiveRecord model.
+
+Persister's InventoryCollection definition is described [there](persister/inventory_collections.md).
+
 ## Registering the Features in for RBAC
 If everything is as it should be, but you still can't see anything in the UI, this may be the purpose. MiQ has the RBAC model
 that checks if the user in the current role is able to access the feature. This is described in the yaml file called `miq_product_features.yml`.
