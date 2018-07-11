@@ -148,7 +148,7 @@
   * [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
   * [rvm](http://rvm.io/)
   * [rbenv](https://github.com/rbenv/rbenv)
-* Required Minimum Ruby version is 2.3.1+
+* Required Minimum Ruby version is 2.3.1+ (except 2.5.1)
 * Required Minimum Bundler version is 1.8.7+
 
 ### Setup Git and Github
