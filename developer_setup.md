@@ -40,8 +40,11 @@
 
   ```bash
   sudo postgresql-setup initdb
-  sudo grep -q '^local\s' /var/lib/pgsql/data/pg_hba.conf || echo "local all all trust" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
-  sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /var/lib/pgsql/data/pg_hba.conf
+  sudo cp /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.bak
+  cat <<EOF | sudo tee /var/lib/pgsql/data/pg_hba.conf
+  local   all             all                                     trust
+  host    all             root            127.0.0.1/32            trust
+  EOF
   sudo systemctl enable postgresql
   sudo systemctl start postgresql
   sudo -u postgres psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
