@@ -211,7 +211,7 @@ So properties given to `InventoryCollection` object are following:
                                    :href_slug, :ipaddess, :ipv6address, :lease_expires, 
                                    :lease_obtained, :region_description, :region_number, 
                                    :subnet_mask],
-  :builder_params => {},
+  :default_values => {},
   :dependency_attributes => {}
 }
 ```
@@ -237,7 +237,7 @@ produces `InventoryCollection` attributes:
   :manager_ref => [:hardware, :ipaddress],
   :parent_inventory_collection => [:hosts],
   :inventory_object_attributes => [<same as previous example>],
-  :builder_params => {:ems_id => 1},
+  :default_values => {:ems_id => 1},
   :dependency_attributes => {},
   :strategy => :local_db_find_references,
   :targeted => false
@@ -274,7 +274,7 @@ It produces IC with attributes:
   ...
   :model_class => ManageIQ::Providers::Amazon::CloudManager::Vm, # derived automatically
   :inventory_object_attributes => [...], 			 # derived automatically
-  :builder_params => {
+  :default_values => {
     :ems_id   => 1234567, # defined as lambda block
     :vendor   => "amazon",
     :name     => "unknown",
