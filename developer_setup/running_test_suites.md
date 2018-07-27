@@ -128,8 +128,9 @@ file contains a block like this:
 
     override_gem "manageiq-ui-classic", path: "/home/u/miq/manageiq-ui-classic"
 
-Now you must run `bin/update` from the `/home/u/miq/manageiq` folder, followed
-by `bin/update` from the `/home/u/miq/manageiq-ui-classic` folder.
+Now you must run `bin/update` from the
+`/home/u/miq/manageiq-ui-classic/spec/manageiq` folder, followed by
+`bin/update` from the `/home/u/miq/manageiq-ui-classic` folder.
 
 After all this is done, you can run tests as usual:
 
