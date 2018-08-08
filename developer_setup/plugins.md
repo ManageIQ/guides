@@ -174,7 +174,7 @@ echo "Running cherry-pick - if there's a conflict, resolve it, commit, and do gi
 git cherry-pick -x $COMMITS
 
 git push -u origin miq_pr_$PR
-[ -x "`which hub`" ] && hub pull-request -m "$TITLE
+[ -x "`which hub`" ] && hub pull-request -m "$TITLE"
 
 $DESCRIPTION
 
