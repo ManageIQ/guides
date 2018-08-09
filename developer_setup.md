@@ -16,13 +16,15 @@
   sudo dnf -y install bzip2 libffi-devel readline-devel          # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
   sudo dnf -y install libxml2-devel libxslt-devel patch          # For Nokogiri Gem
   sudo dnf -y install sqlite-devel                               # For sqlite3 Gem
-  sudo dnf -y install nodejs                                     # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
+  sudo dnf -y install nodejs                                     # For ExecJS Gem, bower, npm, yarn, webpack..
   sudo dnf -y install libcurl-devel                              # For Curb
   rpm -q --whatprovides npm || sudo dnf -y install npm           # For CentOS 7, Fedora 23 and older
   sudo dnf -y install openssl-devel                              # For rubygems
   sudo dnf -y install cmake                                      # For rugged Gem
   sudo dnf -y install openscap                                   # Optional, for openscap Gem for container SSA
   ```
+
+  If your node version is less than the [required version](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json), you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
 
 * Enable Memcached
 
@@ -59,7 +61,7 @@
   sudo apt install bzip2 libffi-dev libreadline-dev # For rbenv install 2.3.1 (might not be needed with other Ruby setups)
   sudo apt install libxml2-dev libxslt-dev patch    # For Nokogiri Gem
   sudo apt install libsqlite-dev libsqlite3-dev     # For sqlite3 Gem
-  sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem, bower, npm, yarn, webpack.. - needs at least 6.0.0
+  sudo apt install nodejs nodejs-legacy npm         # For ExecJS Gem, bower, npm, yarn, webpack..
   sudo apt install g++                              # For unf Gem
   sudo apt install libcurl4-gnutls-dev              # For Curb
   sudo apt install cmake                            # For rugged Gem
@@ -67,7 +69,7 @@
   sudo apt install libssl-dev                       # for puma < 3.7.0
   ```
 
-  If your node version is less than 6.0 (debian currently has 4), you can either install it from the `experimental` repo:
+  If your node version is less than the [required version](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json), you can either install it from the `experimental` repo:
 
   ```bash
   echo 'deb http://ftp.debian.org/debian/ experimental main non-free contrib' | sudo tee /etc/apt/sources.list.d/experimental.list
@@ -120,7 +122,8 @@
   brew install yarn
   ```
 
-  If your node version is less than 6, you may need to `brew upgrade node` and `brew link node`.
+  If your node version is less than the [required version](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json), you may need to `brew upgrade node` and `brew link node`.
+  Or you may be able to use [nvm](https://github.com/creationix/nvm).
 
 * Configure and start PostgreSQL
   * Required PostgreSQL version is 9.4, 9.5
@@ -201,7 +204,7 @@ git fetch other_user
 
 ### Javascripty things
 
-  Make sure your node version is at least 6.0.0. If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
+  Make sure your node version is at least the [required version](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json). If not, you can use [nvm](https://github.com/creationix/nvm) to install a node version locally (similar to `rbenv`).
 
   Note: you may need to run the `npm install -g` commands using sudo if you get permission errors,
   but if your node environment is up to date you should be able to install without sudo.
