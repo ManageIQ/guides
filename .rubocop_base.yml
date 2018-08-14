@@ -154,8 +154,10 @@ Style/MethodCallWithArgsParentheses:
     - has_one
     - head
     - identified_by
+    - index
     - integer
     - mattr_accessor
+    - references
     - remove_column
     - remove_index
     - rename_column
