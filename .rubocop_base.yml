@@ -108,6 +108,7 @@ Style/MethodCallWithArgsParentheses:
     - require
     - sleep
     - throw
+    - warn
     - yield
     # Rails
     - accepts_nested_attributes_for
