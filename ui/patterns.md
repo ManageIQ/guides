@@ -20,6 +20,7 @@ quick start for new contributors for the UI.
 * [Angular Components](angular_components.md)
 * [Calling the API](calling_api.md) -- how to call the API from the client-side.
 * [Forms](forms.md) -- all the stages of forms, from pure rails to Angular
+* [React Forms](react_forms.md) -- how to write React forms
 * [Redux](redux.md) -- how to write reducers for redux, how to structure them and how to dispatch actions.
 * [Extending the UI from Provider Repositories](provider_plugin.md) -- how provider authors can extend the UI with buttons, dialogs and execute Ansible playbooks.
 
