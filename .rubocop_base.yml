@@ -181,7 +181,7 @@ Style/MethodCallWithArgsParentheses:
     # DefaultValue Gem
     - default_value_for
     - default_values
-    # Trollop Gem
+    # Optimist Gem
     - banner
     - die
     - opt
