@@ -101,23 +101,18 @@ db.ansible_database_authentication.delete
 
 ### Procfiles
 
-Under your `manageiq/` directory, create these 2 files:
+Under your `manageiq/` directory, there should be a `Procfile.example` file.
 
-`Procfile.ansible`:
-
-```
-ansible: ruby lib/workers/bin/run_single_worker.rb EmbeddedAnsibleWorker
-```
-
-`Procfile.workers`:
+You need to uncomment these lines:
 
 ```
 generic:                  ruby lib/workers/bin/run_single_worker.rb MiqGenericWorker
-embedded_ansible_refresh: ruby lib/workers/bin/run_single_worker.rb -e 123 ManageIQ::Providers::EmbeddedAnsible::AutomationManager::RefreshWorker
-embedded_ansible_event:   ruby lib/workers/bin/run_single_worker.rb -e 123 ManageIQ::Providers::EmbeddedAnsible::AutomationManager::EventCatcher
+ansible:                  ruby lib/workers/bin/run_single_worker.rb EmbeddedAnsibleWorker
+embedded_ansible_refresh: ruby lib/workers/bin/run_single_worker.rb --ems-id <id> ManageIQ::Providers::EmbeddedAnsible::AutomationManager::RefreshWorker
+embedded_ansible_event:   ruby lib/workers/bin/run_single_worker.rb --ems-id <id> ManageIQ::Providers::EmbeddedAnsible::AutomationManager::EventCatcher
 ```
 
-In the second file, you'll need to replace that 123 with the id of the newly created **manager** instance.
+And you'll need to replace that `<id>` with the id of the newly created **manager** instance (`ManageIQ::Providers::EmbeddedAnsible::AutomationManager`, not `ManageIQ::Providers::EmbeddedAnsible::Provider`).
 
 
 ### Setting it up
@@ -133,7 +128,7 @@ server.save!
 
    * run rails: `bin/rails s`
 
-   * run the worker that will download and set up the container: `foreman start -f Procfile.ansible`
+   * run the worker that will download and set up the container: `foreman start -f Procfile.example` (only the `ansible` worker is needed at this point).
 
    * grab a coffee or two - you can watch the progress by watching:
       * authentication errors, docker problems: `tail -f managiq/log/evm.log`
@@ -145,13 +140,13 @@ server.save!
 
    * if you got that far, AWX is running and ManageIQ has an EmbeddedAnsible provider instance
 
-   * you need to edit `Procfile.workers`, to replace that `123` with the actual id of the new manager (not provider) instance:
+   * you need to edit `Procfile.example`, to replace that `<id>` with the actual id of the new manager (not provider) instance:
 
 ```
 ManageIQ::Providers::EmbeddedAnsible::Provider.first.managers.first.id
 ```
 
-   * run `foreman start -f Procfile.workers`
+   * run `foreman start -f Procfile.example`
 
    * try adding a Repository in ManageIQ (Automate > Ansible > Repositories) :)
 
@@ -178,8 +173,7 @@ Just run these 3, each in a different terminal:
 
 ```
 bin/rails s
-foreman start -f Procfile.ansible
-foreman start -f Procfile.workers
+foreman start -f Procfile.example
 ```
 
 
