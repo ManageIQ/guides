@@ -164,7 +164,9 @@ sudo iptables -t nat -I PREROUTING --dst 172.17.0.1 -p tcp --dport 5432 -j DNAT 
 # don't exit the shell
 ```
 
-(`172.17.0.1` is the docker host IP address, `192.168.99.1` is the adress `docker-machine` gives to the host (the VM will have `192.168.99.100` most likely))
+(`172.17.0.1` is the docker host IP address, `192.168.99.1` is the adress `docker-machine` gives to the host (the VM will have `192.168.99.100` most likely), and `default` is the default name for the docker machine)
+
+(Alternately, something like `VBoxManage modifyvm "default" --natpf1 "awx,tcp,127.0.0.1,54321,,54321"` might work too.)
 
 
 ### Running it again
