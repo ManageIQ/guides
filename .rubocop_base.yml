@@ -144,6 +144,7 @@ Style/MethodCallWithArgsParentheses:
     - cattr_writer
     - change_column
     - change_column_comment
+    - change_column_null
     - change_table_comment
     - class_attribute
     - create_table
