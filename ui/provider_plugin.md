@@ -1,11 +1,22 @@
 ## Excending the UI with buttons, dialogs and executing Ansible Playbooks
 
 ### Context
+
 We want to allow the provider authors to extend ManageIQ with Ansible playbooks
 and roles. ManageIQ core provides the capability to execute an Ansible playbook
 from the provider repository. The ManageIQ UI provides a way to call that
 playbook from a toolbar. Before calling the playbook additional parameters can
 be collected using a custom form.
+
+### User interaction example
+
+ * User opens a list of Instances.
+ * From the list user selects one Instance and displays its detail page.
+ * On the detail page in the top toolbar extra button (button groups) are displayed with special actions relevant only for Instances comming from a specific provider.
+ * User presses a button.
+ * (optional step) a dialog comes up for the user to fill in whatever arguments are needed for the special action.
+ * User clicks "Ok".
+ * Special operation is executed using the ManageIQ API. A simple message is displayed on the screen (flash message) informing that the operation was fired.
 
 ### Provider workflow
 
