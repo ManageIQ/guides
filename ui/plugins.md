@@ -6,7 +6,7 @@ For info on how to use a plugin, please see [Plugin development](../developer_se
 
 (This section is a stub and will be expanded later. For now, please see (the v2v plugin)[https://github.com/ManageIQ/miq_v2v_ui_plugin] for a working example.)
 
-This is *not* the same as [Simple plugins](simple_plugins.md), which is an older feature using an iframe to point to a specific URL.
+This is *not* the same as [Simple plugins](simple_ui_plugins.md), which is an older feature using an iframe to point to a specific URL.
 
 ---
 
