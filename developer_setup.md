@@ -120,6 +120,7 @@
   brew install cmake
   brew install node
   brew install yarn
+  brew install iproute2mac
   ```
 
   If your node version is less than the [required version](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json), you may need to `brew upgrade node` and `brew link node`.
