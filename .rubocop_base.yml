@@ -163,6 +163,7 @@ Style/MethodCallWithArgsParentheses:
     - references
     - remove_column
     - remove_index
+    - remove_reference
     - rename_column
     - render
     - require_dependency
