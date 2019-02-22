@@ -45,7 +45,7 @@ ManageIQ is a Rails application with the following standard layout
       ExtManagementSystem model, which lives in models/ext_management_system.rb
       would have its specs in spec/models/ext_management_system_spec.rb
   * spec/factories
-    * [FactoryGirl](https://github.com/thoughtbot/factory_girl) factories for
+    * [FactoryBot](https://github.com/thoughtbot/factory_bot) factories for
       the test suite.
   * spec/migrations
     * Specs that can test migrations using an internal migration testing DSL
