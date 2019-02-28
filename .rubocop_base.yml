@@ -188,10 +188,12 @@ Style/MethodCallWithArgsParentheses:
     - die
     - opt
     # MIQ
+    - add_trigger
     - alias_with_relationship_type
     - api_relay_method
     - attr_accessor_that_yamls
     - deprecate_attribute
+    - drop_trigger
     - encrypt_column
     - include_concern
     - require_nested
