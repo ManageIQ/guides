@@ -212,12 +212,6 @@ Style/NumericLiterals:
   AutoCorrect: false
 Style/NumericPredicate:
   AutoCorrect: false
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%i': ()
-    '%I': ()
-    '%w': ()
-    '%W': ()
 Style/PerlBackrefs:
   Enabled: false
 Style/ParallelAssignment:
