@@ -216,12 +216,6 @@ Style/NumericLiterals:
   AutoCorrect: false
 Style/NumericPredicate:
   AutoCorrect: false
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%i': ()
-    '%I': ()
-    '%w': ()
-    '%W': ()
 Style/PerlBackrefs:
   Enabled: false
 Style/ParallelAssignment:
@@ -244,6 +238,8 @@ Style/StringLiterals:
   Enabled: false
 Style/StringLiteralsInInterpolation:
   Enabled: false
+Style/SymbolArray:
+  Enabled: false
 Style/TrailingCommaInArguments:
   Enabled: false
 Style/TrailingCommaInLiteral:
@@ -255,4 +251,4 @@ Style/TrivialAccessors:
 Style/WhileUntilModifier:
   Enabled: false
 Style/WordArray:
-  AutoCorrect: false
+  Enabled: false
