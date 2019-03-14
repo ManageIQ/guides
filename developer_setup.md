@@ -116,7 +116,7 @@
   brew install git
   brew install pkg-config
   brew install memcached
-  brew install postgresql
+  brew install postgresql@9.5
   brew install cmake
   brew install node
   brew install yarn
@@ -125,6 +125,16 @@
 
   If your node version is less than the [required version](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/package.json), you may need to `brew upgrade node` and `brew link node`.
   Or you may be able to use [nvm](https://github.com/creationix/nvm).
+
+  If your node version is 9 (the odd numbers are unstable) then some packages may not install properly.
+  You may need to downgrade node:
+
+  ```bash
+  brew uninstall node yarn
+  brew install node@8
+  brew link node@8 # --force --overwrite
+  brew install yarn
+  ```
 
 * Configure and start PostgreSQL
   * Required PostgreSQL version is 9.5
