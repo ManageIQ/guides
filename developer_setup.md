@@ -34,7 +34,7 @@
   ```
 
 * Configure PostgreSQL
-  * Required PostgreSQL version is 9.5
+  * Required PostgreSQL version is 10
     * See [here](developer_setup/postgresql_software_collection.md) how to install
       it in Linux distributions like CentOS 7, using _SoftwareCollections.org_.
     * Or follow the directions [here](https://www.postgresql.org/download/linux/redhat/#yum)
@@ -98,8 +98,8 @@
 * Configure PostgreSQL
 
   ```bash
-  sudo grep -q '^local\s' /etc/postgresql/9.5/main/pg_hba.conf || echo "local all all trust" | sudo tee -a /etc/postgresql/9.5/main/pg_hba.conf
-  sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /etc/postgresql/9.5/main/pg_hba.conf
+  sudo grep -q '^local\s' /etc/postgresql/10/main/pg_hba.conf || echo "local all all trust" | sudo tee -a /etc/postgresql/10/main/pg_hba.conf
+  sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /etc/postgresql/10/main/pg_hba.conf
   sudo systemctl restart postgresql
   sudo su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
   ```
@@ -116,7 +116,7 @@
   brew install git
   brew install pkg-config
   brew install memcached
-  brew install postgresql@9.5
+  brew install postgresql@10
   brew install cmake
   brew install node
   brew install yarn
@@ -137,7 +137,7 @@
   ```
 
 * Configure and start PostgreSQL
-  * Required PostgreSQL version is 9.5
+  * Required PostgreSQL version is 10
 
   ```bash
   # Enable PostgreSQL on boot
