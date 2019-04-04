@@ -85,56 +85,56 @@ regardless of the hypervisor).
 
 1. Download and enable the manageiq addon for minishift:
   
-  ```console
-  $ mkdir -p ~/minishift/addons
-  $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176 ~/minishift/addons/manageiq
-  $ minishift addons install --force ~/minishift/addons/manageiq
-  $ minishift addons enable manageiq
-  ```
-  
+   ```console
+   $ mkdir -p ~/minishift/addons
+   $ git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176 ~/minishift/addons/manageiq
+   $ minishift addons install --force ~/minishift/addons/manageiq
+   $ minishift addons enable manageiq
+   ```
+   
 2. Start minishift:
-  
-  ```console
-  $ minishift start --vm-driver virtualbox --openshift-version "v3.6.1"
-  ```
-  
-  You might want to add `--metrics --memory 5G`.  As of this writing that only supports hawkular and doesn't work on 3.7.0.
-  
-  See https://hub.docker.com/r/openshift/origin/tags/ for possible versions.
-  
+   
+   ```console
+   $ minishift start --vm-driver virtualbox --openshift-version "v3.6.1"
+   ```
+   
+   You might want to add `--metrics --memory 5G`.  As of this writing that only supports hawkular and doesn't work on 3.7.0.
+    
+   See https://hub.docker.com/r/openshift/origin/tags/ for possible versions.
+   
 3. Grab the minishift IP:
-  
-  ```console
-  $ minishift ip
-  ```
-  
+   
+   ```console
+   $ minishift ip
+   ```
+   
 4. Add `oc` and/or `docker` to your PATH, configured to the cluster (auto-detects correct shell):
-  
-  ```console
-  $ eval $(minishift oc-env)
-  $ eval $(minishift docker-env)
-  ```
-  
+   
+   ```console
+   $ eval $(minishift oc-env)
+   $ eval $(minishift docker-env)
+   ```
+   
 5. Grab the token to access openshift through `manageiq`:
-  
-  ```console
-  $ oc login -u system:admin
-  $ oc sa get-token -n management-infra management-admin
-  ```
-  
+   
+   ```console
+   $ oc login -u system:admin
+   $ oc sa get-token -n management-infra management-admin
+   ```
+   
 6. Configure a provider in ManageIQ, filling in your token and IP where
    appropriate:
-  
-  ```console
-  $ bin/rails c
-  irb> token = '<<YOUR_TOKEN_FROM_ABOVE_HERE>>'
-  irb> host  = '<<YOUR_IP_FROM_ABOVE_HERE>>'
-  irb> os = ManageIQ::Providers::Openshift::ContainerManager
-  irb> os.create(:name => "Minishift", :hostname => host, :port => 8443, :ipaddress => host, :zone => Zone.first, :storage_profiles => [], :security_protocol => "ssl-without-validation")
-  irb> os.last.update_authentication(:bearer => {:auth_key => token, :save => true})
-  ```
-  
-  Or through the UI if you prefer.
+   
+   ```console
+   $ bin/rails c
+   irb> token = '<<YOUR_TOKEN_FROM_ABOVE_HERE>>'
+   irb> host  = '<<YOUR_IP_FROM_ABOVE_HERE>>'
+   irb> os = ManageIQ::Providers::Openshift::ContainerManager
+   irb> os.create(:name => "Minishift", :hostname => host, :port => 8443, :ipaddress => host, :zone => Zone.first, :storage_profiles => [], :security_protocol => "ssl-without-validation")
+   irb> os.last.update_authentication(:bearer => {:auth_key => token, :save => true})
+   ```
+   
+   Or through the UI if you prefer.
 
 ### Automated script to record new VCR
 
