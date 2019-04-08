@@ -44,7 +44,6 @@ module ManageIQ
               t,
               :data  => {'function'      => 'sendDataWithRx',
                          'function-data' => {:controller     => 'provider_dialogs', # this one is required
-                                             :button         => :magic,
                                              :modal_title    => N_('Create a Security Group'),   # title of modal displaying the form
                                              :component_name => 'CreateAmazonSecurityGroupForm', # name of React component implementing the form
                                               }.to_json},
@@ -99,7 +98,6 @@ module ManageIQ
               t,
               :data  => {'function'      => 'sendDataWithRx',
                          'function-data' => {:controller  => 'provider_dialogs', 	      # this one is required
-                                             :button      => :magic_player,
                                              :dialog_name => 'test',		 	      # name of dialog
                                              :dialog_title => N_('Magic Provider Dialog'),    # title of modal displaying the form (dialog)
                                              :class       => 'ManageIQ::Providers::Amazon',   # namespace of this provider
