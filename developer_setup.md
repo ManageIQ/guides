@@ -222,12 +222,6 @@ git fetch other_user
   If you do get these errors and you don't want to use sudo,
   [you can configure npm to install packages globally for a given user](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 
-* Install the _Bower_ package manager
-
-  ```bash
-  npm install -g bower
-  ```
-
 * Install the _Yarn_ package manager
 
   Follow [official instructions](https://yarnpkg.com/lang/en/docs/install/#linux-tab) or
