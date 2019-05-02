@@ -23,6 +23,7 @@ quick start for new contributors for the UI.
 * [React Forms](react_forms.md) -- how to write React forms
 * [Redux](redux.md) -- how to write reducers for redux, how to structure them and how to dispatch actions.
 * [Extending the UI from Provider Repositories](provider_plugin.md) -- how provider authors can extend the UI with buttons, dialogs and execute Ansible playbooks.
+* [Breadcrumbs](https://github.com/ManageIQ/manageiq-ui-classic/wiki/Breadcrumbs) -- how breadcrumbs work
 
 
 To write new Javascript components for ManageIQ e.g. in Typescript and Angular, please, read
