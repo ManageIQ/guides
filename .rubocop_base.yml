@@ -12,9 +12,9 @@ Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
-Lint/DefEndAlignment:
+Layout/DefEndAlignment:
   AutoCorrect: true
-Lint/EndAlignment:
+Layout/EndAlignment:
   AutoCorrect: true
 Metrics/AbcSize:
   Enabled: false
@@ -240,9 +240,9 @@ Style/StringLiteralsInInterpolation:
   Enabled: false
 Style/SymbolArray:
   Enabled: false
-Style/TrailingCommaInArguments:
+Style/TrailingCommaInArrayLiteral:
   Enabled: false
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInHashLiteral:
   Enabled: false
 Style/TrailingUnderscoreVariable:
   Enabled: false
