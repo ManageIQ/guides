@@ -38,6 +38,8 @@ Metrics/ParameterLists:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
 Performance/Casecmp:
   Enabled: false
 Rails:
