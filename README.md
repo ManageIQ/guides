@@ -33,6 +33,7 @@
 * [External Authentication (httpd)](external_auth.md)
 * [REST API](http://manageiq.org/docs/api)
 * [Working with Amazon AWS Config service](providers/amazon_aws_config.md)
+* [Opening custom URLs via Custom Buttons and Automate](automate_url_open.md)
 
 ## License
 
