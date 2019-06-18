@@ -42,9 +42,13 @@
 
   ```bash
   sudo postgresql-setup initdb
+  # use below if postgresql-setup is not in PATH
+  # sudo /usr/pgsql-10/bin/postgresql-10-setup initdb
   sudo grep -q '^local\s' /var/lib/pgsql/data/pg_hba.conf || echo "local all all trust" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
   sudo sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /var/lib/pgsql/data/pg_hba.conf
   sudo systemctl enable postgresql
+  # use below unit name instead if installed from PostgreSQL GDG
+  # sudo systemctl enable postgresql-10.service
   sudo systemctl start postgresql
   sudo -u postgres psql -c "CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'"
   # This command can return with a "could not change directory to" error, but you can ignore it
