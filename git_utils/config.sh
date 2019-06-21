@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 # You can override these values in file config.dev.sh
-homedir=~
-eval homedir=${homedir}
-manageiq_root="${homedir}/Projects/ManageIQ/upstream"
+manageiq_root="${HOME}/Projects/ManageIQ/upstream"
 plugins_dir="plugins"
 
 if [[ -f "./config.dev.sh" ]]; then

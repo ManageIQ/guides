@@ -9,5 +9,3 @@ if git diff-index --quiet HEAD --; then
 else
     git status -s -b
 fi
-
-cd ..
