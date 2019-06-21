@@ -27,6 +27,7 @@
 * [Developing using a Vagrant VM](vagrant_developer_vm.md)
 * [Setting up Kubernetes for use with ManageIQ](providers/kubernetes.md)
 * [Contributing to the API](https://github.com/ManageIQ/manageiq-api/blob/master/CONTRIBUTING.md)
+* [GIT Helpers](git_utils/README.md)
 
 ### ManageIQ technical documentation
 * [Architecture](architecture.md)
