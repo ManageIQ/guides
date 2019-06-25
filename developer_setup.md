@@ -77,7 +77,7 @@ Configure, enable and start the service.
 Using systemd:
 
 ```bash
-sudo postgresql-setup initdb --auth trust --username root --encoding UTF-8 --locale C
+su -c postgres 'initdb --auth trust --username root --encoding UTF-8 --locale C /var/lib/pgsql/data'
 systemctl enable --now postgres
 ```
 
