@@ -2,6 +2,7 @@
 
 ### Requirements Summary
 
+|         |         |
 | ------- | ------- |
 | Ruby    | 2.4.x   |
 | Rails   | 5.1.x   |
