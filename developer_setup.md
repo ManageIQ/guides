@@ -2,13 +2,13 @@
 
 ### Requirements Summary
 
-|         |         |
-| ------- | ------- |
-| Ruby    | 2.4.x   |
-| Rails   | 5.1.x   |
-| Bundler | 1.16.x  |
-| NodeJS  | 10.16.x |
-| Python  | 2.7.x   |
+| **Name** | **Version** |
+| -------- | ----------- |
+| Ruby     | 2.4.x       |
+| Rails    | 5.1.x       |
+| Bundler  | 1.16.x      |
+| NodeJS   | 10.16.x     |
+| Python   | 2.7.x       |
 
 ## Build Requirements
 
