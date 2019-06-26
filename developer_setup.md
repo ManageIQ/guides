@@ -15,7 +15,7 @@
 In order to compile Ruby, native Gems and native NodeJS modules, GCC and its related utilities are required. Depending on your Linux distribution, package names may vary slightly.
 
 * Using dnf: `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python`
-* Using yum: `sudo yum -y group install "C Development Tools and Libraries" libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python`
+* Using yum: `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python`
 * Using apt: `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl-dev cmake libsqlite3-dev python`
 * Using brew: `brew install cmake`
 
@@ -74,13 +74,25 @@ Install postgresql:
 * Using apt: `sudo apt -y install postgresql`
 * Using brew: `brew install postgresql`
 
+---
+**NOTE**
+
+CentOS 7 ships PostgreSQL 9.x. In order to use PostgreSQL 10.x, you will need to [enable Software Collections](https://www.softwarecollections.org/en/docs/) and install `rh-postgresql10`.
+
+```bash
+sudo yum -y uninstall postgresql-devel
+sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postgresql10-postgresql-devel
+```
+
+---
+
 Configure, enable and start the service.
 
 Using systemd:
 
 ```bash
-su -c postgres 'initdb --auth trust --username root --encoding UTF-8 --locale C /var/lib/pgsql/data'
-systemctl enable --now postgres
+sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
+systemctl enable --now postgresql
 ```
 
 Using Homebrew:
