@@ -108,9 +108,9 @@ npm install -g yarn gulp-cli webpack
 
 A Ruby version manager is *strongly* recommended. Use any one of the following:
 
-* rbenv
-* rvm
-* chruby
+* [rbenv](https://github.com/rbenv/rbenv)
+* [rvm](http://rvm.io/)
+* [chruby](https://github.com/postmodern/chruby)
 
 Using the Ruby version manager, install `ruby` >= 2.4.0 and < 2.6.0 and `bundler` >= 1.16.
 
