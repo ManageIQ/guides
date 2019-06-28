@@ -131,10 +131,6 @@ nvm install 10
 npm install -g yarn gulp-cli webpack
 ```
 
-## Clone the project
-
-`git clone git@github.com:ManageIQ/manageiq.git`
-
 ## Install Ruby and Bundler
 
 A Ruby version manager is *strongly* recommended. Use any one of the following:
@@ -144,6 +140,13 @@ A Ruby version manager is *strongly* recommended. Use any one of the following:
 * [chruby](https://github.com/postmodern/chruby)
 
 Using the Ruby version manager, install `ruby` >= 2.4.0 and < 2.6.0 and `bundler` >= 1.16.
+
+## Clone the project
+
+```bash
+git clone git@github.com:ManageIQ/manageiq.git
+cd manageiq
+```
 
 ## Configure Project Manually
 
