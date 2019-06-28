@@ -171,6 +171,8 @@ mkdir -p log
 
 macOS requires platform specific Gems. Run `bundle config specific_platform true` before installing.
 
+CentOS 7 requires the `rh-postgresql10` SCL environment in order to compile the `pq` Gem's native extensions. Run `bundle install` inside the `scl` environment: `scl enable rh-postgresql10 'bundle install'`.
+
 ---
 
 ```bash
