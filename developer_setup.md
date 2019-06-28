@@ -16,14 +16,14 @@ In order to compile Ruby, native Gems and native NodeJS modules, GCC and its rel
 
 * Using dnf: `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python`
 * Using yum: `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python`
-* Using apt: `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl-dev cmake libsqlite3-dev python`
+* Using apt: `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake libsqlite3-dev python`
 * Using brew: `brew install cmake`
 
 To ensure the appropriate extensions are built when Ruby is compiled, install the header files for OpenSSL, readline and zlib.
 
 * Using dnf: `sudo dnf -y install openssl-devel readline-devel zlib-devel`
 * Using yum: `sudo yum -y install openssl-devel readline-devel zlib-devel`
-* Using apt: `sudo apt -y install libssl-dev libreadline-dev libz-dev`
+* Using apt: `sudo apt -y install libssl-dev libreadline-dev zlib1g-dev`
 * Using brew: `brew install openssl`
 
 ## Service Requirements
@@ -86,20 +86,39 @@ sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postg
 
 ---
 
-Configure, enable and start the service.
+Configure the cluster.
+
+On Fedora and CentOS, a cluster can be configured using `postgresql-setup`.
+
+```bash
+sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
+```
+
+On Debian and Ubuntu, a cluster is configured using `pg_createcluster`.
+
+```bash
+sudo pg_dropcluster --stop 10 main
+sudo pg_createcluster -e UTF-8 -l C 10 main -- --auth trust --username root
+```
+
+On macOS, a cluster is configured using `initdb` directly.
+
+```bash
+rm -rf /usr/local/var/postgres
+initdb --auth trust --username root --encoding UTF-8 --locale C /usr/local/var/postgres
+```
+
+Enable and start the service.
 
 Using systemd:
 
 ```bash
-sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
 systemctl enable --now postgresql
 ```
 
 Using Homebrew:
 
 ```bash
-rm -rf /usr/local/var/postgres
-initdb --auth trust --username root --encoding UTF-8 --locale C /usr/local/var/postgres
 brew services start postgresql
 ```
 
