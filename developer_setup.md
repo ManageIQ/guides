@@ -81,7 +81,7 @@ CentOS 7 ships PostgreSQL 9.x. In order to use PostgreSQL 10.x, you will need to
 
 ```bash
 sudo yum -y autoremove postgresql-devel
-sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postgresql10-postgresql-devel
+sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postgresql10-postgresql-devel rh-postgresql10-postgresql-server-syspaths
 ```
 
 ---
