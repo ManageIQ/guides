@@ -88,20 +88,20 @@ sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postg
 
 Configure the cluster.
 
-On Fedora and CentOS, a cluster can be configured using `postgresql-setup`.
+On Fedora and CentOS, configure a cluster using `postgresql-setup`.
 
 ```bash
 sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
 ```
 
-On Debian and Ubuntu, a cluster is configured using `pg_createcluster`.
+On Debian and Ubuntu, configure a cluster using `pg_createcluster`.
 
 ```bash
 sudo pg_dropcluster --stop 10 main
 sudo pg_createcluster -e UTF-8 -l C 10 main -- --auth trust --username root
 ```
 
-On macOS, a cluster is configured using `initdb` directly.
+On macOS, configured a cluster using `initdb` directly.
 
 ```bash
 rm -rf /usr/local/var/postgres
