@@ -2,8 +2,8 @@
 
 For a number of different entities users can create custom [toolbar
 buttons](ui/toolbars.md) that run an automate method on the particular entity,
-let that automate method calculate an URL and then have the UI open such URL in
-a new windows.
+let that automate method calculate a URL and then have the UI open such URL in
+a new window.
 
 #### Steps
 
@@ -24,15 +24,16 @@ Create custom button with Automate method:
    e) Select Request class in your new domain, click Methods -> Configuration -> Add a new Method
       * type: inline
       * name: test_open_url
-      * data should be (or anything that sets `vm.remote_console_url` to something):
+      * data should be (or anything that sets `vm.external_url` to something):
 
 ```
       vm = $evm.root['vm']
       $evm.log(:info, "VM to launch SSH for is #{vm.hostnames[0]}")
-      vm.saved_url = "https://www.google.com"
-      
+      vm.external_url = "https://www.google.com"
+
 ```
 *important: use URL including the protocol (https) or the browser will ignore the request*
+
 *also disable URL pop-up blocking in your browser to make this work*
 
 Automation -> Automate -> Customization -> Buttons
