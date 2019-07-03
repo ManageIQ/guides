@@ -67,7 +67,7 @@ POST /api/provision_requests
   },
   "requester" : {
     "user_name" : "jdoe",       /* Defaults to REST API Request credentials */
-    "owner_fist_name" : "John",
+    "owner_first_name" : "John",
     "owner_last_name" : "Doe",
     "owner_email" : "john.doe@sample.com",
     "auto_approve" : true
