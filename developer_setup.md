@@ -125,7 +125,7 @@ brew services start postgresql
 
 ## Install nvm and JavaScript build utilities
 
-Yarn, Gulp and Webpack are required to compile JavaScript assets. NodeJS version 10.16.x is required. If your distribution doesn't ship NodeJS 10.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps. Then install `yarn`, `gulp-cli` and `webpack`.
+Yarn, Gulp and Webpack are required to compile JavaScript assets. NodeJS version 10.16.x is required. If your distribution doesn't ship NodeJS 10.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps (you will need to restart your shell in order to source the nvm initialization environment). Then install `yarn`, `gulp-cli` and `webpack`.
 
 ```bash
 nvm install 10
@@ -149,49 +149,22 @@ git clone git@github.com:ManageIQ/manageiq.git
 cd manageiq
 ```
 
-## Configure Project Manually
+## Configure Project
 
-All the steps below are wrapped inside the `bin/setup` script, but they are outlined here to explain how to completely bootstrap a developer environment. If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
+---
+**NOTE**
+
+macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `setup`.
+
+CentOS 7 requires the `rh-postgresql10` SCL environment in order to compile the `pq` Gem's native extensions. Run `setup` inside the `scl` environment: `scl enable rh-postgresql10 'bin/setup'`.
+
+If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
 
 ```bash
 export DATABASE_URL='posgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
 ```
 
-### Create neccessary config files
-
-In order to run the application locally, a few sample config files need to be copied into their appropriate locations.
-
-```bash
-[[ -f "certs/v2_key" ]] || cp "certs/v2_key.dev" "certs/v2_key"
-[[ -f "config/cable.yml" ]] || cp "config/cable.yml.sample" "config/cable.yml"
-[[ -f "config/database.yml" ]] || cp "config/database.pg.yml" "config/database.yml"
-mkdir -p log
-```
-
-### Install Bundler and Gems
-
 ---
-**NOTE**
-
-macOS requires platform specific Gems. Run `bundle config specific_platform true` before installing.
-
-CentOS 7 requires the `rh-postgresql10` SCL environment in order to compile the `pq` Gem's native extensions. Run `bundle install` inside the `scl` environment: `scl enable rh-postgresql10 'bundle install'`.
-
----
-
-```bash
-gem install bundler --version 1.16 --conservative
-bundle config specific_platform true # optional for non-macOS platforms
-bundle install
-bundle exec rails update:ui
-bundle exec rails db:create
-bundle exec rails db:migrate
-bundle exec rails db:seed
-bundle exec rails test:vmdb:setup
-bundle exec rails log:clear tmp:clear
-```
-
-## Configure Project Automatically
 
 ```bash
 bin/setup
