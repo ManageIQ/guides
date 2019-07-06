@@ -151,6 +151,8 @@ cd manageiq
 
 ## Configure Project
 
+A Ruby script called `setup` is available to quickly set up the application. This script installs the required Gems, sets up necessary JavaScript libraries, creates and migrates the database, and finally seeds the database with development content.
+
 ---
 **NOTE**
 
