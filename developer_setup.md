@@ -87,7 +87,7 @@ sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postg
 
 ---
 
-Configure the cluster.
+#### Configure the cluster
 
 On Fedora and CentOS, configure a cluster using `postgresql-setup`.
 
