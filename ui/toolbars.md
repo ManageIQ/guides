@@ -38,6 +38,10 @@ class ApplicationHelper::Toolbar::VmCloudsCenter < ApplicationHelper::Toolbar::B
 
 ```
 
+#### Toolbar building diagram
+
+![Toolbar building workflow](assets/toolbar.png?raw=true "Toolbar building workflow")
+
 ### Buttons
 
 Toolbars consist of button groups and button groups consist of buttons.
