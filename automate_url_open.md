@@ -26,6 +26,8 @@ Create custom button with Automate method:
       * name: test_open_url
       * data should be (or anything that sets `vm.external_url` to something):
 
+![Create Automate Method](assets/automate_url_open.png?raw=true "Create Automate Method")
+
 ```
       vm = $evm.root['vm']
       $evm.log(:info, "VM to launch SSH for is #{vm.hostnames[0]}")
@@ -43,3 +45,13 @@ Create a new button for VMs with "Open Url" checked and either w/ or w/o a "Dial
 Go to VM summary page and click the new button.
 
 After clicking the button or after submitting the dialog (if you selected one) you will be redirected to VM summary page and a new page will open in a new browser tab.
+
+#### Example automate code for User
+
+```
+$evm.log(:info, "Current user_id #{$evm.root['user_id']}")
+object = $evm.vmdb($evm.root['vmdb_object_type']).find_by(:id => $evm.root['user_id'])
+$evm.log(:info, "Current object #{object}")
+object.external_url = "https://www.linkedin.com"
+```
+
