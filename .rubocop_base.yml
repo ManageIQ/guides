@@ -47,7 +47,8 @@ Rails:
 Rails/FindEach:
   Enabled: false
 Rails/HttpStatus:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: numeric
 Rails/ReadWriteAttribute:
   AutoCorrect: false
 Style/BracesAroundHashParameters:
