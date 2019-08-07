@@ -78,6 +78,8 @@ Style/GuardClause:
   Enabled: false
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
+  Exclude:
+    - db/schema.rb
 Style/IfUnlessModifier:
   Enabled: false
 Style/MethodCallWithArgsParentheses:
