@@ -8,16 +8,16 @@ AllCops:
 Layout/AlignHash:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
+Layout/DefEndAlignment:
+  AutoCorrect: true
+Layout/EndAlignment:
+  AutoCorrect: true
 Layout/ExtraSpacing:
   AutoCorrect: true
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
-Layout/DefEndAlignment:
-  AutoCorrect: true
-Layout/EndAlignment:
-  AutoCorrect: true
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
