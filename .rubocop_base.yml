@@ -158,6 +158,7 @@ Style/MethodCallWithArgsParentheses:
     - decimal
     - delegate
     - drop_table
+    - float
     - has_and_belongs_to_many
     - has_many
     - has_one
@@ -165,6 +166,7 @@ Style/MethodCallWithArgsParentheses:
     - identified_by
     - index
     - integer
+    - jsonb
     - mattr_accessor
     - references
     - remove_column
@@ -180,6 +182,7 @@ Style/MethodCallWithArgsParentheses:
     - skip_before_action
     - string
     - text
+    - uuid
     - validate
     - validates
     # ActsAsTree Gem
