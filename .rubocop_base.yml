@@ -8,16 +8,16 @@ AllCops:
 Layout/AlignHash:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
+Layout/DefEndAlignment:
+  AutoCorrect: true
+Layout/EndAlignment:
+  AutoCorrect: true
 Layout/ExtraSpacing:
   AutoCorrect: true
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
-Layout/DefEndAlignment:
-  AutoCorrect: true
-Layout/EndAlignment:
-  AutoCorrect: true
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
@@ -78,6 +78,8 @@ Style/GuardClause:
   Enabled: false
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
+  Exclude:
+    - db/schema.rb
 Style/IfUnlessModifier:
   Enabled: false
 Style/MethodCallWithArgsParentheses:
@@ -156,6 +158,7 @@ Style/MethodCallWithArgsParentheses:
     - decimal
     - delegate
     - drop_table
+    - float
     - has_and_belongs_to_many
     - has_many
     - has_one
@@ -163,6 +166,7 @@ Style/MethodCallWithArgsParentheses:
     - identified_by
     - index
     - integer
+    - jsonb
     - mattr_accessor
     - references
     - remove_column
@@ -178,6 +182,7 @@ Style/MethodCallWithArgsParentheses:
     - skip_before_action
     - string
     - text
+    - uuid
     - validate
     - validates
     # ActsAsTree Gem
