@@ -21,6 +21,7 @@
 * [Report data API](ui/report_data_api.md)
 * [Shared react component API](ui/register_react_component.md)
 * [Service UI Skinning](/service_ui/skinning.md)
+* [Remote Consoles](/remote_consoles.md)
 * [Running Changelog for Sprints](/community/changelog/)
 * [Roadmap and Sprints](https://github.com/ManageIQ/manageiq/milestones)
 * [Updating this Documentation](writing_guides.md)
