@@ -26,7 +26,7 @@ Create custom button with Automate method:
       * name: test_open_url
       * data should be (or anything that sets `vm.external_url` to something):
 
-![Create Automate Method](assets/automate_url_open.png?raw=true "Create Automate Method")
+![Create Automate Method](images/automate_url_open.png?raw=true "Create Automate Method")
 
 ```
       vm = $evm.root['vm']
