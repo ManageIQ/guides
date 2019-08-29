@@ -13,7 +13,6 @@ Set global user, push and pull options. If you want to set options on a per-repo
 ```bash
 git config --global user.name "Joe Smith"
 git config --global user.email joe.smith@example.com
-git config --global --bool pull.rebase true
 git config --global push.default simple
 ```
 
