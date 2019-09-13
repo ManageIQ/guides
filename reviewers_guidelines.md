@@ -1,10 +1,10 @@
 # Reviewer's guidelines
 
-We have some technical debt that is continously being refactored.
+We have some technical debt that is continuously being refactored.
 However, it's possible that someone is getting inspired by wrong pattern that still lays in the codebase.
 In such case the reviewer might not be aware of _The Right Way_ and approves the changes.
 
-This can cause a significant growth in technical dept. As it is complicated to track all the ongoing refactoring approaches,
+This can cause a significant growth in technical debt. As it is complicated to track all the ongoing refactoring approaches,
 this document is intended to summarize common pitfalls and also good examples.
 
 **Please update this document with simple `wrong` and `right` examples that you are aware of.**
