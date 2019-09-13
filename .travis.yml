@@ -1,0 +1,9 @@
+language: bash
+script:
+- "true"
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: curl -sSL https://raw.githubusercontent.com/ManageIQ/manageiq.github.io/build/trigger.sh | bash -s
+  on:
+    branch: master
