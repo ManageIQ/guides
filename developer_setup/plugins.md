@@ -185,4 +185,4 @@ git remote rm tmp
 
 ### Creating a new provider (plugin)
 
-If you plan to create a cloud manager type provider, you can use this [provider generator](/providers/generator/generator.md) to scaffold.
+If you plan to create a cloud manager type provider, you can use this [provider generator](/plugins/generator.md) to scaffold.
