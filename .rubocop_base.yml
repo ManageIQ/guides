@@ -93,6 +93,9 @@ Style/MethodCallWithArgsParentheses:
   Enabled: true
   IgnoredMethods:
     # Ruby
+    - add_dependency
+    - add_development_dependency
+    - add_runtime_dependency
     - alias_method
     - attr_accessor
     - attr_reader
