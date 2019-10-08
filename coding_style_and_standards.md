@@ -105,7 +105,7 @@ documentation server which regenerates the docs on each request.
     * Bugzilla tickets should be in the form of a full URL to the ticket.
     * Github issues should be of the form "Issue #n", where n is the
     issue number.
-* Each commit should have it's own unique subject.  Do not use the same
+* Each commit should have its own unique subject.  Do not use the same
   subject for a series of commits in a branch of work.
 * Keep commits small by committing often and only include related changes
   and tests together.
