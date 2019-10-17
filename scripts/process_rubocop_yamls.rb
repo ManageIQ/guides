@@ -6,7 +6,7 @@ require 'active_support/core_ext/class'
 require 'active_support/core_ext/string'
 
 module Shared
-  TARGET_RUBY_VERSION = 2.4
+  TARGET_RUBY_VERSION = 2.5
 
   def self.cops_and_departments
     cops = RuboCop::Cop::Cop.subclasses.map { |c| c.name.split("::").last(2).join("/") }.sort
