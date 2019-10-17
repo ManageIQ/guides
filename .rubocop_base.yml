@@ -4,7 +4,7 @@ AllCops:
   Exclude:
     - spec/manageiq/**/*
     - vendor/**/*
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
 Layout/AlignHash:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
