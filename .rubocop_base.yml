@@ -40,6 +40,10 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Naming/RescuedExceptionsVariableName:
   Enabled: false
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - vm
+    - dc
 Performance/Casecmp:
   Enabled: false
 Rails:
