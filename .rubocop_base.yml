@@ -234,7 +234,7 @@ Style/MethodCallWithArgsParentheses:
 Style/NumericLiterals:
   AutoCorrect: false
 Style/NumericPredicate:
-  AutoCorrect: false
+  Enabled: false
 Style/PerlBackrefs:
   Enabled: false
 Style/ParallelAssignment:
