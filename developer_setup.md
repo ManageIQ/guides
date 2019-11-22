@@ -163,7 +163,7 @@ CentOS 7 requires the `rh-postgresql10` SCL environment in order to compile the 
 If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
 
 ```bash
-export DATABASE_URL='posgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
+export DATABASE_URL='postgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
 ```
 
 ---
