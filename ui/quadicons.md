@@ -7,11 +7,11 @@ Example: 4 VM quadicons:
 ![Textual Summary Example](../images/quadicon.png)
 
 The definition of quadicons is stored as methods in model decorators under the `app/decorators` folder.
-The single icon definition should be defined as `single_quad` while the 4-view version should be `quadicon`.
-At least the `single_quad` method needs to be defined as this is both the default and the fallback.
+The format allows you to specify either a single quadrant large icon, or four small ones (see the examples below).
+Ideally each new model that gets displayed in a GTL should have a `quadicon` method defined.
 
 ```ruby
-def quadicon
+def quadicon # icon with four quadrants
   {
     :top_left => {
       :fonticon => 'fa fa-play',
@@ -34,7 +34,7 @@ def quadicon
   }
 end
 
-def single_quad
+def quadicon # one large icon
   {
     :fileicon => '/assets/svg/something.svg',
     :tooltip => 'hello world'
@@ -42,7 +42,4 @@ def single_quad
 end
 ```
 
-The decorators should not inherit from each other and everything has to be as explicit as possible. Any common behavior that affects all of the quadicons should be moved into a static method in `app/helpers/quadicon_helper.rb`, see `QuadiconHelper.machine_state` as an example.
-
-TODO: documentation for quad/single icon selection process
-
+It's not recommended to use too much inheritance between decorators, because there might be side effects and we would like to have everything as explicit as possible. Any common behavior that affects all of the quadicons should be moved into a static method in `app/helpers/quadicon_helper.rb`, see `QuadiconHelper.machine_state` as an example.
