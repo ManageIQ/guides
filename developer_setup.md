@@ -4,7 +4,7 @@
 
 | **Name**   | **Version** |
 | ---------- | ----------- |
-| Ruby       | 2.4.x       |
+| Ruby       | 2.5.x       |
 | Rails      | 5.1.x       |
 | Bundler    | 1.15.x      |
 | NodeJS     | 10.16.x     |
