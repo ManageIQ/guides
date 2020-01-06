@@ -37,7 +37,7 @@ end
 
 The group definition consists of a formatter -- `TextualGroup`, a label and a list of properties.
 
-Other formatters include `TextualMultilabel` and `TextualTags`.
+Other formatters include `TextualMultilabel` and `TextualTags`. All formatters live under `src/textual_summary` in [react-ui-components repository](https://github.com/ManageIQ/react-ui-components/tree/master/src/textual_summary).
 
 Example property definitions:
 ```
