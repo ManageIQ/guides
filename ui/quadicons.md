@@ -43,3 +43,5 @@ end
 ```
 
 It's not recommended to use too much inheritance between decorators, because there might be side effects and we would like to have everything as explicit as possible. Any common behavior that affects all of the quadicons should be moved into a static method in `app/helpers/quadicon_helper.rb`, see `QuadiconHelper.machine_state` as an example.
+
+Old quadicon implementation lives in (obsolete) [ui-components repository](https://github.com/ManageIQ/ui-components). The new one lives in `Quadicon` component under the [react-ui-components](https://github.com/ManageIQ/react-ui-components/tree/master/src/quadicon).

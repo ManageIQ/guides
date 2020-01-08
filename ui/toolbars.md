@@ -77,7 +77,9 @@ Further values have to be passed in as hash. In the example above it is
 Very important key is
   * :`klass`.
 
-Toolbars are rendered into JSON by the ManageIQ and then processed by toolbar component from the [ui-components repository](https://github.com/ManageIQ/ui-components)
+Toolbars are rendered by the ManageIQ using the [`MiqToolbar` component](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/javascript/components/miq-toolbar.jsx). That in turn uses the `Toolbar` and other components from the [react-ui-components repository](https://github.com/ManageIQ/react-ui-components/tree/master/src/toolbar).
+
+`MiqToolbar` also calls custom toolbars such as the [`DashboardToolbar`](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/javascript/components/dashboard_toolbar.jsx).
 
 #### Button details
 
