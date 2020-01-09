@@ -17,7 +17,7 @@ Layout/ExtraSpacing:
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
-  Enabled: false
+  EnforcedStyle: no_space
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
