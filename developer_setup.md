@@ -102,7 +102,7 @@ sudo pg_dropcluster --stop 10 main
 sudo pg_createcluster -e UTF-8 -l C 10 main -- --auth trust --username root
 ```
 
-On macOS, configured a cluster using `initdb` directly.
+On macOS, configure a cluster using `initdb` directly.
 
 ```bash
 rm -rf /usr/local/var/postgres
