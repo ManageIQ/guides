@@ -2,10 +2,10 @@
 
 ## DO
 * Set the following
-  * A purple component label (e.g. api, providers/vmware, etc)
-  * A colored scope label (bug, enhancement, refactoring, test, tools, developer, cleanup, performance, technical debt)
-  * A backport label for the next release (e.g. jansa/yes or jansa/no)
-  * The milestone
+  * A purple component label (e.g. api, providers/vmware, etc).
+  * A colored scope label (bug, enhancement, refactoring, test, tools, developer, cleanup, performance, technical debt).
+  * A backport label for the next release (e.g. jansa/yes or jansa/no).
+  * The milestone.
   * If there is no assignee, set yourself as the assignee.
 * Proactively look at new PRs and Issues on some interval.
   * If you know the SME (subject matter expert) for a particular PR or Issue, assign it to them.
