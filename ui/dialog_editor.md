@@ -6,7 +6,7 @@
 
 [`%dialog-editor`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/dialog-editor) is the component on the top of the hierarchy of the whole editor.
 
-The overall dialog editor hierarchy is following:
+The overall dialog editor hierarchy is as follows:
 ```haml
 %dialog-editor
   %dialog-editor-tabs
@@ -19,7 +19,7 @@ The overall dialog editor hierarchy is following:
         | %dialog-editor-modal-field-template -# per field type
 ```
 
-The structure of JSON object used to describe the service dialogs is following:
+The structure of JSON object used to describe the service dialogs is as follows:
 
 ```javascript
 'content': [{
@@ -38,17 +38,17 @@ The structure of JSON object used to describe the service dialogs is following:
 
 [`%dialog-editor-tabs`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/tab-list) displays a list of tabs assigned to the dialog.
 
-It is the main component, as all the content is stored inside the object.
+It is the main component as all the content is stored inside the object.
 
-At the beginning the component's controller loads the tabs of the dialog
+At the beginning, the component's controller loads the tabs of the dialog:
 ```javascript
 this.tabList = this.DialogEditor.getDialogTabs();
 ```
-and assigns id of currently active tab in the  `activeTab` variable in `DialogEditor` service.
+and assigns id of the currently active tab in the  `activeTab` variable in the `DialogEditor` service.
 
 #### `addTab()`
 
-function `addTab` creates a new empty tab, pushes it to the array with other tabs, and updates `activeTab` to the new tab.
+function `addTab` creates a new empty tab, pushes it to the array with the other tabs, and updates `activeTab` to the new tab.
 ```javascript
 {
   description: __('New tab ') + nextIndex,
@@ -62,29 +62,29 @@ function `addTab` creates a new empty tab, pushes it to the array with other tab
 
 #### `removeTab(id: number)`
 
-removes the tab with ID sent in parameter and updates the `activeTab`
+removes the tab with the ID sent in parameter and updates the `activeTab`.
 
 #### Update positions of tabs
 
-Because it's possible to remove (or just move the position) tab in the middle of the list, after every change, the positions are updated by calling `updatePosition` method defined in the `Dialog Editor` service
+Because it is possible to remove (or just move the position) tab in the middle of the list, after every change the positions are updated by calling `updatePosition` method defined in the `Dialog Editor` service:
 ```javascript
 this.DialogEditor.updatePositions(this.tabList);
 ```
 
 ### Dialog Groups
 
-On the first level, the [`%dialog-editor-boxes`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/box) component iterates through all the tabs, selects the one that is `active` and renders it's groups
+On the first level, the [`%dialog-editor-boxes`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/box) component iterates through all the tabs, selects the one that is `active`, and renders its groups:
 
 ```html
 ng-repeat='tab in vm.dialogTabs'
 ng-if='tab.position === vm.service.activeTab'
 ```
 
-After, it iterates through all the tabs, and calls `%dialog-editor-field` component belonging to the group (decided by the position of the group)
+After, it iterates through all the tabs, and calls `%dialog-editor-field` component belonging to the group (decided by the position of the group).
 
 Working with groups is very similar to working with tabs -- `addBox()`, `removeBox(id: number)` have the same purpose.
 
-After every change, position needs to be updated:
+After every change, the position needs to be updated:
 
 ```javascript
 this.DialogEditor.updatePositions(
@@ -92,9 +92,9 @@ this.DialogEditor.updatePositions(
 );
 ```
 
-The Group is `droppable` which means, elements can be Drag&Drop-ed into the content of the group.
+The Group is `droppable` which means that elements can be Drag&Drop-ed into the content of the group.
 
-Therefore in the controller of the component, handling for updating position of dialog fields needs to be done:
+Therefore in the controller of the component handling for updating position of dialog fields needs to be done:
 
 ```javascript
 public droppableOptions(e: any, ui: any) {
@@ -115,7 +115,7 @@ public droppableOptions(e: any, ui: any) {
 
 ### Dialog Fields
 
-The most important part of [`%dialog-editor-field`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/field) component is `ng-switch` in the template of the component, that renders the dialog field according to it's type (`on="vm.fieldData.type"`).
+The most important part of [`%dialog-editor-field`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/field) component is `ng-switch` in the template of the component, that renders the dialog field according to its type (`on="vm.fieldData.type"`).
 
 All the possible fields and their parameters are listed in this component.
 
@@ -130,7 +130,7 @@ The dialog field types are:
 - Radio Button
 - Tag Control
 
-In case of Dropdown, the `defaul_value` can be represented either as an array (if the Dropdown is multiselect) or a string. For multiselect dropdowns there is a method for converting the `default_value` attribute.
+In case of Dropdown, the `default_value` can be represented either as an array (if the Dropdown is multiselect) or a string. For multiselect dropdowns there is a method for converting the `default_value` attribute:
 
 ```javascript
 public convertValuesToArray() {
@@ -140,9 +140,9 @@ public convertValuesToArray() {
 
 ### Modal
 
-[`%dialog-editor-modal`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal) does not contain any template for the component, instead it contains behavior for modal used to edit details for Tabs, Groups and Fields.
+[`%dialog-editor-modal`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal) does not contain any template for the component. Instead it contains behavior for modal used to edit details for Tabs, Groups and Fields.
 
-The primary function of the component is to load data it needs. Each type has it's own mehthods to load the data into `this.modalData`. The source for the data is again commonly used `DialogEditor` service method `this.DialogEditor.getDialogTabs()`.
+The primary function of the component is to load data it needs. Each type has its own mehthods to load the data into `this.modalData`. The source for the data is again the commonly used `DialogEditor` service method: `this.DialogEditor.getDialogTabs()`.
 
 ```typescript
 public loadModalTabData(tab: number)
@@ -150,27 +150,27 @@ public loadModalBoxData(tab: number, box: number)
 public loadModalFieldData(tab: number, box: number, field: number)
 ```
 
-Modal controller also contains methods `addEntry()` and `removeEntry()`, that are specific for Dropdown List or Radio Button component.
+Modal controller also contains methods `addEntry()` and `removeEntry()` that are specific for Dropdown List or Radio Button component.
 
-`resolveCategories()` , `setupCategoryOptions()` and `currentCategoryEntries()` are methods specific for Tag Control field.
+`resolveCategories()` , `setupCategoryOptions()` and `currentCategoryEntries()` are methods specific for Tag Control fields.
 
-The methods are shared with other controllers by binding them to the component's tempate in `buildTemplate()`.
+The methods are shared with other controllers by binding them to the component's template in `buildTemplate()`.
 
-Displaying modal is done by `showModal(options: any)`.
+Displaying the modal is done by `showModal(options: any)`.
 
 #### Tab Modal
 
-In [`dialog-editor-modal-tab`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal-tab) component, only label and description of the Dialog Tab is set
+In [`dialog-editor-modal-tab`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal-tab) component, only the label and description of the Dialog Tab is set.
 
 #### Group Modal
 
-[`dialog-editor-modal-box`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal-box) is also only used to set label and description of the Dialog Group
+[`dialog-editor-modal-box`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal-box) is also only used to set label and description of the Dialog Group.
 
 #### Field Modal
 
-The main purpose of [`dialog-editor-modal-field`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal-field) is similar as in [`%dialog-editor-field`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/field) component.
+The main purpose of [`dialog-editor-modal-field`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal-field) is similar to the [`%dialog-editor-field`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/field) component.
 
-The component's template mostly consists `ng-switch`, rendering templates of specific fields from `modal-field-template` component described lower, with necessary methods passed into the component through the binding described in [`%dialog-editor-modal`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal) component.
+The component's template mostly consists of `ng-switch`, which renders templates of specific fields from the `modal-field-template` component described lower, with necessary methods passed into the component through the binding described in [`%dialog-editor-modal`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal) component.
 
 Example for the Radio Button Dialog Field:
 ```html
@@ -185,7 +185,7 @@ add-entry="vm.addEntry"
 remove-entry="vm.removeEntry"
 modal-data="vm.modalData">
 ```
-Label and Description for the Dialog Field are also set in this component, as well as setting Dialog Field to be *Dynamic* or *Reconfigurable*, as these properties are same for all the fields except Tag Control.
+Label and Description for the Dialog Field are also set in this component, as well as setting Dialog Field to be *Dynamic* or *Reconfigurable*, as these properties are same for all the fields except Tag Control types.
 
 #### Field Template
 
@@ -193,13 +193,13 @@ Controller of [`dialog-editor-modal-field-template`](https://github.com/ManageIQ
 
 The main part of the component are templates for each of the dialog fields. All the parameters for Dialog Fields are described in the templates of this component.
 
-The modal for Dialog Fields contains three permanent tabs - *Field Information*, *Options*, *Advanced*. If Dialog Field is set as `dynamic`, a new tab *Overridable Options* is displayed.
+The modal for Dialog Fields contains three permanent tabs - *Field Information*, *Options*, *Advanced*. If the Dialog Field is set as `dynamic`, a new tab with an *Overridable Options* heading is displayed.
 
-In *Field Information* all the fields must have a `name`, that's unique in the dialog, optionally `label`, `description`, and as mentioned before, except Tag Control, all the fields can be set as `dynamic` *(boolean)*.
+In *Field Information* all the fields must have a `name` that is unique in the dialog, optionally a `label`, `description`, and (as mentioned before, except Tag Control) all the fields can be set as `dynamic` *(boolean)*.
 
-In *Advanced* tab, `reconfigurable` *(boolean)* option can be set.
+In the *Advanced* tab, the `reconfigurable` *(boolean)* option can be set.
 
-All the other parameters for the components, that can be set in *Options* or *Overridable Options* tab, through the modal are the following:
+All the other parameters for the components the can be set in *Options* or *Overridable Options* tab through the modal are as follows:
 
 ##### Text Box
 
@@ -374,7 +374,7 @@ All the other parameters for the components, that can be set in *Options* or *Ov
 
 **A [note](https://github.com/ManageIQ/ui-components/pull/392#discussion_r296871830) by @eclarizio related to accessing values of the fields:*
 
-> on the ui-components side, for most of the field types,
+> on the ui-components side for most of the field types,
 > `default_value` is the value that is getting passed back from the
 > refresh API call that we should be looking at to determine what to
 > show to the user after a refresh happens. We changed it in
@@ -384,28 +384,28 @@ All the other parameters for the components, that can be set in *Options* or *Ov
 > list.
 >
 > On the ui-components side, because of the way datetime controls work,
-> there's special logic for the date and time parts because the
-> `default_value` comes in as a string (cause it's just a JSON
+> there is special logic for the date and time parts because the
+> `default_value` comes in as a string (because it is just a JSON
 > response), and then it gets parsed and separated into a `dateField`
 > and a `timeField` since the controls are separate.
 
 ### Toolbox
 
-[`dialog-editor-field-static`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/toolbox) is component used for dragging the Dialog Fields placeholders into the droppable Dialog Group.
+[`dialog-editor-field-static`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/toolbox) is the component used for dragging the Dialog Fields placeholders into the droppable Dialog Group.
 
-It's controller describes default values for parameters of each Dialog Fields.
+Its controller describes default values for parameters of each Dialog Field.
 
 ### Tree Selector and Tree View
 
 Components [Tree Selector](https://github.com/ManageIQ/ui-components/tree/master/src/tree-selector) and [Tree View](https://github.com/ManageIQ/ui-components/tree/master/src/tree-view) are set to be replaced by [react-wooden-tree](https://github.com/brumik/react-wooden-tree).
 
-In the Dialog Editor are used for selecting path to Automate methods, using [Dialog Editor HTTP service](https://github.com/ManageIQ/manageiq-ui-classic/blob/36522ada53a64a129cb3519b4183da8084dced1c/app/assets/javascripts/services/dialog_editor_http_service.js#L15-L26) to lazy-load Automate methods.
+In the Dialog Editor text boxes are used for selecting path to Automate methods using [Dialog Editor HTTP service](https://github.com/ManageIQ/manageiq-ui-classic/blob/36522ada53a64a129cb3519b4183da8084dced1c/app/assets/javascripts/services/dialog_editor_http_service.js#L15-L26) to lazy-load Automate methods.
 
 ## Angular Services
 
 ### Dialog Editor
 
-[`DialogEditor`](https://github.com/ManageIQ/ui-components/blob/master/src/dialog-editor/services/dialogEditorService.ts) service's primary use is to store the data of the edited dialog in `setData` function:
+The [`DialogEditor`](https://github.com/ManageIQ/ui-components/blob/master/src/dialog-editor/services/dialogEditorService.ts) service's primary use is to store the data of the edited dialog in the `setData` function:
 
 ```javascript
 public setData(data: any) {
@@ -416,11 +416,11 @@ public setData(data: any) {
 }
 ```
 
-The `setData` function is than called in [Dialog Editor controller](https://github.com/ManageIQ/manageiq-ui-classic/blob/62c50e0af7324eee16bc333b65d801e4398a5674/app/assets/javascripts/controllers/dialog_editor/dialog_editor_controller.js#L86)
+The `setData` function is then called in [Dialog Editor controller](https://github.com/ManageIQ/manageiq-ui-classic/blob/62c50e0af7324eee16bc333b65d801e4398a5674/app/assets/javascripts/controllers/dialog_editor/dialog_editor_controller.js#L86)
 
-Often used function is `public updatePositions(elements: any[])` used to recalculate indexes of items in the dialog after change of their position.
+Another often used function is `public updatePositions(elements: any[])` used to re-calculate indexes of items in the dialog after a change of their position.
 
-The Dialog Editor also uses [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) to protect the users from mistakenly loosing the changes while editing the dialog. In the `sessionStorage` the dialogs are stored by identificator `'service_dialog-' + id`.
+The Dialog Editor also uses [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) to protect the users from mistakenly losing the changes while editing the dialog. In the `sessionStorage` the dialogs are stored by identificator `'service_dialog-' + id`.
 
 ```javascript
 public clearSessionStorage(id: string) {
@@ -438,7 +438,7 @@ public restoreSessionStorage(id: string) {
 
 ### Dialog Editor Validation
 
-[`DialogValidation`](https://github.com/ManageIQ/ui-components/blob/master/src/dialog-editor/services/dialogValidationService.ts) service contains set of rules that needs to be fulfilled to enable to submit the Dialog.
+The [`DialogValidation`](https://github.com/ManageIQ/ui-components/blob/master/src/dialog-editor/services/dialogValidationService.ts) service contains set of rules that needs to be fulfilled in order to be able to submit the Dialog.
 
 The rules are:
  - rules for Dialog:
@@ -463,10 +463,10 @@ The rules are:
 ### Launch the action to open Dialog Editor
 
 The Dialog Editor can be opened for three different actions - `edit`, `copy` or `new`.
-If both `:id` and `:copy` keys are specified, action is `copy`. If the `:copy` key is missing, the action is `edit`, if not ever `:id` is present a `new` Dialog is being created.
+If both `:id` and `:copy` keys are specified, action is `copy`. If the `:copy` key is missing, the action is `edit`, if ever `:id` is not present, a `new` Dialog is being created.
 The behavior is described in [`miq_ae_customization_helper.rb`](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/helpers/miq_ae_customization_helper.rb)
 
-The top level component `%dialog-editor` is used in [editor.html.haml](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/views/miq_ae_customization/editor.html.haml) template, where as well the ID of the dialog is stored by
+The top level component `%dialog-editor` is used in the [editor.html.haml](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/views/miq_ae_customization/editor.html.haml) template, where the ID of the dialog is also stored by:
 
 ```haml
 ManageIQ.angular.app.value('dialogIdAction', '#{ dialog_id_action.to_json }');
@@ -474,9 +474,9 @@ ManageIQ.angular.app.value('dialogIdAction', '#{ dialog_id_action.to_json }');
 
 ### Data from the API
 
-Service Dialogs are serialized together from 4 database tables - [dialog](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog.rb), [dialog tab](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_tab.rb), [dialog group](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_group.rb), and [dialog fields](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_field.rb). The data are serialized into a single object, before passed to the Dialog Editor.
+Service Dialogs are serialized together from four database tables - [dialog](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog.rb), [dialog tab](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_tab.rb), [dialog group](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_group.rb), and [dialog fields](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_field.rb). The data are serialized into a single object, before being passed to the Dialog Editor.
 
-The data are loaded by [Dialog Editor HTTP service](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/assets/javascripts/services/dialog_editor_http_service.js) from API by the request
+The data are loaded by [Dialog Editor HTTP service](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/assets/javascripts/services/dialog_editor_http_service.js) from API by the request:
 ```javascript
 return API.get('/api/service_dialogs/' + id + '?attributes=content,buttons,label');
 ```
@@ -498,7 +498,7 @@ var dialogInitContent = {
 };
 ```
 
-from the API the data are received from method [`fetch_service_dialogs_content`](https://github.com/ManageIQ/manageiq-api/blob/e9ca3256ded6d026fe412c0815e1bb672ee0d4e1/app/controllers/api/service_dialogs_controller.rb#L19-L22):
+from the API the data are received from the method [`fetch_service_dialogs_content`](https://github.com/ManageIQ/manageiq-api/blob/e9ca3256ded6d026fe412c0815e1bb672ee0d4e1/app/controllers/api/service_dialogs_controller.rb#L19-L22):
 
 ```ruby
 def fetch_service_dialogs_content(resource)
@@ -507,7 +507,7 @@ def fetch_service_dialogs_content(resource)
 end
 ```
 
-after JSON is loaded, for dynamic fields, dialog_field_responders needs to have an id customized by `translateResponderNamesToIds`.
+after JSON is loaded for dynamic fields, dialog_field_responders needs to have an id, customized by: `translateResponderNamesToIds`.
 
 ### Submitting the Dialog
 
@@ -521,6 +521,6 @@ return API.post('/api/service_dialogs' + id, { action: action, resource: data },
 
 ## Demo
 
-To play with the Dialog Editor and see how the JSON object of the dialog looks like, you can run [ui-components](https://github.com/ManageIQ/ui-components) and play with the Dialog Editor at http://localhost:4000/#/dialog/editor.
+To play with the Dialog Editor and see what the JSON object of the dialog looks like, you can run [ui-components](https://github.com/ManageIQ/ui-components) and play with the Dialog Editor at http://localhost:4000/#/dialog/editor but please remember that
 
-_The demo is not anyhow connected to a real instance and so there's no way to connect dynamic fields to Automate method_
+_The demo is not connected to a real instance and there is no way to connect dynamic fields to Automate methods in it._
