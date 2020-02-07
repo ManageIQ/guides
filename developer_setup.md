@@ -13,6 +13,13 @@
 
 ## Build Requirements
 
+If running CentOS 8:
+```
+sudo yum config-manager --set-enabled PowerTools
+sudo dnf copr enable manageiq/ManageIQ-Master
+sudo yum install epel-release
+```
+
 In order to compile Ruby, native Gems and native NodeJS modules, GCC and its related utilities are required. Depending on your Linux distribution, package names may vary slightly.
 
 * Using dnf: `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python`
