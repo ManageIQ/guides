@@ -6,14 +6,14 @@ Triage meetings are divided into two groups General and API/UI.
   * [Core/Provider triage meetings][] are usually held weekly and include provider and core repositories
   * [API/UI triage meetings][] are also held weekly and include the UI and API repos.
   
-Triage Category|Core/Provider Link|UI/API Link
----|---|---
-Unassigned issues|[Core/Provider unassigned issues][]|[UI/API unassigned issues][]
-Assigned issues without scope label|[Core/Provider issues without scope label][]|[UI/API issues without scope label][]
-Stale issues|[Core/Provider stale issues][]|[UI/API stale issues][]
-Unassigned pull requests| [Core/Provider unassigned pull requests][]|[UI/API unassigned pull requests][]
-Assigned pull requests without scope label|[Core/Provider assigned pull requests without scope label][]|[UI/API assigned pull requests without scope label][]
-Stale pull requests|[Core/Provider stale pull requests][]|[UI/API stale pull requests][]
+Triage Category                            | Core/Provider Link                                           | UI/API Link
+---                                        | ---                                                          | ---
+Unassigned issues                          | [Core/Provider unassigned issues][]                          | [UI/API unassigned issues][]
+Assigned issues without scope label        | [Core/Provider issues without scope label][]                 | [UI/API issues without scope label][]
+Stale issues                               | [Core/Provider stale issues][]                               | [UI/API stale issues][]
+Unassigned pull requests                   | [Core/Provider unassigned pull requests][]                   | [UI/API unassigned pull requests][]
+Assigned pull requests without scope label | [Core/Provider assigned pull requests without scope label][] | [UI/API assigned pull requests without scope label][]
+Stale pull requests                        | [Core/Provider stale pull requests][]                        | [UI/API stale pull requests][]
 
 
 
