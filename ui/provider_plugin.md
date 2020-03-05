@@ -73,7 +73,7 @@ It's recommended that the React class be split into two parts:
 
 This is shown in the examples here:
 
-* [Form Example](https://github.com/ManageIQ/react-ui-components/tree/master/src/amazon-security-form-group)
+* [Form Example](https://github.com/ManageIQ/manageiq-providers-lenovo/pull/251)
 * [Using Redux](https://github.com/ManageIQ/manageiq-ui-classic/pull/3509)
 
 #### Dialog player forms
