@@ -4,7 +4,6 @@ Use the table below to look up which sprint a pull request was merged in.
 
 Sprint|Start|End|Merged PRs
 ---|---|---|---
-133|2020-03-17|2020-03-30|[link](https://github.com/issues?utf8=%E2%9C%93&q=org%3AManageiq+merged%3A2020-03-17..2020-03-30)
 132|2020-03-03|2020-03-16|[link](https://github.com/issues?utf8=%E2%9C%93&q=org%3AManageiq+merged%3A2020-03-03..2020-03-16)
 131|2020-02-18|2020-03-02|[link](https://github.com/issues?utf8=%E2%9C%93&q=org%3AManageiq+merged%3A2020-02-18..2020-03-02)
 130|2020-02-04|2020-02-17|[link](https://github.com/issues?utf8=%E2%9C%93&q=org%3AManageiq+merged%3A2020-02-04..2020-02-17)
