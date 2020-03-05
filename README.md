@@ -24,6 +24,7 @@
 * [Project Roadmap](https://github.com/orgs/ManageIQ/projects/13)
 * [Repository Labels and Colors](labels.md)
 * [Reviewer Guidelines](reviewers_guidelines.md)
+* [Sprint Boundaries](sprint_boundaries.md)
 * [UI Patterns](ui/patterns.md)
 * [UI Plugins](ui/plugins.md)
 * [Updating this Documentation](writing_guides.md)
