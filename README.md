@@ -15,6 +15,7 @@
 * [Setting up Kubernetes for use with ManageIQ](providers/kubernetes.md)
 
 ### Developer Guidelines
+* [Backport Process](backport_process.md)
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Contributing to the API](https://github.com/ManageIQ/manageiq-api/blob/master/CONTRIBUTING.md)
 * [GIT Helpers](git_utils/README.md)
@@ -24,6 +25,7 @@
 * [Project Roadmap](https://github.com/orgs/ManageIQ/projects/13)
 * [Repository Labels and Colors](labels.md)
 * [Reviewer Guidelines](reviewers_guidelines.md)
+* [Sprint Boundaries](sprint_boundaries.md)
 * [UI Patterns](ui/patterns.md)
 * [UI Plugins](ui/plugins.md)
 * [Updating this Documentation](writing_guides.md)
