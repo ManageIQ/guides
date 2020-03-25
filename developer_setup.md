@@ -132,11 +132,16 @@ brew services start postgresql
 
 ## Install nvm and JavaScript build utilities
 
-Yarn, Gulp and Webpack are required to compile JavaScript assets. NodeJS version 10.16.x is required. If your distribution doesn't ship NodeJS 10.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps (you will need to restart your shell in order to source the nvm initialization environment). Then install `yarn`, `gulp-cli` and `webpack`.
+Yarn and NodeJS version 10 or newer are required. If your distribution doesn't ship NodeJS 10.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps (you will need to restart your shell in order to source the nvm initialization environment).
 
 ```bash
 nvm install 10
-npm install -g yarn gulp-cli webpack
+```
+
+Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
+
+```bash
+npm install -g yarn
 ```
 
 ## Install Ruby and Bundler
