@@ -1,0 +1,91 @@
+---
+params:
+  base_params: &base_params
+  - org:ManageIQ
+  - archived:false
+  - sort:created-desc
+  unassigned: &unassigned
+  - no:assignee
+  - -label:"help wanted"
+  open_issue: &open_issue
+  - is:issue
+  - is:open
+  open_pr: &open_pr
+  - is:pr
+  - is:open
+  missing_scope: &missing_scope
+  - -label:bug
+  - -label:cleanup
+  - -label:documentation
+  - -label:enhancement
+  - -label:performance
+  - -label:refactoring
+  - -label:"technical debt"
+  - -label:test
+  stale: &stale
+  - label:stale
+  backport_request: &backport_request
+  - is:merged
+  - is:pr
+  - label:jansa/yes?
+repos:
+  - name: Core/Provider
+    params:
+    # Ignore certain repos
+    - -repo:ManageIQ/bugzilla_mirror
+    - -repo:ManageIQ/integration_tests
+    - -repo:ManageIQ/manageiq-consumption
+    - -repo:ManageIQ/manageiq-performance
+    - -repo:ManageIQ/manageiq-release
+    - -repo:ManageIQ/manageiq-v2v
+    - -repo:ManageIQ/manageiq_docs
+    - -repo:ManageIQ/polisher
+    - -repo:ManageIQ/wrapanapi
+    # Ignore ui_api repos
+    - -repo:ManageIQ/manageiq-api
+    - -repo:ManageIQ/manageiq-ui-classic
+    - -repo:ManageIQ/manageiq-ui-service
+    - -repo:ManageIQ/react-ui-components
+    - -repo:ManageIQ/ui-components
+  - name: UI/API
+    params:
+    - repo:ManageIQ/manageiq-api
+    - repo:ManageIQ/manageiq-ui-classic
+    - repo:ManageIQ/manageiq-ui-service
+    - repo:ManageIQ/react-ui-components
+    - repo:ManageIQ/ui-components
+links:
+- name: unassigned issues
+  params:
+  - *base_params
+  - *open_issue
+  - *unassigned
+- name: issues without scope label
+  params:
+  - *base_params
+  - *open_issue
+  - *missing_scope
+- name: stale issues
+  params:
+  - *base_params
+  - *open_issue
+  - *stale
+- name: unassigned pull requests
+  params:
+  - *base_params
+  - *open_pr
+  - *unassigned
+- name: assigned pull requests without scope label
+  params:
+  - *base_params
+  - *open_pr
+  - *missing_scope
+- name: stale pull requests
+  params:
+  - *base_params
+  - *open_pr
+  - *stale
+- name: backport requests
+  params:
+  - *base_params
+  - *backport_request
