@@ -1,7 +1,6 @@
 ---
 params:
   base_params: &base_params
-  - org:ManageIQ
   - archived:false
   - sort:created-desc
   unassigned: &unassigned
@@ -15,15 +14,23 @@ params:
   - is:open
   missing_scope: &missing_scope
   - -label:bug
+  - -label:"bug/sporadic test failure"
   - -label:cleanup
+  - -label:developer
   - -label:documentation
   - -label:enhancement
   - -label:performance
+  - -label:redesign
   - -label:refactoring
   - -label:"technical debt"
   - -label:test
   stale: &stale
   - label:stale
+  questions: &questions
+  - label:question
+  - label:"feedback requested"
+  no_wip: &no_wip
+  - -label:wip
   backport_request: &backport_request
   - is:merged
   - is:pr
@@ -31,17 +38,29 @@ params:
 repos:
   - name: Core/Provider
     params:
+    - org:ManageIQ
     # Ignore certain repos
     - -repo:ManageIQ/bugzilla_mirror
-    - -repo:ManageIQ/integration_tests
     - -repo:ManageIQ/manageiq-consumption
+    - -repo:ManageIQ/manageiq-cross_repo-tests
+    - -repo:ManageIQ/manageiq-design
     - -repo:ManageIQ/manageiq-performance
     - -repo:ManageIQ/manageiq-release
     - -repo:ManageIQ/manageiq-v2v
-    - -repo:ManageIQ/manageiq_docs
+    - -repo:ManageIQ/manageiq-v2v-conversion_host
+    - -repo:ManageIQ/manageiq-v2v-conversion_host-build
+    - -repo:ManageIQ/manageiq-vagrant-dev
     - -repo:ManageIQ/polisher
+    # Ignore QE repos
+    - -repo:ManageIQ/integration_tests
     - -repo:ManageIQ/wrapanapi
-    # Ignore ui_api repos
+    # Ignore Docs repos
+    - -repo:ManageIQ/manageiq-lxca-docs
+    - -repo:ManageIQ/manageiq-nuage-docs
+    - -repo:ManageIQ/manageiq-redfish-docs
+    - -repo:ManageIQ/manageiq-vcloud-docs
+    - -repo:ManageIQ/manageiq_docs
+    # Ignore UI/API repos since it has a dedicated triage
     - -repo:ManageIQ/manageiq-api
     - -repo:ManageIQ/manageiq-ui-classic
     - -repo:ManageIQ/manageiq-ui-service
@@ -70,17 +89,19 @@ links:
   - *base_params
   - *open_issue
   - *stale
-- name: unassigned pull requests
+- name: unassigned PRs
   params:
   - *base_params
   - *open_pr
+  - *no_wip
   - *unassigned
-- name: assigned pull requests without scope label
+- name: PRs without scope label
   params:
   - *base_params
   - *open_pr
+  - *no_wip
   - *missing_scope
-- name: stale pull requests
+- name: stale PRs
   params:
   - *base_params
   - *open_pr
