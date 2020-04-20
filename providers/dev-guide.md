@@ -15,7 +15,7 @@ ManageIQ provider. Because the ManageIQ is a web application written in the Ruby
 natural to split the task to the MVC layers.
 
 ## Developer Setup
-Not to reinvent the wheel we recommend going to the
+So as not to reinvent the wheel we recommend going to the
 [developer setup](https://github.com/ManageIQ/guides/blob/master/developer_setup.md) page and do all the
 necessary steps. After this, you should be able to run the MiQ web application with typing `rails server` (shortly `rails s`)
 or even `bundle exec rails server` which makes sure it is running in context of the current bundle (more info
@@ -25,13 +25,13 @@ listening on http://localhost:3000. The default credentials for the dev setup ar
 ## Data Flow
 Managers are responsible to feed the data into MiQ DB during the refresh operation. In the MiQ terminology it's
 feeding the MiQ inventory. This operation can be triggered explicitly from UI but it's also done automatically
-each 15 minutes. Provider is also capable of running operations.
+each 15 minutes. Each provider is also capable of running operations.
 
-After the Developer Setup step you should be able to run the UI server. This wont however spawn the worker thread
+After the Developer Setup step you should be able to run the UI server. This, however, won't spawn the worker thread
 that is responsible for doing the refresh operation on providers. If you need to do also the refresh on providers,
 We recommend running `rails console` (or `rails c`) in a new terminal window and typing in `simulate_queue_worker`. This command in the
 rails console will do the work if you click in UI on the refresh button. If you want to run the refresh
-directly from the rails console, you may want to do that by
+directly from the rails console, you may want to do that with
 
 
 ```ruby
@@ -41,10 +41,10 @@ reload!; EmsRefresh.refresh(ExtManagementSystem.last)
 The `reload!` in the command is not necessary if you didn't modify the code.
 
 ## Model Layer
-When adding new features or writing new providers, the first step is usually to map the entities and relations by to the
-models MiQ, in order to be able to store the data from any external provider. We need to have the db tables prepared for it.
+When adding new features or writing new providers, the first step is usually to map the entities and relations by
+model to the MiQ database, in order to be able to store the data from any external provider. We need to have the database tables prepared for it.
 
-In Rails most often each entity has its own table in database. To manage the DB changes there is a support mechanism
+In Rails most often each entity has its own table in the database. To manage the DB changes there is a support mechanism
 called migrations. Migrations allow easily migrate from one version of schema to an older one or upgrade to a new
 one. So the migration scripts basically contain the described change to the schema including the creation of a new
 table. They are stored in [here](https://github.com/ManageIQ/manageiq-schema/tree/master/db/migrate) and each migration
@@ -55,7 +55,7 @@ a way to scaffold them using for instance:
 rails generate migration AddColumnNameToTableName column:string
 ```
 
-This command should generate the properly named file with following content:
+This command should generate the properly named file with the following content:
 
 ```ruby
 class AddColumnToTable < ActiveRecord::Migration[5.0] def change add_column :table_name, :column_name, :string end end
@@ -65,18 +65,18 @@ Scaffolding can make things faster, but often it's easier to write it from scrat
 
 ## View Layer
 For more comprehensive and more general guide we recommend going
-[here](https://github.com/ManageIQ/guides/blob/master/ui/patterns.md). The MiQ application spans multiple repositories
+[here](https://github.com/ManageIQ/guides/blob/master/ui/patterns.md). The MiQ application spans multiple repositories:
 the core (including models) is hosted [here](https://github.com/ManageIQ/manageiq/) and the majority of the UI is
 stored in the
 [ui repo](https://github.com/ManageIQ/manageiq-ui-classic) (contains also all the controllers). Some angular
-components are in [components repo](https://github.com/ManageIQ/ui-components) and also some providers have been factored
+components are in [components repo](https://github.com/ManageIQ/ui-components) and also the providers have been refactored
 out into their own repositories. 
-It's important to keep it mind, that when implementing a new feature that changes the backend and has also the frontend,
+It's important to keep in mind that when implementing a new feature that changes the backend and also the frontend,
  multiple repositories need to be addressed.
 
 ### HAML
 Haml is the templating mechanism used across ManageIQ. It provides a way to write the HTML code in a yaml-like language
-without the need of writing the tons of nested divs. It's pretty simple format and for instance this piece of haml code
+without the need of writing the tons of nested divs. Its format is pretty simple, for instance this piece of haml code:
 
 ```haml
 #content
@@ -105,11 +105,11 @@ If you prefer the plain HTML or you already have your code in HTML, you may want
 some [conversion tools](https://html2haml.herokuapp.com/) for that. 
 
 ### Partials
-Some pieces of UI that are used in many places can be extracted into so called partials and reused from multiple
-contexts. Partial is a HAML file whose name starts with the underscore. So for instance one can create a file called
+Some pieces of the UI that are used in many places can be extracted into so-called partials and reused from multiple
+contexts. A partial is a HAML file whose name starts with the underscore. So for instance, one can create a file called
 `_sidebar.haml` and reuse this by calling `render :partial => sidebar`. Partials can also have a "slots for data"
 that are passed to the render method or one can call normal ruby methods from it similarly as in the normal HAML
-files. This way we can customize them easily. More comprehensive (and 100% better) description is
+files. This way we can customize them easily. A more comprehensive (and 100% better) description is
 [here](http://guides.rubyonrails.org/layouts_and_rendering.html#partial-layouts).
 
 
@@ -134,7 +134,7 @@ TODO
 While the model and most of the business logic is in the `manageiq/manageiq` repository, the controller+view is in `manageiq/manageiq-ui-classic` repo.
 
 ### Router
-In Rails apps, all the possible actions must be whitelisted in the router configuration. In case of MiQ the router is
+In Rails apps, all the possible actions must be whitelisted in the router configuration. In the case of MiQ, the router is
 [here](https://github.com/ManageIQ/manageiq-ui-classic/blob/036735fcd678430376402f7d81f7d0d7e5c69e5b/config/routes.rb).
 Most common actions are:
 
@@ -156,9 +156,9 @@ Again, the naming is absolutely crucial here, because everything should auto-mag
 
 ## Gluing Everything Together
 Unfortunately, there is no easy way here. Due to some legacy code, often, it is necessary to add the entity
-name to some long list of other entity names to achieve a simple task. Best way to struggle with it,
-is using the debugger and trying to figure out, why it's not working as it should (somewhere in the chain there must be a check,
-if the current entity name is in some list). Or to look to some existent PRs that were adding similar features and check what files
+name to some long list of other entity names to achieve a simple task. The best way to struggle with it
+is using the debugger and trying to figure out why it's not working as it should (somewhere in the chain there must be a check,
+if the current entity name is in some list). Another approach is to look to some existent PRs that were adding similar features and check what files
 need to be modified.
 
 ### Places that needs attention
@@ -197,7 +197,7 @@ There should be a lot of SQL queries that may be handy during the development. O
 ```bash
 psql -U postgres vmdb_development
 ```
-The command should open the Postgres client on the dev db. Btw. by default the development environment is active, this can be changed
+The command should open the Postgres client on the dev db. By default the development environment is active, this can be changed
 by `rails s -e production`.
 
 Even better option is to inspect the db with:
@@ -218,15 +218,15 @@ gem 'pry-byebug'
 Then after running `bundle install`, you should be all set. Now, adding the breakpoint means writing `binding.pry` somewhere in the code.
 Once the ruby executes the code with this line, it stops the execution and opens a REPL where Ruby code can be inspected and executed.
 
-TIP: This works also for the HAML files. But instead of using just `binding.pry`, use `- binding.pry` (+ respect the indentation of the file)
+TIP: This works also for the HAML files. But instead of using just `binding.pry`, use `- binding.pry` (and respect the indentation of the file).
 
 ### Console
-Other way of debugging is just printing the variables to the console by `puts foo`. Object can have the `.to_s` method that
+Another way of debugging is just printing the variables to the console by `puts foo`. Object can have the `.to_s` method that
 is responsible for printing the object (equivalent to `.toString()` method in Java), if the `.to_s` method is not implemented,
-you can use the in `.inspect` method that provides the info about the object.
+you can use the `.inspect` method that provides the info about the object.
 
 ## Rails Console
-In Rails apps, you can use the so called rails console by typing the `rails console` or `rails c` to the command line
+In Rails apps, you can use rails console by typing the `rails console` or `rails c` to the command line
 (being in the root of the repo). This opens the REPL Ruby console, where you can type in Ruby code and it evaluates it.
 What's interesting here is that you can actually alter the running Rails application by:
 
@@ -238,8 +238,8 @@ What's interesting here is that you can actually alter the running Rails applica
 The methods like `.create`, `.all`, `.find` are actually not defined on the models, but comes from the ActiveRecord (~ORM) framework.
 
 ## Code Style
-For up to date coding standards consult this [guide](https://github.com/ManageIQ/guides/blob/master/coding_style_and_standards.md).
-The travis build is set that it checks what rules are violated and reports it in the PR comment. If you want to run it locally, just
+For up-to-date coding standards, consult this [guide](https://github.com/ManageIQ/guides/blob/master/coding_style_and_standards.md).
+The travis build is set to check what rules are violated and report those in the PR comment. If you want to run it locally, just
 type in: `rubocop` and/or `haml-lint` (if necessary, install those ruby gems).
 
 There is also a bash helper script called [`murphy.sh`](https://github.com/zeari/miq-helpers/blob/master/murphy.sh)
@@ -248,11 +248,11 @@ It is similar to the `rubocop-git` gem.
 
 # Common Tasks
 Rather than trying to describe each part separately as before, here we would like to focus on some common tasks and provide a link to
-PRs/commits that did that in the past.
+PRs/commits that did so in the past.
 
 ## Creating new Models and Migrations
-As mentioned above, there is a scaffolding helper for creating the migrations. The db knows its current version, so
-if there is a new migration that hasn't been applied, it will apply it when running `rake db:migrate`. In case, there was
+As mentioned above, there is a scaffolding helper for creating the migrations. The database knows its current version, so
+if there is a new migration that hasn't been applied, it will get applied when running `rake db:migrate`. In case there was
 anything wrong with the migration, one can go back and undo it by `rake db:rollback`, change the migration file and try again.
 
 [documentation](http://edgeguides.rubyonrails.org/active_record_migrations.html)
@@ -267,14 +267,14 @@ If you are able to achieve that structure in the `refresh_parser.rb`, you are ha
 ### Defining Inventory
 
 Providers which use graph refresh consists of Collector, Persister and Parser classes.
-When the Collector loads data from external provider, the Persister defines the inventory structure based on InventoryCollection objects. 
-Inventory is then saved to VMDB (app database). Each inventory collection is mapped to an ActiveRecord model.
+When the Collector loads data from an external provider, the Persister defines the inventory structure based on InventoryCollection objects. 
+Inventory is then saved to the VMDB (app database). Each inventory collection is mapped to an ActiveRecord model.
 Parser maps data collected from the provider to the common format defined by the ActiveRecord model.
 
-Persister's InventoryCollection definition is described [there](persister/inventory_collections.md).
+THe persister InventoryCollection definition is described [here](persister/inventory_collections.md).
 
-## Registering the Features in for RBAC
-If everything is as it should be, but you still can't see anything in the UI, this may be the purpose. MiQ has the RBAC model
+## Registering the Features for RBAC
+If everything is as it should be but you still can't see anything in the UI, permissions may be the reason. MiQ has the RBAC model
 that checks if the user in the current role is able to access the feature. This is described in the yaml file called `miq_product_features.yml`.
 
 When adding the new entity, it is also necessary add the record
@@ -291,11 +291,11 @@ The side navigation layout is described in `/app/views/layouts/listnav/_X.html.h
 As for the missing toolbar, adding the plural of the entity name for list and singular for the detail page to this file
 `/app/helpers/application_helper/toolbar/Xs_center.rb` is needed + register itself here:
 `/app/helpers/application_helper/toolbar_chooser.rb:439` (2 places in that file, 1 for singular and 1 for plural).
-Then automagic should work.
+Then it automagically should work.
 
 ## Exposing the Live Metrics for Entity
 
-If the metric graphs should be displayed for your entity, you need to do following:
+If the metric graphs should be displayed for your entity, you need to do the following:
 
 * `app/controllers/application_controller/performance.rb`,
 * including the `LiveMetricMixin` in the entity model,
