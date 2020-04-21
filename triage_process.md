@@ -1,6 +1,6 @@
 # Issue and PR Lifecycle and Triage Process
 
-The community holds meetings regularly to triage issues and pull requests across the ManageIQ organization’s repositories. Attendees include code owners and mergers for the repositories, but all are invited to attend.*This is not a meeting to assign when work will be done.*
+The community holds meetings regularly to triage issues and pull requests across the ManageIQ organization’s repositories.  Attendees include code owners and mergers for the repositories.  *This is not a meeting to assign when work will be done.*  If you are interested in following a specific issue or pull request, please [subscribe to it on GitHub].
 
 Triage meetings are divided into two groups Core/Provider and API/UI.
   * [Core/Provider triage meetings][] are usually held weekly and include provider and core repositories
@@ -52,6 +52,7 @@ Backport requests          | [Core/Provider backport requests][]          | [UI/
   * Stale and unmergeable PRs are closed automatically.
 
 
+[subscribe to it on GitHub]:                                https://help.github.com/en/github/managing-subscriptions-and-notifications-on-github
 [Core/Provider triage meetings]:                            https://calendar.google.com/event?action=TEMPLATE&tmeid=NWNjbGw2dDgzOGluZDJrb3QzanFobW9vNmNfMjAyMDAyMTNUMTgzMDAwWiBjb250YWN0QG1hbmFnZWlxLm9yZw&tmsrc=contact%40manageiq.org&scp=ALL
 [API/UI triage meetings]:                                   https://calendar.google.com/event?action=TEMPLATE&tmeid=NzIxc28ycGtpcnJqcThobjhiMjh2NGQ5N3FfMjAyMDAyMTRUMTQzMDAwWiBjb250YWN0QG1hbmFnZWlxLm9yZw&tmsrc=contact%40manageiq.org&scp=ALL
 [scope labels]:                                             https://www.manageiq.org/docs/guides/labels
