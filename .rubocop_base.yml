@@ -5,7 +5,7 @@ AllCops:
     - spec/manageiq/**/*
     - vendor/**/*
   TargetRubyVersion: 2.5
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
 Layout/DefEndAlignment:
@@ -38,12 +38,12 @@ Metrics/ParameterLists:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
-Naming/RescuedExceptionsVariableName:
-  Enabled: false
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   AllowedNames:
     - vm
     - dc
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
 Performance/Casecmp:
   Enabled: false
 Rails:
