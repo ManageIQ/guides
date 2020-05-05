@@ -14,6 +14,8 @@ Layout/EndAlignment:
   AutoCorrect: true
 Layout/ExtraSpacing:
   AutoCorrect: true
+Layout/LineLength:
+  Enabled: false
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
@@ -27,8 +29,6 @@ Metrics/BlockNesting:
 Metrics/ClassLength:
   Enabled: false
 Metrics/CyclomaticComplexity:
-  Enabled: false
-Metrics/LineLength:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
