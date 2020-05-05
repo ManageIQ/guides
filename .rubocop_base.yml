@@ -55,8 +55,6 @@ Rails/HttpStatus:
   EnforcedStyle: numeric
 Rails/ReadWriteAttribute:
   AutoCorrect: false
-Style/BracesAroundHashParameters:
-  EnforcedStyle: context_dependent
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/ClassCheck:
