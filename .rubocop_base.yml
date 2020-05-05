@@ -18,10 +18,16 @@ Layout/ExtraSpacing:
   AutoCorrect: true
 Layout/LineLength:
   Enabled: false
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 Layout/SpaceBeforeFirstArg:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
@@ -75,6 +81,8 @@ Style/EmptyMethod:
   Enabled: false
 Style/Encoding:
   Enabled: false
+Style/ExponentialNotation:
+  Enabled: true
 Style/FormatString:
   EnforcedStyle: percent
 Style/FormatStringToken:
@@ -83,10 +91,16 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/GuardClause:
   Enabled: false
+Style/HashEachMethods:
+  Enabled: true
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
   Exclude:
     - db/schema.rb
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
 Style/IfUnlessModifier:
   Enabled: false
 Style/MethodCallWithArgsParentheses:
