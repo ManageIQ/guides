@@ -60,36 +60,23 @@ repos:
     - -repo:ManageIQ/manageiq-redfish-docs
     - -repo:ManageIQ/manageiq-vcloud-docs
     - -repo:ManageIQ/manageiq_docs
-    # Ignore UI/API repos since it has a dedicated triage
-    - -repo:ManageIQ/manageiq-api
-    - -repo:ManageIQ/manageiq-ui-classic
-    - -repo:ManageIQ/manageiq-ui-service
-    - -repo:ManageIQ/react-ui-components
-    - -repo:ManageIQ/ui-components
-  - name: UI/API
-    params:
-    - repo:ManageIQ/manageiq-api
-    - repo:ManageIQ/manageiq-ui-classic
-    - repo:ManageIQ/manageiq-ui-service
-    - repo:ManageIQ/react-ui-components
-    - repo:ManageIQ/ui-components
 links:
-- name: unassigned issues
+- name: Unassigned issues
   params:
   - *base_params
   - *open_issue
   - *unassigned
-- name: issues without scope label
+- name: Issues without scope label
   params:
   - *base_params
   - *open_issue
   - *missing_scope
-- name: stale issues
+- name: Stale issues
   params:
   - *base_params
   - *open_issue
   - *stale
-- name: unassigned PRs
+- name: Unassigned PRs
   params:
   - *base_params
   - *open_pr
@@ -101,12 +88,12 @@ links:
   - *open_pr
   - *no_wip
   - *missing_scope
-- name: stale PRs
+- name: Stale PRs
   params:
   - *base_params
   - *open_pr
   - *stale
-- name: backport requests
+- name: Backport requests
   params:
   - *base_params
   - *backport_request
