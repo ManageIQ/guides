@@ -6,7 +6,7 @@ Historically, ManageIQ UI still has rails forms and angular forms, for informati
 
 ---
 
-Manageiq UI imports data driven forms and exposes a `@@ddf` webpack alias for both local and plugin imports.
+ManageIQ UI imports data driven forms and exposes a `@@ddf` webpack alias for both local and plugin imports.
 
 For data driven form specific details, please consult [ddf documentation](https://data-driven-forms.org/).
 
