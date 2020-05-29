@@ -55,11 +55,11 @@ repos:
     - -repo:ManageIQ/integration_tests
     - -repo:ManageIQ/wrapanapi
     # Ignore Docs repos
+    - -repo:ManageIQ/manageiq-documentation
     - -repo:ManageIQ/manageiq-lxca-docs
     - -repo:ManageIQ/manageiq-nuage-docs
     - -repo:ManageIQ/manageiq-redfish-docs
     - -repo:ManageIQ/manageiq-vcloud-docs
-    - -repo:ManageIQ/manageiq_docs
 links:
 - name: Unassigned issues
   params:
