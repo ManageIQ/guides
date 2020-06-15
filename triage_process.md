@@ -4,6 +4,8 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
 
 ## Topics
 
+* Backports
+  * [Backport requests][]
 * Issues
   * [Unassigned issues][]
   * [Issues without scope label][]
@@ -12,11 +14,13 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
   * [Unassigned PRs][]
   * [PRs without scope label][]
   * [Stale PRs][]
-* Backports
-  * [Backport requests][]
 
 ## Actions
 
+* Backport requests
+  * Review `<release>/yes?` labels.
+    * If accepted for backport, change to `<release>/yes`
+    * If not accepted for backport, change to `<release>/no`
 * Unassigned issues (and PRs)
   * If they have a `question` label
     * Answer the question and close OR convert to another scope label such as `enhancement` or `bug` with appropriate renaming of the issue title.
@@ -39,10 +43,6 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
   * Stale and unmergeable PRs are closed automatically
   * @mention the author after 1 month of inactivity
   * Close the PR after 3 months of inactivity
-* Backport requests
-  * Review `<release>/yes?` labels.
-    * If accepted for backport, change to `<release>/yes`
-    * If not accepted for backport, change to `<release>/no`
 
 [scope labels]:                                             https://www.manageiq.org/docs/guides/labels
 <!-- triage links generated after here -->
