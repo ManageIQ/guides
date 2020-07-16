@@ -55,7 +55,7 @@ do the following:
 
 ```sh
 cd manageiq
-bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud
+bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud --manager-type=cloud
 ```
 
 Much like the plugin generator, you can pass `--path` to change the path.
@@ -66,20 +66,32 @@ Additionally, you also have the following options
   Adds some scaffolding to support [VCR](https://github.com/vcr/vcr) recordings
   for specs.
 
-* `[--dummy], [--no-dummy]  # Generate dummy implementations (Default: --no-dummy)`
+* `[--scaffolding], [--no-scaffolding]  # Generate default class scaffolding (Default: true)`
 
   Adds some scaffolding for a dummy cloud provider, including implementations of
   core models and common workers. The generated scaffolding is similar to the
   [dummy provider repo](https://github.com/ManageIQ/manageiq-providers-dummy_provider).
 
+* `[--manager-type=MANAGER_TYPE]        # What type of manager to create, required if building scaffolding`
+
+  Indicates what type of manager to create, for example: cloud, container, infra, physical, etc...  `--help` will print the full list of possible manager types.
+
 #### Core modifications
 
-The following lines are added to `lib/workers/miq_worker_types.rb`:
+The following lines are added to your `Gemfile`:
 
 ```ruby
-"ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher"           => %i(manageiq_default),
-"ManageIQ::Providers::AwesomeCloud::CloudManager::MetricsCollectorWorker" => %i(manageiq_default),
-"ManageIQ::Providers::AwesomeCloud::CloudManager::RefreshWorker"          => %i(manageiq_default),
+### providers
+
+group :awesome_cloud, :manageiq_default do
+  manageiq_plugin "manageiq-providers-awesome_cloud" # TODO: Sort alphabetically...
+end
+```
+
+Until your plugin is pushed upstream you can override the gem for local development by adding the following to a `bundler.d/plugins.rb`:
+
+```
+override_gem "manageiq-providers-awesome_cloud", :path => "../plugins/manageiq-providers-awesome_cloud"
 ```
 
 #### Create an AwesomeCloud instance
