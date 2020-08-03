@@ -194,7 +194,6 @@ The web UI should now be available at `http://localhost:3000`. The default usern
 
 ## Further Reading
 
-* [Minimal Mode](developer_setup/minimal_mode.md) starts the application with fewer services and workers for faster startup or targeted end-user testing.
 * [Individual workers](developer_setup/foreman.md) can be started using [Foreman](https://ddollar.github.io/foreman) directly.
 * [Running the test suites](developer_setup/running_test_suites.md)
 * [Provider, UI and plugin development](developer_setup/plugins.md) describes the plugin and external provider development process.
