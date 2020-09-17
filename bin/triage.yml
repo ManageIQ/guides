@@ -35,6 +35,12 @@ params:
   - is:merged
   - is:pr
   - label:jansa/yes?
+  backport_direct_prs: &backport_direct_prs
+  - base:jansa
+  - is:open
+  - is:pr
+  - -label:jansa/no
+  - -label:jansa/yes
 repos:
   - name: Core/Provider
     params:
@@ -97,3 +103,7 @@ links:
   params:
   - *base_params
   - *backport_request
+- name: Backport direct PRs
+  params:
+  - *base_params
+  - *backport_direct_prs
