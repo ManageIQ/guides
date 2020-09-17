@@ -6,6 +6,7 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
 
 * Backports
   * [Backport requests][]
+  * [Backport direct PRs][]
 * Issues
   * [Unassigned issues][]
   * [Issues without scope label][]
@@ -17,10 +18,9 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
 
 ## Actions
 
-* Backport requests
-  * Review `<release>/yes?` labels.
-    * If accepted for backport, change to `<release>/yes`
-    * If not accepted for backport, change to `<release>/no`
+* Backport requests and direct PRs
+  * If accepted for backport, add `<release>/yes` and remove `<release>/yes?`
+  * If not accepted for backport, add `<release>/no` and remove `<release>/yes?`
 * Unassigned issues (and PRs)
   * If they have a `question` label
     * Answer the question and close OR convert to another scope label such as `enhancement` or `bug` with appropriate renaming of the issue title.
@@ -53,3 +53,4 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
 [PRs without scope label]:                                  https://github.com/issues?q=archived%3Afalse+sort%3Acreated-desc+is%3Apr+is%3Aopen+-label%3Awip+-label%3Abug+-label%3A%22bug%2Fsporadic+test+failure%22+-label%3Acleanup+-label%3Adeveloper+-label%3Adocumentation+-label%3Aenhancement+-label%3Aperformance+-label%3Aredesign+-label%3Arefactoring+-label%3A%22technical+debt%22+-label%3Atest+org%3AManageIQ+-repo%3AManageIQ%2Fbugzilla_mirror+-repo%3AManageIQ%2Fmanageiq-consumption+-repo%3AManageIQ%2Fmanageiq-cross_repo-tests+-repo%3AManageIQ%2Fmanageiq-design+-repo%3AManageIQ%2Fmanageiq-performance+-repo%3AManageIQ%2Fmanageiq-release+-repo%3AManageIQ%2Fmanageiq-v2v+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host-build+-repo%3AManageIQ%2Fmanageiq-vagrant-dev+-repo%3AManageIQ%2Fpolisher+-repo%3AManageIQ%2Fintegration_tests+-repo%3AManageIQ%2Fwrapanapi+-repo%3AManageIQ%2Fmanageiq-documentation+-repo%3AManageIQ%2Fmanageiq-lxca-docs+-repo%3AManageIQ%2Fmanageiq-nuage-docs+-repo%3AManageIQ%2Fmanageiq-redfish-docs+-repo%3AManageIQ%2Fmanageiq-vcloud-docs
 [Stale PRs]:                                                https://github.com/issues?q=archived%3Afalse+sort%3Acreated-desc+is%3Apr+is%3Aopen+label%3Astale+org%3AManageIQ+-repo%3AManageIQ%2Fbugzilla_mirror+-repo%3AManageIQ%2Fmanageiq-consumption+-repo%3AManageIQ%2Fmanageiq-cross_repo-tests+-repo%3AManageIQ%2Fmanageiq-design+-repo%3AManageIQ%2Fmanageiq-performance+-repo%3AManageIQ%2Fmanageiq-release+-repo%3AManageIQ%2Fmanageiq-v2v+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host-build+-repo%3AManageIQ%2Fmanageiq-vagrant-dev+-repo%3AManageIQ%2Fpolisher+-repo%3AManageIQ%2Fintegration_tests+-repo%3AManageIQ%2Fwrapanapi+-repo%3AManageIQ%2Fmanageiq-documentation+-repo%3AManageIQ%2Fmanageiq-lxca-docs+-repo%3AManageIQ%2Fmanageiq-nuage-docs+-repo%3AManageIQ%2Fmanageiq-redfish-docs+-repo%3AManageIQ%2Fmanageiq-vcloud-docs
 [Backport requests]:                                        https://github.com/issues?q=archived%3Afalse+sort%3Acreated-desc+is%3Amerged+is%3Apr+label%3Ajansa%2Fyes%3F+org%3AManageIQ+-repo%3AManageIQ%2Fbugzilla_mirror+-repo%3AManageIQ%2Fmanageiq-consumption+-repo%3AManageIQ%2Fmanageiq-cross_repo-tests+-repo%3AManageIQ%2Fmanageiq-design+-repo%3AManageIQ%2Fmanageiq-performance+-repo%3AManageIQ%2Fmanageiq-release+-repo%3AManageIQ%2Fmanageiq-v2v+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host-build+-repo%3AManageIQ%2Fmanageiq-vagrant-dev+-repo%3AManageIQ%2Fpolisher+-repo%3AManageIQ%2Fintegration_tests+-repo%3AManageIQ%2Fwrapanapi+-repo%3AManageIQ%2Fmanageiq-documentation+-repo%3AManageIQ%2Fmanageiq-lxca-docs+-repo%3AManageIQ%2Fmanageiq-nuage-docs+-repo%3AManageIQ%2Fmanageiq-redfish-docs+-repo%3AManageIQ%2Fmanageiq-vcloud-docs
+[Backport direct PRs]:                                      https://github.com/issues?q=archived%3Afalse+sort%3Acreated-desc+base%3Ajansa+is%3Aopen+is%3Apr+-label%3Ajansa%2Fno+-label%3Ajansa%2Fyes+org%3AManageIQ+-repo%3AManageIQ%2Fbugzilla_mirror+-repo%3AManageIQ%2Fmanageiq-consumption+-repo%3AManageIQ%2Fmanageiq-cross_repo-tests+-repo%3AManageIQ%2Fmanageiq-design+-repo%3AManageIQ%2Fmanageiq-performance+-repo%3AManageIQ%2Fmanageiq-release+-repo%3AManageIQ%2Fmanageiq-v2v+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host-build+-repo%3AManageIQ%2Fmanageiq-vagrant-dev+-repo%3AManageIQ%2Fpolisher+-repo%3AManageIQ%2Fintegration_tests+-repo%3AManageIQ%2Fwrapanapi+-repo%3AManageIQ%2Fmanageiq-documentation+-repo%3AManageIQ%2Fmanageiq-lxca-docs+-repo%3AManageIQ%2Fmanageiq-nuage-docs+-repo%3AManageIQ%2Fmanageiq-redfish-docs+-repo%3AManageIQ%2Fmanageiq-vcloud-docs
