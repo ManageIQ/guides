@@ -42,8 +42,9 @@ Naming/RescuedExceptionsVariableName:
   Enabled: false
 Naming/UncommunicativeMethodParamName:
   AllowedNames:
-    - vm
+    - id
     - dc
+    - vm
 Performance/Casecmp:
   Enabled: false
 Rails:
