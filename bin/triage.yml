@@ -60,8 +60,7 @@ repos:
     # Ignore QE repos
     - -repo:ManageIQ/integration_tests
     - -repo:ManageIQ/wrapanapi
-    # Ignore Docs repos
-    - -repo:ManageIQ/manageiq-documentation
+    # Ignore some docs repos
     - -repo:ManageIQ/manageiq-lxca-docs
     - -repo:ManageIQ/manageiq-nuage-docs
     - -repo:ManageIQ/manageiq-redfish-docs
