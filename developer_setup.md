@@ -7,7 +7,7 @@
 | Ruby       | 2.5.x       |
 | Rails      | 5.1.x       |
 | Bundler    | 1.15.x      |
-| NodeJS     | 10.16.x     |
+| NodeJS     | 12.x.x      |
 | Python     | 2.7.x       |
 | PostgresQL | 10.x        |
 
