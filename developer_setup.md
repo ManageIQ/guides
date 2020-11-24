@@ -107,6 +107,7 @@ On Debian and Ubuntu, configure a cluster using `pg_createcluster`.
 ```bash
 sudo pg_dropcluster --stop 10 main
 sudo pg_createcluster -e UTF-8 -l C 10 main -- --auth trust --username root
+sudo pg_ctlcluster 10 main start
 ```
 
 On macOS, configure a cluster using `initdb` directly.
