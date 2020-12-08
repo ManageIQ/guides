@@ -66,6 +66,7 @@ repos:
     - -repo:ManageIQ/manageiq-v2v-conversion_host
     - -repo:ManageIQ/manageiq-v2v-conversion_host-build
     - -repo:ManageIQ/manageiq-vagrant-dev
+    - -repo:ManageIQ/miq_bot
     - -repo:ManageIQ/polisher
     # Ignore QE repos
     - -repo:ManageIQ/integration_tests
