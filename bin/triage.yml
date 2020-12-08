@@ -2,7 +2,7 @@
 params:
   base_params: &base_params
   - archived:false
-  - sort:created-desc
+  - sort:created-asc
   unassigned: &unassigned
   - no:assignee
   - -label:"help wanted"
