@@ -16,6 +16,7 @@ params:
   - -label:bug
   - -label:"bug/sporadic test failure"
   - -label:cleanup
+  - -label:dependencies
   - -label:developer
   - -label:documentation
   - -label:enhancement
