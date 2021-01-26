@@ -133,10 +133,16 @@ brew services start postgresql
 
 ## Install nvm and JavaScript build utilities
 
-Yarn and NodeJS version 10 or newer are required. If your distribution doesn't ship NodeJS 10.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps (you will need to restart your shell in order to source the nvm initialization environment).
+Yarn and NodeJS version 12 or newer are required. If your distribution doesn't ship NodeJS 12.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps (you will need to restart your shell in order to source the nvm initialization environment).
 
 ```bash
-nvm install 10
+nvm install 12
+
+# needed when other versions are installed
+nvm use 12
+
+# if the wrong version still gets used in scripts
+nvm alias default 12
 ```
 
 Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
