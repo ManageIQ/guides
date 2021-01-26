@@ -126,63 +126,6 @@ override_gem 'manageiq-providers-amazon', :path => File.expand_path('../../manag
 Unfortunately Rails Engines don't support running `rails console` from the root of the plugin. To test your code you
 will have to change the dependency of ManageIQ to point to your local plugin. See above.
 
-### Migrating a PR from ManageIQ
-
-If you have an open PR on ManageIQ that has not been merged before the split, you can cherry-pick all commits from
-the feature branch into a new branch in the plugin repository.
-
-```bash
-# get all commit shas that are not yet in master - or just look at https://github.com/ManageIQ/manageiq/pull/<id>
-cd /path/to/manageiq
-git checkout feature_branch
-git log $(git rev-parse --abbrev-ref HEAD) --not refs/heads/master
-
-# add ManageIQ as a remote in your plugin
-cd /path/to/manageiq-providers-amazon
-git remote add miq /path/to/manageiq
-git fetch miq
-
-# create a new branch in the plugin and cherry-pick commits
-git checkout -b feature_branch
-git cherry-pick <sha from above>
-# should be a clean cherry-pick if it only changes files that are in the new plugin, if not:
-# git checkout master -- path/to/file # will discard your changes to file
-# git rm path/to/file # will drop the file from the cherry-pick in progress
-# git cherry-pick --continue # will continue the cherry-pick
-# git cherry-pick --abort # will abort
-```
-
-If your PR has a lot of commits or you have a lot of PRs, this script automates it.
-It needs `jq` to parse the github API output - `brew install jq` or `dnf install jq` or `apt install jq`.
-Optionally uses [hub](https://hub.github.com/) to create the pull request.
-
-
-```
-PR=123
-COMMITS=`wget -qO- https://api.github.com/repos/ManageIQ/manageiq/pulls/$PR/commits | jq -r .[].sha`
-TITLE=`wget -qO- https://api.github.com/repos/ManageIQ/manageiq/pulls/$PR | jq -r .title`
-DESCRIPTION=`wget -qO- https://api.github.com/repos/ManageIQ/manageiq/pulls/$PR | jq -r .body`
-
-cd manageiq-ui-classic/
-
-git remote add tmp https://github.com/ManageIQ/manageiq.git
-
-git fetch tmp pull/$PR/head
-git checkout -b miq_pr_$PR
-
-echo "Running cherry-pick - if there's a conflict, resolve it, commit, and do git cherry-pick --continue"
-git cherry-pick -x $COMMITS
-
-git push -u origin miq_pr_$PR
-[ -x "`which hub`" ] && hub pull-request -m "$TITLE"
-
-$DESCRIPTION
-
-(converted from ManageIQ/manageiq#$PR)" || echo "hub not found, not creating PR"
-
-git remote rm tmp
-```
-
 ### Creating a new provider (plugin)
 
 If you plan to create a cloud manager type provider, you can use this [provider generator](/plugins/generator.md) to scaffold.
