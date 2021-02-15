@@ -35,9 +35,9 @@ In order to compile Ruby, native Gems and native NodeJS modules, other libraries
 
 |      |     |
 | ---- | --- |
-| dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python` |
-| yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake sqlite-devel python` |
-| apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake libsqlite3-dev python` |
+| dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
+| yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
+| apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python` |
 | brew | `brew install cmake` |
 
 ### Prerequisite services
