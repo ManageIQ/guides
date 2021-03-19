@@ -4,7 +4,7 @@
 
 | **Name**   | **Version** |
 | ---------- | ----------- |
-| Ruby       | 2.5.x       |
+| Ruby       | 2.6.x       |
 | Rails      | 6.0.x       |
 | Bundler    | 1.15.x      |
 | NodeJS     | 12.x.x      |
@@ -154,7 +154,7 @@ A Ruby version manager is *strongly* recommended. Use any one of the following:
 * [chruby](https://github.com/postmodern/chruby) + [ruby-install](https://github.com/postmodern/ruby-install)
 * [rvm](http://rvm.io/)
 
-Using the Ruby version manager, install `ruby` >= 2.5.0 and < 2.7.0 and the latest `bundler`.
+Using the Ruby version manager, install `ruby` >= 2.6.0 and < 3.0.0 and the latest `bundler`.
 
 ---
 
