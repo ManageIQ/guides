@@ -149,7 +149,7 @@ index b7e6783821..685474c570 100644
 +
 ```
 
-This is a bit optimistic since this hasn't been accepted into the ManageIQ organization yet :)
+This is a bit optimistic since this hasn't been accepted into the ManageIQ organization yet. :)
 
 To work on this plugin locally you have to tell bundler to look in a different place for your gem (more info in [developer_setup/plugins.md](../developer_setup/plugins.md))
 
@@ -163,6 +163,12 @@ This tells your core repo where to find your local changes, now lets let your pl
 $ ln -s $(pwd) plugins/manageiq-providers-awesome_cloud/spec/manageiq
 $ cd plugins/manageiq-providers-awesome_cloud
 $ bin/setup
+```
+
+Lets also take this opportunity to commit the initial code built by the generator before we make any changes:
+```bash
+$ git add .
+$ git commit  -m "Initial commit"
 ```
 
 Now that we have both sides linked up lets verify that everything worked:
