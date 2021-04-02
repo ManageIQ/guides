@@ -49,16 +49,6 @@ $ bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud
 
 create  
    run  git init /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_cloud from "."
-hint: Using 'master' as the name for the initial branch. This default branch name
-hint: is subject to change. To configure the initial branch name to use in all
-hint: of your new repositories, which will suppress this warning, call:
-hint:
-hint: 	git config --global init.defaultBranch <name>
-hint:
-hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-hint: 'development'. The just-created branch can be renamed via this command:
-hint:
-hint: 	git branch -m <name>
 Initialized empty Git repository in /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_cloud/.git/
 create  manageiq-providers-awesome_cloud.gemspec
 create  .codeclimate.yml
@@ -209,4 +199,67 @@ index 6c228c2..91e8e71 100644
 Then bundle update to pull in the change
 ```
 $ bundle update
+```
+
+Now that we have the gem installed we can start to write our connection code.  ManageIQ providers have to expose a `#connect` and a `#verify_credentials` method on the class and the instance.  The class method is used when adding a provider (when there is no instance record yet) and the instance methods are used after.
+
+Let's assume that Awesome Cloud requires a region, access_key, and secret_key in order to connect.
+
+```ruby
+>> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
+>> ems.update!(:provider_region => "us-east")
+>> ems.update_authentication(:default => {:userid => "MY-ACCESS-KEY", :password => "MY-SECRET-KEY"})
+```
+
+Now let's add connect methods to our provider.
+
+```ruby
+class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
+  def self.raw_connect(region, access_key, secret_key, service = "Compute")
+    require "awesome_cloud/#{service.to_s.downcase}"
+    credentials = AwesomeCloud::Credentials.new(:access_key => access_key, :secret_key => secret_key)
+
+    AwesomeCloud.const_get(service).new(:credentials => credentials, :region => region)
+  end
+
+  def self.verify_credentials(args)
+    # NOTE this args hash has a very specific format that we'll get to next
+    region = args["provider_region"]
+    default_endpoint = args.dig("authentications", "default")
+    access_key, secret_key = default_endpoint&.values_at("userid", "password")
+
+    validate_connection(raw_connect(region, access_key, secret_key))
+  end
+
+  # NOTE: You want to use the same method for validating credentials at the
+  # class-level and instance-level.  This prevents any potential issues were
+  # adding a new provider (class-level) might pass verification but after adding
+  # it (instance-lavel) it fails.
+  def self.validate_connection(connection)
+    # Perform a simple and fast operation that verifies the credentials are correct
+    !!connection.list_regions
+  end
+
+  def connect(service: "Compute")
+    access_key, secret_key = auth_user_pwd
+    self.class.raw_connect(provider_region, access_key, secret_key, service)
+  end
+
+  def verify_credentials
+    with_provider_connection do |connection|
+      self.class.validate_connection(connection)
+    rescue AwesomeCloud::Exception => err
+      raise MiqException::MiqInvalidCredentialsError, "Invalid credentials: #{err}"
+    end
+  end
+end
+```
+
+With these in place we should be able to test our provider that we added to MIQ:
+
+```ruby
+>> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
+>> ems.verify_credentials
+=> true
+>> ems.connect(service: "Compute").list_regions
 ```
