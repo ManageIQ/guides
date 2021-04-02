@@ -179,6 +179,8 @@ Now lets get that provider added so we have something to play with:
 
 Now that we have that done it is time to start filling out our new provider.  The first step is to find the SDK gem for this provider.  If there isn't a provider SDK for Ruby you have a few options which we'll cover later.  For now lets assume that Awesome Cloud has a ruby gem called 'awesome_cloud'.
 
+### Add your provider's SDK to the gemspec
+
 Let's add this to our provider's gemspec:
 ```bash
 $ git diff
@@ -212,6 +214,8 @@ Let's assume that Awesome Cloud requires a region, access_key, and secret_key in
 ```
 
 Now let's add connect methods to our provider.
+
+### Connecting and verifying credentials
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
@@ -261,5 +265,95 @@ With these in place we should be able to test our provider that we added to MIQ:
 >> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
 >> ems.verify_credentials
 => true
->> ems.connect(service: "Compute").list_regions
+>> ems.connect(:service => "Compute").list_regions
+```
+
+### Adding your provider from the UI
+
+Creating the provider record from a rails console is great for developers but it is much nicer to be able to do this from the UI.  ManageIQ has a very simple way of telling the UI what your provider needs to be able to be added via the UI, [Data-Driven-Forms](https://data-driven-forms.org/).
+
+You basically define what forms you need in a hash in your provider plugin and the ManageIQ UI will display it for you.  If you want a good introduction check out https://data-driven-forms.org/introduction.  For now we'll just create a basic form that takes a provider region, access key, and secret key.
+
+```ruby
+class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
+  def self.params_for_create
+    {
+      :fields => [
+        {
+          :component    => "select",
+          :id           => "provider_region",
+          :name         => "provider_region",
+          :label        => _("Region"),
+          :isRequired   => true,
+          :validate     => [{:type => "required"}],
+          :includeEmpty => true,
+          :options      => provider_region_options
+        },
+        {
+          :component => 'sub-form',
+          :name      => 'endpoints-subform',
+          :id        => 'endpoints-subform',
+          :title     => _("Endpoints"),
+          :fields    => [
+            {
+              :component              => 'validate-provider-credentials',
+              :id                     => 'authentications.default.valid',
+              :name                   => 'authentications.default.valid',
+              :skipSubmit             => true,
+              :isRequired             => true,
+              :validationDependencies => %w[type zone_id provider_region uid_ems],
+              :fields                 => [
+                {
+                  :component  => "text-field",
+                  :id         => "authentications.default.userid",
+                  :name       => "authentications.default.userid",
+                  :label      => _("Access Key"),
+                  :isRequired => true,
+                  :validate   => [{:type => "required"}]
+                },
+                {
+                  :component      => "password-field",
+                  :rows           => 10,
+                  :id             => "authentications.default.password",
+                  :name           => "authentications.default.password",
+                  :label          => _("Secret Key"),
+                  :type           => "password",
+                  :isRequired     => true,
+                  :validate       => [{:type => "required"}]
+                },
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  end
+
+  private_class_method def self.provider_region_options
+    ManagIQ::Providers::AwesomeCloud::Regions.all.map { |region| {:label => region[:name], :value => region[:name]} }
+  end
+
+  supports :regions
+  validates :provider_region, :inclusion => {:in => ManageIQ::Providers::AwesomeCloud::Regions.names}
+end
+```
+
+```
+module ManageIQ::Providers::AwesomeCloud::Regions
+  REGIONS = {
+    "us-east-1" => {:name => "us-east-1", :hostname => "us-east-1.awesome.cloud"}
+  }.freeze
+
+  def self.regions
+    REGIONS
+  end
+
+  def self.all
+    regions.values
+  end
+
+  def self.names
+    regions.keys
+  end
+end
 ```
