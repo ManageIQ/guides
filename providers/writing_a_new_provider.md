@@ -514,6 +514,17 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Parser < ManageIQ::Providers
 end
 ```
 
+You'll have to add your vendor name to the core `VmOrTemplate` `VENDOR_TYPES` in order for the VMs to be saved.
+
+```
+class VmOrTemplate
+  VENDOR_TYPES = {
+    "awesome_cloud" => "Awesome Cloud",
+    "unknown"       => "Unknown"
+  }
+end
+```
+
 Now that we have all of that hooked up lets test it!
 
 ```ruby
