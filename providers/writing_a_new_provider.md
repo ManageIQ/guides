@@ -209,7 +209,7 @@ Let's assume that Awesome Cloud requires a region, access_key, and secret_key in
 
 ```ruby
 >> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
->> ems.update!(:provider_region => "us-east")
+>> ems.update!(:provider_region => "us-east-1")
 >> ems.update_authentication(:default => {:userid => "MY-ACCESS-KEY", :password => "MY-SECRET-KEY"})
 ```
 
@@ -244,15 +244,15 @@ class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::Clo
     !!connection.list_regions
   end
 
-  def connect(service: "Compute")
-    access_key, secret_key = auth_user_pwd
+  def connect(type: "default", service: "Compute")
+    access_key, secret_key = auth_user_pwd(type)
     self.class.raw_connect(provider_region, access_key, secret_key, service)
   end
 
-  def verify_credentials
-    with_provider_connection do |connection|
+  def verify_credentials(type = "default", options = {})
+    with_provider_connection(:type => type) do |connection|
       self.class.validate_connection(connection)
-    rescue AwesomeCloud::Exception => err
+    rescue AwesomeCloud::Error => err
       raise MiqException::MiqInvalidCredentialsError, "Invalid credentials: #{err}"
     end
   end
@@ -263,8 +263,8 @@ With these in place we should be able to test our provider that we added to MIQ:
 
 ```ruby
 >> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
->> ems.verify_credentials
-=> true
+>> ems.authentication_check
+=> [true, ""]
 >> ems.connect(:service => "Compute").list_regions
 ```
 
@@ -330,7 +330,7 @@ class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::Clo
   end
 
   private_class_method def self.provider_region_options
-    ManagIQ::Providers::AwesomeCloud::Regions.all.map { |region| {:label => region[:name], :value => region[:name]} }
+    ManageIQ::Providers::AwesomeCloud::Regions.all.map { |region| {:label => region[:name], :value => region[:name]} }
   end
 
   supports :regions
@@ -358,7 +358,9 @@ module ManageIQ::Providers::AwesomeCloud::Regions
 end
 ```
 
-With that added you should be able to go to the UI, add a cloud provider, and see your new cloud type.
+With that added you should be able to go to the UI, add a cloud provider, and see your new cloud type.  For development typically the best way to test code in the UI is to run a rails server and a simulated generic worker via the terminal.
+
+To do this open two terminals, in the first one run `bundle exec rails s` and in the second run `bundle exec rails console` and typing `simulate_queue_worker`.  Now you can open `localhost:3000` in your browser of choice and you should be able to login.
 
 ### Inventory Refresh
 
@@ -520,6 +522,10 @@ Now that we have all of that hooked up lets test it!
 # Lots of queries
 >> ems.vms.count
 => 1
+>> ems.vms.first
+=> #<ManageIQ::Providers::AwesomeCloud::CloudManager::Vm id: 131, vendor: "awesome_cloud", format: nil, version: nil, name: "my-first-vm", description: nil, location: "5ae243b0-a45f-4043-b59b-ddbcfd98896a",...
+>> ems.vms.first.flavor.ems_ref
+=> "579405c1-8867-4e78-94fd-72ff575e8d0a"
 ```
 
 Congrats!  You have successfully refreshed your provider.  By default this will be automatically refreshed every 15 minutes which is the default for providers without an event catcher (more on that later).
