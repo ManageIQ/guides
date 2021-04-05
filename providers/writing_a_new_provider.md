@@ -357,3 +357,182 @@ module ManageIQ::Providers::AwesomeCloud::Regions
   end
 end
 ```
+
+With that added you should be able to go to the UI, add a cloud provider, and see your new cloud type.
+
+### Inventory Refresh
+
+Up to this point our provider doesn't do a lot, we've simply been setting the groundwork the future.
+
+Inventory Refresh/Discovery is the first significant feature that we'll be adding.  This process is what synchronizes the cloud inventory (instances, volumes, flavors, images, etc...) with the ManageIQ database (VMDB).  This allows MIQ to show inventory on the UI, expose actions on that inventory, run reports, collect metrics, etc...
+
+Almost every MIQ feature starts out with provider inventory, so lets get started.
+
+Refresh is split up into three main part: Collection, Parsing, and Persisting.
+
+1. Inventory Collection - This is the step where you use the connection to hit the provider API to pull down inventory.  The code for this will be under `app/models/manageiq/providers/awesome_cloud/inventory/collector.rb`
+
+2. Parsing - This is typically the bulk of the inventory refresh code.  This step translates the inventory data from the native format into the ManageIQ schema.  This code lives in `app/models/manageiq/providers/awesome_cloud/inventory/parser.rb`
+
+3. Persisting - In this step the parsed data is saved to the database.  Almost all of this is offloaded to core classes but as a provider author you are responsible for enumerating the "inventory collections" that you'll be saving e.g. flavors/vms/disks.  This will live in `app/models/manageiq/providers/awesome_cloud/inventory/persister.rb`
+
+For a more in depth overview of how refresh works check out the [Refresh Documentation](refresh.md)
+
+For now lets cover a very simple refresh case, collecting flavors, instances, and images.
+
+First let's declare the collections that we intend to use.  The full set of possible collections can be found in core's `Inventory::Persister::Builder` sub-classes.
+
+```ruby
+class ManageIQ::Providers::AwesomeCloud::Inventory::Persister < ManageIQ::Providers::Inventory::Persister
+  # This should already be here from the generator, you just need one empty subclass
+  # for each child-manager type that your provider has (e.g. NetworkManager and/or StorageManager).
+  require_nested :CloudManager
+
+  # Add the list of inventory collections that you want to use here
+  # In the future if you want to add more inventory like disks or networks you would
+  # add them to the list here.
+  def initialize_inventory_collections
+    add_cloud_collection(:flavors)
+    add_cloud_collection(:miq_templates)
+    add_cloud_collection(:vms)
+  end
+end
+```
+
+Once those are declared ManageIQ Core will take care of actually saving everything to the database for you.
+
+Now lets look at collecting inventory.  For that let's look at :shocked: the collector.
+
+The collector provides an interface for the parser, so each method should fetch and return the relevant inventory.
+
+```ruby
+class ManageIQ::Providers::AwesomeCloud::Inventory::Collector < ManageIQ::Providers::Inventory::Collector
+  require_nested :CloudManager
+
+  def images
+    compute_client.get_images
+  end
+
+  def instances
+    compute_client.get_instances
+  end
+
+  def instance_types
+    compute_client.get_instance_types
+  end
+
+  private
+
+  def compute_client
+    @compute_client ||= manager.connect(:service => "Compute")
+  end
+end
+```
+
+And that's it!  The collector gets a lot more interesting when you add support for targeted refresh but that is for another time.  If you have to manually handle paging you should do that here, if the sdk handles paging automatically via an Enumerator then there's nothing more needed.
+
+Now we can get started on the parser.
+
+```ruby
+class ManageIQ::Providers::AwesomeCloud::Inventory::Parser < ManageIQ::Providers::Inventory::Parser
+  require_nested :CloudManager
+
+  def parse
+    instance_types
+    images
+    instances
+  end
+
+  def instance_types
+    # Calling collector.flavors here is what actually issues the API call.
+    collector.instance_types.each do |instance_type|
+      # At this point "instance_type" will be whatever is returned by your SDK.
+      # It could be a hash or it could be an object like `AwesomeCloud::Compute::InstanceType`
+
+      # persister.flavors.build will create an InventoryObject (fancy hash) with all of the
+      # attributes that you pass in here, and automatically add it to the `persister.flavors`
+      # inventory collection
+      persister.flavors.build(
+        # MIQ typically uses "ems_ref" as the unique reference for an inventory item
+        # in a provider.  Whatever you use must be guaranteed to not have a duplicate
+        # in the same provider instance as this value is also used to lookup related
+        # inventory from other collections.
+        :ems_ref => instance_type.id,
+        :name    => instance_type.name,
+        :cpus    => instance_type.n_cpus,
+        :memory  => instance_type.ram
+      )
+    end
+  end
+
+  def images
+    collector.images.each do |image|
+      persister.miq_templates.build(
+        :ems_ref         => image.id,
+        # The uid_ems field if you see it typically indicates a field that can be used
+        # to identify an inventory item across provider instances.  Most of the time
+        # for cloud providers this is the same as the ems_ref but not always.
+        # If your ems_ref looks like an integer ID then it probably isn't unique
+        # If it looks like a UUID then it probably is.
+        :uid_ems         => image.id,
+        :name            => image.name,
+        :location        => "unknown",
+        :raw_power_state => "never",
+        :template        => true,
+        :vendor          => "awesome_cloud"
+      )
+    end
+  end
+
+  def instances
+    collector.instances.each do |instance|
+      persister_vm = persister.vms.build(
+        :ems_ref         => instance.id,
+        :uid_ems         => instance.id,
+        :name            => instance.name,
+        :location        => instance.availability_zone,
+        :raw_power_state => instance.power_state,
+        :vendor          => "awesome_cloud",
+        # This is where things get interesting.  A "Lazy Reference" is our way of
+        # declaring a relationship to another table.  The result of this lazy_find
+        # after save_inventory has completed will be a foreign-key to that table
+        #
+        # It is critically important that you use this instead of either:
+        # 1. Direct database query like: Flavor.find_by(:ems_ref => instance.flavor)
+        #   because this won't work with flavors that are being created in this refresh
+        # 2. Using data set in the parser like: persitser.flavors.data.detect { |f| f[:ems_ref] == instance.flavor }
+        #   because this introduces an ordered dependency (flavors have to be parsed
+        #   before instances) and it is possible to introduce a dependency cycle and
+        #   also makes future targeted refresh much harder (where the flavors might not be
+        #   present in the collected data).
+        :flavor          => persister.flavors.lazy_find(instance.flavor)
+      )
+    end
+  end
+end
+```
+
+Now that we have all of that hooked up lets test it!
+
+```ruby
+>> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
+>> ems.refresh
+# Lots of queries
+>> ems.vms.count
+=> 1
+```
+
+Congrats!  You have successfully refreshed your provider.  By default this will be automatically refreshed every 15 minutes which is the default for providers without an event catcher (more on that later).
+
+### Next Steps
+
+That's a very high level overview of writing a provider.  There is a lot still that you can and should do:
+
+* Fill out what is collected for your existing collections (e.g. get availability zones and disks for VMs)
+* Add more collections like cloud_volumes and cloud_tenants to your CloudManager
+* Add a NetworkManager and start collecting CloudNetworks, CloudSubnets, etc...
+* Add some operations like start/stop/destroy to Vms
+* Add Event and Metrics collection and Targeted Refresh
+* Instance Provisioning
+
+Having VMs in inventory is a great start to using some of the other features of ManageIQ and is usually the point where we will accept a new provider into the ManageIQ organization.
