@@ -220,10 +220,9 @@ Now let's add connect methods to our provider.
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
   def self.raw_connect(region, access_key, secret_key, service = "Compute")
-    require "awesome_cloud/#{service.to_s.downcase}"
-    credentials = AwesomeCloud::Credentials.new(:access_key => access_key, :secret_key => secret_key)
+    require "awesome_cloud"
 
-    AwesomeCloud.const_get(service).new(:credentials => credentials, :region => region)
+    AwesomeCloud::Client.new(:access_key => access_key, :secret_key => secret_key, :region => region, :service => service)
   end
 
   def self.verify_credentials(args)
@@ -364,13 +363,13 @@ To do this open two terminals, in the first one run `bundle exec rails s` and in
 
 ### Inventory Refresh
 
-Up to this point our provider doesn't do a lot, we've simply been setting the groundwork the future.
+Up to this point our provider doesn't do a lot, we've simply been setting the groundwork for the future.
 
 Inventory Refresh/Discovery is the first significant feature that we'll be adding.  This process is what synchronizes the cloud inventory (instances, volumes, flavors, images, etc...) with the ManageIQ database (VMDB).  This allows MIQ to show inventory on the UI, expose actions on that inventory, run reports, collect metrics, etc...
 
 Almost every MIQ feature starts out with provider inventory, so lets get started.
 
-Refresh is split up into three main part: Collection, Parsing, and Persisting.
+Refresh is split up into three main parts: Collection, Parsing, and Persisting.
 
 1. Inventory Collection - This is the step where you use the connection to hit the provider API to pull down inventory.  The code for this will be under `app/models/manageiq/providers/awesome_cloud/inventory/collector.rb`
 
@@ -446,7 +445,7 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Parser < ManageIQ::Providers
   end
 
   def instance_types
-    # Calling collector.flavors here is what actually issues the API call.
+    # Calling collector.instance_types here is what actually issues the API call.
     collector.instance_types.each do |instance_type|
       # At this point "instance_type" will be whatever is returned by your SDK.
       # It could be a hash or it could be an object like `AwesomeCloud::Compute::InstanceType`
@@ -455,7 +454,7 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Parser < ManageIQ::Providers
       # attributes that you pass in here, and automatically add it to the `persister.flavors`
       # inventory collection
       persister.flavors.build(
-        # MIQ typically uses "ems_ref" as the unique reference for an inventory item
+        # MIQ uses "ems_ref" as the unique reference for an inventory item
         # in a provider.  Whatever you use must be guaranteed to not have a duplicate
         # in the same provider instance as this value is also used to lookup related
         # inventory from other collections.
@@ -474,7 +473,7 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Parser < ManageIQ::Providers
         # The uid_ems field if you see it typically indicates a field that can be used
         # to identify an inventory item across provider instances.  Most of the time
         # for cloud providers this is the same as the ems_ref but not always.
-        # If your ems_ref looks like an integer ID then it probably isn't unique
+        # If your ems_ref looks like an integer ID then it probably isn't unique.
         # If it looks like a UUID then it probably is.
         :uid_ems         => image.id,
         :name            => image.name,
