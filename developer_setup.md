@@ -13,132 +13,127 @@
 
 ## Prerequisites
 
-If running CentOS 8
+### System packages
 
-```bash
-sudo yum config-manager --set-enabled PowerTools
-sudo dnf copr enable manageiq/ManageIQ-Master
-sudo yum install epel-release
-```
+1. Only if running CentOS 8
 
-In order to compile Ruby, install the header files for OpenSSL, readline and zlib.
+   ```bash
+   sudo yum config-manager --set-enabled PowerTools
+   sudo dnf copr enable manageiq/ManageIQ-Master
+   sudo yum install epel-release
+   ```
 
-|      |     |
-| ---- | --- |
-| dnf  | `sudo dnf -y install openssl-devel readline-devel zlib-devel` |
-| yum  | `sudo yum -y install openssl-devel readline-devel zlib-devel` |
-| apt  | `sudo apt -y install libssl-dev libreadline-dev zlib1g-dev` |
-| brew | `brew install openssl` |
+2. In order to compile Ruby, install the header files for OpenSSL, readline and zlib.
 
+   |      |     |
+   | ---- | --- |
+   | dnf  | `sudo dnf -y install openssl-devel readline-devel zlib-devel` |
+   | yum  | `sudo yum -y install openssl-devel readline-devel zlib-devel` |
+   | apt  | `sudo apt -y install libssl-dev libreadline-dev zlib1g-dev` |
+   | brew | `brew install openssl` |
 
-In order to compile Ruby, native Gems and native NodeJS modules, other libraries are required.
+3. In addition, in order to compile Ruby, native Gems and native NodeJS modules, other libraries are required.
 
-|      |     |
-| ---- | --- |
-| dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
-| yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
-| apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python` |
-| brew | `brew install cmake` |
+   |      |     |
+   | ---- | --- |
+   | dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
+   | yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
+   | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python` |
+   | brew | `brew install cmake` |
 
-### Prerequisite services
+### Services
 
 ManageIQ requires a memcached instance for session caching and a PostgreSQL database for persistent data storage.
 
 #### memcached
 
-##### Install
+1. Install
 
-|            |     |
-| ---------- | --- |
-| dnf        | `sudo dnf -y install memcached` |
-| yum        | `sudo yum -y install memcached` |
-| apt        | `sudo apt -y install memcached` |
-| brew       | `brew install memcached` |
-| containers | N/A |
+   |            |     |
+   | ---------- | --- |
+   | dnf        | `sudo dnf -y install memcached` |
+   | yum        | `sudo yum -y install memcached` |
+   | apt        | `sudo apt -y install memcached` |
+   | brew       | `brew install memcached` |
+   | containers | N/A |
 
-##### Start the service
+2. Start the service
 
-|            |     |
-| ---------- | --- |
-| systemd    | `systemctl enable --now memcached` |
-| brew       | `brew services start memcached` |
-| containers | `podman run --detach --publish 11211:11211 memcached` |
+   |            |     |
+   | ---------- | --- |
+   | systemd    | `systemctl enable --now memcached` |
+   | brew       | `brew services start memcached` |
+   | containers | `podman run --detach --publish 11211:11211 memcached` |
 
 #### PostgreSQL
 
-##### Install
+1. Install
 
-|            |     |
-| ---------- | --- |
-| dnf        | `sudo dnf -y install postgresql-server` |
-| yum        | `sudo yum -y install postgresql-server` |
-| apt        | `sudo apt -y install postgresql` |
-| brew       | `brew install postgresql` |
-| containers | N/A |
+   |            |     |
+   | ---------- | --- |
+   | dnf        | `sudo dnf -y install postgresql-server` |
+   | yum        | `sudo yum -y install postgresql-server` |
+   | apt        | `sudo apt -y install postgresql` |
+   | brew       | `brew install postgresql` |
+   | containers | N/A |
 
-###### NOTE
+2. Configure and start the cluster
 
-CentOS 7 ships PostgreSQL 9.x. In order to use PostgreSQL 10.x, you will need to [enable Software Collections](https://www.softwarecollections.org/en/docs/) and install `rh-postgresql10`.
+   * Fedora / CentOS
 
-```bash
-sudo yum -y autoremove postgresql-devel
-sudo yum -y install rh-postgresql10 rh-postgresql10-postgresql-syspaths rh-postgresql10-postgresql-devel rh-postgresql10-postgresql-server-syspaths
-```
+     ```bash
+     sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
+     ```
 
-CentOS 7 requires the `rh-postgresql10` SCL environment in order to compile the `pq` gem's native extensions. Run `bin/setup` inside the `scl` environment: `scl enable rh-postgresql10 'bin/setup'`.
+   * Debian / Ubuntu
 
-##### Configure the cluster
+     ```bash
+     sudo pg_dropcluster --stop 10 main
+     sudo pg_createcluster -e UTF-8 -l C 10 main -- --auth trust --username root
+     sudo pg_ctlcluster 10 main start
+     ```
 
-* Fedora / CentOS
+   * macOS
 
-  ```bash
-  sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
-  ```
+     `brew` will configure the cluster automatically, but you will need to create the user.
 
-* Debian / Ubuntu
+     ```bash
+     brew services start postgresql
+     psql -c "CREATE USER root SUPERUSER PASSWORD 'smartvm';" -U $USER -d template1
+     ```
 
-  ```bash
-  sudo pg_dropcluster --stop 10 main
-  sudo pg_createcluster -e UTF-8 -l C 10 main -- --auth trust --username root
-  sudo pg_ctlcluster 10 main start
-  ```
+     If not using brew, you can configure a cluster using `initdb` directly.
 
-* macOS
+     ```bash
+     rm -rf /usr/local/var/postgres
+     initdb --auth trust --username root --encoding UTF-8 --locale C /usr/local/var/postgres
+     ```
 
-  `brew` will configure the cluster automatically.
+   * containers
 
-  If not using brew, you can configure a cluster using `initdb` directly.
+     Skip ahead to "Start the service"
 
-  ```bash
-  rm -rf /usr/local/var/postgres
-  initdb --auth trust --username root --encoding UTF-8 --locale C /usr/local/var/postgres
-  ```
+2. Start the service
 
-* containers
+   |            |     |
+   | ---------- | --- |
+   | systemd    | `systemctl enable --now postgresql` |
+   | brew       | *Already started above |
+   | containers | `podman run --detach --publish 5432:5432 --env POSTGRES_USER=root postgres` |
 
-  Skip ahead to "Start the service"
+### nvm and JavaScript build utilities
 
-##### Start the service
-
-|            |     |
-| ---------- | --- |
-| systemd    | `systemctl enable --now postgresql` |
-| brew       | `brew services start postgresql` |
-| containers | `podman run --detach --publish 5432:5432 --env POSTGRES_USER=root postgres` |
-
-### Install nvm and JavaScript build utilities
-
-Yarn and NodeJS version 12 or newer are required. If your distribution doesn't ship NodeJS 12.x, you can install [nvm](https://github.com/nvm-sh/nvm) and follow the setup steps (you will need to restart your shell in order to source the nvm initialization environment).
+[nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
 
 ```bash
 nvm install 12
-
-# needed when other versions are installed
 nvm use 12
 
-# if the wrong version still gets used in scripts
+# Set version 12 as the default for all scripts
 nvm alias default 12
 ```
+
+You may need to restart your shell in order to source the nvm initialization environment.
 
 Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
 
@@ -146,12 +141,12 @@ Then install `yarn` - you can find the recommended way for your platform at http
 npm install --global yarn
 ```
 
-### Install Ruby and Bundler
+### Ruby and Bundler
 
 A Ruby version manager is *strongly* recommended. Use any one of the following:
 
-* [rbenv](https://github.com/rbenv/rbenv) + [ruby-build](https://github.com/rbenv/ruby-build#readme)
 * [chruby](https://github.com/postmodern/chruby) + [ruby-install](https://github.com/postmodern/ruby-install)
+* [rbenv](https://github.com/rbenv/rbenv) + [ruby-build](https://github.com/rbenv/ruby-build#readme)
 * [rvm](http://rvm.io/)
 
 Using the Ruby version manager, install `ruby` >= 2.6.0 and < 3.0.0 and the latest `bundler`.
@@ -172,7 +167,6 @@ git fetch upstream
 ## Configure ManageIQ
 
 A setup script is available to quickly set up the application. This script installs the required Gems, sets up necessary JavaScript libraries, creates and migrates the database, and finally seeds the database with initial content.
-
 
 ```bash
 bin/setup
