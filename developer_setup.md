@@ -203,4 +203,4 @@ Note that in this runtime mode we are only verifying that the components are ins
 * [Individual workers](developer_setup/foreman.md) can be started using [Foreman](https://ddollar.github.io/foreman) directly.
 * [Running the test suites](developer_setup/running_test_suites.md)
 * [Provider, UI and plugin development](developer_setup/plugins.md) describes the plugin and external provider development process.
-* [ManageIQ Bot](https://github.com/ManageIQ/miq_bot#requested-tasks): a bot to automate various developer problems such as commit monitoring, Github pull request and Travis monitoring.
+* [ManageIQ Bot](https://github.com/ManageIQ/miq_bot#manageiq-bot) a bot to automate various developer problems such as commit monitoring, Github pull request and Travis monitoring.
