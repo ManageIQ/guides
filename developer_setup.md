@@ -160,9 +160,13 @@ Using the Ruby version manager, install `ruby` >= 2.6.0 and < 3.0.0 and the late
 
 ## Clone ManageIQ
 
+You must first fork the repository, clone it and then create an upstream remote. Additionally, to run the following commands you will need to setup an SSH key. Detailed instructions on how to do (as well as set up the recommended git and GitHub options) can be found in [Git workflow](developer_setup/git_workflow.md). 
+
 ```bash
-git clone git@github.com:ManageIQ/manageiq.git
+git clone git@github.com:<username>/manageiq.git
 cd manageiq
+git remote add upstream git@github.com:ManageIQ/manageiq.git
+git fetch upstream
 ```
 
 ## Configure ManageIQ
@@ -199,4 +203,3 @@ Note that in this runtime mode we are only verifying that the components are ins
 * [Individual workers](developer_setup/foreman.md) can be started using [Foreman](https://ddollar.github.io/foreman) directly.
 * [Running the test suites](developer_setup/running_test_suites.md)
 * [Provider, UI and plugin development](developer_setup/plugins.md) describes the plugin and external provider development process.
-* [Git workflow](developer_setup/git_workflow.md) outlines the recommended `git` and GitHub options.
