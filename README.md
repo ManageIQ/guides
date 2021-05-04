@@ -18,6 +18,7 @@
 * [Backport Process](backport_process.md)
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Contributing to the API](https://github.com/ManageIQ/manageiq-api/blob/master/CONTRIBUTING.md)
+* [External Authentication (httpd)](external_auth.md)
 * [GIT Helpers](git_utils/README.md)
 * [Issue and PR Triage Process](triage_process.md)
 * [Internationalization Guidelines](i18n.md)
@@ -32,7 +33,6 @@
 
 ### Technical documentation
 * [Architecture](architecture.md)
-* [External Authentication (httpd)](external_auth.md)
 * [Opening custom URLs via Custom Buttons and Automate](automate_url_open.md)
 * [Report data API](ui/report_data_api.md)
 * [Remote Consoles](/remote_consoles.md)
