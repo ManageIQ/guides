@@ -32,26 +32,6 @@ params:
   - label:"feedback requested"
   no_wip: &no_wip
   - -label:wip
-  backport_request_jansa: &backport_request_jansa
-  - is:merged
-  - is:pr
-  - label:jansa/yes?
-  backport_direct_prs_jansa: &backport_direct_prs_jansa
-  - base:jansa
-  - is:open
-  - is:pr
-  - -label:jansa/no
-  - -label:jansa/yes
-  backport_request_kasparov: &backport_request_kasparov
-  - is:merged
-  - is:pr
-  - label:kasparov/yes?
-  backport_direct_prs_kasparov: &backport_direct_prs_kasparov
-  - base:kasparov
-  - is:open
-  - is:pr
-  - -label:kasparov/no
-  - -label:kasparov/yes
   backport_request_lasker: &backport_request_lasker
   - is:merged
   - is:pr
@@ -62,6 +42,26 @@ params:
   - is:pr
   - -label:lasker/no
   - -label:lasker/yes
+  backport_request_kasparov: &backport_request_kasparov
+  - is:merged
+  - is:pr
+  - label:kasparov/yes?
+  backport_direct_prs_kasparov: &backport_direct_prs_kasparov
+  - base:kasparov
+  - is:open
+  - is:pr
+  - -label:kasparov/no
+  - -label:kasparov/yes
+  backport_request_jansa: &backport_request_jansa
+  - is:merged
+  - is:pr
+  - label:jansa/yes?
+  backport_direct_prs_jansa: &backport_direct_prs_jansa
+  - base:jansa
+  - is:open
+  - is:pr
+  - -label:jansa/no
+  - -label:jansa/yes
 repos:
   - name: Core/Provider
     params:
@@ -120,22 +120,6 @@ links:
   - *base_params
   - *open_pr
   - *stale
-- name: Backport requests (Jansa)
-  params:
-  - *base_params
-  - *backport_request_jansa
-- name: Backport direct PRs (Jansa)
-  params:
-  - *base_params
-  - *backport_direct_prs_jansa
-- name: Backport requests (Kasparov)
-  params:
-  - *base_params
-  - *backport_request_kasparov
-- name: Backport direct PRs (Kasparov)
-  params:
-  - *base_params
-  - *backport_direct_prs_kasparov
 - name: Backport requests (Lasker)
   params:
   - *base_params
@@ -144,3 +128,19 @@ links:
   params:
   - *base_params
   - *backport_direct_prs_lasker
+- name: Backport requests (Kasparov)
+  params:
+  - *base_params
+  - *backport_request_kasparov
+- name: Backport direct PRs (Kasparov)
+  params:
+  - *base_params
+  - *backport_direct_prs_kasparov
+- name: Backport requests (Jansa)
+  params:
+  - *base_params
+  - *backport_request_jansa
+- name: Backport direct PRs (Jansa)
+  params:
+  - *base_params
+  - *backport_direct_prs_jansa
