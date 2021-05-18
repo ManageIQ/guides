@@ -548,7 +548,7 @@ That's a very high level overview of writing a provider.  There is a lot still t
 * Add more collections like cloud_volumes and cloud_tenants to your CloudManager
 * Add a NetworkManager and start collecting CloudNetworks, CloudSubnets, etc...
 * Add some operations like start/stop/destroy to Vms
-* Add Event and Metrics collection and Targeted Refresh
+* Add [Targeted Refresh](targeted_refresh.md) and Event and Metrics collection
 * Instance Provisioning
 
 Having VMs in inventory is a great start to using some of the other features of ManageIQ and is usually the point where we will accept a new provider into the ManageIQ organization.
