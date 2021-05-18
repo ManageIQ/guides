@@ -41,13 +41,6 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Persister::TargetCollection 
   def targeted?
     true
   end
-
-  # This tells the Persister what to do with references, specifically this will
-  # lookup references for inventory objects which aren't in the collection which
-  # is required for targeted refresh.
-  def strategy
-    :local_db_find_missing_references
-  end
 end
 ```
 
