@@ -9,7 +9,7 @@ global region.
 
 Note, this is completely different from HA and failover.  Logical replication provides product
 features such as being able to start or stop a virtual machine centrally regardless of which
-database it resides.  HA, on the other hand, provides for failover by promoting a backup when a
+database it resides in.  HA, on the other hand, provides for failover by promoting a backup when a
 primary database fails.
 
 This interconnectedness of multiple databases with publications and subscriptions with ManageIQ
