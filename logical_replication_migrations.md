@@ -3,7 +3,7 @@
 ## Introduction
 
 ManageIQ uses logical replication to provide central administrative functions over objects in other
-database regions.  In order to do this, we use postgresql's logical replication to setup
+database regions.  In order to do this, postgresql's logical replication is used to setup
 publications for specific tables in remote regions and subscriptions for each in the central or
 global region.
 
@@ -13,7 +13,7 @@ database it resides.  HA, on the other hand, provides for failover by promoting 
 primary database fails.
 
 This interconnectedness of multiple databases with publications and subscriptions with ManageIQ
-regions means that the upgrade process is a bit different.  Basically, the central region cannot be
+regions means that the upgrade process is a bit different.  Basically, the global region cannot be
 migrated until all databases it's subscribing to have been migrated.  Fortunately, this logic
 should be mostly automatic.
 
@@ -21,16 +21,18 @@ This logic is what we're trying to test and verify.
 
 ## Pre-requisites
 
-I tested with 3 nightly appliances.  They were setup to be at the Jansa codebase with replication.
-They were then migrated to kasparov.  This document could be used for different branches or tags.
+This was tested with 3 nightly appliances.  They were setup to be at the Jansa codebase with
+replication. The appliances were then migrated to kasparov.  This document could be used for
+different branches or tags.
 
-I used the following region numbers:
+The following region numbers were used and will be referenced throughout this document.  Replace
+these values if different numbers are selected:
 * 99 - global
 * 1 - remote
 * 2 - remote
 
-I assume you'll be running this in production mode on appliances.  If not, you'll need to export
-RAILS_ENV on the 3 terminals if you're not using appliances:
+It is assumed the application will be run in production mode on appliances.  This is the default
+on appliances.  If using a different mode or not appliances, RAILS_ENV will need to be exported:
 
 ```
 export RAILS_ENV=production
@@ -38,8 +40,9 @@ export RAILS_ENV=production
 
 ## Initial setup
 
-I cloned ManageIQ and checked out the jansa branch on all 3 appliances, renaming the existing vmdb
-directory from the rpm, and installed the rpms needed in order to build andy compiled gems.
+* The existing manageiq code from the rpm in /var/www/miq/vmdb was renamed
+* ManageIQ was cloned and checked out at the jansa branch
+* Now, install all rpms required to build compiled gems:
 
 These commands were found in the [rpm_build Dockerfile](https://github.com/ManageIQ/manageiq-rpm_build/blob/ec0fcc85f7d24010278148f4bab83447d18884b5/Dockerfile#L22-L45).
 
@@ -72,11 +75,11 @@ These commands were found in the [rpm_build Dockerfile](https://github.com/Manag
 
 ## Prepare for replication on jansa
 
-For each appliance, we'll
+The commands below will be run on each appliance and will do the following:
 * Checkout the source version (jansa)
-* Bundle our gem dependencies
+* Bundle the gem dependencies
 * Initialize the encryption key and default database.yml
-* Setup our region number
+* Setup the region number
 * Seed the database
 
 Note: Setting RAILS_ENV is not required on appliances as they default to production, but is provided
@@ -103,7 +106,7 @@ Substitute XXX for the region number of this appliance:
 ## Configure replication for jansa
 
 * Region 1 and 2: 
-  * We'll set them up as remotes which will create the publications.
+  * These will be remotes, meaning they will "publish" the tables to be replicated:
 
   ```
   vmdb
@@ -112,7 +115,9 @@ Substitute XXX for the region number of this appliance:
 
 
 * Region 99 (global):
-  * We'll specify the remote region connection information and create the subscriptions.
+  * The commands below will:
+    * Provide the other regions' connection information
+    * Create the subscription for each remote region
   
   ```
   bin/rails c
@@ -132,7 +137,7 @@ Substitute XXX for the region number of this appliance:
   MiqPglogical.save_global_region([sub1, sub2], [])
   ```
 
-Now, we wait and verify that replication is working before moving on.
+Now, replication can verified before moving on.
 
 On the global:
 
@@ -145,7 +150,15 @@ User.all.pluck(:id)
 # This should show ids beginning with the 3 region numbers: 99, 1, 2.
 ```
 
+Note, it may take a few minutes before these users are replicated.
+
 ## Remove replication before upgrade
+
+Whenever performing an upgrade, logical replication must be disabled on the old version and enabled
+again on the new version.  Often, this is because appliances are replaced and therefore the
+publication and subscription are different.  Even when not replacing appliances, it is still best to
+disable replication on the old version and enable it again on the new version so that the correct
+version of code is adding the publications and subscriptions.
 
 On the global, assuming the remotes are region 1 and 2:
 
@@ -154,8 +167,8 @@ psql -U root vmdb_production -h global_ipaddress -c 'DROP subscription region_1_
 psql -U root vmdb_production -h global_ipaddress -c 'DROP subscription region_2_subscription;'
 ```
 
-Note:  Dropping the subscription on the global will also delete the slot on the remote and will do
-proper cleanup.  
+Note:  Dropping the subscription on the global will also delete the replication slot on the remote
+and will do proper cleanup.  The replication slot should not be manually removed.
 
 ## Upgrade to kasparov
 
@@ -169,7 +182,7 @@ bundle check || bundle update
 
 ## Configure replication for kasparov
 
-Same instructions as [above](#configure-replication-for-jansa).
+Follow the same instructions as [above](#configure-replication-for-jansa)
 
 ## Attempt migration from global
 
@@ -178,7 +191,7 @@ vmdb
 bin/rake db:migrate
 ```
 
-You'll notice it's waiting on the remote region 1 and will not complete:
+Notice that the global will not migrate the database as it is waiting on region 1 to migrate first:
 
 ```
  Waiting for remote region 1 to run migration 20200424183342
@@ -195,13 +208,13 @@ vmdb
 bin/rake db:migrate
 ```
 
-Now, region 99 terminal shows:
+Now, region 99 (global) terminal shows:
 ```
 Waiting for remote region 1 to run migration 20200424183342
 Waiting for remote region 2 to run migration 20200424183342
 ```
 
-It's now waiting on the remote region 2 and will not complete.
+It is now waiting on region 2 and will not complete yet.
 
 ## Migrate database to kasparov on region 2
 
@@ -212,4 +225,4 @@ vmdb
 bin/rake db:migrate
 ```
 
-Now, once region 2 migrates, region 99 will immediately migrate.
+After region 2 migrates, region 99 will immediately migrate.
