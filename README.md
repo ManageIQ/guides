@@ -13,6 +13,7 @@
 * [Running in minimal mode](developer_setup/minimal_mode.md)
 * [Running the test suites](developer_setup/running_test_suites.md)
 * [Setting up Kubernetes for use with ManageIQ](providers/kubernetes.md)
+* [Testing logical replication with migrations](logical_replication_migrations.md)
 
 ### Developer Guidelines
 * [Backport Process](backport_process.md)
