@@ -32,6 +32,16 @@ params:
   - label:"feedback requested"
   no_wip: &no_wip
   - -label:wip
+  backport_request_morphy: &backport_request_morphy
+  - is:merged
+  - is:pr
+  - label:morphy/yes?
+  backport_direct_prs_morphy: &backport_direct_prs_morphy
+  - base:morphy
+  - is:open
+  - is:pr
+  - -label:morphy/no
+  - -label:morphy/yes
   backport_request_lasker: &backport_request_lasker
   - is:merged
   - is:pr
@@ -52,16 +62,6 @@ params:
   - is:pr
   - -label:kasparov/no
   - -label:kasparov/yes
-  backport_request_jansa: &backport_request_jansa
-  - is:merged
-  - is:pr
-  - label:jansa/yes?
-  backport_direct_prs_jansa: &backport_direct_prs_jansa
-  - base:jansa
-  - is:open
-  - is:pr
-  - -label:jansa/no
-  - -label:jansa/yes
 repos:
   - name: Core/Provider
     params:
@@ -120,6 +120,14 @@ links:
   - *base_params
   - *open_pr
   - *stale
+- name: Backport requests (Morphy)
+  params:
+  - *base_params
+  - *backport_request_morphy
+- name: Backport direct PRs (Morphy)
+  params:
+  - *base_params
+  - *backport_direct_prs_morphy
 - name: Backport requests (Lasker)
   params:
   - *base_params
@@ -136,11 +144,3 @@ links:
   params:
   - *base_params
   - *backport_direct_prs_kasparov
-- name: Backport requests (Jansa)
-  params:
-  - *base_params
-  - *backport_request_jansa
-- name: Backport direct PRs (Jansa)
-  params:
-  - *base_params
-  - *backport_direct_prs_jansa
