@@ -6,15 +6,15 @@ Color | Hex | Description
 --- | --- | ---
 ![](https://dummyimage.com/100x20/ee0701&amp;text=+) | `#ee0701` | Scope - Bugs
 ![](https://dummyimage.com/100x20/84b6eb&amp;text=+) | `#84b6eb` | Scope - Enhancement
-![](https://dummyimage.com/100x20/bfe5bf&amp;text=+)</br>![](https://dummyimage.com/100x20/bcf5db&amp;text=+) | `#bfe5bf`</br>`#bcf5db` | Scope - Testing and tools: "test", "developer", "tools"
-![](https://dummyimage.com/100x20/fef2c0&amp;text=+)</br>![](https://dummyimage.com/100x20/e99695&amp;text=+)</br> ![](https://dummyimage.com/100x20/fbca04&amp;text=+)</br>![](https://dummyimage.com/100x20/ff7619&amp;text=+) | `#fef2c0`</br>`#e99695`</br>`#fbca04`</br>`#ff7619` | Scope - Other: "cleanup", "performance", "refactoring", "technical debt"
+![](https://dummyimage.com/100x20/bfe5bf&amp;text=+)![](https://dummyimage.com/100x20/bcf5db&amp;text=+) | `#bfe5bf``#bcf5db` | Scope - Testing and tools: "test", "developer", "tools"
+![](https://dummyimage.com/100x20/fef2c0&amp;text=+)![](https://dummyimage.com/100x20/e99695&amp;text=+) ![](https://dummyimage.com/100x20/fbca04&amp;text=+)![](https://dummyimage.com/100x20/ff7619&amp;text=+) | `#fef2c0``#e99695``#fbca04``#ff7619` | Scope - Other: "cleanup", "performance", "refactoring", "technical debt"
 ![](https://dummyimage.com/100x20/0e8a16&amp;text=+) | `#0e8a16` | Positive statuses: "help wanted", "verified"
 ![](https://dummyimage.com/100x20/eeeeee&amp;text=+) | `#eeeeee` | Negative statuses: "duplicate", "notabug", "stale", "unmergeable", "wip", "wontfix"
 ![](https://dummyimage.com/100x20/cc317c&amp;text=+) | `#cc317c` | Questions and discussions: "question"
 ![](https://dummyimage.com/100x20/5319e7&amp;text=+) | `#5319e7` | Component: Repo specific labels that categorize what parts of the application are being changed.  See the repos for specifics.
 ![](https://dummyimage.com/100x20/d4c5f9&amp;text=+) | `#d4c5f9` | Alternate component: A secondary, repo specific categorization (e.g. in manageiq-ui-classic, dark purple represents a specific UI tab being changed, whereas light purple is used for general components like toolbars or buttons)
 ![](https://dummyimage.com/100x20/b4a8d1&amp;text=+) | `#b4a8d1` | Special component: A component that requires more careful handling and possibly a specific reviewer or merger. Right now this is only "dependencies" and "sql migration".
-![](https://dummyimage.com/100x20/000000&amp;text=+)</br>![](https://dummyimage.com/100x20/555555&amp;text=+)</br> ![](https://dummyimage.com/100x20/dddddd&amp;text=+) | `#000000`</br>`#555555`</br>`#dddddd` | Backporting and release: "blocker", "fine/yes", "fine/no", "darga/yes", "darga/no", etc.  The darkest color is for the most recent release, the middle color is the release before that, and the lightest color is for any release older than that.
+![](https://dummyimage.com/100x20/000000&amp;text=+)![](https://dummyimage.com/100x20/555555&amp;text=+) ![](https://dummyimage.com/100x20/dddddd&amp;text=+) | `#000000``#555555``#dddddd` | Backporting and release: "blocker", "fine/yes", "fine/no", "darga/yes", "darga/no", etc.  The darkest color is for the most recent release, the middle color is the release before that, and the lightest color is for any release older than that.
 
 ### Common labels
 
