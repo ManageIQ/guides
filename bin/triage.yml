@@ -25,6 +25,7 @@ params:
   - -label:refactoring
   - -label:"technical debt"
   - -label:test
+  - -label:blog
   stale: &stale
   - label:stale
   questions: &questions
