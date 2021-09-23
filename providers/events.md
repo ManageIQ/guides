@@ -193,7 +193,7 @@ The first step is to create automate event handlers for each of the events that 
 Create a directory to hold your events: `content/automate/ManageIQ/System/Event/EmsEvent/AWESOME_CLOUD.class/`
 
 Then in this directory create a file that matches the event_type for each of your events:
-`content/automate/ManageIQ/System/Event/EmsEvent/AWESOME_CLOUD.class/com.awesomecloud.vm.create`
+`content/automate/ManageIQ/System/Event/EmsEvent/AWESOME_CLOUD.class/com.awesomecloud.vm.create.yaml`
 ```yaml
 ---
 object_type: instance
