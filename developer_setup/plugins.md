@@ -121,6 +121,15 @@ or use relative path to current file and `__dir__` like
 override_gem 'manageiq-providers-amazon', :path => File.expand_path('../../manageiq-providers-amazon', __dir__)
 ```
 
+Once path is updated in local_plugins.rb, run bin/update and restart the server. After these changes, once you make any changes in plugin code, changes can be seen by refreshing browser.
+
+```bash
+bin/update
+# == Updating manageiq sample app ==
+```
+ 
+ If you plan to change any javsacript files in plugins, please run `bin/webpack --watch --follow` in another tab in manageiq-ui-classic repo to see the reflected changes.
+
 #### Rails console
 
 Unfortunately Rails Engines don't support running `rails console` from the root of the plugin. To test your code you
