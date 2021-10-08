@@ -135,12 +135,6 @@ nvm alias default 12
 
 You may need to restart your shell in order to source the nvm initialization environment.
 
-Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
-
-```bash
-npm install --global yarn
-```
-
 ### Ruby and Bundler
 
 A Ruby version manager is *strongly* recommended. Use any one of the following:
