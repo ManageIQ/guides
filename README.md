@@ -23,7 +23,7 @@
 * [GIT Helpers](git_utils/README.md)
 * [Issue and PR Triage Process](triage_process.md)
 * [Internationalization Guidelines](i18n.md)
-* [Merger Guidlines](mergers_guidelines.md)
+* [Merger Guidelines](mergers_guidelines.md)
 * [Project Roadmap](https://github.com/orgs/ManageIQ/projects/13)
 * [Repository Labels and Colors](labels.md)
 * [Reviewer Guidelines](reviewers_guidelines.md)
