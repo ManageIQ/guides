@@ -1,4 +1,4 @@
-# Merger Guidlines
+# Merger Guidelines
 
 ## DO
 * Create a merge commit
