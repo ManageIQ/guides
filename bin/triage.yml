@@ -13,6 +13,7 @@ params:
   - is:pr
   - is:open
   missing_scope: &missing_scope
+  - -label:blog
   - -label:bug
   - -label:"bug/sporadic test failure"
   - -label:cleanup
@@ -21,11 +22,11 @@ params:
   - -label:documentation
   - -label:enhancement
   - -label:performance
+  - -label:question
   - -label:redesign
   - -label:refactoring
   - -label:"technical debt"
   - -label:test
-  - -label:blog
   stale: &stale
   - label:stale
   questions: &questions
