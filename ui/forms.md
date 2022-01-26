@@ -20,8 +20,8 @@ For an example of a data driven form used in a ManageIQ plugin, see [ManageIQ/ma
 `MiqFormRenderer` is our wrapper around DDF with our custom components and implicitly translated button labels.
 For more information see the [component definition](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/javascript/forms/data-driven-form.jsx).
 
-`componentTypes` ([list](https://github.com/data-driven-forms/react-forms/blob/master/packages/react-form-renderer/src/files/component-types.js))
-and `validatorTypes` ([list](https://github.com/data-driven-forms/react-forms/blob/master/packages/react-form-renderer/src/files/validator-types.js))
+`componentTypes` ([list](https://github.com/data-driven-forms/react-forms/blob/master/packages/react-form-renderer/src/component-types/component-types.js))
+and `validatorTypes` ([list](https://github.com/data-driven-forms/react-forms/blob/master/packages/react-form-renderer/src/validator-types/validator-types.js))
 are a set of constants provided by DDF for creating a schema.
 
 A DDF form consists of 2 parts:
