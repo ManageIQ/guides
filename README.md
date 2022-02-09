@@ -1,5 +1,7 @@
 ## ManageIQ Developer Documentation
 
+[![CI](https://github.com/ManageIQ/guides/actions/workflows/ci.yaml/badge.svg)](https://github.com/ManageIQ/guides/actions/workflows/ci.yaml)
+
 ### [Setup](developer_setup.md)
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Development using a Vagrant VM](vagrant_developer_vm.md)
