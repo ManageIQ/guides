@@ -1,0 +1,40 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.5'
+          bundler-cache: true
+      - name: Get manageiq.org repo
+        run: git clone https://github.com/ManageIQ/manageiq.org
+      - name: Build
+        run: |
+          cd manageiq.org
+          bundle install
+          exe/miq build all
+      - name: Regex Match Commit Message on Push
+        uses: actions-ecosystem/action-regex-match@v2
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'ManageIQ' }}
+        id: regex-commit-message
+        with:
+          text: ${{ github.event.head_commit.message }}
+          regex: 'Merge pull request #(\d+)'
+      - name: Notify manageiq.github.io on Push
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'ManageIQ' }}
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          repository: ManageIQ/manageiq.github.io
+          event-type: deploy
+          client-payload: |
+            { "repository": "${{ github.repository }}",
+              "pr_number": "${{ steps.regex-commit-message.outputs.group1 }}",
+              "ref_name": "${{ github.ref_name }}",
+              "sha": "${{ github.sha }}" }
