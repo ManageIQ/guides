@@ -25,6 +25,7 @@ params:
   - -label:question
   - -label:redesign
   - -label:refactoring
+  - -label:"security vulnerability"
   - -label:"technical debt"
   - -label:test
   stale: &stale
