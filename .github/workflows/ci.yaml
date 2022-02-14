@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: |
           cd manageiq.org
-          bundle install
+          bundle install --path vendor/bundle
           exe/miq build all
       - name: Regex Match Commit Message on Push
         uses: actions-ecosystem/action-regex-match@v2
