@@ -7,7 +7,7 @@
 | Ruby       | 2.6.x           | 2.7.x           |
 | Rails      | 6.0.x           |                 |
 | Bundler    | 1.15.x          |                 |
-| NodeJS     | 16.x.x          |                 |
+| NodeJS     | 14.x.x          |                 |
 | Python     | 2.7.x           |                 |
 | PostgreSQL | 10.x            | 12.x            |
 
@@ -126,11 +126,11 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 [nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
 
 ```bash
-nvm install 16
-nvm use 16
+nvm install 14
+nvm use 14
 
-# Set version 16 as the default for all scripts
-nvm alias default 16
+# Set version 14 as the default for all scripts
+nvm alias default 14
 ```
 
 You may need to restart your shell in order to source the nvm initialization environment.
