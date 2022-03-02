@@ -81,6 +81,7 @@ repos:
     - org:ManageIQ
     # Ignore certain repos
     - -repo:ManageIQ/bugzilla_mirror
+    - -repo:ManageIQ/kubeclient
     - -repo:ManageIQ/manageiq-consumption
     - -repo:ManageIQ/manageiq-cross_repo-tests
     - -repo:ManageIQ/manageiq-design
