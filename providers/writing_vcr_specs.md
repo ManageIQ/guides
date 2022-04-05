@@ -20,7 +20,7 @@ end
 
 The next thing we have to take care of is hiding "secrets".  Since the VCR YAML files will be committed to source control it is critical that private information like passwords do not make it into these files.
 
-VCR handles this with the `config.define_cassette_placeholder` option.  You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with.  This allows for hostanmes / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
+VCR handles this with the `config.define_cassette_placeholder` option.  You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with.  This allows for hostnames / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
 
 ManageIQ has a pattern to help you with this, simply create a `config/secrets.defaults.yml` file:
 ```yaml
