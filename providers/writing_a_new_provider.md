@@ -20,6 +20,7 @@ Usage:
 Options:
   [--path=PATH]                        # Create plugin at given path
                                        # Default: plugins
+  [--js], [--no-js]                    # Enable JavaScript in the plugin
   [--vcr], [--no-vcr]                  # Enable VCR cassettes (Default: --no-vcr)
   [--scaffolding], [--no-scaffolding]  # Generate default class scaffolding (Default: --scaffolding)
                                        # Default: true
@@ -38,14 +39,15 @@ Example:
     rails generate manageiq:provider ManageIQ::Providers::VendorName --manager-type=cloud
     rails generate manageiq:provider ManageIQ::Providers::VendorName --manager-type=cloud --path ~/dev
     rails generate manageiq:provider ManageIQ::Providers::VendorName --manager-type=cloud --vcr
+    rails generate manageiq:provider ManageIQ::Providers::VendorName --manager-type=cloud --vcr --js
     rails generate manageiq:provider ManageIQ::Providers::VendorName --no-scaffolding
 ```
 
-For our purposes here we're going to want to create a `CloudManager` with VCR support and scaffolding.
+For our purposes here we're going to want to create a `CloudManager` with VCR support, provider specific JavaScript, and scaffolding.
 
 So lets go ahead and create our provider plugin:
 ```bash
-$ bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud --manager-type=cloud --vcr --scaffolding
+$ bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud --manager-type=cloud --vcr --js --scaffolding
 
 create  
    run  git init /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_cloud from "."
@@ -81,6 +83,11 @@ create  locale/.keep
 create  spec/factories
 create  spec/support
 create  spec/spec_helper.rb
+insert  .gitignore
+create  .yarnrc.yml
+create  .yarn/releases/yarn-3.0.2.cjs
+create  package.json
+create  yarn.lock
 insert  /home/grare/adam/src/manageiq/manageiq/Gemfile
 create  spec/models/manageiq/providers/awesome_cloud
   gsub  lib/tasks_private/spec.rake
