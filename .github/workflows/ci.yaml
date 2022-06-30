@@ -16,6 +16,7 @@ jobs:
         with:
           ruby-version: '2.7'
           bundler-cache: true
+        timeout-minutes: 30
       - name: Get manageiq.org repo
         run: git clone https://github.com/ManageIQ/manageiq.org
       - name: Build
