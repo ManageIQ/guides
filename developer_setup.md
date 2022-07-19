@@ -36,10 +36,10 @@
 
    |      |     |
    | ---- | --- |
-   | dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
-   | yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python` |
-   | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python` |
-   | brew | `brew install cmake` |
+   | dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python libssh2-devel` |
+   | yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python libssh2-devel` |
+   | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev` |
+   | brew | `brew install cmake libssh2` |
 
 ### Services
 
