@@ -43,6 +43,7 @@
 
    **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly. 
    If build steps below fail for you then run `export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"`and retry the failing build step.
+   See here for additional information: https://github.com/Homebrew/brew/issues/13481
 
 ### Services
 
