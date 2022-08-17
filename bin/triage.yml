@@ -6,6 +6,7 @@ params:
   unassigned: &unassigned
   - no:assignee
   - -label:"help wanted"
+  - -label:"security vulnerability"
   open_issue: &open_issue
   - is:issue
   - is:open
