@@ -35,6 +35,16 @@ params:
   - label:"feedback requested"
   no_wip: &no_wip
   - -label:wip
+  backport_request_oparin: &backport_request_oparin
+  - is:merged
+  - is:pr
+  - label:oparin/yes?
+  backport_direct_prs_oparin: &backport_direct_prs_oparin
+  - base:oparin
+  - is:open
+  - is:pr
+  - -label:oparin/no
+  - -label:oparin/yes
   backport_request_najdorf: &backport_request_najdorf
   - is:merged
   - is:pr
@@ -55,26 +65,6 @@ params:
   - is:pr
   - -label:morphy/no
   - -label:morphy/yes
-  backport_request_lasker: &backport_request_lasker
-  - is:merged
-  - is:pr
-  - label:lasker/yes?
-  backport_direct_prs_lasker: &backport_direct_prs_lasker
-  - base:lasker
-  - is:open
-  - is:pr
-  - -label:lasker/no
-  - -label:lasker/yes
-  backport_request_kasparov: &backport_request_kasparov
-  - is:merged
-  - is:pr
-  - label:kasparov/yes?
-  backport_direct_prs_kasparov: &backport_direct_prs_kasparov
-  - base:kasparov
-  - is:open
-  - is:pr
-  - -label:kasparov/no
-  - -label:kasparov/yes
 repos:
   - name: Core/Provider
     params:
@@ -134,6 +124,14 @@ links:
   - *base_params
   - *open_pr
   - *stale
+- name: Backport requests (Oparin)
+  params:
+  - *base_params
+  - *backport_request_oparin
+- name: Backport direct PRs (Oparin)
+  params:
+  - *base_params
+  - *backport_direct_prs_oparin
 - name: Backport requests (Najdorf)
   params:
   - *base_params
@@ -150,19 +148,3 @@ links:
   params:
   - *base_params
   - *backport_direct_prs_morphy
-- name: Backport requests (Lasker)
-  params:
-  - *base_params
-  - *backport_request_lasker
-- name: Backport direct PRs (Lasker)
-  params:
-  - *base_params
-  - *backport_direct_prs_lasker
-- name: Backport requests (Kasparov)
-  params:
-  - *base_params
-  - *backport_request_kasparov
-- name: Backport direct PRs (Kasparov)
-  params:
-  - *base_params
-  - *backport_direct_prs_kasparov
