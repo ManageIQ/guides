@@ -4,7 +4,7 @@ require "pathname"
 require "uri"
 require "yaml"
 
-params = YAML.load_file(Pathname.new(__dir__).join("triage.yml"))
+params = YAML.unsafe_load_file(Pathname.new(__dir__).join("triage.yml"))
 
 named_sections = params["repos"].size > 1
 
