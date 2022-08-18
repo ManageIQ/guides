@@ -5,14 +5,12 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
 ## Topics
 
 * Backports
+  * [Backport requests (Oparin)][]
+  * [Backport direct PRs (Oparin)][]
   * [Backport requests (Najdorf)][]
   * [Backport direct PRs (Najdorf)][]
   * [Backport requests (Morphy)][]
   * [Backport direct PRs (Morphy)][]
-  * [Backport requests (Lasker)][]
-  * [Backport direct PRs (Lasker)][]
-  * [Backport requests (Kasparov)][]
-  * [Backport direct PRs (Kasparov)][]
 * Issues
   * [Unassigned issues][]
   * [Issues without scope label][]
