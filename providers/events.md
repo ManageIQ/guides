@@ -91,7 +91,7 @@ class ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher::Runner < Ma
   # fetching events from the provider.
   def event_monitor_handle
     @event_monitor_handle ||= begin
-      self.class.parent::Stream.new
+      self.class.module_parent::Stream.new
     end
   end
 end
