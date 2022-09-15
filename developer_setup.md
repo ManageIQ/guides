@@ -5,10 +5,9 @@
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
 | Ruby       | 2.6.x           | 2.7.x           |
-| Rails      | 6.0.x           |                 |
-| Bundler    | 1.15.x          |                 |
+| Bundler    | 2.1.4           | 2.x             |
 | NodeJS     | 14.x.x          |                 |
-| Python     | 2.7.x           |                 |
+| Python     | 3.8.x           |                 |
 | PostgreSQL | 10.x            | 12.x            |
 
 ## Prerequisites
