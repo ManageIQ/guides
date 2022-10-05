@@ -4,7 +4,7 @@
 
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
-| Ruby       | 2.6.x           | 2.7.x           |
+| Ruby       | 2.7.x           | 3.0.x           |
 | Bundler    | 2.1.4           | 2.x             |
 | NodeJS     | 14.x.x          |                 |
 | Python     | 3.8.x           |                 |
@@ -148,13 +148,13 @@ A Ruby version manager is *strongly* recommended. Use any one of the following:
 * [rbenv](https://github.com/rbenv/rbenv) + [ruby-build](https://github.com/rbenv/ruby-build#readme)
 * [rvm](http://rvm.io/)
 
-Using the Ruby version manager, install `ruby` >= 2.6.0 and < 3.0.0 and the latest `bundler`.
+Using the Ruby version manager, install `ruby` >= 2.7.0 and < 3.1.0 and the latest `bundler`.
 
 ---
 
 ## Clone ManageIQ
 
-You must first fork the repository, clone it and then create an upstream remote. Additionally, to run the following commands you will need to setup an SSH key. Detailed instructions on how to do (as well as set up the recommended git and GitHub options) can be found in [Git workflow](developer_setup/git_workflow.md). 
+You must first fork the repository, clone it and then create an upstream remote. Additionally, to run the following commands you will need to setup an SSH key. Detailed instructions on how to do (as well as set up the recommended git and GitHub options) can be found in [Git workflow](developer_setup/git_workflow.md).
 
 ```bash
 git clone git@github.com:<username>/manageiq.git
