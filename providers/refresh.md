@@ -67,7 +67,7 @@ You can modify properties of these builtin collections by providing a block to t
 
 It is also possible to define collections with a "custom save block" where you can do anything that doesn't fit into the typical model saver.
 
-For a deep dive into the inventory collection options check out the [Inventory Collection](../persister/inventory_collections.md) documentation.
+For a deep dive into the inventory collection options check out the [Inventory Collection](persister/inventory_collections.md) documentation.
 
 ###### Inventory::Parser
 
