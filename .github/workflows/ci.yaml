@@ -35,7 +35,7 @@ jobs:
         if: ${{ github.event_name == 'push' && github.repository_owner == 'ManageIQ' }}
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
+          token: ${{ secrets.WEBSITE_DEPLOY_TOKEN }}
           repository: ManageIQ/manageiq.github.io
           event-type: deploy
           client-payload: |
