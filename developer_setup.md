@@ -6,9 +6,9 @@
 | ---------- | --------------- | --------------- |
 | Ruby       | 2.7.x           | 3.0.x           |
 | Bundler    | 2.1.4           | 2.x             |
-| NodeJS     | 14.x.x          |                 |
+| NodeJS     | 14.x.x          | 14.x.x          |
 | Python     | 3.8.x           |                 |
-| PostgreSQL | 10.x            | 12.x            |
+| PostgreSQL | 10.x            | 13.x            |
 
 ## Prerequisites
 
