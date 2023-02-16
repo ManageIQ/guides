@@ -36,6 +36,16 @@ params:
   - label:"feedback requested"
   no_wip: &no_wip
   - -label:wip
+  backport_request_petrosian: &backport_request_petrosian
+  - is:merged
+  - is:pr
+  - label:petrosian/yes?
+  backport_direct_prs_petrosian: &backport_direct_prs_petrosian
+  - base:petrosian
+  - is:open
+  - is:pr
+  - -label:petrosian/no
+  - -label:petrosian/yes
   backport_request_oparin: &backport_request_oparin
   - is:merged
   - is:pr
@@ -125,6 +135,14 @@ links:
   - *base_params
   - *open_pr
   - *stale
+- name: Backport requests (Petrosian)
+  params:
+  - *base_params
+  - *backport_request_petrosian
+- name: Backport direct PRs (Petrosian)
+  params:
+  - *base_params
+  - *backport_direct_prs_petrosian
 - name: Backport requests (Oparin)
   params:
   - *base_params
