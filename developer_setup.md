@@ -76,7 +76,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    | ---------- | --- |
    | dnf        | `sudo dnf -y install postgresql-server` |
    | yum        | `sudo yum -y install postgresql-server` |
-   | apt        | `sudo apt -y install postgresql-13` |
+   | apt        | `sudo apt -y install postgresql` |
    | brew       | `brew install postgresql@13` |
    | containers | N/A |
 
@@ -91,9 +91,10 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    * Debian / Ubuntu
 
      ```bash
-     sudo pg_dropcluster --stop 13 main
-     sudo pg_createcluster -e UTF-8 -l C 13 main -- --auth trust --username root
-     sudo pg_ctlcluster 13 main start
+     pg_version=$(pg_lsclusters --no-header | awk '{print $1}' | sort -n | tail -1)
+     sudo pg_dropcluster --stop $pg_version main
+     sudo pg_createcluster -e UTF-8 -l C $pg_version main -- --auth trust --username root
+     sudo pg_ctlcluster $pg_version main start
      ```
 
    * macOS
