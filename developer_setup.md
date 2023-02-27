@@ -8,7 +8,7 @@
 | Bundler    | 2.1.4           | 2.x             |
 | NodeJS     | 14.x.x          | 14.x.x          |
 | Python     | 3.8.x           |                 |
-| PostgreSQL | 10.x            | 13.x            |
+| PostgreSQL | 13.x            | 14.x            |
 
 ## Prerequisites
 
@@ -76,8 +76,8 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    | ---------- | --- |
    | dnf        | `sudo dnf -y install postgresql-server` |
    | yum        | `sudo yum -y install postgresql-server` |
-   | apt        | `sudo apt -y install postgresql-11` |
-   | brew       | `brew install postgresql@11` |
+   | apt        | `sudo apt -y install postgresql-13` |
+   | brew       | `brew install postgresql@13` |
    | containers | N/A |
 
 2. Configure and start the cluster
@@ -91,9 +91,9 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    * Debian / Ubuntu
 
      ```bash
-     sudo pg_dropcluster --stop 11 main
-     sudo pg_createcluster -e UTF-8 -l C 11 main -- --auth trust --username root
-     sudo pg_ctlcluster 11 main start
+     sudo pg_dropcluster --stop 13 main
+     sudo pg_createcluster -e UTF-8 -l C 13 main -- --auth trust --username root
+     sudo pg_ctlcluster 13 main start
      ```
 
    * macOS
@@ -101,7 +101,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
      `brew` will configure the cluster automatically, but you will need to create the user.
 
      ```bash
-     brew services start postgresql@11
+     brew services start postgresql@13
      psql -c "CREATE USER root SUPERUSER PASSWORD 'smartvm';" -U $USER -d template1
      ```
 
