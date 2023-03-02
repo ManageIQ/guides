@@ -85,7 +85,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    * Fedora / CentOS
 
      ```bash
-     sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8 --locale C' postgresql-setup --initdb
+     sudo PGSETUP_INITDB_OPTIONS='--auth trust --username root --encoding UTF-8' postgresql-setup --initdb
      ```
 
    * Debian / Ubuntu
@@ -110,7 +110,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 
      ```bash
      rm -rf /usr/local/var/postgres
-     initdb --auth trust --username root --encoding UTF-8 --locale C /usr/local/var/postgres
+     initdb --auth trust --username root --encoding UTF-8 /usr/local/var/postgres
      ```
 
    * containers
