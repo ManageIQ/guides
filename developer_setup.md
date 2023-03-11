@@ -143,6 +143,7 @@ Then install `yarn` - you can find the recommended way for your platform at http
 
 ```bash
 npm install --global yarn
+yarn set version berry
 ```
 
 ### Ruby and Bundler
