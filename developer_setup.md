@@ -41,7 +41,7 @@
    | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev` |
    | brew | `brew install cmake libssh2` |
 
-   **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly. 
+   **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly.
    If build steps below fail for you then run `export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"`and retry the failing build step.
    See here for additional information: https://github.com/Homebrew/brew/issues/13481
 
@@ -123,7 +123,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    |            |     |
    | ---------- | --- |
    | systemd    | `systemctl enable --now postgresql` |
-   | brew       | *Already started above |
+   | brew       | Already started above |
    | containers | `podman run --detach --publish 5432:5432 --env POSTGRES_USER=root postgres` |
 
 ### nvm and JavaScript build utilities
