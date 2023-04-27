@@ -9,6 +9,7 @@
 | NodeJS     | 18.x.x          | 18.x.x          |
 | Python     | 3.8.x           |                 |
 | PostgreSQL | 13.x            | 14.x            |
+| Java       | 11.x            | 19.x            |
 
 ## Prerequisites
 
@@ -40,7 +41,7 @@
    | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev` |
    | brew | `brew install cmake libssh2` |
 
-   **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly. 
+   **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly.
    If build steps below fail for you then run `export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"`and retry the failing build step.
    See here for additional information: https://github.com/Homebrew/brew/issues/13481
 
@@ -122,7 +123,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    |            |     |
    | ---------- | --- |
    | systemd    | `systemctl enable --now postgresql` |
-   | brew       | *Already started above |
+   | brew       | Already started above |
    | containers | `podman run --detach --publish 5432:5432 --env POSTGRES_USER=root postgres` |
 
 ### nvm and JavaScript build utilities
@@ -144,6 +145,44 @@ Then install `yarn` - you can find the recommended way for your platform at http
 ```bash
 npm install --global yarn
 ```
+
+### Kafka
+
+1. Install
+
+   |            |     |
+   | ---------- | --- |
+   | dnf        | `sudo dnf -y install kafka` |
+   | yum        | `sudo yum -y install kafka` |
+   | apt        | `sudo apt -y install kafka` |
+   | brew       | `brew install java kafka` |
+   | containers | N/A |
+
+2. Configure system to use Java
+
+  * Mac
+
+```bash
+sudo ln -sfn $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+```
+
+3. Configure kraft
+
+  * Mac
+
+```bash
+mv $(brew --prefix)/etc/kafka/server.properties $(brew --prefix)/etc/kafka/server.properties-zookeeper
+ln -s $(brew --prefix)/etc/kafka/kraft/server.properties $(brew --prefix)/etc/kafka/
+
+kafka-storage format -t $(kafka-storage random-uuid) -c $(brew --prefix)/etc/kafka/server.properties
+```
+
+3. Start the service
+
+   |            |     |
+   | ---------- | --- |
+   | systemd    | `systemctl enable --now kafka` |
+   | brew       | `brew services start kafka` |
 
 ### Ruby and Bundler
 
