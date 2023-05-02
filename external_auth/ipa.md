@@ -26,6 +26,20 @@ Appliance Web UI and then the Appliance Console.
 
 ---
 
+# Testing IPA configuration with the Demo IPA server
+
+If you want to test basic IPA client configuration and connectivity, the
+free ipa team has a demo server sandbox that they frequently wipe clean
+and comes with basic accounts, groups, and services.
+
+See: https://www.freeipa.org/page/Demo
+
+In this way, you can configure your client using `ipa-client-install`,
+`kinit helpdesk` or another user they configure in their demo, and try
+to use `ipa` from command line or from our `appliance_console_cli`.
+
+---
+
 ### Appliance Requirements
 
 * For an Appliance to leverage an IPA Server on the network,
