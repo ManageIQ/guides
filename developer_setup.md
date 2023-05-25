@@ -233,7 +233,11 @@ bundle exec rails server
 
 The web UI should now be available at `http://localhost:3000`. The default username is `admin` and the default password is `smartvm`.  If you can login, then everything is working!  Press Ctrl-C to stop the Rails server.
 
-Note that in this runtime mode we are only verifying that the components are installed correctly.  However, individual workers are not running, so actions that require asynchronous handling will appear to hang forever.  To run the application complete with all workers, you can start with `bundle exec rails evm:start` and stop with `bundle exec rails evm:stop`.  Otherwise, read ahead to learn about running individual workers during development.
+ManageIQ runs a lot of work asynchronously via background queue workers, to simulate this we recommend running:
+```bash
+bundle exec rails console
+simulate_queue_worker
+```
 
 ## Further Reading
 
