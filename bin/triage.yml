@@ -6,7 +6,7 @@ params:
   unassigned: &unassigned
   - no:assignee
   - -label:"help wanted"
-  - -label:"security vulnerability"
+  - -label:"Mend: dependency security vulnerability"
   open_issue: &open_issue
   - is:issue
   - is:open
@@ -26,7 +26,7 @@ params:
   - -label:question
   - -label:redesign
   - -label:refactoring
-  - -label:"security vulnerability"
+  - -label:"Mend: dependency security vulnerability"
   - -label:"technical debt"
   - -label:test
   stale: &stale
