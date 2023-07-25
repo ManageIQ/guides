@@ -10,7 +10,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -33,7 +33,7 @@ jobs:
           regex: 'Merge pull request #(\d+)'
       - name: Notify manageiq.github.io on Push
         if: ${{ github.event_name == 'push' && github.repository_owner == 'ManageIQ' }}
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.WEBSITE_DEPLOY_TOKEN }}
           repository: ManageIQ/manageiq.github.io
