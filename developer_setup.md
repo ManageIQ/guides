@@ -4,7 +4,7 @@
 
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
-| Ruby       | 2.7.x           | 3.0.x           |
+| Ruby       | 3.0.x           | 3.0.x           |
 | Bundler    | 2.1.4           | 2.x             |
 | NodeJS     | 18.x.x          | 18.x.x          |
 | Python     | 3.8.x           |                 |
@@ -192,7 +192,7 @@ A Ruby version manager is *strongly* recommended. Use any one of the following:
 * [rbenv](https://github.com/rbenv/rbenv) + [ruby-build](https://github.com/rbenv/ruby-build#readme)
 * [rvm](http://rvm.io/)
 
-Using the Ruby version manager, install `ruby` >= 2.7.0 and < 3.1.0 and the latest `bundler`.
+Using the Ruby version manager, install `ruby` >= 3.0.0 and < 3.1.0 and the latest `bundler`.
 
 ---
 
