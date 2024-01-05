@@ -126,27 +126,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    | brew       | Already started above |
    | containers | `podman run --detach --publish 5432:5432 --env POSTGRES_USER=root postgres` |
 
-### nvm and JavaScript build utilities
-
-[nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
-
-```bash
-nvm install 18
-nvm use 18
-
-# Set version 18 as the default for all scripts
-nvm alias default 18
-```
-
-You may need to restart your shell in order to source the nvm initialization environment.
-
-Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
-
-```bash
-npm install --global yarn
-```
-
-### Kafka
+#### Kafka
 
 1. Install
 
@@ -183,6 +163,26 @@ kafka-storage format -t $(kafka-storage random-uuid) -c $(brew --prefix)/etc/kaf
    | ---------- | --- |
    | systemd    | `systemctl enable --now kafka` |
    | brew       | `brew services start kafka`, `brew services start zookeeper` |
+
+### nvm and JavaScript build utilities
+
+[nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
+
+```bash
+nvm install 18
+nvm use 18
+
+# Set version 18 as the default for all scripts
+nvm alias default 18
+```
+
+You may need to restart your shell in order to source the nvm initialization environment.
+
+Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
+
+```bash
+npm install --global yarn
+```
 
 ### Ruby and Bundler
 
