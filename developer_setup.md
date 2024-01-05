@@ -10,6 +10,7 @@
 | Python     | 3.8.x           |                 |
 | PostgreSQL | 13.x            | 14.x            |
 | Java       | 11.x            | 19.x            |
+| Kafka      | 3.3.1           |                 |
 
 ## Prerequisites
 
