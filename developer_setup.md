@@ -166,7 +166,7 @@ npm install --global yarn
 sudo ln -sfn $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 ```
 
-3. Configure kraft
+3. Configure kraft (optional, if not using Zookeeper)
 
   * Mac
 
@@ -182,7 +182,7 @@ kafka-storage format -t $(kafka-storage random-uuid) -c $(brew --prefix)/etc/kaf
    |            |     |
    | ---------- | --- |
    | systemd    | `systemctl enable --now kafka` |
-   | brew       | `brew services start kafka` |
+   | brew       | `brew services start kafka`, `brew services start zookeeper` |
 
 ### Ruby and Bundler
 
