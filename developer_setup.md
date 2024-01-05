@@ -138,24 +138,23 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    | brew       | `brew install java kafka` |
    | containers | N/A |
 
-2. Configure system to use Java
+2. Configure the service
 
-  * Mac
+   * macOS
+     * Configure system to use Java
 
-```bash
-sudo ln -sfn $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-```
+       ```bash
+       sudo ln -sfn $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+       ```
 
-3. Configure kraft (optional, if not using Zookeeper)
+     * Configure KRaft (optional, if not using zookeeper)
 
-  * Mac
+       ```bash
+       mv $(brew --prefix)/etc/kafka/server.properties $(brew --prefix)/etc/kafka/server.properties-zookeeper
+       ln -s $(brew --prefix)/etc/kafka/kraft/server.properties $(brew --prefix)/etc/kafka/
 
-```bash
-mv $(brew --prefix)/etc/kafka/server.properties $(brew --prefix)/etc/kafka/server.properties-zookeeper
-ln -s $(brew --prefix)/etc/kafka/kraft/server.properties $(brew --prefix)/etc/kafka/
-
-kafka-storage format -t $(kafka-storage random-uuid) -c $(brew --prefix)/etc/kafka/server.properties
-```
+       kafka-storage format -t $(kafka-storage random-uuid) -c $(brew --prefix)/etc/kafka/server.properties
+       ```
 
 3. Start the service
 
