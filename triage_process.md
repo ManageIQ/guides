@@ -1,6 +1,6 @@
 # Triage Process
 
-The ManageIQ core team holds regular meetings to triage issues and pull requests across the ManageIQ organization’s repositories. *This is not a meeting to assign when work will be done.*
+The ManageIQ core team holds regular meetings to triage issues, pull requests, and discussions across the ManageIQ organization’s repositories. *This is not a meeting to assign when work will be done.*
 
 ## Topics
 
@@ -19,6 +19,8 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
   * [Unassigned PRs][]
   * [PRs without scope label][]
   * [Stale PRs][]
+* Discussions
+  * [Open discussions][]
 
 ## Actions
 
@@ -49,6 +51,7 @@ The ManageIQ core team holds regular meetings to triage issues and pull requests
   * Close the PR after 3 months of inactivity
 
 [scope labels]:                                             /docs/guides/labels
+[Open discussions]:                                         https://github.com/orgs/ManageIQ/discussions
 <!-- triage links generated after here -->
 [Unassigned issues]:                                        https://github.com/issues?q=archived%3Afalse+sort%3Acreated-asc+is%3Aissue+is%3Aopen+no%3Aassignee+-label%3A%22help+wanted%22+-label%3A%22Mend%3A+dependency+security+vulnerability%22+org%3AManageIQ+-repo%3AManageIQ%2Fbugzilla_mirror+-repo%3AManageIQ%2Fkubeclient+-repo%3AManageIQ%2Fmanageiq-consumption+-repo%3AManageIQ%2Fmanageiq-cross_repo-tests+-repo%3AManageIQ%2Fmanageiq-design+-repo%3AManageIQ%2Fmanageiq-performance+-repo%3AManageIQ%2Fmanageiq-release+-repo%3AManageIQ%2Fmanageiq-v2v+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host-build+-repo%3AManageIQ%2Fmanageiq-vagrant-dev+-repo%3AManageIQ%2Fmiq_bot+-repo%3AManageIQ%2Fpolisher+-repo%3AManageIQ%2Fintegration_tests+-repo%3AManageIQ%2Fintegration_tests_playbooks+-repo%3AManageIQ%2Fmanageiq-lxca-docs+-repo%3AManageIQ%2Fmanageiq-nuage-docs+-repo%3AManageIQ%2Fmanageiq-redfish-docs+-repo%3AManageIQ%2Fmanageiq-vcloud-docs
 [Issues without scope label]:                               https://github.com/issues?q=archived%3Afalse+sort%3Acreated-asc+is%3Aissue+is%3Aopen+-label%3Ablog+-label%3Abug+-label%3A%22bug%2Fsporadic+test+failure%22+-label%3Acleanup+-label%3Adependencies+-label%3Adeveloper+-label%3Adocumentation+-label%3Aenhancement+-label%3Aperformance+-label%3Aquestion+-label%3Aredesign+-label%3Arefactoring+-label%3A%22Mend%3A+dependency+security+vulnerability%22+-label%3A%22technical+debt%22+-label%3Atest+org%3AManageIQ+-repo%3AManageIQ%2Fbugzilla_mirror+-repo%3AManageIQ%2Fkubeclient+-repo%3AManageIQ%2Fmanageiq-consumption+-repo%3AManageIQ%2Fmanageiq-cross_repo-tests+-repo%3AManageIQ%2Fmanageiq-design+-repo%3AManageIQ%2Fmanageiq-performance+-repo%3AManageIQ%2Fmanageiq-release+-repo%3AManageIQ%2Fmanageiq-v2v+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host+-repo%3AManageIQ%2Fmanageiq-v2v-conversion_host-build+-repo%3AManageIQ%2Fmanageiq-vagrant-dev+-repo%3AManageIQ%2Fmiq_bot+-repo%3AManageIQ%2Fpolisher+-repo%3AManageIQ%2Fintegration_tests+-repo%3AManageIQ%2Fintegration_tests_playbooks+-repo%3AManageIQ%2Fmanageiq-lxca-docs+-repo%3AManageIQ%2Fmanageiq-nuage-docs+-repo%3AManageIQ%2Fmanageiq-redfish-docs+-repo%3AManageIQ%2Fmanageiq-vcloud-docs
