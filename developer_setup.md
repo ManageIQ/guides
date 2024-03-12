@@ -7,7 +7,7 @@
 | Ruby       | 3.0.x           | 3.0.x           |
 | Bundler    | 2.1.4           | 2.x             |
 | NodeJS     | 18.x.x          | 18.x.x          |
-| Python     | 3.8.x           |                 |
+| Python     | 3.9.x           |                 |
 | PostgreSQL | 13.x            | 14.x            |
 | Java       | 11.x            | 19.x            |
 | Kafka      | 3.3.1           |                 |
@@ -16,15 +16,7 @@
 
 ### System packages
 
-1. Only if running CentOS 8
-
-   ```bash
-   sudo yum config-manager --set-enabled PowerTools
-   sudo dnf copr enable manageiq/ManageIQ-Master
-   sudo yum install epel-release
-   ```
-
-2. In order to compile Ruby, install the header files for OpenSSL, readline and zlib.
+1. In order to compile Ruby, install the header files for OpenSSL, readline and zlib.
 
    |      |     |
    | ---- | --- |
@@ -33,7 +25,7 @@
    | apt  | `sudo apt -y install libssl-dev libreadline-dev zlib1g-dev` |
    | brew | `brew install openssl` |
 
-3. In addition, in order to compile Ruby, native Gems and native NodeJS modules, other libraries are required.
+2. In addition, in order to compile Ruby, native Gems and native NodeJS modules, other libraries are required.
 
    |      |     |
    | ---- | --- |
