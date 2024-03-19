@@ -344,24 +344,24 @@ class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::Clo
 end
 ```
 
-```
-module ManageIQ::Providers::AwesomeCloud::Regions
-  REGIONS = {
-    "us-east-1" => {:name => "us-east-1", :hostname => "us-east-1.awesome.cloud"}
-  }.freeze
-
-  def self.regions
-    REGIONS
-  end
-
-  def self.all
-    regions.values
-  end
-
-  def self.names
-    regions.keys
+Now create a `app/models/manageiq/providers/awesome_cloud/regions.rb`
+```ruby
+module ManageIQ
+  module Providers::AwesomeCloud
+    class Regions < ManageIQ::Providers::Regions
+    end
   end
 end
+```
+
+And a `config/regions.yml`
+
+```yml
+---
+us-east-1:
+  :name: us-east-1
+  :hostname: us-east-1.awesome.cloud
+  :description: US East 1
 ```
 
 With that added you should be able to go to the UI, add a cloud provider, and see your new cloud type.  For development typically the best way to test code in the UI is to run a rails server and a simulated generic worker via the terminal.
