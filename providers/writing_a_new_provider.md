@@ -282,6 +282,9 @@ You basically define what forms you need in a hash in your provider plugin and t
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
+  supports :create
+  supports :regions
+
   def self.params_for_create
     {
       :fields => [
@@ -339,9 +342,7 @@ class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::Clo
     ManageIQ::Providers::AwesomeCloud::Regions.all.map { |region| {:label => region[:name], :value => region[:name]} }
   end
 
-  supports :regions
   validates :provider_region, :inclusion => {:in => ManageIQ::Providers::AwesomeCloud::Regions.names}
-end
 ```
 
 ```
