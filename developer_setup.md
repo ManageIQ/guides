@@ -4,11 +4,11 @@
 
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
-| Ruby       | 3.0.x           | 3.0.x           |
-| Bundler    | 2.1.4           | 2.x             |
+| Ruby       | 3.0.1           | 3.1.x           |
+| Bundler    | 2.2.15          | 2.x             |
 | NodeJS     | 18.x.x          | 18.x.x          |
 | Python     | 3.9.x           |                 |
-| PostgreSQL | 13.x            | 14.x            |
+| PostgreSQL | 13.x            | 16.x            |
 | Java       | 11.x            | 19.x            |
 | Kafka      | 3.3.1           |                 |
 
@@ -184,7 +184,7 @@ A Ruby version manager is *strongly* recommended. Use any one of the following:
 * [rbenv](https://github.com/rbenv/rbenv) + [ruby-build](https://github.com/rbenv/ruby-build#readme)
 * [rvm](http://rvm.io/)
 
-Using the Ruby version manager, install `ruby` >= 3.0.0 and < 3.1.0 and the latest `bundler`.
+Using the Ruby version manager, install Ruby and the latest `bundler` (as listed in the [Requirements Summary](#requirements-summary) above).
 
 ---
 
