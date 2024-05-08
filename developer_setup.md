@@ -209,13 +209,27 @@ bin/setup
 
 ###### NOTE
 
-macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
+- macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
 
-If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
+- The ovirt-engine-sdk gem contains C code that generated warnings with older Clang versions.  These warnings are marked as errors in newer Clang 15 and 16 depending on the Clang version, architecture, and possibly OS.  If this is the case, you can mark these as warnings and not errors to allow installation:
 
-```bash
-export DATABASE_URL='postgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
-```
+  ```
+  gem install ovirt-engine-sdk -- --with-cflags="-Wno-error=incompatible-function-pointer-types -Wno-error=implicit-function-declaration"
+  ```
+
+  This can also be configured within bundler:
+
+  ```
+  bundle config build.ovirt-engine-sdk --with-cflags="-Wno-error=incompatible-function-pointer-types -Wno-error=implicit-function-declaration"
+  ```
+
+  See https://github.com/oVirt/ovirt-engine-sdk-ruby/issues/14 and https://github.com/oVirt/ovirt-engine-sdk-ruby/issues/11.  Hopefully, the code in the gem can be resolved to avoid these warnings in the future.
+
+- If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
+
+  ```bash
+  export DATABASE_URL='postgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
+  ```
 
 ## Start ManageIQ
 
