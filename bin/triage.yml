@@ -23,6 +23,7 @@ params:
   - -label:developer
   - -label:documentation
   - -label:enhancement
+  - -label:internationalization
   - -label:performance
   - -label:question
   - -label:redesign
