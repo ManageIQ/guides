@@ -108,31 +108,7 @@ vm openshift on your development machine) but is an OpenShift v4 cluster.
     oc login -u kubeadmin -p KUBEADMING_PASSWORD https://api.crc.testing:6443
     ```
 
-5. Now you can setup the management-infra/management-admin service account for use with ManageIQ
-    ```console
-    git clone https://gist.github.com/e2fac8be87ea0e9f429b6f5d75e02176 /tmp/manageiq_crc
-    oc adm new-project management-infra --description="Management-Infrastructure"
-    oc create serviceaccount management-admin -n management-infra
-    oc create -f /tmp/manageiq_crc/management-infra-admin-cluster-role.json
-    oc policy add-role-to-user -n management-infra admin -z management-admin
-    oc policy add-role-to-user -n management-infra management-infra-admin -z management-admin
-    oc adm policy add-cluster-role-to-user cluster-reader system:serviceaccount:management-infra:management-admin
-    oc adm policy add-scc-to-user privileged system:serviceaccount:management-infra:management-admin
-    oc adm policy add-cluster-role-to-user system:image-puller system:serviceaccount:management-infra:inspector-admin
-    oc adm policy add-scc-to-user privileged system:serviceaccount:management-infra:inspector-admin
-    oc adm policy add-cluster-role-to-user self-provisioner system:serviceaccount:management-infra:management-admin
-    ```
-
-6. Grab the console IP address and token to acess CRC through `ManageIQ`
-    ```console
-    cluster_ip=$(crc ip)
-    service_account_token=$(oc sa get-token -n management-infra management-admin)
-    ```
-
-7. Configure a provider in ManageIQ
-    ```console
-    rails r "ManageIQ::Providers::Openshift::ContainerManager.create!(:name => 'CRC', :hostname => '$cluster_ip', :port => 6443, :zone => Zone.visible.first, :security_protocol => 'ssl-without-validation').update_authentication(:bearer => {:auth_key => '$service_account_token'})"
-    ```
+5. Now you can setup the project and service account for use with ManageIQ by following the documentation: https://www.manageiq.org/docs/reference/latest/managing_providers/containers_providers/red_hat_openshift_providers.html
 
 ### Automated script to record new VCR
 
