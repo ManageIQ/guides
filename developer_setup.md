@@ -220,7 +220,7 @@ bin/setup
   This can also be configured within bundler:
 
   ```
-  bundle config build.ovirt-engine-sdk --with-cflags="-Wno-error=incompatible-function-pointer-types -Wno-error=implicit-function-declaration"
+  bundle config build.ovirt-engine-sdk "--with-cflags=-Wno-error=incompatible-function-pointer-types\\ -Wno-error=implicit-function-declaration"
   ```
 
   See https://github.com/oVirt/ovirt-engine-sdk-ruby/issues/14 and https://github.com/oVirt/ovirt-engine-sdk-ruby/issues/11.  Hopefully, the code in the gem can be resolved to avoid these warnings in the future.
