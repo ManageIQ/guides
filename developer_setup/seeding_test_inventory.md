@@ -48,7 +48,7 @@ Now that we have our provider record created we can configure VCR and run the re
 ```ruby
 require "vcr"
 VCR.configure do |config|
-  config.cassette_library_dir = ManageIQ::Providers::Amazon::Engine.root("spec/vcr_cassettes").to_s
+  config.cassette_library_dir = ManageIQ::Providers::Amazon::Engine.root.join("spec/vcr_cassettes").to_s
   config.hook_into :webmock
 end
 VCR.use_cassette("manageiq/providers/amazon/cloud_manager/refresher_inventory_object") { EmsRefresh.refresh(ems) }
