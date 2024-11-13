@@ -39,7 +39,7 @@ ems = ManageIQ::Providers::Amazon::CloudManager.create!(
 We can find these values by looking at the amazon provider's vcr cassette file,
 `src/manageiq/manageiq-providers-amazon/spec/vcr_cassettes/manageiq/providers/amazon/cloud_manager/refresher_inventory_object.yml`
 
-We can see that `'us-east-1'` is used as the region in the URIs, and in the `config/secrets.defaults.yml`
+We can see that `'us-east-1'` is used as the region in the URIs, and in the Rails credentials
 and `spec/factories/ext_management_system.rb` files we can see that `AMAZON_CLIENT_ID` and
 `AMAZON_CLIENT_SECRET` are used for the userid and password values for the authentication.
 

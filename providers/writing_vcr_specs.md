@@ -22,33 +22,70 @@ The next thing we have to take care of is hiding "secrets".  Since the VCR YAML 
 
 VCR handles this with the `config.define_cassette_placeholder` option.  You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with.  This allows for hostnames / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
 
-ManageIQ has a pattern to help you with this, simply create a `config/secrets.defaults.yml` file:
-```yaml
----
-test:
-  awesome_cloud_defaults: &awesome_cloud_defaults
-    access_key: AWESOME_CLOUD_ACCESS_KEY
-    secret_key: AWESOME_CLOUD_SECRET_KEY
-  awesome_cloud:
-    <<: *awesome_cloud_defaults
+ManageIQ has a pattern to help you with this.  We use rails credentials.  Run the following command in the main application directory:
+
+```
+EDITOR=vi be rails credentials:edit --help
 ```
 
-Then create a `config/secrets.yml` file (this file will not be committed and should be in your .gitignore):
+This will provide more information about rails credentials.
+
+A sample workflow for VCR cassettes would be to edit the test environment's credentials and use them in test.
+
+Run the prior command without the help option and with the 'test' environment:
+
+```
+EDITOR=vi be rails credentials:edit --environment test
+```
+
+You can use your preferred editor by specifying it on the command line.
+
+In the editor, set your credentials, for example:
+
 ```yaml
 ---
-test:
   awesome_cloud:
-    access_key: "YOUR_REAL_ACCESS_KEY"
-    secret_key: "YOUR_REAL_SECRET_KEY"
+    access_key: AWESOME_CLOUD_ACCESS_KEY
+    secret_key: AWESOME_CLOUD_SECRET_KEY
+```
+
+After saving, this will create or update:
+* a plain text key file if you haven't already created one: config/credentials/test.key
+* an encrypted credentials file: config/credentials/test.yml.enc
+
+Add memoized methods in spec/spec_helper.rb with the defaults you want to assumed when running from cassettes to avoid leaking actual credentials:
+
+```ruby
+def credentials_awesome_cloud_host
+  @credentials_awesome_cloud_host ||= Rails.application.credentials.awesome_cloud_host || "awesome-cloud-host"
+end
+
+def credentials_awesome_cloud_user
+  @credentials_awesome_cloud_user ||= Rails.application.credentials.awesome_cloud_user || "awesome-cloud-user"
+end
+
+def credentials_awesome_cloud_password
+  @credentials_autosde_password ||= Rails.application.credentials.awesome_cloud_password || "change_me"
+end
 ```
 
 Then add the following to your `VCR.configure` block in `spec/spec_helper.rb` after setting the `config.cassette_library_dir`:
+
+
 ```ruby
-  secrets = Rails.application.secrets
-  secrets.awesome_cloud.each do |key, val|
-    config.define_cassette_placeholder(secrets.awesome_cloud_defaults[key]) { val }
+  defaults = {
+    "host_key"   => credentials_awesome_cloud_host,
+    "access_key" => credentials_awesome_cloud_user,
+    "secret_key" => credentials_awesome_cloud_password
+  }
+
+  defaults.each do |key, value|
+    config.define_cassette_placeholder(value) do
+      Rails.application.credentials.dig(:awesome_cloud, key)
+    end
   end
 ```
+
 
 ### Writing the tests
 
@@ -62,7 +99,7 @@ describe ManageIQ::Providers::AwesomeCloud::CloudManager::Refresher do
   let(:zone) { EvmSpecHelper.create_guid_miq_server_zone.last }
   let!(:ems) do
     FactoryBot.create(:ems_awesome_cloud, :zone => zone).tap do |ems|
-      access_key, secret_key = Rails.application.secrets.awesome_cloud.values_at(:access_key, :secret_key)
+      access_key, secret_key = credentials_awesome_cloud_user, credentials_awesome_cloud_password
 
       ems.update_authentication(:default => {:userid => access_key, :password => secret_key})
     end
@@ -125,4 +162,4 @@ rm spec/vcr_cassettes/manageiq/providers/awesome_cloud/cloud_manager/refresher.y
 bundle exec rspec spec/models/manageiq/awesome_cloud/cloud_manager/refresher_spec.rb
 ```
 
-Make sure that you have your `config/secrets.yml` file still present, you might have to update the expected counts as things in your environment have likely changed but you now should have an updated VCR cassette.
+Make sure that you have your rails credentials still present.  You might have to update the expected counts as things in your environment have likely changed but you now should have an updated VCR cassette.
