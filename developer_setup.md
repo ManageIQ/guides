@@ -34,6 +34,7 @@
    | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev` |
    | brew | `brew install cmake libssh2 iproute2mac` |
 
+   On Fedora 41+  you have to also run `sudo dnf install -y openssl-devel-engine`
    On the mac, `iproute2mac` provides the `ip` command for `appliance_console`.
 
    **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly.
