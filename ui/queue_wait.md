@@ -51,8 +51,8 @@ When the task is finished, the `:action` passed in is called with the original p
 
 ```
   def create_finished
-    task_id = session[:async][:params][:task_id]
-    tenant_name = session[:async][:params][:name]
+    task_id = params[:task_id]
+    tenant_name = params[:name]
     task = MiqTask.find(task_id)
     if MiqTask.status_ok?(task.status)
       add_flash(_("%{model} \"%{name}\" created") % {
