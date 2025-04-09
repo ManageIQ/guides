@@ -6,7 +6,7 @@ Authentication (httpd) on the Appliance against an IPA Server.
 Once external authentication is enabled, users will be able
 to login to the Appliance using their IPA Server credentials.
 User accounts will be automatically created on the Appliance
-and relevant information imported from the IPA Server. 
+and relevant information imported from the IPA Server.
 
 To allow IPA server defined users to login to the Appliance,
 they must be members of at least one group on the IPA server
@@ -44,11 +44,9 @@ to use `ipa` from command line or from our `appliance_console_cli`.
 
 * For an Appliance to leverage an IPA Server on the network,
 the Appliance **must** have time synchronization enabled.
-This can be done by either configuring NTP in the Appliance UI,
-from *Configure->Configuration->Zone->Server->NTP Settings* or by using
-the Virtual Machine's hosting provider's Advanced Setting
-to Synchronize Time. Both Appliance and IPA Server must have
-their clocks synchronized otherwise Kerberos and LDAP based
+This can be done by using the Virtual Machine's hosting provider's
+Advanced Settings to Synchronize Time. Both Appliance and IPA Server
+must have their clocks synchronized otherwise Kerberos and LDAP based
 authentication will fail.
 
 
@@ -63,7 +61,7 @@ both virtual machines.
 
 * Appliance UI
     1. Login to the Appliance via an administrative account
-    2. Select *Configure->Configuration*
+    2. Select *Settings->Application Settings*
     3. Click on *Authentication*
     4. In the Authentication section, set Mode to **External (httpd)**
     5. In the Role Settings section, select the *Get User Groups from
@@ -72,7 +70,7 @@ External Authentication (https)*
 
 
 * Appliance Console
-    1. Login via the **admin** Username
+    1. Login via the **root** Username and run the `appliance_console`.
     2. Summary screen should show **External Auth** as *not configured*,
 Press any key
     3. From the Advanced Setting menu, select the menu item
