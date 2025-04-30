@@ -32,7 +32,7 @@
    | dnf  | `sudo dnf -y install @c-development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python libssh2-devel` |
    | yum  | `sudo yum -y install @development libffi-devel postgresql-devel libxml2-devel libcurl-devel cmake python libssh2-devel` |
    | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev` |
-   | brew | `brew install cmake libssh2 iproute2mac` |
+   | brew | `brew install cmake libssh2 iproute2mac ansible` |
 
    On Fedora 41+  you have to also run `sudo dnf install -y openssl-devel-engine`
    On the mac, `iproute2mac` provides the `ip` command for `appliance_console`.
