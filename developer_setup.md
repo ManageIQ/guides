@@ -6,7 +6,7 @@
 | ---------- | --------------- | --------------- |
 | Ruby       | 3.0.1           | 3.3.x           |
 | Bundler    | 2.2.15          | 2.x             |
-| NodeJS     | 18.x.x          | 18.x.x          |
+| NodeJS     | 20.19.1         | 20.x.x          |
 | Python     | 3.9.x           |                 |
 | PostgreSQL | 13.x            | 16.x            |
 | Java       | 11.x            | 19.x            |
@@ -164,11 +164,11 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 [nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
 
 ```bash
-nvm install 18
-nvm use 18
+nvm install 20
+nvm use 20
 
-# Set version 18 as the default for all scripts
-nvm alias default 18
+# Set version 20 as the default for all scripts
+nvm alias default 20
 ```
 
 You may need to restart your shell in order to source the nvm initialization environment.
