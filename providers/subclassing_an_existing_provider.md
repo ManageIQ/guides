@@ -36,7 +36,6 @@ Initialized empty Git repository in /home/grare/adam/src/manageiq/manageiq/plugi
       create  bin/update
       create  bundler.d
       create  bundler.d/.keep
-      create  config/secrets.defaults.yml
       create  config/settings.yml
       create  lib/manageiq-providers-awesome_private_cloud.rb
       create  lib/manageiq/providers/awesome_private_cloud/engine.rb
