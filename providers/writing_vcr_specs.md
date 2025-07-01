@@ -15,6 +15,8 @@ If you generated your provider plugin with the `--vcr` flag then the VCR configu
 VCR.configure do |config|
   config.ignore_hosts 'codeclimate.com' if ENV['CI']
   config.cassette_library_dir = ManageIQ::Providers::AwesomeCloud::Engine.root.join('spec/vcr_cassettes')
+
+  VcrSecrets.define_all_cassette_placeholders(config, :awesome_cloud)
 end
 ```
 
@@ -22,31 +24,36 @@ The next thing we have to take care of is hiding "secrets".  Since the VCR YAML 
 
 VCR handles this with the `config.define_cassette_placeholder` option.  You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with.  This allows for hostnames / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
 
-ManageIQ has a pattern to help you with this, simply create a `config/secrets.defaults.yml` file:
+ManageIQ has a pattern to help you with this. By default, the generator created a file named `spec/config/secrets.defaults.yml` with a username and password.
 ```yaml
 ---
-test:
-  awesome_cloud_defaults: &awesome_cloud_defaults
-    access_key: AWESOME_CLOUD_ACCESS_KEY
-    secret_key: AWESOME_CLOUD_SECRET_KEY
-  awesome_cloud:
-    <<: *awesome_cloud_defaults
+awesome_cloud:
+  username: AWESOME_CLOUD_USERNAME
+  password: AWESOME_CLOUD_PASSWORD
 ```
 
-Then create a `config/secrets.yml` file (this file will not be committed and should be in your .gitignore):
+If your provider uses a different set of secrets, such as access_key and secret_key, you can change the file accordingly as follows:
 ```yaml
 ---
-test:
-  awesome_cloud:
-    access_key: "YOUR_REAL_ACCESS_KEY"
-    secret_key: "YOUR_REAL_SECRET_KEY"
+awesome_cloud:
+  access_key: AWESOME_CLOUD_ACCESS_KEY
+  secret_key: AWESOME_CLOUD_SECRET_KEY
 ```
 
-Then add the following to your `VCR.configure` block in `spec/spec_helper.rb` after setting the `config.cassette_library_dir`:
+Finally, create a `spec/config/secrets.yml` file with your real provider secrets. **NOTE**: This file must not be committed and should be in your .gitignore.
+```yaml
+---
+awesome_cloud:
+  access_key: YOUR_REAL_ACCESS_KEY
+  secret_key: YOUR_REAL_SECRET_KEY
+```
+
+And that's all! The `VcrSecrets.define_all_cassette_placeholders` line in `spec/spec_helper.rb` automatically marks everything under the awesome_cloud key as sensitive data.
+
+If you need to manually mark something as sensitive data, then you will need to call `config.define_cassette_placeholder`. To do so, you can add the following to your `VCR.configure` block in `spec/spec_helper.rb` after setting the `config.cassette_library_dir`. For example, if your provider Base64 encodes the access_key and secret_key into a header, you will want to include something like the following:
 ```ruby
-  secrets = Rails.application.secrets
-  secrets.awesome_cloud.each do |key, val|
-    config.define_cassette_placeholder(secrets.awesome_cloud_defaults[key]) { val }
+  config.define_cassette_placeholder("AWESOME_CLOUD_AUTHORIZATION") do
+    Base64.encode("#{VcrSecrets.awesome_cloud.access_key}:#{VcrSecrets.awesome_cloud.secret_key}").chomp
   end
 ```
 
@@ -62,7 +69,8 @@ describe ManageIQ::Providers::AwesomeCloud::CloudManager::Refresher do
   let(:zone) { EvmSpecHelper.create_guid_miq_server_zone.last }
   let!(:ems) do
     FactoryBot.create(:ems_awesome_cloud, :zone => zone).tap do |ems|
-      access_key, secret_key = Rails.application.secrets.awesome_cloud.values_at(:access_key, :secret_key)
+      access_key = VcrSecrets.awesome_cloud.access_key
+      secret_key = VcrSecrets.awesome_cloud.secret_key
 
       ems.update_authentication(:default => {:userid => access_key, :password => secret_key})
     end
@@ -117,7 +125,7 @@ Now fill out the refresher_spec.rb file with more checks to ensure that inventor
 
 ### Updating the VCR cassettes
 
-Now that you have your specs recorded, what happens if you want to collect something new?  Like you now want to start fetching floating IPs or Cloud Volumes?
+Now that you have your specs recorded, what happens if you want to collect something new? For example, if you now want to start fetching floating IPs or Cloud Volumes?
 
 It is simple to re-record your VCR cassette, simply remove the file then rerun the specs against the same environment:
 ```bash
@@ -125,4 +133,4 @@ rm spec/vcr_cassettes/manageiq/providers/awesome_cloud/cloud_manager/refresher.y
 bundle exec rspec spec/models/manageiq/awesome_cloud/cloud_manager/refresher_spec.rb
 ```
 
-Make sure that you have your `config/secrets.yml` file still present, you might have to update the expected counts as things in your environment have likely changed but you now should have an updated VCR cassette.
+Make sure that you have your `config/secrets.yml` file still present. Note that you might have to update the expected counts, as things in your environment have likely changed, but you now should have an updated VCR cassette.
