@@ -44,8 +44,6 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Persister::TargetCollection 
 end
 ```
 
-And don't forget to add `require_nested :TargetCollection` to `app/models/manageiq/providers/awesome_cloud/inventory/collector.rb`, `app/models/manageiq/providers/awesome_cloud/inventory/parser.rb`, and `app/models/manageiq/providers/awesome_cloud/inventory/persister.rb`
-
 We also have to add a configuration setting to enable/disable targeted refresh in your provider's `config/settings.yml`:
 ```
 :ems_refresh:

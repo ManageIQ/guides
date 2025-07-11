@@ -47,7 +47,6 @@ First we need to set up the worker scaffolding so that we can run our event catc
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_catcher.rb`
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher < ManageIQ::Providers::BaseManager::EventCatcher
-  require_nested :Runner
 end
 ```
 

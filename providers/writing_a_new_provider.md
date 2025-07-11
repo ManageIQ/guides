@@ -393,10 +393,6 @@ First let's declare the collections that we intend to use.  The full set of poss
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::Inventory::Persister < ManageIQ::Providers::Inventory::Persister
-  # This should already be here from the generator, you just need one empty subclass
-  # for each child-manager type that your provider has (e.g. NetworkManager and/or StorageManager).
-  require_nested :CloudManager
-
   # Add the list of inventory collections that you want to use here
   # In the future if you want to add more inventory like disks or networks you would
   # add them to the list here.
@@ -416,8 +412,6 @@ The collector provides an interface for the parser, so each method should fetch 
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::Inventory::Collector < ManageIQ::Providers::Inventory::Collector
-  require_nested :CloudManager
-
   def images
     compute_client.get_images
   end
@@ -444,8 +438,6 @@ Now we can get started on the parser.
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::Inventory::Parser < ManageIQ::Providers::Inventory::Parser
-  require_nested :CloudManager
-
   def parse
     instance_types
     images
