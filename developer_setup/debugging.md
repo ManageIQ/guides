@@ -1,6 +1,6 @@
 ## Debugging ManageIQ with Remote Pry
 
-Interactive debugging using pry or byebug is normally difficult with ManageIQ, as `rake evm:start` launches the server and worker processes in the background. Therefore the only way to do interactive debugging is with `pry-remote` or `byebug` running in remote mode.
+Interactive debugging using pry or byebug is normally difficult with ManageIQ, as worker processes are generally run in the background. Therefore the only way to do interactive debugging is with `pry-remote` or `byebug` running in remote mode.
 
 Running ManageIQ with `byebug` was exceedingly slow, so this guide will focus on remote debugging using `pry`.
 
