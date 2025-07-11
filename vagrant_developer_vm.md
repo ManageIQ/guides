@@ -59,10 +59,7 @@ You will need some tools installed in your machine to use this method:
     cd ~/manageiq; bin/setup
     ```
 
-    Run the server in full mode
-    ```text
-    cd ~/manageiq; bundle exec rails evm:start
-    ```
+    Run the server.
 
 
 ## The Process
