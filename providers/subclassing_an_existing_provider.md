@@ -74,8 +74,6 @@ Now we can start defining our main manager class that will inherit from OpenStac
 ManageIQ::Providers::Openstack::CloudManager.include(ActsAsStiLeafClass)
 
 class ManageIQ::Providers::AwesomePrivateCloud::CloudManager < ManageIQ::Providers::Openstack::CloudManager
-  require_nested :RefreshWorker
-
   supports :create
 
   def self.vm_vendor
@@ -149,27 +147,13 @@ ManageIQ::Providers::Openstack::CloudManager::AuthKeyPair.include(ActsAsStiLeafC
 class ManageIQ::Providers::AwesomePrivateCloud::CloudManager::AuthKeyPair < ManageIQ::Providers::Openstack::CloudManager::AuthKeyPair
 end
 ```
-Followed by a `require_nested :AuthKeyPair` in `ManageIQ::Providers::AwesomePrivateCloud::CloudManager`.
 
 Rinse and repeat until, in this example, you have:
 ```
 ManageIQ::Providers::Openstack::CloudManager.include(ActsAsStiLeafClass)
 
 class ManageIQ::Providers::AwesomePrivateCloud::CloudManager < ManageIQ::Providers::Openstack::CloudManager
-  require_nested :AuthKeyPair
-  require_nested :AvailabilityZone
-  require_nested :AvailabilityZoneNull
-  require_nested :CloudResourceQuota
-  require_nested :CloudTenant
-  require_nested :EventCatcher
-  require_nested :Flavor
-  require_nested :HostAggregate
-  require_nested :MetricsCapture
-  require_nested :MetricsCollectorWorker
-  require_nested :OrchestrationStack
-  require_nested :RefreshWorker
-  require_nested :Template
-  require_nested :Vm
+end
 ```
 
 Now repeat the process for the `NetworkManager` and `StorageManager::CinderManager`
