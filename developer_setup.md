@@ -248,6 +248,22 @@ bundle exec rails console
 simulate_queue_worker
 ```
 
+## macOS AirDrop & Handoff listens on port 5000
+
+If you run workers like we do on appliances using `ruby lib/workers/bin/evm_server.rb` remote console workers will try to bind to port 5000.  This can fail on macOS with:
+
+```
+Address already in use - bind(2) for "0.0.0.0" port 5000
+```
+
+This is because the AirPlay Receiver on macOS listens on port 5000.  You can disable this feature here:
+
+```
+System Settings > General > AirDrop & Handoff > AirPlay Receiver.
+```
+
+Alternatively, you can use [foreman](developer_setup/foreman.md) to start workers.
+
 ## Further Reading
 
 * [Individual workers](developer_setup/foreman.md) can be started using [Foreman](https://ddollar.github.io/foreman) directly.
