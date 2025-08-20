@@ -17,7 +17,7 @@ maintained by the ManageIQ team.
 ## High Level Guidelines
 
 * Be consistent.
-* These guides describes general guidelines to follow for new code.
+* These guides describe general guidelines to follow for new code.
   For existing code, stay consistent with the conventions of the code you
   are changing.
 * Prefer readability over performance and conciseness when the performance
@@ -238,7 +238,7 @@ already pushed them before.
 
 * Reword/squashing/reordering a commit
 
-  To modify with recent commit in current branch, first do
+  To modify recent commits in current branch, first do
   `git rebase -i origin branch-name`.
   To modify a specific commit, use `git rebase -i SOME_COMMIT_ID^` instead.
   git will popup a vi window to let you do modification on commits, press
@@ -251,7 +251,7 @@ already pushed them before.
 
   * Squashing commits
 
-    Change the `pick` before the commit you want to squach to `squash` and edit
+    Change the `pick` before the commit you want to squash to `squash` and edit
     the commit message after squash in a following popup vi window. A commit
     will be squashed with its previous commit.
 

@@ -3,7 +3,7 @@
 ## Introduction
 
 ManageIQ uses logical replication to provide central administrative functions over objects in other
-database regions.  In order to do this, postgresql's logical replication is used to setup
+database regions.  In order to do this, PostgreSQL's logical replication is used to set up
 publications for specific tables in remote regions and subscriptions for each in the central or
 global region.
 
@@ -21,7 +21,7 @@ This logic is what we're trying to test and verify.
 
 ## Pre-requisites
 
-This was tested with 3 nightly appliances.  They were setup to be at the Jansa codebase with
+This was tested with 3 nightly appliances.  They were set up to be at the Jansa codebase with
 replication. The appliances were then migrated to kasparov.  This document could be used for
 different branches or tags.
 
@@ -105,7 +105,7 @@ Substitute XXX for the region number of this appliance:
 
 ## Configure replication for jansa
 
-* Region 1 and 2: 
+* Region 1 and 2:
   * These will be remotes, meaning they will "publish" the tables to be replicated:
 
   ```
@@ -118,12 +118,12 @@ Substitute XXX for the region number of this appliance:
   * The commands below will:
     * Provide the other regions' connection information
     * Create the subscription for each remote region
-  
+
   ```
   bin/rails c
   ```
 
-  Subsitute the proper values below:
+  Substitute the proper values below:
 
   ```
   $ require 'miq_pglogical'
@@ -137,7 +137,7 @@ Substitute XXX for the region number of this appliance:
   MiqPglogical.save_global_region([sub1, sub2], [])
   ```
 
-Now, replication can verified before moving on.
+Now, replication can be verified before moving on.
 
 On the global:
 

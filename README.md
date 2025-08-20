@@ -38,9 +38,9 @@
 * [Architecture](architecture.md)
 * [Opening custom URLs via Custom Buttons and Automate](automate_url_open.md)
 * [Report data API](ui/report_data_api.md)
-* [Remote Consoles](/remote_consoles.md)
+* [Remote Consoles](remote_consoles.md)
 * [REST API](http://manageiq.org/docs/api)
-* [Service UI Skinning](/service_ui/skinning.md)
+* [Service UI Skinning](service_ui/skinning.md)
 * [Shared react component API](ui/register_react_component.md)
 * [Working with Amazon AWS Config service](providers/amazon_aws_config.md)
 

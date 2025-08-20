@@ -34,13 +34,13 @@ Create custom button with Automate method:
       vm.external_url = "https://www.google.com"
 
 ```
-*important: use URL including the protocol (https) or the browser will ignore the request*
+*Important: Use URL including the protocol (https) or the browser will ignore the request*
 
-*also disable URL pop-up blocking in your browser to make this work*
+*Also disable URL pop-up blocking in your browser to make this work*
 
 Automation -> Automate -> Customization -> Buttons
 
-Create a new button for VMs with "Open Url" checked and either w/ or w/o a "Dialog" and "Request" has to be `TestOpenUrl`
+Create a new button for VMs with "Open Url" checked and either with or without a "Dialog" and "Request" has to be `TestOpenUrl`
 
 Go to VM summary page and click the new button.
 

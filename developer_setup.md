@@ -114,7 +114,7 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 
      Skip ahead to "Start the service"
 
-2. Start the service
+3. Start the service
 
    |            |     |
    | ---------- | --- |
@@ -248,9 +248,9 @@ bundle exec rails console
 simulate_queue_worker
 ```
 
-## macOS AirDrop & Handoff listens on port 5000
+## macOS AirDrop & Handoff Listens on Port 5000
 
-If you run workers like we do on appliances using `ruby lib/workers/bin/evm_server.rb` remote console workers will try to bind to port 5000.  This can fail on macOS with:
+If you run workers like we do on appliances using `ruby lib/workers/bin/evm_server.rb`, remote console workers will try to bind to port 5000. This can fail on macOS with:
 
 ```
 Address already in use - bind(2) for "0.0.0.0" port 5000
