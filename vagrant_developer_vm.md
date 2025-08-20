@@ -25,7 +25,7 @@ You will need some tools installed in your machine to use this method:
 
  1. Clone the repo into your machine (i.e. in `~/Vagrant/manageiq-dev`)
     ```text
-    $ git clone https://github.com/ManageIQ/manageiq-vagrant-dev.git ~/Vagrant/manageiq-dev`
+    $ git clone https://github.com/ManageIQ/manageiq-vagrant-dev.git ~/Vagrant/manageiq-dev
     ```
 
  1. Verify that the Vagrant file is properly configured
@@ -48,7 +48,7 @@ You will need some tools installed in your machine to use this method:
     $ vagrant halt # shutdown the VM
     ```
 
-    Ports 3000 for the UI and 4000 for the API are forwared to your local machine, so you can access them through <http://127.0.0.1:3000> and <http://127.0.0.1:4000>
+    Ports 3000 for the UI and 4000 for the API are forwarded to your local machine, so you can access them through <http://127.0.0.1:3000> and <http://127.0.0.1:4000>
 
  1. Developing
 
