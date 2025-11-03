@@ -39,15 +39,24 @@ Running tests in parallel requires as many different databases as cores you plan
 To set up these databases, simply execute the following command:
 
 ```
-$ PARALLEL=true bin/rake test:vmdb:setup
+$ bin/rake parallel:rake[test:vmdb:setup]
 ```
+
+Depending on how many cores you have you might hit
+```
+Caused by:
+PG::OutOfMemory: ERROR:  out of shared memory (PG::OutOfMemory)
+HINT:  You might need to increase "max_locks_per_transaction".
+```
+
+If this is the case simply edit your `main/postgresql.conf` conf file to increase the `max_locks_per_transaction` value and restart postgresql.
 
 #### Run the entire suite in parallel
 
 You can run the entire suite in parallel using the following command:
 
 ```
-$ PARALLEL=true bin/rake test:vmdb
+$ bin/rake parallel:spec
 ```
 
 #### Passing RSpec options to the rake tasks
@@ -60,7 +69,7 @@ For example, I may wish to set a particular seed and stop running the tests
 immediately on a failure:
 
 ```
-$ PARALLEL=true SPEC_OPTS="--seed 1234 --fail-fast" bin/rake test:vmdb:setup
+$ SPEC_OPTS="--seed 1234 --fail-fast" rake parallel:spec
 ```
 
 Note that `--fail-fast` will stop whichever core encountered the error, not
