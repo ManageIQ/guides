@@ -96,7 +96,19 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 
    * macOS
 
-     `brew` will configure the cluster automatically, but you will need to create the user.
+     `brew` will configure the cluster automatically, but you need to make a few tweaks
+     including granting access to the root user.
+
+     ```conf
+     # ${HOMEBREW_PREFIX}/var/postgresql@13/postgresql.conf
+     # right after authentication_timeout = 1min
+     # More secure and closer to production. (standard on pg 14+)
+     password_encryption = scram-sha-256
+     # needed for multi-region replication
+     wal_level = logical
+     # parallel testing requires more locks per transactions
+     max_locks_per_transaction = 128
+     ```
 
      ```bash
      brew services start postgresql@13
