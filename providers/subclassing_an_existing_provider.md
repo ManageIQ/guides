@@ -12,17 +12,15 @@ First step is to create a new empty plugin:
 ```bash
 $ bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomePrivateCloud --no-scaffolding --vcr
 ** ManageIQ master, codename: Oparin
-      create  
+      create
          run  git init /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_private_cloud from "."
 
 Initialized empty Git repository in /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_private_cloud/.git/
       create  manageiq-providers-awesome_private_cloud.gemspec
-      create  .codeclimate.yml
       create  .gitignore
       create  .rspec
       create  .rspec_ci
       create  .rubocop.yml
-      create  .rubocop_cc.yml
       create  .rubocop_local.yml
       create  .whitesource
       create  .yamllint

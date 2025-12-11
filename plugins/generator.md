@@ -16,7 +16,8 @@ the creation progress emitted to the console:
 
 ```text
 create
-create  .codeclimate.yml
+create  manageiq-my_plugin.gemspec
+create  .gitignore
 ...
 ```
 
