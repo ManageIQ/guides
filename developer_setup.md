@@ -171,21 +171,17 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
    | systemd    | `systemctl enable --now kafka` |
    | brew       | `brew services start kafka`, `brew services start zookeeper` |
 
-### nvm and JavaScript build utilities
+### NodeJS
 
-[nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
+A NodeJS version manager is *strongly* recommended. Use any one of the following:
 
-```bash
-nvm install 20
-nvm use 20
+ - [nvm](https://github.com/nvm-sh/nvm)
+ - [fnm](https://github.com/Schniz/fnm)
+ - [n](https://github.com/tj/n)
 
-# Set version 20 as the default for all scripts
-nvm alias default 20
-```
+Using the NodeJS version manager, install NodeJS (See [Requirements Summary](#requirements-summary) above).
 
-You may need to restart your shell in order to source the nvm initialization environment.
-
-Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
+Additionally, install yarn globally. You can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
 
 ```bash
 npm install --global yarn
@@ -199,7 +195,7 @@ A Ruby version manager is *strongly* recommended. Use any one of the following:
 * [rbenv](https://github.com/rbenv/rbenv) + [ruby-build](https://github.com/rbenv/ruby-build#readme)
 * [rvm](http://rvm.io/)
 
-Using the Ruby version manager, install Ruby and the latest `bundler` (as listed in the [Requirements Summary](#requirements-summary) above).
+Using the Ruby version manager, install Ruby and the latest `bundler` (See [Requirements Summary](#requirements-summary) above).
 
 ---
 
