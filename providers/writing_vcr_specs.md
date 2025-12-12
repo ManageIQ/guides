@@ -13,7 +13,6 @@ The results of the recording are stored in the VCR `config.cassette_library_dir`
 If you generated your provider plugin with the `--vcr` flag then the VCR configuration should have already been done for you.  If not simply add the following to the bottom of your `spec/spec_helper.rb` file:
 ```ruby
 VCR.configure do |config|
-  config.ignore_hosts 'codeclimate.com' if ENV['CI']
   config.cassette_library_dir = ManageIQ::Providers::AwesomeCloud::Engine.root.join('spec/vcr_cassettes')
 
   VcrSecrets.define_all_cassette_placeholders(config, :awesome_cloud)

@@ -49,16 +49,14 @@ So lets go ahead and create our provider plugin:
 ```bash
 $ bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud --manager-type=cloud --vcr --js --scaffolding
 
-create  
+create
    run  git init /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_cloud from "."
 Initialized empty Git repository in /home/grare/adam/src/manageiq/manageiq/plugins/manageiq-providers-awesome_cloud/.git/
 create  manageiq-providers-awesome_cloud.gemspec
-create  .codeclimate.yml
 create  .gitignore
 create  .rspec
 create  .rspec_ci
 create  .rubocop.yml
-create  .rubocop_cc.yml
 create  .rubocop_local.yml
 create  .travis.yml
 create  .yamllint
