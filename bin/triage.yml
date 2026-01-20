@@ -59,26 +59,6 @@ params:
   - is:pr
   - -label:radjabov/no
   - -label:radjabov/yes
-  backport_request_quinteros: &backport_request_quinteros
-  - is:merged
-  - is:pr
-  - label:quinteros/yes?
-  backport_direct_prs_quinteros: &backport_direct_prs_quinteros
-  - base:quinteros
-  - is:open
-  - is:pr
-  - -label:quinteros/no
-  - -label:quinteros/yes
-  backport_request_morphy: &backport_request_morphy
-  - is:merged
-  - is:pr
-  - label:morphy/yes?
-  backport_direct_prs_morphy: &backport_direct_prs_morphy
-  - base:morphy
-  - is:open
-  - is:pr
-  - -label:morphy/no
-  - -label:morphy/yes
 repos:
   - name: Core/Provider
     params:
@@ -154,19 +134,3 @@ links:
   params:
   - *base_params
   - *backport_direct_prs_radjabov
-- name: Backport requests (Quinteros)
-  params:
-  - *base_params
-  - *backport_request_quinteros
-- name: Backport direct PRs (Quinteros)
-  params:
-  - *base_params
-  - *backport_direct_prs_quinteros
-- name: Backport requests (Morphy)
-  params:
-  - *base_params
-  - *backport_request_morphy
-- name: Backport direct PRs (Morphy)
-  params:
-  - *base_params
-  - *backport_direct_prs_morphy
