@@ -9,10 +9,6 @@ The ManageIQ core team holds regular meetings to triage issues, pull requests, a
   * [Backport direct PRs (Spassky)][]
   * [Backport requests (Radjabov)][]
   * [Backport direct PRs (Radjabov)][]
-  * [Backport requests (Quinteros)][]
-  * [Backport direct PRs (Quinteros)][]
-  * [Backport requests (Morphy)][]
-  * [Backport direct PRs (Morphy)][]
 * Issues
   * [Unassigned issues][]
   * [Issues without scope label][]
