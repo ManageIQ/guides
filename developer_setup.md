@@ -222,6 +222,18 @@ bin/setup
 
 - macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
 
+- The `surro-gate` gem contains C code which generates errors on some compilers.
+
+  You can add build flags to your bundler config:
+  ```
+  bundle config set build.surro-gate --with-cflags=\"-Wno-error=incompatible-pointer-types\"
+  ```
+
+  Or use `gem install`:
+  ```
+  gem install surro-gate -- --with-cflags="-Wno-error=incompatible-pointer-types"
+  ```
+
 - If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
 
   ```bash
