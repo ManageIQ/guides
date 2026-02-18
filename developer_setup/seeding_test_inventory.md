@@ -58,6 +58,7 @@ Each provider can have slight variances in the names of their VCR cassettes so i
 best to review the spec tests in the provider you are trying to replicate.
 
 Now you should have inventory in your database for this provider:
+
 ```ruby
 >> ems.vms.count
 => 9
@@ -67,3 +68,4 @@ Now you should have inventory in your database for this provider:
 => 0
 >> ems.cloud_networks.count                        
 => 5
+```
