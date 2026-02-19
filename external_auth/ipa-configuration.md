@@ -132,12 +132,13 @@ LoadModule lookup_identity_module modules/mod_lookup_identity.so
 </Location>
 
 <Location /dashboard/authenticate>
-  LookupUserAttr   mail        REMOTE_USER_EMAIL
-  LookupUserAttr   givenname   REMOTE_USER_FIRSTNAME
-  LookupUserAttr   sn          REMOTE_USER_LASTNAME
-  LookupUserAttr   displayname REMOTE_USER_FULLNAME
-  LookupUserGroups             REMOTE_USER_GROUPS ":"
-  LookupDbusTimeout            5000
+  LookupUserAttr   mail             REMOTE_USER_EMAIL
+  LookupUserAttr   givenname        REMOTE_USER_FIRSTNAME
+  LookupUserAttr   sn               REMOTE_USER_LASTNAME
+  LookupUserAttr   displayname      REMOTE_USER_FULLNAME
+  LookupUserAttr   krbPrincipalName REMOTE_USER_PRINCIPAL
+  LookupUserGroups                  REMOTE_USER_GROUPS ":"
+  LookupDbusTimeout                 5000
 </Location>
 
 <LocationMatch ^/api|^/vmdbws/wsdl|^/vmdbws/api>
@@ -155,13 +156,14 @@ LoadModule lookup_identity_module modules/mod_lookup_identity.so
   Allow from env=let_api_token_in
   Satisfy Any
 
-  LookupUserAttr   mail        REMOTE_USER_EMAIL
-  LookupUserAttr   givenname   REMOTE_USER_FIRSTNAME
-  LookupUserAttr   sn          REMOTE_USER_LASTNAME
-  LookupUserAttr   displayname REMOTE_USER_FULLNAME
+  LookupUserAttr   mail             REMOTE_USER_EMAIL
+  LookupUserAttr   givenname        REMOTE_USER_FIRSTNAME
+  LookupUserAttr   sn               REMOTE_USER_LASTNAME
+  LookupUserAttr   displayname      REMOTE_USER_FULLNAME
+  LookupUserAttr   krbPrincipalName REMOTE_USER_PRINCIPAL
 
-  LookupUserGroups             REMOTE_USER_GROUPS ":"
-  LookupDbusTimeout            5000
+  LookupUserGroups                  REMOTE_USER_GROUPS ":"
+  LookupDbusTimeout                 5000
 
 </LocationMatch>
 ```
@@ -194,6 +196,7 @@ RequestHeader set X_REMOTE_USER_FIRSTNAME %{REMOTE_USER_FIRSTNAME}e  env=REMOTE_
 RequestHeader set X_REMOTE_USER_LASTNAME  %{REMOTE_USER_LASTNAME}e   env=REMOTE_USER_LASTNAME
 RequestHeader set X_REMOTE_USER_FULLNAME  %{REMOTE_USER_FULLNAME}e   env=REMOTE_USER_FULLNAME
 RequestHeader set X_REMOTE_USER_GROUPS    %{REMOTE_USER_GROUPS}e     env=REMOTE_USER_GROUPS
+RequestHeader set X_REMOTE_USER_PRINCIPAL %{REMOTE_USER_PRINCIPAL}e  env=REMOTE_USER_PRINCIPAL
 ```
 
 ---
