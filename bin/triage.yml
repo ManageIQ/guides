@@ -39,6 +39,16 @@ params:
   - label:"feedback requested"
   no_wip: &no_wip
   - -label:wip
+  backport_request_tal: &backport_request_tal
+  - is:merged
+  - is:pr
+  - label:tal/yes?
+  backport_direct_prs_tal: &backport_direct_prs_tal
+  - base:tal
+  - is:open
+  - is:pr
+  - -label:tal/no
+  - -label:tal/yes
   backport_request_spassky: &backport_request_spassky
   - is:merged
   - is:pr
@@ -49,16 +59,6 @@ params:
   - is:pr
   - -label:spassky/no
   - -label:spassky/yes
-  backport_request_radjabov: &backport_request_radjabov
-  - is:merged
-  - is:pr
-  - label:radjabov/yes?
-  backport_direct_prs_radjabov: &backport_direct_prs_radjabov
-  - base:radjabov
-  - is:open
-  - is:pr
-  - -label:radjabov/no
-  - -label:radjabov/yes
 repos:
   - name: Core/Provider
     params:
@@ -118,6 +118,15 @@ links:
   - *base_params
   - *open_pr
   - *stale
+- name: Backport requests (Tal)
+  params:
+  - *base_params
+  - *backport_request_tal
+- name: Backport direct PRs (Tal)
+  params:
+  - *base_params
+  - *backport_direct_prs_tal
+
 - name: Backport requests (Spassky)
   params:
   - *base_params
@@ -126,11 +135,3 @@ links:
   params:
   - *base_params
   - *backport_direct_prs_spassky
-- name: Backport requests (Radjabov)
-  params:
-  - *base_params
-  - *backport_request_radjabov
-- name: Backport direct PRs (Radjabov)
-  params:
-  - *base_params
-  - *backport_direct_prs_radjabov
