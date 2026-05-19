@@ -4,7 +4,7 @@
 
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
-| Ruby       | 3.3.x           | 3.4.x           |
+| Ruby       | 3.3.1           | 3.4.x           |
 | Bundler    | 2.5.20          | 4.x             |
 | NodeJS     | 22.22.0         | 22.x.x          |
 | Python     | 3.9.x           |                 |
