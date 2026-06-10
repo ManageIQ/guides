@@ -6,7 +6,7 @@ Color | Hex | Description
 --- | --- | ---
 ![](https://dummyimage.com/100x20/ee0701&text=+) | `#ee0701` | Scope - Bugs
 ![](https://dummyimage.com/100x20/84b6eb&text=+) | `#84b6eb` | Scope - Enhancement
-![](https://dummyimage.com/100x20/bfe5bf&text=+)![](https://dummyimage.com/100x20/bcf5db&text=+) | `#bfe5bf` `#bcf5db` | Scope - Testing and tools: "test", "developer", "tools"
+![](https://dummyimage.com/100x20/bfe5bf&text=+)![](https://dummyimage.com/100x20/bcf5db&text=+) | `#bfe5bf` `#bcf5db` | Scope - Testing and tools: "test", "developer", "tools", "ai assisted"
 ![](https://dummyimage.com/100x20/fef2c0&text=+)![](https://dummyimage.com/100x20/e99695&text=+) ![](https://dummyimage.com/100x20/fbca04&text=+)![](https://dummyimage.com/100x20/ff7619&text=+) | `#fef2c0` `#e99695` `#fbca04` `#ff7619` | Scope - Other: "cleanup", "performance", "refactoring", "technical debt"
 ![](https://dummyimage.com/100x20/0e8a16&text=+) | `#0e8a16` | Positive statuses: "help wanted", "verified"
 ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | Negative statuses: "duplicate", "notabug", "stale", "unmergeable", "wip", "wontfix"
@@ -20,6 +20,7 @@ Color | Hex | Description
 
 Label | Color | Hex | Description
 --- | --- | --- | ---
+ai assisted | ![](https://dummyimage.com/100x20/bcf5db&text=+) | `#bcf5db` | Changes that include a significant amount of AI assistance. Use this label to indicate to the reviewer that they should take extra care when reviewing the change.
 blocker | ![](https://dummyimage.com/100x20/000000&text=+) | `#000000` | Blocker for the next release.
 bug | ![](https://dummyimage.com/100x20/ee0701&text=+) | `#ee0701` | A bug.
 bug/sporadic test failure | ![](https://dummyimage.com/100x20/ee0701&text=+) | `#ee0701` | A bug that manifests as test failures in an unpredictable way.
