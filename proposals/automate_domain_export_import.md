@@ -68,7 +68,7 @@ Import currently only works with importing into a new domain, it doesn't do a di
 
 5. NAMESPACE = (**Optional**) Namespace to be imported. A single namespace can be imported from a domain export by specifying the NAMESPACE argument.  
 
-6. CLASS = (**Optional**) Class to be imported.  Must be accompanied by the NAMESPACE argument. A single class can be imported from a domain export by specifying the NAMESPACE and CLASS arguments.  
+6. CLASS = (**Optional**) Class to be imported. Must be accompanied by the NAMESPACE argument. A single class can be imported from a domain export by specifying the NAMESPACE and CLASS arguments.  
 
 7. PRIORITY = (**Optional**) Sets the priority of the imported domain. Default value of priority is read from the exported model. This property can only when be set when importing a single domain. Priority is a whole number greater than 0.
 
@@ -92,7 +92,7 @@ To import a domain called SAMPLE as DEMO from a zip file use the following
 To import a namespace called INFRASTRUCTURE from the domain called SAMPLE from a zip file use the following
 * _bin/rake evm:automate:import DOMAIN=SAMPLE NAMESPACE=INFRASTRUCTURE EXPORT_DIR=./monday_model_export PREVIEW=false
 
-To import a class named PROVISIONING from a namespace called INFRASTRUCTURE in the SAMPLE domain  from a zip file use the following
+To import a class named PROVISIONING from a namespace called INFRASTRUCTURE in the SAMPLE domain from a zip file use the following
 * _bin/rake evm:automate:import DOMAIN=SAMPLE NAMESPACE=INFRASTRUCTURE CLASS=PROVISIONING EXPORT_DIR=./monday_model_export PREVIEW=false
 
 # Migration

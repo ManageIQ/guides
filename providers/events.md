@@ -1,6 +1,6 @@
 ## Events
 
-Events are one of the primary functions of a provider, in addition to Inventory, Metrics, and Operations.  Adding an event catcher to your provider is extremely helpful for improving overall performance of the system because it allows us to react to changes as they happen rather than resort to polling.
+Events are one of the primary functions of a provider, in addition to Inventory, Metrics, and Operations. Adding an event catcher to your provider is extremely helpful for improving overall performance of the system because it allows us to react to changes as they happen rather than resort to polling.
 
 There are three primary uses for events in MIQ:
 
@@ -12,11 +12,11 @@ We'll primarily focus on #3 here since the first two come "for free" once you st
 
 ### Overview
 
-All provider events use the `EmsEvent` model which derives from the `EventStream` base class.  There are also internal `MiqEvent`s but we are going to focus on `EmsEvent`s.
+All provider events use the `EmsEvent` model which derives from the `EventStream` base class. There are also internal `MiqEvent`s but we are going to focus on `EmsEvent`s.
 
 The pipeline for catching, parsing, and saving events is optimized to ensure that the chance of missing an event is minimized.
 
-To that end catching and parsing events is separate from saving them to the database and relating them to other inventory.  Typically providers even implement catching and parsing in different threads within the event catcher.
+To that end catching and parsing events is separate from saving them to the database and relating them to other inventory. Typically providers even implement catching and parsing in different threads within the event catcher.
 
 The overall flow looks like this:
 
@@ -138,7 +138,7 @@ end
 
 ### Parsing events
 
-Now that we're catching events from the provider we need to implement the parser.  This is called by the main event catcher runner thread prior to putting events onto MiqQueue for the MiqEventHandler to process.
+Now that we're catching events from the provider we need to implement the parser. This is called by the main event catcher runner thread prior to putting events onto MiqQueue for the MiqEventHandler to process.
 
 The purpose of this is similar to the inventory parser, to translate the native provider event into the VMDB schema.
 
@@ -185,9 +185,9 @@ lib/workers/bin/run_single_worker.rb --role=event --ems-id=2 ManageIQ::Providers
 
 ### Using events for targeted refresh
 
-This is where things get interesting, combining an event catcher with targeted refresh allows you to automatically build the `InventoryRefresh::Target` that we saw in the [Targeted Refresh Guide](targeted_refresh.md) based on the event data.  You can also use the event payload to pre-seed your targeted collector with information to save on API calls.
+This is where things get interesting, combining an event catcher with targeted refresh allows you to automatically build the `InventoryRefresh::Target` that we saw in the [Targeted Refresh Guide](targeted_refresh.md) based on the event data. You can also use the event payload to pre-seed your targeted collector with information to save on API calls.
 
-The first step is to create automate event handlers for each of the events that you want to trigger a targeted refresh.  These live in the https://github.com/ManageIQ/manageiq-content repository.
+The first step is to create automate event handlers for each of the events that you want to trigger a targeted refresh. These live in the https://github.com/ManageIQ/manageiq-content repository.
 
 Create a directory to hold your events: `content/automate/ManageIQ/System/Event/EmsEvent/AWESOME_CLOUD.class/`
 
@@ -211,7 +211,7 @@ object:
 
 With that in place the `MiqEventHandler` is going to invoke automate, and automate is going to call the refresh event_handler.
 
-For this to work we have to expose a way for core to convert our provider event to a list of refresh targets.  This is done with the `EventTargetParser` class.
+For this to work we have to expose a way for core to convert our provider event to a list of refresh targets. This is done with the `EventTargetParser` class.
 
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_target_parser.rb`
 ```ruby

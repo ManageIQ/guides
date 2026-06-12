@@ -3,36 +3,36 @@
 ## Introduction
 
 ManageIQ uses logical replication to provide central administrative functions over objects in other
-database regions.  In order to do this, PostgreSQL's logical replication is used to set up
+database regions. In order to do this, PostgreSQL's logical replication is used to set up
 publications for specific tables in remote regions and subscriptions for each in the central or
 global region.
 
-Note, this is completely different from HA and failover.  Logical replication provides product
+Note, this is completely different from HA and failover. Logical replication provides product
 features such as being able to start or stop a virtual machine centrally regardless of which
-database it resides in.  HA, on the other hand, provides for failover by promoting a backup when a
+database it resides in. HA, on the other hand, provides for failover by promoting a backup when a
 primary database fails.
 
 This interconnectedness of multiple databases with publications and subscriptions with ManageIQ
-regions means that the upgrade process is a bit different.  Basically, the global region cannot be
-migrated until all databases it's subscribing to have been migrated.  Fortunately, this logic
+regions means that the upgrade process is a bit different. Basically, the global region cannot be
+migrated until all databases it's subscribing to have been migrated. Fortunately, this logic
 should be mostly automatic.
 
 This logic is what we're trying to test and verify.
 
 ## Pre-requisites
 
-This was tested with 3 nightly appliances.  They were set up to be at the Jansa codebase with
-replication. The appliances were then migrated to kasparov.  This document could be used for
+This was tested with 3 nightly appliances. They were set up to be at the Jansa codebase with
+replication. The appliances were then migrated to kasparov. This document could be used for
 different branches or tags.
 
-The following region numbers were used and will be referenced throughout this document.  Replace
+The following region numbers were used and will be referenced throughout this document. Replace
 these values if different numbers are selected:
 * 99 - global
 * 1 - remote
 * 2 - remote
 
-It is assumed the application will be run in production mode on appliances.  This is the default
-on appliances.  If using a different mode or not appliances, RAILS_ENV will need to be exported:
+It is assumed the application will be run in production mode on appliances. This is the default
+on appliances. If using a different mode or not appliances, RAILS_ENV will need to be exported:
 
 ```
 export RAILS_ENV=production
@@ -155,8 +155,8 @@ Note, it may take a few minutes before these users are replicated.
 ## Remove replication before upgrade
 
 Whenever performing an upgrade, logical replication must be disabled on the old version and enabled
-again on the new version.  Often, this is because appliances are replaced and therefore the
-publication and subscription are different.  Even when not replacing appliances, it is still best to
+again on the new version. Often, this is because appliances are replaced and therefore the
+publication and subscription are different. Even when not replacing appliances, it is still best to
 disable replication on the old version and enable it again on the new version so that the correct
 version of code is adding the publications and subscriptions.
 
@@ -167,8 +167,8 @@ psql -U root vmdb_production -h global_ipaddress -c 'DROP subscription region_1_
 psql -U root vmdb_production -h global_ipaddress -c 'DROP subscription region_2_subscription;'
 ```
 
-Note:  Dropping the subscription on the global will also delete the replication slot on the remote
-and will do proper cleanup.  The replication slot should not be manually removed.
+Note: Dropping the subscription on the global will also delete the replication slot on the remote
+and will do proper cleanup. The replication slot should not be manually removed.
 
 ## Upgrade to kasparov
 

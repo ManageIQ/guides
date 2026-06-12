@@ -1,14 +1,14 @@
 ## Creating a new provider
 
-So your company started using this awesome new cloud platform, Awesome Cloud.  You use ManageIQ for your automation but there isn't a provider for Awesome Cloud...what to do?
+So your company started using this awesome new cloud platform, Awesome Cloud. You use ManageIQ for your automation but there isn't a provider for Awesome Cloud...what to do?
 
-Well luckily writing your own MIQ Provider is easy!  Let's walk through creating a new cloud provider from scratch together.
+Well luckily writing your own MIQ Provider is easy! Let's walk through creating a new cloud provider from scratch together.
 
 ### Generate the scaffolding
 
-The first step in building a new provider is to create the plugin directory and the scaffolding.  ManageIQ has a built-in provider generator for just this purpose.
+The first step in building a new provider is to create the plugin directory and the scaffolding. ManageIQ has a built-in provider generator for just this purpose.
 
-If you haven't yet setup your core repository go through the [developer setup](../developer_setup.md) guide.  After this you should have your own copy of [manageiq](https://github.com/ManageIQ/manageiq) ready to go.
+If you haven't yet setup your core repository go through the [developer setup](../developer_setup.md) guide. After this you should have your own copy of [manageiq](https://github.com/ManageIQ/manageiq) ready to go.
 
 From this local clone we can run the provider generator, first lets take a look at the help
 
@@ -119,7 +119,7 @@ insert  .yamllint
 append  spec/spec_helper.rb
 ```
 
-That's a lot of stuff!  We'll cover all of it in detail later but for now lets take a look at our plugin:
+That's a lot of stuff! We'll cover all of it in detail later but for now lets take a look at our plugin:
 
 ```bash
 $ ls plugins/
@@ -175,14 +175,14 @@ $ bundle exec rails c
 => ManageIQ::Providers::AwesomeCloud::CloudManager (call 'ManageIQ::Providers::AwesomeCloud::CloudManager.connection' to establish a connection)
 ```
 
-Success!  That means that core ManageIQ knows about our new cloud provider.
+Success! That means that core ManageIQ knows about our new cloud provider.
 
 Now lets get that provider added so we have something to play with:
 ```ruby
 >> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.create!(:name => "My Awesome Cloud", :zone => Zone.default_zone)
 ```
 
-Now that we have that done it is time to start filling out our new provider.  The first step is to find the SDK gem for this provider.  If there isn't a provider SDK for Ruby you have a few options which we'll cover later.  For now lets assume that Awesome Cloud has a ruby gem called 'awesome_cloud'.
+Now that we have that done it is time to start filling out our new provider. The first step is to find the SDK gem for this provider. If there isn't a provider SDK for Ruby you have a few options which we'll cover later. For now lets assume that Awesome Cloud has a ruby gem called 'awesome_cloud'.
 
 ### Add your provider's SDK to the gemspec
 
@@ -208,7 +208,7 @@ Then bundle update to pull in the change
 $ bundle update
 ```
 
-Now that we have the gem installed we can start to write our connection code.  ManageIQ providers have to expose a `#connect` and a `#verify_credentials` method on the class and the instance.  The class method is used when adding a provider (when there is no instance record yet) and the instance methods are used after.
+Now that we have the gem installed we can start to write our connection code. ManageIQ providers have to expose a `#connect` and a `#verify_credentials` method on the class and the instance. The class method is used when adding a provider (when there is no instance record yet) and the instance methods are used after.
 
 Let's assume that Awesome Cloud requires a region, access_key, and secret_key in order to connect.
 
@@ -274,9 +274,9 @@ With these in place we should be able to test our provider that we added to MIQ:
 
 ### Adding your provider from the UI
 
-Creating the provider record from a rails console is great for developers but it is much nicer to be able to do this from the UI.  ManageIQ has a very simple way of telling the UI what your provider needs to be able to be added via the UI, [Data-Driven-Forms](https://data-driven-forms.org/).
+Creating the provider record from a rails console is great for developers but it is much nicer to be able to do this from the UI. ManageIQ has a very simple way of telling the UI what your provider needs to be able to be added via the UI, [Data-Driven-Forms](https://data-driven-forms.org/).
 
-You basically define what forms you need in a hash in your provider plugin and the ManageIQ UI will display it for you.  If you want a good introduction check out https://data-driven-forms.org/introduction.  For now we'll just create a basic form that takes a provider region, access key, and secret key.
+You basically define what forms you need in a hash in your provider plugin and the ManageIQ UI will display it for you. If you want a good introduction check out https://data-driven-forms.org/introduction. For now we'll just create a basic form that takes a provider region, access key, and secret key.
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
@@ -363,15 +363,15 @@ us-east-1:
   :description: US East 1
 ```
 
-With that added you should be able to go to the UI, add a cloud provider, and see your new cloud type.  For development typically the best way to test code in the UI is to run a rails server and a simulated generic worker via the terminal.
+With that added you should be able to go to the UI, add a cloud provider, and see your new cloud type. For development typically the best way to test code in the UI is to run a rails server and a simulated generic worker via the terminal.
 
-To do this open two terminals, in the first one run `bundle exec rails s` and in the second run `bundle exec rails console` and typing `simulate_queue_worker`.  Now you can open `localhost:3000` in your browser of choice and you should be able to login.
+To do this open two terminals, in the first one run `bundle exec rails s` and in the second run `bundle exec rails console` and typing `simulate_queue_worker`. Now you can open `localhost:3000` in your browser of choice and you should be able to login.
 
 ### Inventory Refresh
 
 Up to this point our provider doesn't do a lot, we've simply been setting the groundwork for the future.
 
-Inventory Refresh/Discovery is the first significant feature that we'll be adding.  This process is what synchronizes the cloud inventory (instances, volumes, flavors, images, etc...) with the ManageIQ database (VMDB).  This allows MIQ to show inventory on the UI, expose actions on that inventory, run reports, collect metrics, etc...
+Inventory Refresh/Discovery is the first significant feature that we'll be adding. This process is what synchronizes the cloud inventory (instances, volumes, flavors, images, etc...) with the ManageIQ database (VMDB). This allows MIQ to show inventory on the UI, expose actions on that inventory, run reports, collect metrics, etc...
 
 Almost every MIQ feature starts out with provider inventory, so lets get started.
 
@@ -387,7 +387,7 @@ For a more in depth overview of how refresh works check out the [Refresh Documen
 
 For now lets cover a very simple refresh case, collecting flavors, instances, and images.
 
-First let's declare the collections that we intend to use.  The full set of possible collections can be found in core's `Inventory::Persister::Builder` sub-classes.
+First let's declare the collections that we intend to use. The full set of possible collections can be found in core's `Inventory::Persister::Builder` sub-classes.
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::Inventory::Persister < ManageIQ::Providers::Inventory::Persister
@@ -404,7 +404,7 @@ end
 
 Once those are declared ManageIQ Core will take care of actually saving everything to the database for you.
 
-Now lets look at collecting inventory.  For that let's look at :shocked: the collector.
+Now lets look at collecting inventory. For that let's look at :shocked: the collector.
 
 The collector provides an interface for the parser, so each method should fetch and return the relevant inventory.
 
@@ -430,7 +430,7 @@ class ManageIQ::Providers::AwesomeCloud::Inventory::Collector < ManageIQ::Provid
 end
 ```
 
-And that's it!  The collector gets a lot more interesting when you add support for targeted refresh but that is for another time.  If you have to manually handle paging you should do that here, if the sdk handles paging automatically via an Enumerator then there's nothing more needed.
+And that's it! The collector gets a lot more interesting when you add support for targeted refresh but that is for another time. If you have to manually handle paging you should do that here, if the sdk handles paging automatically via an Enumerator then there's nothing more needed.
 
 Now we can get started on the parser.
 
@@ -536,11 +536,11 @@ Now that we have all of that hooked up lets test it!
 => "579405c1-8867-4e78-94fd-72ff575e8d0a"
 ```
 
-Congrats!  You have successfully refreshed your provider.  By default this will be automatically refreshed every 15 minutes which is the default for providers without an event catcher (more on that later).
+Congrats! You have successfully refreshed your provider. By default this will be automatically refreshed every 15 minutes which is the default for providers without an event catcher (more on that later).
 
 ### Next Steps
 
-That's a very high level overview of writing a provider.  There is a lot still that you can and should do:
+That's a very high level overview of writing a provider. There is a lot still that you can and should do:
 
 * Fill out what is collected for your existing collections (e.g. get availability zones and disks for VMs)
 * Add more collections like cloud_volumes and cloud_tenants to your CloudManager

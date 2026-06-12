@@ -7,13 +7,13 @@ RBAC in ManageIQ is split into 2 parts; what you can "see" and what you can "do"
 
 **What you can "see"** is defined as access to resources based on a number of criteria and rules. (Tenancy, Ownership, Entitlements...)
 
-**What you can "do"** is defined by permissions to perform actions. Such permission could be tied to certain kinds of resources. For example - it allows you to specify permission for a user to  edit or delete (actions) Virtual Machines(kind of resource). These are called Product Features in ManageIQ.
+**What you can "do"** is defined by permissions to perform actions. Such permission could be tied to certain kinds of resources. For example - it allows you to specify permission for a user to edit or delete (actions) Virtual Machines(kind of resource). These are called Product Features in ManageIQ.
 
 At the heart of the RBAC system are Users and Groups. A user can belong to multiple groups, and while a user is interacting with ManageIQ there is the notion of a "current" group. Only the current group's permission set will apply during that session, or until the "current" group is changed. Both a user and a group can directly "own" resources in the system.
 
 A Group belongs to a Tenant. Tenants are a hierarchical structure above groups with inheritance rules for the resources they "own".
 
-A Group is mapped to a Role, and a Role is a collection of a number of Product Features and Entitlements. Product Features are permissions for actions which you can "do" with the system. Entitlements are a set of ways of grouping resources such that a user can "see" them.(Entitlements is just one part from criterias defined by  what you can "see" aspect)
+A Group is mapped to a Role, and a Role is a collection of a number of Product Features and Entitlements. Product Features are permissions for actions which you can "do" with the system. Entitlements are a set of ways of grouping resources such that a user can "see" them.(Entitlements is just one part from criterias defined by what you can "see" aspect)
 
 ![](images/rbac.svg)
 

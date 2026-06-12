@@ -170,7 +170,7 @@ dism /cleanup-wim
     1. system imaged
     1. unattend file deployed
     1. bootloader installed
-    1. Callback to EVM  ##### Still researching
+    1. Callback to EVM ##### Still researching
     1. WinPE Shutdown
 1. EVM powers on VM normally (not network boot)
 1. System runs through sysprep using unattend.xml file and reboots

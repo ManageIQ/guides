@@ -40,11 +40,11 @@ configurations table will store deltas from the template.
 | created_at | timestamp | |
 | updated_at | timestamp | |
 
-`Vmdb::Config` class, when loading a particular configuration will load the template from the file system, then apply delta rows in scope order.  All region deltas, then all zone deltas, etc.  Final result is cached as the singleton.
+`Vmdb::Config` class, when loading a particular configuration will load the template from the file system, then apply delta rows in scope order. All region deltas, then all zone deltas, etc. Final result is cached as the singleton.
 
 - When a user makes a change, we add a delta row.
 - When a user chooses reset to default, we remove the delta row.
-- When a user makes a change on an existing delta, even if the change matches the current default from the template, keep the delta in the table so their changes will remain even if our default changes.  This allows consciously making the choice of a value, versus making the choice to use the default.
+- When a user makes a change on an existing delta, even if the change matches the current default from the template, keep the delta in the table so their changes will remain even if our default changes. This allows consciously making the choice of a value, versus making the choice to use the default.
 
 When a change is saved to the configuration, invalidate the local cache, and notify
   all servers via the queue that they should invalidate their caches as well.
@@ -55,11 +55,11 @@ Vmdb::Config["vmdb"] # default is my_server level
 Vmdb::Config["vmdb", :region]
 ```
 
-Callers currently treat the config like a set of nested hashes, so we may want expose the same interface.  fetch_path (an evm Hash extension) is used extensively in caller code as well.
+Callers currently treat the config like a set of nested hashes, so we may want expose the same interface. fetch_path (an evm Hash extension) is used extensively in caller code as well.
 
 ## UI / UX
 
-Currently we have specialized screens for modifying certain configuration options.  Beyond that we have the Advanced Settings page which allows the user to modify the config YAML file directly.  However, this is problematic for a number of reasons, both with usability and data integrity.
+Currently we have specialized screens for modifying certain configuration options. Beyond that we have the Advanced Settings page which allows the user to modify the config YAML file directly. However, this is problematic for a number of reasons, both with usability and data integrity.
 
 One possible solution in the new redesign is to present the data as an editable grid or a tree structure.
 

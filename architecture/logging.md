@@ -2,7 +2,7 @@
 
 ManageIQ uses the standard Ruby [Logger](https://ruby-doc.org/stdlib-2.6.6/libdoc/logger/rdoc/Logger.html)
 interface, with a custom formatter that is mostly just minor changes from the
-default formatter.  Additionally, we use a logger abstraction library, called
+default formatter. Additionally, we use a logger abstraction library, called
 [manageiq-loggers](github.com/ManageIQ/manageiq-loggers) in order to support
 multiple log targets and formats.
 
@@ -26,7 +26,7 @@ where:
 ### Container log format
 
 In container deployments, ManageIQ also broadcasts logs to STDOUT in structured
-JSON format, so that it can be consumed by a cluster-level log aggregator.  For,
+JSON format, so that it can be consumed by a cluster-level log aggregator. For,
 example OpenShift has a feature called cluster logging, which consumes STDOUT and
 feeds those lines to ElasticSearch as part of an EFK stack (ElasticSearch /
 Fluentd / Kibana). However, because it is simple JSON, the output could be
@@ -50,13 +50,13 @@ as a single line.
 ### Development
 
 In development, a number of log objects are available, with `$log` being the
-primary log object.  There are a number of separate log objects created for
-various purposes, particularly for provider clients.  The Rails logger is also
+primary log object. There are a number of separate log objects created for
+various purposes, particularly for provider clients. The Rails logger is also
 available via `$rails_log` (or the standard `Rails.logger`). See
 [lib/vmdb/loggers.rb](https://github.com/ManageIQ/manageiq/blob/master/lib/vmdb/loggers.rb)
 for the complete list of loggers.
 
 Additionally, if the [`Vmdb::Logging`](https://github.com/ManageIQ/manageiq/blob/master/lib/vmdb/logging.rb)
-module is mixed into a class, then the _log method is available.  This method will
+module is mixed into a class, then the _log method is available. This method will
 automatically prefix the code location to the message, and so is the most preferred
 way to do logging.

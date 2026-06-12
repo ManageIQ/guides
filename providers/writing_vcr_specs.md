@@ -1,16 +1,16 @@
 ## Writing VCR Provider Spec Tests
 
-So you've just done a refresh with your new provider, congratulations.  Now it is time to make sure it continues to work by writing some tests.
+So you've just done a refresh with your new provider, congratulations. Now it is time to make sure it continues to work by writing some tests.
 
 ### VCR
 
-How do you test code which makes API calls without having access to a live system?  There is a ruby gem called [VCR](https://github.com/vcr/vcr) which "records" HTTP API calls and then plays them back later.  This allows us to test code which would normally have to point to a live API without having to stub every single method call.
+How do you test code which makes API calls without having access to a live system? There is a ruby gem called [VCR](https://github.com/vcr/vcr) which "records" HTTP API calls and then plays them back later. This allows us to test code which would normally have to point to a live API without having to stub every single method call.
 
-The results of the recording are stored in the VCR `config.cassette_library_dir` as YAML files with request/response pairs.  VCR will automatically stub the HTTP layer for you, and when it recognizes a request it will replay the saved response for you.  This allows for mostly normal operation while running in an isolated CI system.
+The results of the recording are stored in the VCR `config.cassette_library_dir` as YAML files with request/response pairs. VCR will automatically stub the HTTP layer for you, and when it recognizes a request it will replay the saved response for you. This allows for mostly normal operation while running in an isolated CI system.
 
 ### Configuration
 
-If you generated your provider plugin with the `--vcr` flag then the VCR configuration should have already been done for you.  If not simply add the following to the bottom of your `spec/spec_helper.rb` file:
+If you generated your provider plugin with the `--vcr` flag then the VCR configuration should have already been done for you. If not simply add the following to the bottom of your `spec/spec_helper.rb` file:
 ```ruby
 VCR.configure do |config|
   config.cassette_library_dir = ManageIQ::Providers::AwesomeCloud::Engine.root.join('spec/vcr_cassettes')
@@ -19,9 +19,9 @@ VCR.configure do |config|
 end
 ```
 
-The next thing we have to take care of is hiding "secrets".  Since the VCR YAML files will be committed to source control it is critical that private information like passwords do not make it into these files.
+The next thing we have to take care of is hiding "secrets". Since the VCR YAML files will be committed to source control it is critical that private information like passwords do not make it into these files.
 
-VCR handles this with the `config.define_cassette_placeholder` option.  You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with.  This allows for hostnames / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
+VCR handles this with the `config.define_cassette_placeholder` option. You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with. This allows for hostnames / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
 
 ManageIQ has a pattern to help you with this. By default, the generator created a file named `spec/config/secrets.defaults.yml` with a username and password.
 ```yaml
@@ -58,7 +58,7 @@ If you need to manually mark something as sensitive data, then you will need to 
 
 ### Writing the tests
 
-Now that we have VCR configured it is time to start writing your spec tests.  First we will start with the Refresher to test the refresh process of your new provider.
+Now that we have VCR configured it is time to start writing your spec tests. First we will start with the Refresher to test the refresh process of your new provider.
 
 Create a file called `spec/models/manageiq/providers/awesome_cloud/cloud_manager/refresher_spec.rb`:
 ```ruby

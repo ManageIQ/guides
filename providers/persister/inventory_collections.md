@@ -33,7 +33,7 @@ add_collection(builder_class, collection_name, extra_properties = {}, settings =
 ```
 which we'll see more detailed in this chapter.
 
-It creates ```ManagerRefresh::InventoryCollection```  and assigns it to **persister's @collections[:vms]**
+It creates ```ManagerRefresh::InventoryCollection``` and assigns it to **persister's @collections[:vms]**
 
 Method can throw exception **`ManagerRefresh::InventoryCollection::Builder::MissingModelClassError`** (described [later](#automatic-model_class))
 
@@ -70,7 +70,7 @@ It has several functions:
 
 Collection name is also used for automated assignments, such as:
 
-- ```:model_class``` (where are collected data persisted)  [*below*]
+- ```:model_class``` (where are collected data persisted) [*below*]
 - ```:inventory_object_attributes``` - "columns" of model_class [*below*]
 
 #### - extra_properties [*optional*]

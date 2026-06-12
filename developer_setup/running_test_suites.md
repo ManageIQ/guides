@@ -107,7 +107,7 @@ Note you do not need `PARALLEL=true` using `parallel_rspec`.
   available isn't always beneficial to fast tests. If you're running a subset
   of tests and parallel_tests reports that you're running a very small number
   of specs across each core, try using fewer cores doing more work instead. You
-  can specify the number with the `-n` option.  For example, to run all the
+  can specify the number with the `-n` option. For example, to run all the
   request specs with four cores:
 
   ```

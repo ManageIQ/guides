@@ -1,6 +1,6 @@
 ## Adding A New Model
 
-So you've added your AwesomeCloud provider and collected everything that ManageIQ has tables for, but your cloud is so awesome it has something ManageIQ doesn't have yet.  In order to manage this new type of inventory in ManageIQ you have to create a new model for it.
+So you've added your AwesomeCloud provider and collected everything that ManageIQ has tables for, but your cloud is so awesome it has something ManageIQ doesn't have yet. In order to manage this new type of inventory in ManageIQ you have to create a new model for it.
 
 Before we jump in make sure that you are familiar with the following guides:
 - [dev-guide](./dev-guide.md)
@@ -10,7 +10,7 @@ Before we jump in make sure that you are familiar with the following guides:
 As well as [Rails Models](https://guides.rubyonrails.org/active_record_basics.html) specifically ActiveRecord and Migrations.
 
 ### Create a new database table
-Before you can add a new model, you must create a database table to store the data.  This is done by using the migration generator.
+Before you can add a new model, you must create a database table to store the data. This is done by using the migration generator.
 1. If you haven't already, clone the manageiq-schema repository and add it to your bundler overrides.
 2. In a terminal type `rails generate migration create_<table_names>` (model name in plural), for instance: create_physical_storages. A migration file will be created on the vm in the repo `manageiq-schema`, in directory `db/migrate`.
 3. Edit the file and add necessary fields:
@@ -33,7 +33,7 @@ In the main manageiq repo:
    5. Include a `belongs_to :ext_management_system, :foreign_key => :ems_id, , :class_name => "ManageIQ::Providers::CloudManager"`
    6. At the base class all features should default to `supports_not` so e.g. add `supports_not :create` to your base model.
 2. Add the collection to the manager type in `app/models/manageiq/providers/cloud_manager.rb` (replace `cloud_manager` with the relevant provider):
-   1. Add the `has_many` association (e.g. `has_many :cloud_databases`) as well as any modifiers you want such as `:dependent => destroy`.  `has_many :cloud_databases, :foreign_key => :ems_id, :dependent => :destroy`
+   1. Add the `has_many` association (e.g. `has_many :cloud_databases`) as well as any modifiers you want such as `:dependent => destroy`. `has_many :cloud_databases, :foreign_key => :ems_id, :dependent => :destroy`
 3. Add the new model to the inventory collections
 After adding a schema and a model class, we would like to update its db table on every `EmsRefresh` with data we collect from the parallel model on the provider's backend side.  
 In the main manageiq repo:

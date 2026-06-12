@@ -1,6 +1,6 @@
 1. Define openstack tenants
 
-    Openstack Tenants, also described as "Projects" in Openstack, isolate cloud resources and users.  Tenant administrators can configure individual quotas per tenant.
+    Openstack Tenants, also described as "Projects" in Openstack, isolate cloud resources and users. Tenant administrators can configure individual quotas per tenant.
 
 2. Collecting tenant details (EMS_Refresh)
   - allow api authentication per tenant (reconnect for each tenant where necessary)

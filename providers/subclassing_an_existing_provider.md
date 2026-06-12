@@ -1,10 +1,10 @@
 ## Subclassing an existing provider
 
-We have already covered creating a new provider from scratch in [Creating a new provider](writing_a_new_provider.md), however it is also common for a provider to use the API from another.  For example there are a number of Cloud Services which host Kubernetes and expose the standard k8s API with different authentication.  The Openstack API is also an industry standard for private clouds and is widely implemented by other providers.
+We have already covered creating a new provider from scratch in [Creating a new provider](writing_a_new_provider.md), however it is also common for a provider to use the API from another. For example there are a number of Cloud Services which host Kubernetes and expose the standard k8s API with different authentication. The Openstack API is also an industry standard for private clouds and is widely implemented by other providers.
 
 In the case where the existing provider API is already a part of ManageIQ it is possible to "subclass" the existing provider plugin and only implement the differences or possibly just provide a more specific name and logo that users will recognize.
 
-For our example here we are going to add an on-premise version of our existing AwesomeCloud from [Creating a new provider](writing_a_new_provider.md), called AwesomePrivateCloud.  This is going to have an OpenStack compatible API but we are going to make some minor changes to the available options, taking advantage of the fact that we have a specific provider plugin.
+For our example here we are going to add an on-premise version of our existing AwesomeCloud from [Creating a new provider](writing_a_new_provider.md), called AwesomePrivateCloud. This is going to have an OpenStack compatible API but we are going to make some minor changes to the available options, taking advantage of the fact that we have a specific provider plugin.
 
 ### Creating the new plugin
 
@@ -108,11 +108,11 @@ class ManageIQ::Providers::AwesomePrivateCloud::CloudManager < ManageIQ::Provide
 end
 ```
 
-This introduces the concept of `ActsAsStiLeafClass` which is critical to how a subclassed provider works.  If you don't already understand how Single-Table Inheritance (STI) works, here is a quick primer.
+This introduces the concept of `ActsAsStiLeafClass` which is critical to how a subclassed provider works. If you don't already understand how Single-Table Inheritance (STI) works, here is a quick primer.
 
 ### Single-Table Inheritance and ActsAsStiLeafClass
 
-STI allows for class hierarchies to be persisted to the database by way of storing the class name in the `:type` column.  See https://api.rubyonrails.org/classes/ActiveRecord/Inheritance.html for the official docs on ActiveRecord Inheritance.
+STI allows for class hierarchies to be persisted to the database by way of storing the class name in the `:type` column. See https://api.rubyonrails.org/classes/ActiveRecord/Inheritance.html for the official docs on ActiveRecord Inheritance.
 
 STI is heavily used in ManageIQ for provider inventory as it allows for provider plugins to implement things like operations in their own subclasses.
 
@@ -122,7 +122,7 @@ Where this becomes an issue for us here is how STI does queries, let's look at t
 => "SELECT \"vms\".* FROM \"vms\" WHERE \"vms\".\"type\" IN ('ManageIQ::Providers::CloudManager::Vm', 'ManageIQ::Providers::Amazon::CloudManager::Vm', 'ManageIQ::Providers::Azure::CloudManager::Vm', 'ManageIQ::Providers::AzureStack::CloudManager::Vm', 'ManageIQ::Providers::Google::CloudManager::Vm', 'ManageIQ::Providers::IbmCloud::PowerVirtualServers::CloudManager::Vm', 'ManageIQ::Providers::IbmCloud::VPC::CloudManager::Vm', 'ManageIQ::Providers::Openstack::CloudManager::Vm', 'ManageIQ::Providers::IbmCic::CloudManager::Vm', 'ManageIQ::Providers::IbmPowerVc::CloudManager::Vm', 'ManageIQ::Providers::OracleCloud::CloudManager::Vm', 'ManageIQ::Providers::Vmware::CloudManager::Vm') AND \"vms\".\"template\" = FALSE"
 ```
 
-By looking for all CloudManager VMs we expect to exclude other types of VMs such as InfraManager ones.  You can see that ActiveRecord accomplishes this by building a query that selects on a number class names.  The list of classes is determined from the descendants of the class we're checking:
+By looking for all CloudManager VMs we expect to exclude other types of VMs such as InfraManager ones. You can see that ActiveRecord accomplishes this by building a query that selects on a number class names. The list of classes is determined from the descendants of the class we're checking:
 ```ruby
 >> ManageIQ::Providers::CloudManager::Vm.descendants.map(&:name)
 => ["ManageIQ::Providers::Amazon::CloudManager::Vm", "ManageIQ::Providers::Azure::CloudManager::Vm", "ManageIQ::Providers::AzureStack::CloudManager::Vm", "ManageIQ::Providers::Google::CloudManager::Vm", "ManageIQ::Providers::IbmCloud::PowerVirtualServers::CloudManager::Vm", "ManageIQ::Providers::IbmCloud::VPC::CloudManager::Vm", "ManageIQ::Providers::Openstack::CloudManager::Vm", "ManageIQ::Providers::IbmCic::CloudManager::Vm", "ManageIQ::Providers::IbmPowerVc::CloudManager::Vm", "ManageIQ::Providers::OracleCloud::CloudManager::Vm", "ManageIQ::Providers::Vmware::CloudManager::Vm"]
@@ -130,11 +130,11 @@ By looking for all CloudManager VMs we expect to exclude other types of VMs such
 
 This is exactly what we want in most cases, however if we're subclassing another provider such as `ManageIQ::Providers::Openstack::CloudManager::Vm`, if we do `ManageIQ::Providers::Openstack::CloudManager::Vm.all` we will accidentally retrieve all OpenStack VMs _and_ all subclassed provider VMs.
 
-This is where `ActsAsStiLeafClass` comes in.  It overrides the `type_condition` method which typically does `sti_names  = ([self] + descendants).map(&:sti_name)` to get a list of types, and replaces it with just `[sti_name]`.
+This is where `ActsAsStiLeafClass` comes in. It overrides the `type_condition` method which typically does `sti_names  = ([self] + descendants).map(&:sti_name)` to get a list of types, and replaces it with just `[sti_name]`.
 
 ### Creating the subclasses
 
-After that little detour we can get back to creating our provider.  The summary here is that any class which is a subclass of ActiveRecord::Base must include `Class.include(ActsAsStiLeafClass)`.
+After that little detour we can get back to creating our provider. The summary here is that any class which is a subclass of ActiveRecord::Base must include `Class.include(ActsAsStiLeafClass)`.
 
 So if we go back to our base provider (OpenStack) we need to find each `ActiveRecord::Base` subclass and create a corresponding subclass in our provider.
 
@@ -156,7 +156,7 @@ end
 
 Now repeat the process for the `NetworkManager` and `StorageManager::CinderManager`
 
-Lastly create subclasses of all of the `inventory/persister/*` classes so that we are able to auto-detect the correct STI type names during refresh.  These are not ActiveRecord classes so simply:
+Lastly create subclasses of all of the `inventory/persister/*` classes so that we are able to auto-detect the correct STI type names during refresh. These are not ActiveRecord classes so simply:
 ```ruby
 class ManageIQ::Providers::AwesomePrivateCloud::Inventory::Persister::CloudManager < ManageIQ::Providers::Openstack::Inventory::Persister::CloudManager
 end

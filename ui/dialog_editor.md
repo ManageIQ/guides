@@ -44,7 +44,7 @@ At the beginning, the component's controller loads the tabs of the dialog:
 ```javascript
 this.tabList = this.DialogEditor.getDialogTabs();
 ```
-and assigns id of the currently active tab in the  `activeTab` variable in the `DialogEditor` service.
+and assigns id of the currently active tab in the `activeTab` variable in the `DialogEditor` service.
 
 #### `addTab()`
 
@@ -480,7 +480,7 @@ The data are loaded by [Dialog Editor HTTP service](https://github.com/ManageIQ/
 ```javascript
 return API.get('/api/service_dialogs/' + id + '?attributes=content,buttons,label');
 ```
-or in case of a new Dialog, an empty dialog structure, defined  in [Dialog Editor controller](https://github.com/ManageIQ/manageiq-ui-classic/blob/62c50e0af7324eee16bc333b65d801e4398a5674/app/assets/javascripts/controllers/dialog_editor/dialog_editor_controller.js#L23-L35) is used:
+or in case of a new Dialog, an empty dialog structure, defined in [Dialog Editor controller](https://github.com/ManageIQ/manageiq-ui-classic/blob/62c50e0af7324eee16bc333b65d801e4398a5674/app/assets/javascripts/controllers/dialog_editor/dialog_editor_controller.js#L23-L35) is used:
 
 ```javascript
 var dialogInitContent = {

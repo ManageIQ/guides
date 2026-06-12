@@ -30,7 +30,7 @@ yum install mod_intercept_form_submit mod_authnz_pam mod_lookup_identity
 yum install mod_lookup_identity-selinux
 ```
 
-***Note***:  *mod_lookup_identity-selinux* is only needed for CentOS 6.5. It will not be needed on CentOS 6.6 and later.
+***Note***: *mod_lookup_identity-selinux* is only needed for CentOS 6.5. It will not be needed on CentOS 6.6 and later.
 
 ---
 Back to [External Authentication](../external_auth.md)

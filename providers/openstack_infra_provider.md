@@ -1,6 +1,6 @@
 ## ManageIQ OpenStack Infrastructure Provider
 
-The OpenStack infrastructure provider is designed to work with a [TripleO-based OpenStack deployment](https://wiki.openstack.org/wiki/TripleO).  It provides visibility and management capabilities for the undercloud.
+The OpenStack infrastructure provider is designed to work with a [TripleO-based OpenStack deployment](https://wiki.openstack.org/wiki/TripleO). It provides visibility and management capabilities for the undercloud.
 
 ### Features
 
@@ -53,7 +53,7 @@ Follow these steps to add a TripleO-based OpenStack deployment (undercloud) to M
 
 ##### Enable Host Fleecing (Optional)
 
-Follow these steps to enable host fleecing.  Note that the OpenStack infrastructure provider will still work if these steps are not run; there will simply be less information available through the ManageIQ UI.
+Follow these steps to enable host fleecing. Note that the OpenStack infrastructure provider will still work if these steps are not run; there will simply be less information available through the ManageIQ UI.
 
 * Enable the SmartProxy role:
    * Go to Configure -> Configuration

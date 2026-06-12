@@ -52,7 +52,7 @@ node_hostname
 ```
 
 There are more like variables like `use_metrics` to enable other options in
-OpenShift.  A more detailed example can be found in
+OpenShift. A more detailed example can be found in
 `inventory/byo/hosts.origin.example`. Specifically, to deploy metrics and
 logging use `openshift_hosted_metrics_deploy=True` and
 `openshift_hosted_logging_deploy=True`
@@ -65,7 +65,7 @@ $ ansible-playbook playbooks/byo/config.yml -i path/to/inventory/file
 
 
 If you want to develop with an OpenShift 4 provider, CodeReady Containers (CRC)
-is a great option.  It provides all of benefits as minishift (a simple single
+is a great option. It provides all of benefits as minishift (a simple single
 vm openshift on your development machine) but is an OpenShift v4 cluster.
 
 
@@ -118,7 +118,7 @@ Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec the
 
 - Easiest to use script with minishift/crc.  
   Have `minishift` or `crc` in your PATH.
-  As described above, including manageiq addon.  Don't need `--metrics`.
+  As described above, including manageiq addon. Don't need `--metrics`.
 
 - Alternatively bring your own openshift.
   Set `OPENSHIFT_MASTER_HOST` env var.

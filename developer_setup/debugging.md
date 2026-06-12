@@ -24,7 +24,7 @@ binding.remote_pry
 #code here does not execute
 ```
 
-When execution reaches the `remote_pry` call, the line  `pry-remote] Waiting for client on drb://localhost:9876` will print to STDOUT (stderr?) and execution will block until you connect the client debug process.
+When execution reaches the `remote_pry` call, the line `pry-remote] Waiting for client on drb://localhost:9876` will print to STDOUT (stderr?) and execution will block until you connect the client debug process.
 
 To connect the debugger, simply run from the ManageIQ root dir:
 ```

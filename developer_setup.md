@@ -34,7 +34,7 @@
    | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev ansible-core` |
    | brew | `brew install cmake libssh2 iproute2mac ansible` |
 
-   On Fedora 41+  you have to also run `sudo dnf install -y openssl-devel-engine`
+   On Fedora 41+ you have to also run `sudo dnf install -y openssl-devel-engine`
    On the mac, `iproute2mac` provides the `ip` command for `appliance_console`.
 
    **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly.
@@ -234,7 +234,7 @@ bin/setup
 bundle exec rails server
 ```
 
-The web UI should now be available at `http://localhost:3000`. The default username is `admin` and the default password is `smartvm`.  If you can login, then everything is working!  Press Ctrl-C to stop the Rails server.
+The web UI should now be available at `http://localhost:3000`. The default username is `admin` and the default password is `smartvm`. If you can login, then everything is working! Press Ctrl-C to stop the Rails server.
 
 ManageIQ runs a lot of work asynchronously via background queue workers, to simulate this we recommend running:
 ```bash
@@ -250,7 +250,7 @@ If you run workers like we do on appliances using `ruby lib/workers/bin/evm_serv
 Address already in use - bind(2) for "0.0.0.0" port 5000
 ```
 
-This is because the AirPlay Receiver on macOS listens on port 5000.  You can disable this feature here:
+This is because the AirPlay Receiver on macOS listens on port 5000. You can disable this feature here:
 
 ```
 System Settings > General > AirDrop & Handoff > AirPlay Receiver.

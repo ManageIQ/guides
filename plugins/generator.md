@@ -48,7 +48,7 @@ Now you can run `bundle install` to activate the new plugin.
 ### Provider generator
 
 If you are creating a provider plugin, you can use the provider generator to
-emit some extra scaffolding.  The provider generator is the same as the plugin
+emit some extra scaffolding. The provider generator is the same as the plugin
 generator but with some extra features.
 
 For example, to create a provider plugin called ManageIQ::Providers::AwesomeCloud,
@@ -75,7 +75,7 @@ Additionally, you also have the following options
 
 * `[--manager-type=MANAGER_TYPE]        # What type of manager to create, required if building scaffolding`
 
-  Indicates what type of manager to create, for example: cloud, container, infra, physical, etc...  `--help` will print the full list of possible manager types.
+  Indicates what type of manager to create, for example: cloud, container, infra, physical, etc... `--help` will print the full list of possible manager types.
 
 #### Core modifications
 
