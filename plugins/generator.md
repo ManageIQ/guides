@@ -91,7 +91,7 @@ end
 
 Until your plugin is pushed upstream you can override the gem for local development by adding the following to a `bundler.d/plugins.rb`:
 
-```
+```text
 override_gem "manageiq-providers-awesome_cloud", :path => "../plugins/manageiq-providers-awesome_cloud"
 ```
 

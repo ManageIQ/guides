@@ -20,7 +20,7 @@ To that end catching and parsing events is separate from saving them to the data
 
 The overall flow looks like this:
 
-```
+```text
 (Native Provider)  --->   (Event Catcher Thread)  ---->  (Event Catcher Parser)  ----->  (MiqEventHandler)  -> (VMDB)
                Emits an event                  Internal Queue                 MiqQueue.put
 ```
@@ -179,7 +179,7 @@ And with that you should be able to catch events and have them saved to the data
 
 To test this out you can run `simulate_queue_worker` in a rails console (this will act as your `MiqEventHandler`) and then your can run you event catcher with `run_single_worker`:
 
-```
+```bash
 lib/workers/bin/run_single_worker.rb --role=event --ems-id=2 ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher
 ```
 

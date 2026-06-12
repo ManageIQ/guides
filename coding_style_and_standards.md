@@ -132,7 +132,7 @@ documentation server which regenerates the docs on each request.
 * Use descriptive names for feature branches as they are included in the
   Git history.
 
-  ```
+  ```text
   # bad
   faster_tests
   rework_amazon_code
@@ -174,14 +174,14 @@ documentation server which regenerates the docs on each request.
   needed, including the error message and the stack trace. A UI transaction
   starts with something that looks like
 
-  ```
+  ```text
   [----] I, [2013-08-22T04:39:11.910803 #24340:3fd36e0349dc]  INFO -- : Started GET "/ems_infra/show/7" for 127.0.0.1 at 2013-08-22 00:39:11 -0400
   [----] I, [2013-08-22T04:39:11.929926 #24340:3fd36e0349dc]  INFO -- : Processing by EmsInfraController#show as HTML
   ```
 
   and ends with something that looks like
 
-  ```
+  ```text
   [----] I, [2013-08-22T04:39:12.127578 #24340:3fd36e0349dc]  INFO -- : Rendered layouts/_global_footer.html.erb (0.1ms)
   [----] I, [2013-08-22T04:39:12.127794 #24340:3fd36e0349dc]  INFO -- : Completed 200 OK in 198ms (Views: 110.1ms | ActiveRecord: 15.4ms)
   ```
@@ -273,7 +273,7 @@ already pushed them before.
 
 * Uncommit a file from an existing commit
 
-  ```
+  ```bash
   git reset HEAD^ path/to/file/to/revert
   git commit --amend
   ```

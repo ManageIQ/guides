@@ -43,9 +43,9 @@ You will need some tools installed in your machine to use this method:
  1. Interact with the VM
 
     ```bash
-    $ vagrant ssh # Connect to the VM via SSH
-    $ vagrant rsync # rsync the content of /manageiq to update the content
-    $ vagrant halt # shutdown the VM
+    vagrant ssh # Connect to the VM via SSH
+    vagrant rsync # rsync the content of /manageiq to update the content
+    vagrant halt # shutdown the VM
     ```
 
     Ports 3000 for the UI and 4000 for the API are forwarded to your local machine, so you can access them through <http://127.0.0.1:3000> and <http://127.0.0.1:4000>

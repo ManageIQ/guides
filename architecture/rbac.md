@@ -61,7 +61,7 @@ In a resource hierarchy a user may only have access to see the lowest level of r
 
 These various ways are combined together in the following expression
 
-```
+```text
 (ownership OR entitlements OR match_via_descendants) AND tenancy
 ```
 
@@ -95,7 +95,7 @@ This was added only for Catalog Items and it provides the ability to share the c
 
 Then the formula described above looks like:
 
-```
+```text
 (ownership OR entitlements OR match_via_descendants) AND 
 (tenancy OR additional tenancy sharing)
 ```

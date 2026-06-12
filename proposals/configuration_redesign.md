@@ -77,7 +77,7 @@ One possible solution in the new redesign is to present the data as an editable 
 ### Tree
 - Present each value in a tree structure, at the end of which is a text box and/or a "reset to default" button
 
-```
+```text
 - performance
   - history
     - initial_capture_days

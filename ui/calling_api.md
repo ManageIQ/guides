@@ -12,12 +12,12 @@ This is possible by an API token that is created in addition to a normal session
 
 Injection example:
 
-```
+```js
 ManageIQ.angular.app.controller('arbitrationProfileFormController', ['$scope', '$location', 'arbitrationProfileFormId', 'miqService', 'postService', 'API', 'arbitrationProfileDataFactory', function($scope, $location, arbitrationProfileFormId, miqService, postService, API, arbitrationProfileDataFactory) {
 ```
 
 then you can use the API. GET example:
-```
+```js
 API.get(url).then(function(response) {
   $scope.cloud_subnets   = response.cloud_subnets;
   $scope.security_groups = response.security_groups;
@@ -27,7 +27,7 @@ API.get(url).then(function(response) {
 ```
 
 POST example:
-```
+```js
 API.post(url, {"action" : "create", "resource" : resource}).then(function (response) {
   'use strict';
   $scope.deployInProgress = false;
@@ -43,4 +43,3 @@ API.post(url, {"action" : "create", "resource" : resource}).then(function (respo
   }
 });
 ```
-

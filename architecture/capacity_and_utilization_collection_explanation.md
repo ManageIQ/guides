@@ -21,7 +21,7 @@ Say we do a capture on a VM and we get back data with timestamps between 4:05 an
 
 Below is the full tree of rollups that will occur:
 
-~~~
+```text
 Vm (realtime collected)
  Vm (hourly)
    Vm (daily)
@@ -33,7 +33,7 @@ Vm (realtime collected)
          ExtManagementSystem (daily)
          MiqRegion (hourly)
            MiqRegion (daily)
-~~~
+```
 
 
 That is the simplest description. In reality, there are some nuances that should be mentioned.

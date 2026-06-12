@@ -14,7 +14,7 @@ The identifier of the button that was pressed is passed in `params[:pressed]`.
 
 The `x_button` or `button` handlers should follow this pattern:
 
-```
+```ruby
  def x_button
    generic_x_button(AE_CUSTOM_X_BUTTON_ALLOWED_ACTIONS)
  end

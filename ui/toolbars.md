@@ -116,7 +116,7 @@ parametrize generic button classes.
 You can create buttons that don't need a client--server roundtrip when pressed. Such buttons instead call some javascript function, talk to Angular components or send RxJS messages to perform their action.
 
 Example of such button definition:
-```
+```ruby
   button_group('middleware_server_operations', [
     select(
       :middleware_server_power_choice,

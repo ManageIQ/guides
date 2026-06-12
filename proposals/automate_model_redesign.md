@@ -28,117 +28,127 @@ The Automate Model has grown to be a very large and central piece of ManageIQ. T
 
 ### Proposed example namespace file structure
 
-    /<namespace>
+```text
+/<namespace>
+    README
+    /<class>
         README
-        /<class>
-            README
-            instance.yaml
-            method.rb
-            schema.yaml
+        instance.yaml
+        method.rb
+        schema.yaml
+```
 
 
 ### Proposed example instance.yaml
 
-    param_1: default
-    execute: my_method.rb
+```yaml
+param_1: default
+execute: my_method.rb
+```
 
 
 ### Proposed example schema.yaml
 
-    param_1:
-        type: attribute
-        default_value: my string
-        substitute: 1
-        message: create
-    method_1:
-        type: method
-        default_value: my_method.rb
+```yaml
+param_1:
+    type: attribute
+    default_value: my string
+    substitute: 1
+    message: create
+method_1:
+    type: method
+    default_value: my_method.rb
+```
 
 ### Proposed Namespace/Class Restructure
 
 
-    /ManageIQ (domain)
-      /Cloud
-        /VM
-          /LifeCycle
-          /Operations
-            /Email
-            /Methods 
-          /Provisioning
-            /Email
-            /Naming
-            /Placement
-            /Profile
-            /StateMachines
-              /Methods
-          /Retirement
-            /Email
-            /StateMachines
-              /Methods
-      /Control
-        /Email (e.g. evm_server_start, evm_server_stop, etc.)
-      /Infrastructure
-        /Cluster
-          /Operations
-            /Email
-            /Methods (e.g. gridapp, intelligent workload management)
-        /Host
-          /LifeCycle
-          /Operations
-            /Email
-            /Methods (e.g. host-evacuation)
-          /Provisioning
-            /Email
-            /Naming
-            /Placement
-            /Profile
-            /StateMachines
-              /Methods
-        /VM
-          /LifeCycle
-          /Migrate
-            /Email
-            /Placement
-            /Profile
-            /StateMachines
-              /Methods
-          /Operations
-            /Email
-            /Methods (e.g. hot-add-memory, VM_Placement_Optimization, etc.)
-          /Provisioning
-              /Domain (LDAP Directory Integration Methods)
-              /Email
-              /Naming
-              /Placement
-              /Profile
-              /StateMachines
-                /Methods
-          /Retirement
-            /Email
-            /StateMachines
-              /Methods
-      /Service
-        /LifeCycle
-        /Provisioning
+```text
+/ManageIQ (domain)
+  /Cloud
+    /VM
+      /LifeCycle
+      /Operations
+        /Email
+        /Methods
+      /Provisioning
+        /Email
+        /Naming
+        /Placement
+        /Profile
+        /StateMachines
+          /Methods
+      /Retirement
+        /Email
+        /StateMachines
+          /Methods
+  /Control
+    /Email (e.g. evm_server_start, evm_server_stop, etc.)
+  /Infrastructure
+    /Cluster
+      /Operations
+        /Email
+        /Methods (e.g. gridapp, intelligent workload management)
+    /Host
+      /LifeCycle
+      /Operations
+        /Email
+        /Methods (e.g. host-evacuation)
+      /Provisioning
+        /Email
+        /Naming
+        /Placement
+        /Profile
+        /StateMachines
+          /Methods
+    /VM
+      /LifeCycle
+      /Migrate
+        /Email
+        /Placement
+        /Profile
+        /StateMachines
+          /Methods
+      /Operations
+        /Email
+        /Methods (e.g. hot-add-memory, VM_Placement_Optimization, etc.)
+      /Provisioning
+          /Domain (LDAP Directory Integration Methods)
           /Email
+          /Naming
+          /Placement
           /Profile
           /StateMachines
             /Methods
-        /Retirement
-          /Email
-          /StateMachines
-            /Methods
+      /Retirement
+        /Email
+        /StateMachines
+          /Methods
+  /Service
+    /LifeCycle
+    /Provisioning
+      /Email
+      /Profile
+      /StateMachines
+        /Methods
+    /Retirement
+      /Email
+      /StateMachines
+        /Methods
+```
 
 
-      /Integration
-        /IPAM
-        /BlueCat
-        /InfoBlox
-        /DHCP
-        /CMDB
-        /Event (or Incident?)
-        /ServiceNow
-        /Remedy (BMC Remedy)
-        /Change (New class to align with ITIL standards)
-        /Remedy
-        /LDAP (Active Directory Integration for OU placement)
+```text
+  /Integration
+    /IPAM
+    /BlueCat
+    /InfoBlox
+    /DHCP
+    /CMDB
+    /Event (or Incident?)
+    /ServiceNow
+    /Remedy (BMC Remedy)
+    /Change (New class to align with ITIL standards)
+    /Remedy
+    /LDAP (Active Directory Integration for OU placement)
+```

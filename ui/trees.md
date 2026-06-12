@@ -5,7 +5,7 @@ Trees are displayed in various places in the UI. Most notable are trees in explo
 Trees are built using `TreeBuilder` subclasses located in `app/presenters/tree_builder*`.
 
 Example tree builder:
-```
+```ruby
 class TreeBuilderInstances < TreeBuilder
   has_kids_for AvailabilityZone, [:x_get_tree_az_kids]
   has_kids_for ExtManagementSystem, [:x_get_tree_ems_kids]
@@ -56,7 +56,7 @@ Rules for buiding particular tree nodes are in `TreeNodeBuilder` and it's subcla
 Trees in explorer screens are wrapped in accordions. The list of accordions with trees in a particular controller is specified via "features".
 
 Example:
-```
+```ruby
 def features
   [
     ApplicationController::Feature.new_with_hash(

@@ -3,7 +3,9 @@
 Each ManageIQ component (providers, UI, vmdb, automation engine, etc.)
 contains its own set of specs. Most of them can be run by executing
 
-    $ bundle exec rake
+```bash
+bundle exec rake
+```
 
 Components that require non-standard invocation of the test suite are
 documented in the remaining part of the document.
@@ -17,12 +19,16 @@ also be created using `bundle exec rake test:vmdb:setup`.
 
 To run the suite, execute:
 
-    $ bundle exec rake
+```bash
+bundle exec rake
+```
 
 There are some other test related tasks available and those can be listed by
 running
 
-    $ bundle exec rake -T test
+```bash
+bundle exec rake -T test
+```
 
 
 ### Running the vmdb suite in parallel
@@ -38,12 +44,12 @@ Running tests in parallel requires as many different databases as cores you plan
 
 To set up these databases, simply execute the following command:
 
-```
-$ bin/rake parallel:rake[test:vmdb:setup]
+```bash
+bin/rake parallel:rake[test:vmdb:setup]
 ```
 
 Depending on how many cores you have you might hit
-```
+```text
 Caused by:
 PG::OutOfMemory: ERROR:  out of shared memory (PG::OutOfMemory)
 HINT:  You might need to increase "max_locks_per_transaction".
@@ -55,8 +61,8 @@ If this is the case simply edit your `main/postgresql.conf` conf file to increas
 
 You can run the entire suite in parallel using the following command:
 
-```
-$ bin/rake parallel:spec
+```bash
+bin/rake parallel:spec
 ```
 
 #### Passing RSpec options to the rake tasks
@@ -68,8 +74,8 @@ built-in rake commands to run the tests.
 For example, I may wish to set a particular seed and stop running the tests
 immediately on a failure:
 
-```
-$ SPEC_OPTS="--seed 1234 --fail-fast" rake parallel:spec
+```bash
+SPEC_OPTS="--seed 1234 --fail-fast" rake parallel:spec
 ```
 
 Note that `--fail-fast` will stop whichever core encountered the error, not
@@ -83,8 +89,8 @@ parallel. Use `parallel_rspec` to run specific directories of spec files.
 For example, I may have done some work on the front end and want to run the
 controller, helper, and view specs specifically:
 
-```
-$ parallel_rspec spec/controllers spec/helpers spec/views
+```bash
+parallel_rspec spec/controllers spec/helpers spec/views
 ```
 
 This will run all of the specs in their respective directories, in parallel.
@@ -98,8 +104,8 @@ Note you do not need `PARALLEL=true` using `parallel_rspec`.
   `#role_allows`. To quickly run specs that *might* touch this code, I can pass
   in all tests that mention it directly:
 
-  ```
-  $ parallel_rspec `git grep -l role_allows spec`
+  ```bash
+  parallel_rspec `git grep -l role_allows spec`
   ```
 
 * Each core requires a certain amount of overhead involved with loading all of
@@ -110,8 +116,8 @@ Note you do not need `PARALLEL=true` using `parallel_rspec`.
   can specify the number with the `-n` option. For example, to run all the
   request specs with four cores:
 
-  ```
-  $ parallel_rspec -n 4 spec/requests
+  ```bash
+  parallel_rspec -n 4 spec/requests
   ```
 
 * We use the [parallel_tests](https://github.com/grosser/parallel_tests) gem to
@@ -130,28 +136,38 @@ respectively and that both repositores have the right branch checked out.
 
 First, you need to symlink the core repo into spec folder of the UI repo:
 
-    $ ln -s /home/u/miq/manageiq /home/u/miq/manageiq-ui-classic/spec/manageiq
+```bash
+ln -s /home/u/miq/manageiq /home/u/miq/manageiq-ui-classic/spec/manageiq
+```
 
 Next, you need to ensure that `/home/u/miq/manageiq/bundler.d/overrides.rb`
 file contains a block like this:
 
-    override_gem "manageiq-ui-classic", path: "/home/u/miq/manageiq-ui-classic"
+```ruby
+override_gem "manageiq-ui-classic", path: "/home/u/miq/manageiq-ui-classic"
+```
 
 Now you must run `bin/update` from the `/home/u/miq/manageiq` folder, followed
 by `bin/update` from the `/home/u/miq/manageiq-ui-classic` folder.
 
 After all this is done, you can run tests as usual:
 
-    $ bundle exec rake
+```bash
+bundle exec rake
+```
 
 To run the javascript specs in `spec/javascripts/**/*_spec.js` in a headless
 browser, you can run
 
-    $ bundle exec rake spec:javascript
+```bash
+bundle exec rake spec:javascript
+```
 
 For debugging, `rake environment jasmine` runs a webserver listening on
 `localhost:8888`.
 
 You can also list all test-related rake tasks by running
 
-    $ bundle exec rake -T spec
+```bash
+bundle exec rake -T spec
+```

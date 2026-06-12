@@ -15,26 +15,26 @@ provided) as another alternative.
 
 Get openshift-ansible:
 
-```console
-$ git clone https://github.com/openshift/openshift-ansible.git
+```bash
+git clone https://github.com/openshift/openshift-ansible.git
 ```
 
 Generate an ssh key if needed:
 
-```console
-$ ssh-keygen
+```bash
+ssh-keygen
 ```
 
 Configure ssh key authentication to all the machines:
 
-```console
-$ ssh-copy-id root@hostname
+```bash
+ssh-copy-id root@hostname
 ```
 
 The inventory file describes all the nodes and masters in the cluster. A simple
 example file for a cluster composed of two machines (Master and Node):
 
-```INI
+```ini
 [OSEv3:children]
 masters
 nodes
@@ -57,8 +57,8 @@ OpenShift. A more detailed example can be found in
 logging use `openshift_hosted_metrics_deploy=True` and
 `openshift_hosted_logging_deploy=True`
 
-```console
-$ ansible-playbook playbooks/byo/config.yml -i path/to/inventory/file
+```bash
+ansible-playbook playbooks/byo/config.yml -i path/to/inventory/file
 ```
 
 ### Running with CodeReady Containers
@@ -78,12 +78,12 @@ vm openshift on your development machine) but is an OpenShift v4 cluster.
 
 1. [Download](https://console.redhat.com/openshift/create/local) ane extract the latest release of CRC
 
-    ```console
+    ```bash
     tar xfJ crc-linux-amd64.tar.xz
     ```
 2. Copy the crc binary to a location on your PATH
 
-    ```console
+    ```bash
     sudo install crc-linux-2.39.0-amd64/crc /usr/local/bin/crc
     which crc
     /usr/local/bin/crc
@@ -91,7 +91,7 @@ vm openshift on your development machine) but is an OpenShift v4 cluster.
 
 3. Setup and start CRC (it will ask for an image pull secret which you can get from [cloud.redhat.com](https://cloud.redhat.com/openshift/install/crc/installer-provisioned))
 
-    ```console
+    ```bash
     crc setup
     INFO Checking if oc binary is cached
     ...
@@ -103,7 +103,7 @@ vm openshift on your development machine) but is an OpenShift v4 cluster.
     ```
 
 4. Login to the cluster with `oc`, the command will be printed when `crc start` finishes or you can call `crc console --credentials`
-    ```console
+    ```bash
     crc console --credentials
     oc login -u kubeadmin -p KUBEADMING_PASSWORD https://api.crc.testing:6443
     ```
@@ -116,7 +116,7 @@ https://github.com/ManageIQ/manageiq-providers-openshift/pull/75 added a script 
 
 Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec there assumes Hawkular metrics were running.
 
-- Easiest to use script with minishift/crc.  
+- Easiest to use script with minishift/crc.
   Have `minishift` or `crc` in your PATH.
   As described above, including manageiq addon. Don't need `--metrics`.
 
@@ -125,7 +125,7 @@ Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec the
   Perform `oc login` as a user having `cluster-admin` role.
 
 Then run in manageiq-providers-openshift repo:
-```
+```bash
 ./spec/vcr_cassettes/manageiq/providers/openshift/container_manager/test_objects_record.sh
 ```
 

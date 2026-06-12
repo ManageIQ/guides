@@ -10,7 +10,7 @@ Appliance to be able to use External Authentication (httpd).
 Before installing the IPA Client and necessary modules, define
 the following YUM repository on the CentOS based Appliance:
 
-```
+```text
 [adelton-identity_demo]
 name=Copr repo for identity_demo
 baseurl=http://copr-be.cloud.fedoraproject.org/results/adelton/identity_demo/epel-6-$basearch/

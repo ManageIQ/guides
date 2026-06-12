@@ -92,7 +92,7 @@ Contains shared properties from UI's Configuration/Advanced settings, which **ca
 Applied at **lowest level priority** so these properties cannot overwrite properties written in code. 
 
 Can be found in tab Advanced(yaml editor):
-```
+```text
 ems/ems_refresh/<ExtManagementSystem.ems_type>/inventory_collections/
 ```
 

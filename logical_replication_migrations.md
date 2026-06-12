@@ -34,7 +34,7 @@ these values if different numbers are selected:
 It is assumed the application will be run in production mode on appliances. This is the default
 on appliances. If using a different mode or not appliances, RAILS_ENV will need to be exported:
 
-```
+```bash
 export RAILS_ENV=production
 ```
 
@@ -46,7 +46,7 @@ export RAILS_ENV=production
 
 These commands were found in the [rpm_build Dockerfile](https://github.com/ManageIQ/manageiq-rpm_build/blob/ec0fcc85f7d24010278148f4bab83447d18884b5/Dockerfile#L22-L45).
 
-```
+```bash
     dnf -y group install "development tools" && \
     dnf config-manager --setopt=epel.exclude=*qpid-proton* --setopt=tsflags=nodocs --save && \
     dnf -y install \
@@ -85,7 +85,7 @@ The commands below will be run on each appliance and will do the following:
 Note: Setting RAILS_ENV is not required on appliances as they default to production, but is provided
 below for completeness.
 
-```
+```bash
 export DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 vmdb
 git checkout origin/jansa
@@ -108,7 +108,7 @@ Substitute XXX for the region number of this appliance:
 * Region 1 and 2:
   * These will be remotes, meaning they will "publish" the tables to be replicated:
 
-  ```
+  ```bash
   vmdb
   bin/rails r "MiqRegion.replication_type= :remote"
   ```
@@ -119,14 +119,14 @@ Substitute XXX for the region number of this appliance:
     * Provide the other regions' connection information
     * Create the subscription for each remote region
 
-  ```
+  ```bash
   bin/rails c
   ```
 
   Substitute the proper values below:
 
-  ```
-  $ require 'miq_pglogical'
+  ```ruby
+  require 'miq_pglogical'
   host1 = 'x.x.x.x'
   host2 = 'y.y.y.y'
   port = '5432'
@@ -141,11 +141,11 @@ Now, replication can be verified before moving on.
 
 On the global:
 
-```
+```bash
 bin/rails c
 ```
 
-```
+```ruby
 User.all.pluck(:id)
 # This should show ids beginning with the 3 region numbers: 99, 1, 2.
 ```
@@ -162,7 +162,7 @@ version of code is adding the publications and subscriptions.
 
 On the global, assuming the remotes are region 1 and 2:
 
-```
+```bash
 psql -U root vmdb_production -h global_ipaddress -c 'DROP subscription region_1_subscription;'
 psql -U root vmdb_production -h global_ipaddress -c 'DROP subscription region_2_subscription;'
 ```
@@ -174,7 +174,7 @@ and will do proper cleanup. The replication slot should not be manually removed.
 
 On region 1, 2, and 99:
 
-```
+```bash
 vmdb
 git checkout origin/kasparov
 bundle check || bundle update
@@ -186,14 +186,14 @@ Follow the same instructions as [above](#configure-replication-for-jansa)
 
 ## Attempt migration from global
 
-```
+```bash
 vmdb
 bin/rake db:migrate
 ```
 
 Notice that the global will not migrate the database as it is waiting on region 1 to migrate first:
 
-```
+```text
  Waiting for remote region 1 to run migration 20200424183342
 ```
 
@@ -203,13 +203,13 @@ Leave region 1's terminal waiting for the other regions to migrate...
 
 On region 1:
 
-```
+```bash
 vmdb
 bin/rake db:migrate
 ```
 
 Now, region 99 (global) terminal shows:
-```
+```text
 Waiting for remote region 1 to run migration 20200424183342
 Waiting for remote region 2 to run migration 20200424183342
 ```
@@ -220,7 +220,7 @@ It is now waiting on region 2 and will not complete yet.
 
 On region 2:
 
-```
+```bash
 vmdb
 bin/rake db:migrate
 ```

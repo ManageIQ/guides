@@ -11,7 +11,7 @@ The main menu styling supports 3 level, that is 2 levels of menu section. Menus 
 
 #### Menu Sections
 
-```
+```ruby
 Menu::Section.new(:clo, N_("Clouds"), 'fa fa-plus fa-2x', [
 ```
 
@@ -33,7 +33,7 @@ Items are a list of sections and items.
 
 #### Menu Items
 
-```
+```ruby
 Menu::Item.new('miq_policy', N_('Explorer'), 'control_explorer', {:feature => 'control_explorer_view'}, '/miq_policy/explorer'),
 ```
 
@@ -68,9 +68,8 @@ This requires a relationship between controller and menu section.
 This relationship is declared by specifying the menu section in each controller
 whose GET request should be remembered under a menu section:
 
-```
+```ruby
 class FoobarController < ApplicationController
   menu_section :opt
 ...
 ```
-

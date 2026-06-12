@@ -246,13 +246,13 @@ simulate_queue_worker
 
 If you run workers like we do on appliances using `ruby lib/workers/bin/evm_server.rb`, remote console workers will try to bind to port 5000. This can fail on macOS with:
 
-```
+```text
 Address already in use - bind(2) for "0.0.0.0" port 5000
 ```
 
 This is because the AirPlay Receiver on macOS listens on port 5000. You can disable this feature here:
 
-```
+```text
 System Settings > General > AirDrop & Handoff > AirPlay Receiver.
 ```
 

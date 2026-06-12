@@ -149,21 +149,21 @@ This is a bit optimistic since this hasn't been accepted into the ManageIQ organ
 To work on this plugin locally you have to tell bundler to look in a different place for your gem (more info in [developer_setup/plugins.md](../developer_setup/plugins.md))
 
 ```bash
-$ echo 'override_gem "manageiq-providers-awesome_cloud", :path => "../plugins/manageiq-providers-awesome_cloud"' >> bundler.d/override.rb
-$ bundle update
+echo 'override_gem "manageiq-providers-awesome_cloud", :path => "../plugins/manageiq-providers-awesome_cloud"' >> bundler.d/override.rb
+bundle update
 ```
 
 This tells your core repo where to find your local changes, now lets let your plugin know where your local core repo is:
 ```bash
-$ ln -s $(pwd) plugins/manageiq-providers-awesome_cloud/spec/manageiq
-$ cd plugins/manageiq-providers-awesome_cloud
-$ bin/setup
+ln -s $(pwd) plugins/manageiq-providers-awesome_cloud/spec/manageiq
+cd plugins/manageiq-providers-awesome_cloud
+bin/setup
 ```
 
 Lets also take this opportunity to commit the initial code built by the generator before we make any changes:
 ```bash
-$ git add .
-$ git commit  -m "Initial commit"
+git add .
+git commit  -m "Initial commit"
 ```
 
 Now that we have both sides linked up lets verify that everything worked:
@@ -204,8 +204,9 @@ index 6c228c2..91e8e71 100644
 ```
 
 Then bundle update to pull in the change
-```
-$ bundle update
+
+```bash
+bundle update
 ```
 
 Now that we have the gem installed we can start to write our connection code. ManageIQ providers have to expose a `#connect` and a `#verify_credentials` method on the class and the instance. The class method is used when adding a provider (when there is no instance record yet) and the instance methods are used after.
@@ -513,7 +514,7 @@ end
 
 You'll have to add your vendor name to the core `VmOrTemplate` `VENDOR_TYPES` in order for the VMs to be saved.
 
-```
+```ruby
 class VmOrTemplate
   VENDOR_TYPES = {
     "awesome_cloud" => "Awesome Cloud",

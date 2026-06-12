@@ -147,7 +147,7 @@ end
 ```
 
 Rinse and repeat until, in this example, you have:
-```
+```ruby
 ManageIQ::Providers::Openstack::CloudManager.include(ActsAsStiLeafClass)
 
 class ManageIQ::Providers::AwesomePrivateCloud::CloudManager < ManageIQ::Providers::Openstack::CloudManager
