@@ -1,5 +1,7 @@
 # Infrastructure Prerequisites and Configuration
-## Infrastructure setup:
+
+## Infrastructure setup
+
 * Configure iPXE/sources/windows directory to be accessible via SAMBA (Create directories if they don't already exist)
 
   ```ini
@@ -24,7 +26,7 @@
 
 * Configure iPXE menu item and get sources for WinPE
   * Get Memdisk
-    * Obtain Syslinux package http://www.kernel.org/pub/linux/utils/boot/syslinux/
+    * Obtain Syslinux package <http://www.kernel.org/pub/linux/utils/boot/syslinux/>
     * Extract package
     * get ‘memdisk’ from syslinux-v.vv/memdisk/
   * Prepare iPXE structure TODO
@@ -46,8 +48,9 @@
       boot
       ```
 
-## Admin Workstation prep:
-1. Get Windows AIK and install on admin workstation http://www.microsoft.com/en-us/download/details.aspx?id=5753
+## Admin Workstation prep
+
+1. Get Windows AIK and install on admin workstation <http://www.microsoft.com/en-us/download/details.aspx?id=5753>
 1. Build Windows_PE environment and create ISO
   1. Generate WinPE directory structure
     * Open Start / Windows AIK / Deployment Tools Command Prompt
@@ -100,9 +103,8 @@
   1. Capture the image into a wim file
 1. Build sample sysprep unattend.xml file
 
+## Some additional reference notes
 
-
-## Some additional reference notes:
 Install WAIK on a windows 7 or 2008 R2 Server
 
 * Enter WAIK Command Prompt
@@ -177,6 +179,7 @@ right-click Deployment Tools Command Prompt, and Run as administrator
   ```
 
 ## Automated Process Overview
+
 1. Create VM based on a blank Windows template
 1. Generate config files and drop on share (sysprep/directory-based-on-MAC-address/files)
   1. image.bat (batch file to run the imaging process)

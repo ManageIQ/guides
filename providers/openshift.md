@@ -63,16 +63,14 @@ ansible-playbook playbooks/byo/config.yml -i path/to/inventory/file
 
 ### Running with CodeReady Containers
 
-
 If you want to develop with an OpenShift 4 provider, CodeReady Containers (CRC)
 is a great option. It provides all of benefits as minishift (a simple single
 vm openshift on your development machine) but is an OpenShift v4 cluster.
 
-
 #### Requirements
 
-* [`CodeReady Containers`](https://github.com/crc-org/crc) ([Installation Instructions](https://crc.dev/crc/getting_started/getting_started/installing/))
-* A compatible [Operating System](https://crc.dev/crc/getting_started/getting_started/installing/#_operating_system_requirements)
+- [`CodeReady Containers`](https://github.com/crc-org/crc) ([Installation Instructions](https://crc.dev/crc/getting_started/getting_started/installing/))
+- A compatible [Operating System](https://crc.dev/crc/getting_started/getting_started/installing/#_operating_system_requirements)
 
 #### Quickstart
 
@@ -81,6 +79,7 @@ vm openshift on your development machine) but is an OpenShift v4 cluster.
     ```bash
     tar xfJ crc-linux-amd64.tar.xz
     ```
+
 2. Copy the crc binary to a location on your PATH
 
     ```bash
@@ -103,16 +102,17 @@ vm openshift on your development machine) but is an OpenShift v4 cluster.
     ```
 
 4. Login to the cluster with `oc`, the command will be printed when `crc start` finishes or you can call `crc console --credentials`
+
     ```bash
     crc console --credentials
     oc login -u kubeadmin -p KUBEADMING_PASSWORD https://api.crc.testing:6443
     ```
 
-5. Now you can setup the project and service account for use with ManageIQ by following the documentation: https://www.manageiq.org/docs/reference/latest/managing_providers/containers_providers/red_hat_openshift_providers.html
+5. Now you can setup the project and service account for use with ManageIQ by following the documentation: <https://www.manageiq.org/docs/reference/latest/managing_providers/containers_providers/red_hat_openshift_providers.html>
 
 ### Automated script to record new VCR
 
-https://github.com/ManageIQ/manageiq-providers-openshift/pull/75 added a script that creates things from template, records 1st vcr, deletes some things, records 2nd.
+<https://github.com/ManageIQ/manageiq-providers-openshift/pull/75> added a script that creates things from template, records 1st vcr, deletes some things, records 2nd.
 
 Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec there assumes Hawkular metrics were running.
 
@@ -125,6 +125,7 @@ Currently if you want to copy VCR to manageiq-providers-kubernetes, the spec the
   Perform `oc login` as a user having `cluster-admin` role.
 
 Then run in manageiq-providers-openshift repo:
+
 ```bash
 ./spec/vcr_cassettes/manageiq/providers/openshift/container_manager/test_objects_record.sh
 ```

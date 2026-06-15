@@ -21,8 +21,9 @@ task still cannot be done directly as the Appliance running the UI might not be
 even able to reach the API endpoint of the underlying provider.
 
 Examples of this might be:
- * verifying credentials when adding a provider,
- * opening a remote console to a VM.
+
+* verifying credentials when adding a provider,
+* opening a remote console to a VM.
 
 In such cases we have the `wait\_for\_task` call.
 

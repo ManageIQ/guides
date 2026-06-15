@@ -3,15 +3,16 @@
 [![CI](https://github.com/ManageIQ/guides/actions/workflows/ci.yaml/badge.svg)](https://github.com/ManageIQ/guides/actions/workflows/ci.yaml)
 
 ### [Setup](developer_setup.md)
+
 * [Development Appliance Setup](https://github.com/ManageIQ/manageiq-appliance-dev-setup)
 * [Development using a Vagrant VM](vagrant_developer_vm.md)
 * [Plugin development](developer_setup/plugins.md) aka working with the split `manageiq*` repositories
 * [Provider development guide](providers/dev-guide.md)
 * Provider setup instructions
-  - [Amazon AWS](providers/amazon_aws_config.md)
-  - [Openshift](providers/openshift.md)
-  - [Openstack Infra](providers/openstack_infra_provider.md)
-  - [Interactive debugging with Pry-Remote](developer_setup/debugging.md)
+  * [Amazon AWS](providers/amazon_aws_config.md)
+  * [Openshift](providers/openshift.md)
+  * [Openstack Infra](providers/openstack_infra_provider.md)
+  * [Interactive debugging with Pry-Remote](developer_setup/debugging.md)
 * [Running in minimal mode](developer_setup/minimal_mode.md)
 * [Running the test suites](developer_setup/running_test_suites.md)
 * [Running Cypress tests](ui/cypress.md)
@@ -19,6 +20,7 @@
 * [Testing logical replication with migrations](logical_replication_migrations.md)
 
 ### Developer Guidelines
+
 * [Backport Process](backport_process.md)
 * [Coding Style and Standards](coding_style_and_standards.md)
 * [Contributing to the API](https://github.com/ManageIQ/manageiq-api/blob/master/CONTRIBUTING.md)
@@ -36,6 +38,7 @@
 * [Updating this Documentation](writing_guides.md)
 
 ### Technical documentation
+
 * [Architecture](architecture.md)
 * [Opening custom URLs via Custom Buttons and Automate](automate_url_open.md)
 * [Report data API](ui/report_data_api.md)

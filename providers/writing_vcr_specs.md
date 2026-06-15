@@ -11,6 +11,7 @@ The results of the recording are stored in the VCR `config.cassette_library_dir`
 ### Configuration
 
 If you generated your provider plugin with the `--vcr` flag then the VCR configuration should have already been done for you. If not simply add the following to the bottom of your `spec/spec_helper.rb` file:
+
 ```ruby
 VCR.configure do |config|
   config.cassette_library_dir = ManageIQ::Providers::AwesomeCloud::Engine.root.join('spec/vcr_cassettes')
@@ -24,6 +25,7 @@ The next thing we have to take care of is hiding "secrets". Since the VCR YAML f
 VCR handles this with the `config.define_cassette_placeholder` option. You provide VCR with a string that you want to be replaced, and then what you want it to be replaced with. This allows for hostnames / passwords / etc... to be used when recording the cassette but the values will not be written to the resulting YAML files.
 
 ManageIQ has a pattern to help you with this. By default, the generator created a file named `spec/config/secrets.defaults.yml` with a username and password.
+
 ```yaml
 ---
 awesome_cloud:
@@ -32,6 +34,7 @@ awesome_cloud:
 ```
 
 If your provider uses a different set of secrets, such as access_key and secret_key, you can change the file accordingly as follows:
+
 ```yaml
 ---
 awesome_cloud:
@@ -40,6 +43,7 @@ awesome_cloud:
 ```
 
 Finally, create a `spec/config/secrets.yml` file with your real provider secrets. **NOTE**: This file must not be committed and should be in your .gitignore.
+
 ```yaml
 ---
 awesome_cloud:
@@ -50,6 +54,7 @@ awesome_cloud:
 And that's all! The `VcrSecrets.define_all_cassette_placeholders` line in `spec/spec_helper.rb` automatically marks everything under the awesome_cloud key as sensitive data.
 
 If you need to manually mark something as sensitive data, then you will need to call `config.define_cassette_placeholder`. To do so, you can add the following to your `VCR.configure` block in `spec/spec_helper.rb` after setting the `config.cassette_library_dir`. For example, if your provider Base64 encodes the access_key and secret_key into a header, you will want to include something like the following:
+
 ```ruby
   config.define_cassette_placeholder("AWESOME_CLOUD_AUTHORIZATION") do
     Base64.encode("#{VcrSecrets.awesome_cloud.access_key}:#{VcrSecrets.awesome_cloud.secret_key}").chomp
@@ -61,6 +66,7 @@ If you need to manually mark something as sensitive data, then you will need to 
 Now that we have VCR configured it is time to start writing your spec tests. First we will start with the Refresher to test the refresh process of your new provider.
 
 Create a file called `spec/models/manageiq/providers/awesome_cloud/cloud_manager/refresher_spec.rb`:
+
 ```ruby
 describe ManageIQ::Providers::AwesomeCloud::CloudManager::Refresher do
   include Spec::Support::EmsRefreshHelper
@@ -112,6 +118,7 @@ end
 ```
 
 With that file created run the specs with the `rspec` command:
+
 ```bash
 bundle exec rspec spec/models/manageiq/awesome_cloud/cloud_manager/refresher_spec.rb
 ```
@@ -127,6 +134,7 @@ Now fill out the refresher_spec.rb file with more checks to ensure that inventor
 Now that you have your specs recorded, what happens if you want to collect something new? For example, if you now want to start fetching floating IPs or Cloud Volumes?
 
 It is simple to re-record your VCR cassette, simply remove the file then rerun the specs against the same environment:
+
 ```bash
 rm spec/vcr_cassettes/manageiq/providers/awesome_cloud/cloud_manager/refresher.yml
 bundle exec rspec spec/models/manageiq/awesome_cloud/cloud_manager/refresher_spec.rb

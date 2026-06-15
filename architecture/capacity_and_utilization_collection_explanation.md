@@ -11,7 +11,9 @@
 After enabling the Capacity & Utilization Collector Role, data collection begins immediately. However, the first collection begins 5 minutes after the CFME Server is started, and every 10 minutes after that. Therefore, the longest the collection will take after enabling the Capacity & Utilization Collector CFME Server Role is 10 minutes. The first collection from a particular management system may take a few minutes since CFME is gathering data points going one month back in time
 
 ## Rollups
+
 There are two types of rollups, **time-based** and **infrastructure-based**.
+
 * **Time-based** rollups go from realtime → hourly → daily.
 * **Infrastructure-based** rollups for hourly go from `Vm` → `Host` → `EmsCluster` → `ExtManagementSystem` → `MiqRegion` (and maybe to `MiqEnterprise`?).
 
@@ -35,7 +37,6 @@ Vm (realtime collected)
            MiqRegion (daily)
 ```
 
-
 That is the simplest description. In reality, there are some nuances that should be mentioned.
 
 * **We collect data that spans hours** (e.g. we collect 3:50-4:15), so a separate rollup is put on the queue for each hour in question, and the chain begins separately for each.
@@ -49,6 +50,7 @@ That is the simplest description. In reality, there are some nuances that should
 * **Cloud rollups** *(coming soon)* will go from `Vm` → `Availability Zone` → `ExtManagementSystem` → `MiqRegion`.
 
 ## Notes on Testing Rollups
+
 * **Rollups are automatic behind the scenes and are triggered by a collection**.  Therefore, if you try to manually inject data, you are not really running a collection and thus won't get rollups.
 
 * **A capture of a Vm can be kicked off in a rails console with `vm.perf_capture("realtime")`**.  The rollups on the queue can be executed without a worker by just delivering them from the queue
@@ -58,9 +60,8 @@ That is the simplest description. In reality, there are some nuances that should
     q.delivered(*q.deliver)
     ```
 
-    If you want to fake creating rollups, you can just do `vm.perf_rollup_to_parent("realtime", start_time, end_time)`, which queues them up and starts the chain.
+  If you want to fake creating rollups, you can just do `vm.perf_rollup_to_parent("realtime", start_time, end_time)`, which queues them up and starts the chain.
 
 * **Database tables are not ordered sets of data, so if you did a straight query they are not guaranteed to appear in any particular order.**  In addition, due to the nature of multiple workers, data may get written in different orders, especially if records have to be updated.  It may be helpful to order by timestamp and filter against `resource_type`, `resource_id`, `capture_interval_name`.
 
-
-## TODO: Notes on why we use Postgres inheritance, and why metrics and metrics_rollups are in separate tables.
+## TODO: Notes on why we use Postgres inheritance, and why metrics and metrics_rollups are in separate tables

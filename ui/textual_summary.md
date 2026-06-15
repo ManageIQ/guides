@@ -28,6 +28,7 @@ Definition of each group can found in modules named according to scheme
 `XxxHelper::TextualSummary` in `app/helpers/*_helper/textual_summary.rb`.
 
 Example group definition:
+
 ```ruby
 def textual_group_power_management
   TextualGroup.new(_("Power Management"), %i(power_state boot_time state_changed_on))
@@ -39,6 +40,7 @@ The group definition consists of a formatter -- `TextualGroup`, a label and a li
 Other formatters include `TextualMultilabel` and `TextualTags`. All formatters live under `src/textual_summary` in [react-ui-components repository](https://github.com/ManageIQ/react-ui-components/tree/master/src/textual_summary).
 
 Example property definitions:
+
 ```ruby
   def textual_vapp
     {:label => _("vApp"), :value => @record.vapp}

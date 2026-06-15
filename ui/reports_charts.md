@@ -1,9 +1,10 @@
 ### Reports and Charts
 
 Reports are an important part of ManageIQ. Reports feed data not for the 'Reports' section of UI but also:
- * Charts,
- * Widgets and
- * GTL screens.
+
+* Charts,
+* Widgets and
+* GTL screens.
 
 Reports definitions are stored under `product/reports/` and chart definitions are
 stored under `product/charts/`.
@@ -67,15 +68,16 @@ headers:
 ```
 
 Some important attributes:
- * db: the underlying table,
- * include: joined tables (meaning JOIN as in SQL),
- * sortby: columns to use as sort criteria,
- * cols: columns from the table given in db,
- * col\_order: order of all columns,
- * headers: headers of columns (needs to match col\_order),
- * col\_formats: formatting rules for the columns (needs to match col\_order),
- * conditions: selection rules,
- * group: uses to do GROUP BY.
+
+* db: the underlying table,
+* include: joined tables (meaning JOIN as in SQL),
+* sortby: columns to use as sort criteria,
+* cols: columns from the table given in db,
+* col\_order: order of all columns,
+* headers: headers of columns (needs to match col\_order),
+* col\_formats: formatting rules for the columns (needs to match col\_order),
+* conditions: selection rules,
+* group: uses to do GROUP BY.
 
 Reports can be created manually or through the Report editor in the UI (user reports). A way to create a new report for the UI might be playing with the editor, then inspecting the resulting report and
 creating the YAML definition.
@@ -83,8 +85,9 @@ creating the YAML definition.
 #### Charts
 
 Data-wise there are 2 types of charts:
- * charts that visualize count number of discrete values in a report,
- * charts that visualize exact values from a report.
+
+* charts that visualize count number of discrete values in a report,
+* charts that visualize exact values from a report.
 
 Charts are created in the Report editor together with reports.
 

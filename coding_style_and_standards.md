@@ -280,9 +280,9 @@ already pushed them before.
 
 ## TODO
 
-* Rails style guide see https://github.com/bbatsov/rails-style-guide
+* Rails style guide see <https://github.com/bbatsov/rails-style-guide>
 
-# License
+## License
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
 This work is licensed under a [Creative Commons Attribution 3.0 Unported

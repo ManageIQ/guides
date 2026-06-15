@@ -30,6 +30,7 @@ The overall flow looks like this:
 First we need to set up the worker scaffolding so that we can run our event catcher worker.
 
 `config/settings.yml`
+
 ```yaml
 :ems:
   :ems_awesome_cloud:
@@ -45,12 +46,14 @@ First we need to set up the worker scaffolding so that we can run our event catc
 ```
 
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_catcher.rb`
+
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher < ManageIQ::Providers::BaseManager::EventCatcher
 end
 ```
 
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_catcher/runner.rb`
+
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher::Runner < ManageIQ::Providers::BaseManager::EventCatcher::Runner
   # This is the main method run in the first thread by the core event catcher runner.
@@ -99,6 +102,7 @@ end
 The Stream implementation is going to be very specific to your provider, this is just an example of how one might look.
 
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_catcher/stream.rb`
+
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager::EventCatcher::Stream
   attr_reader :ems, :stop_polling, :poll_sleep
@@ -143,6 +147,7 @@ Now that we're catching events from the provider we need to implement the parser
 The purpose of this is similar to the inventory parser, to translate the native provider event into the VMDB schema.
 
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_parser.rb`
+
 ```ruby
 module ManageIQ::Providers::AwesomeCloud::CloudManager::EventParser
   def self.event_to_hash(event, ems_id)
@@ -187,12 +192,13 @@ lib/workers/bin/run_single_worker.rb --role=event --ems-id=2 ManageIQ::Providers
 
 This is where things get interesting, combining an event catcher with targeted refresh allows you to automatically build the `InventoryRefresh::Target` that we saw in the [Targeted Refresh Guide](targeted_refresh.md) based on the event data. You can also use the event payload to pre-seed your targeted collector with information to save on API calls.
 
-The first step is to create automate event handlers for each of the events that you want to trigger a targeted refresh. These live in the https://github.com/ManageIQ/manageiq-content repository.
+The first step is to create automate event handlers for each of the events that you want to trigger a targeted refresh. These live in the <https://github.com/ManageIQ/manageiq-content> repository.
 
 Create a directory to hold your events: `content/automate/ManageIQ/System/Event/EmsEvent/AWESOME_CLOUD.class/`
 
 Then in this directory create a file that matches the event_type for each of your events:
 `content/automate/ManageIQ/System/Event/EmsEvent/AWESOME_CLOUD.class/com.awesomecloud.vm.create.yaml`
+
 ```yaml
 ---
 object_type: instance
@@ -214,6 +220,7 @@ With that in place the `MiqEventHandler` is going to invoke automate, and automa
 For this to work we have to expose a way for core to convert our provider event to a list of refresh targets. This is done with the `EventTargetParser` class.
 
 `app/models/manageiq/providers/awesome_cloud/cloud_manager/event_target_parser.rb`
+
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager::EventTargetParser
   attr_reader :ems_event

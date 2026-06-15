@@ -45,6 +45,7 @@ end
 ```
 
 We also have to add a configuration setting to enable/disable targeted refresh in your provider's `config/settings.yml`:
+
 ```yaml
 :ems_refresh:
   :awesome_cloud:
@@ -112,6 +113,7 @@ end
 That will add the `InventoryRefresh::Target` that we can reference in the collector.
 
 Now lets write our `instances` collector method:
+
 ```ruby
 def instances
   @instances ||= begin
@@ -131,6 +133,7 @@ It is critical that if your parser depends on other top-level collections (e.g. 
 ### Testing
 
 Now let's test it out. First we can do a manual test, we can run this test from a Rails console:
+
 ```ruby
 ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
 EmsRefresh.refresh(ems) # Run a full refresh to ensure we are up to date
@@ -143,6 +146,7 @@ You can change something (like the name or description) and confirm that it gets
 If you want to target a new vm (e.g. something that isn't in the database yet) then you can use the `InventoryRefresh::Target` notation. It is a little less convenient to use in quick testing but is better otherwise.
 
 Try creating a new VM in your cloud console and copy its unique reference (just "1234" in this example), then run the following command in a Rails console:
+
 ```ruby
 ems = ManageIQ::Providers::AwesomeCloud::CloudManager.first
 target = InventoryRefresh::Target.new(:manager => ems, :association => :vms, :manager_ref => {:ems_ref => "1234"})

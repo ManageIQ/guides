@@ -1,6 +1,5 @@
 # RBAC
 
-
 ## How it works
 
 RBAC in ManageIQ is split into 2 parts; what you can "see" and what you can "do".
@@ -17,34 +16,31 @@ A Group is mapped to a Role, and a Role is a collection of a number of Product F
 
 ![](images/rbac.svg)
 
-
 ## What you can "see"
+
 There are several possible ways how resources could be accessed by users and there are combinations of those ways.
 
 - **Ownership**
 
 A resource in ManageIQs can be directly owned by a User or Group. A resource can additionally be owned by a tenant. All objects directly owned by a user or owned by the user's current group can be seen.
 
-
 - **Tenancy**
 
 Tenancy ownership in ManageIQs is determined by first a direct ownership to a resource, and then applying certain "ancestor" or "descendant" rules depending on the type of resource being viewed.
-
 
 ![Tenancy](images/tenancy.svg)
 
 For example, a member of a tenant can only see virtual templates owned by their tenant or owned by any parent tenants. This "ancestor" view is used to allow for sharing a virtual template across multiple child tenants. In contrast, a member of a tenant can only see virtual machine instances owned by their tenant or owned by any child tenants. This "descendant" view is used to allow the parent tenant to do accounting of all running virtual machines instances below them.
 
-
 - **Entitlements**
 
 Entitlements can be defined in several ways. Those are -
 
-  - managed tags
+- managed tags
 
 A user can be given access to various resources by allowing them to view resources that are tagged with a specific tag or set of tags. A user is given access to a "managed tag", and any resource tagged with it can be seen.
 
-  - belongs to
+- belongs to
 
 A user can be given access to various resources based on the resource hierarchy from the provider. For example, a user can be given access to a virtual infrastructure Cluster. In doing so, any child host or virtual machine instance that "belongs to" that Cluster can be seen by the user.
 
@@ -53,7 +49,6 @@ These two filters combine together in such a way that if both are specified they
 if a managed tag is specified without a belongs to, then all matching tagged resources can be seen
 if a belongs to is specified without a managed tag, then all resources in the resource hierarchy can be seen.
 if a managed tag is specified with a belongs to, then only matching tagged resources in that resource hierarchy are seen.
-
 
 - **Match via descendants**
 
@@ -71,7 +66,6 @@ Put into words, a user can see
 - tagged resources that live within a virtual hierarchy they can see (entitlements)
 - parent resources of child resources they can see (match_via_descendants - only used for particular views)
 - the above 3 are all filtered by the tenant the user is a part of, and the ancestor/descendant rules for that resource type
-
 
 ## What you can "do"
 
@@ -104,7 +98,6 @@ Then the formula described above looks like:
 
 This concept allows us to enable certain product features (permission) for selected tenants. This is set just for some product features(Manage Quotas,Service Dialog,... ).
 Example. Let’s have the permission (product feature) "Manage Quotas" and you want to allow this permission only for some tenants in your organization (root tenant) and you want to use the same role for some reasons.
-
 
 **Tenancy For Cloud Objects**
 

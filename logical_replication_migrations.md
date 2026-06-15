@@ -27,6 +27,7 @@ different branches or tags.
 
 The following region numbers were used and will be referenced throughout this document. Replace
 these values if different numbers are selected:
+
 * 99 - global
 * 1 - remote
 * 2 - remote
@@ -76,6 +77,7 @@ These commands were found in the [rpm_build Dockerfile](https://github.com/Manag
 ## Prepare for replication on jansa
 
 The commands below will be run on each appliance and will do the following:
+
 * Checkout the source version (jansa)
 * Bundle the gem dependencies
 * Initialize the encryption key and default database.yml
@@ -99,6 +101,7 @@ bundle exec rake --trace  db:seed
 ```
 
 Substitute XXX for the region number of this appliance:
+
 * 99 - global
 * 1 - remote
 * 2 - remote
@@ -112,7 +115,6 @@ Substitute XXX for the region number of this appliance:
   vmdb
   bin/rails r "MiqRegion.replication_type= :remote"
   ```
-
 
 * Region 99 (global):
   * The commands below will:
@@ -209,6 +211,7 @@ bin/rake db:migrate
 ```
 
 Now, region 99 (global) terminal shows:
+
 ```text
 Waiting for remote region 1 to run migration 20200424183342
 Waiting for remote region 2 to run migration 20200424183342

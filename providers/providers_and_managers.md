@@ -2,11 +2,12 @@
 
 The terms Provider, Manager, and EMS are all used to some degree interchangeably within the ManageIQ Community however they do have more specific meanings.
 
-### ExtManagementSystem / Manager
+## ExtManagementSystem / Manager
 
 Managers represent a grouping of resources by functional classification, e.g.: Cloud, Network, Storage. For example the `CloudManager` has `vms` and `images`, the `NetworkManager` has `cloud_networks` and `security_groups`, and the `StorageManager` has `cloud_volumes` and `cloud_volume_snapshots`. This allows for better grouping of related resources. The managers represent the different "families" of inventory, if a completely new type of manager were brought to ManageIQ we would add a new manager class to represent it.
 
 The current list of manager types:
+
 * AutomationManager
 * CloudManager
 * ConfigurationManager

@@ -1,7 +1,7 @@
 
 # External Authentication (httpd) Configuration
 
-### Sample Domain and Systems
+## Sample Domain and Systems
 
 For the purpose of these instructions, the following
 fully qualified host names and IP addresses will be used:
@@ -16,6 +16,7 @@ controller, Kerberos server, and as the LDAP DIT, hosting
 the Root DSE dc=test,dc=company,dc=com.
 
 ---
+
 ## Configuration
 
 ### Configuring the Network
@@ -42,7 +43,6 @@ make sure the FQDN comes first:
 192.168.100.12   appliance.test.company.com   appliance
 ```
 
-
 **/etc/sysconfig/network** on Appliance.
 
 ```sh
@@ -57,6 +57,7 @@ hostname appliance.test.company.com
 ```
 
 ---
+
 ### Installing and Configuring the IPA Client Software
 
 ```sh
@@ -68,6 +69,7 @@ hostname appliance.test.company.com
 ```
 
 ---
+
 ### Configure SSSD
 
 Update the SSSD configuration file /etc/sssd/sssd.conf to
@@ -100,6 +102,7 @@ to include ", ifp":
 ```
 
 ---
+
 ### Configure PAM
 
 Create a PAM Config file for the Appliance Apache authentication.
@@ -112,6 +115,7 @@ account required pam_sss.so
 ```
 
 ---
+
 ### Configure Apache
 
 #### Create an Apache Authentication file for the Appliance
@@ -170,7 +174,6 @@ LoadModule lookup_identity_module modules/mod_lookup_identity.so
 
 #### Update the Appliance Apache Configuration to enable External Authentication
 
-
 Modify /etc/httpd/conf.d/manageiq-https-application.conf as follows:
 
 **/etc/httpd/conf.d/manageiq-https-application.conf**
@@ -183,9 +186,9 @@ Include conf.d/manageiq-external-auth
 
 * Within the VirtualHost section, after this line:
 
-	*RequestHeader set X_FORWARDED_PROTO 'https'*
+  *RequestHeader set X_FORWARDED_PROTO 'https'*
 
-    add the following lines:
+  add the following lines:
 
 ```text
 RequestHeader unset X_REMOTE_USER
@@ -200,6 +203,7 @@ RequestHeader set X_REMOTE_USER_PRINCIPAL %{REMOTE_USER_PRINCIPAL}e  env=REMOTE_
 ```
 
 ---
+
 ### Configure SELinux
 
 For external authentication to work with Apache through
@@ -216,6 +220,7 @@ setsebool -P httpd_dbus_sssd on
 ```
 
 ---
+
 ### Restart SSSD and Apache
 
 Make sure SSSD starts upon reboot:
@@ -232,4 +237,5 @@ service httpd restart
 ```
 
 ---
+
 Back to [External Authentication](../external_auth.md)

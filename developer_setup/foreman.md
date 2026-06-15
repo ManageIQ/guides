@@ -12,6 +12,7 @@ There are additional options available which can be seen in the script's usage d
 It handles things like spinning up multiple instances of a particular process and even will increment the built in PORT environment variable for each worker and worker type.
 
 ### On ports
+
 Foreman's port number handling introduces one big change in that the port assignment is not the same as the default ports for our workers. Foreman increments the port starting number by 100 for each worker type and 1 for each worker instance.
 
 This means that the first worker listed in your Procfile will get port 3000, the second will get port 3100, etc.

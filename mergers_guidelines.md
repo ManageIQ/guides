@@ -1,6 +1,7 @@
 # Merger Guidelines
 
 ## DO
+
 * Create a merge commit
 * Set the following
   * A [purple component label][1] (e.g. api, providers/vmware, etc).
@@ -14,6 +15,7 @@
 * Ask for help from others, with @mentions, if you are unsure, or just want a second set of eyes.
 
 ## DON’T
+
 * Do not be afraid to merge. ;)
   * If you are hesitant to merge, re-assign to someone who will.
 * Do not push to master or other release branches.

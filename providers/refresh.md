@@ -2,13 +2,14 @@
 
 Of all of the functions that a provider implements, refresh is one of the most critical. Inventory is the basis for almost every other function that MIQ offers. Whether provisioning, metrics, event-condition-action, or reporting, all are based on inventory collected from providers.
 
-##### EmsRefresh
+### EmsRefresh
 
 A refresh is initiated by a requester through the [`EmsRefresh`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/ems_refresh.rb) class by passing a list of targets (what to be refreshed) to the [`.queue_refresh`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/ems_refresh.rb#L32-L47) method. The core EmsRefresh class is then responsible for splitting targets up by their ExtManagementSystem [here](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/ems_refresh.rb#L37-L44) and initiating the appropriate provider Refresher class with the list of targets [here](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/ems_refresh.rb#L92-L94).
 
-###### What is a full vs a targeted refresh?
+#### What is a full vs a targeted refresh?
 
 Refresh targets define the scope of what should be collected. Depending on the targets refreshes are classified into two categories:
+
 1. Full refresh
 2. Targeted refresh
 
@@ -21,6 +22,7 @@ Think about creating a new VM, you don't need to ask for every VM again if you c
 Once in the [`Refresher#refresh`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/manageiq/providers/base_manager/refresher.rb#L27-L68) method the provider has the opportunity to perform some pre and post-processing on the targets if they wish, but the bulk of the work is done by the [`Refresher#refresh_targets_for_ems`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/manageiq/providers/base_manager/refresher.rb#L75-L106) method.
 
 Once here the refresh of a target consists of three steps:
+
 1. Collection of inventory from the native provider: [`#collect_inventory_for_targets`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/manageiq/providers/base_manager/refresher.rb#L84)
 2. Parsing of the inventory into the normalized MIQ schema: [`#parse_targeted_inventory`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/manageiq/providers/base_manager/refresher.rb#L92)
 3. Persisting inventory to the database: [`#save_inventory`](https://github.com/ManageIQ/manageiq/blob/jansa-1-beta1/app/models/manageiq/providers/base_manager/refresher.rb#L96)
@@ -32,6 +34,7 @@ As a provider author you have the ability to override any of these methods if yo
 A collector encapsulates how inventory is retrieved from the management system and is typically the only part of a refresh that issues API calls. At first this can seem like extra overhead as the parser could just as easily also collect inventory, but this becomes important when also implementing targeted refresh. By controlling what is returned from the collector you can typically reuse the Parsers for full and targeted refresh.
 
 For example your "full" collector might look like:
+
 ```ruby
 class ManageIQ::Providers::MyProvider::Inventory::Collector::CloudManager
   def vms
@@ -41,6 +44,7 @@ end
 ```
 
 And your "targeted" collector:
+
 ```ruby
 class ManageIQ::Providers::MyProvider::Inventory::Collector::TargetCollection
   def vms
@@ -128,11 +132,13 @@ In the rare case that you don't have access to the primary manager_ref attribute
 For example lets say that we have the host UUID not the host ems_ref when trying to link a vm to a host.
 
 We can add a secondary_ref on host#uuid to the hosts inventory collection:
+
 ```ruby
 add_collection(infra, :hosts, :secondary_refs => {:by_uuid => %i[uuid]})
 ```
 
 Then in our parser we can do the following:
+
 ```ruby
 persister.vms.build(
   :host => persister.hosts.lazy_find({:uuid => vm.host_uuid}, {:ref => :by_uuid})

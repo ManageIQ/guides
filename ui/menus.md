@@ -16,10 +16,11 @@ Menu::Section.new(:clo, N_("Clouds"), 'fa fa-plus fa-2x', [
 ```
 
 Menu sections looks like the example above. It consists of:
- * Identifier,
- * text,
- * icon and
- * items.
+
+* Identifier,
+* text,
+* icon and
+* items.
 
 Identifier is the same as the [RBAC feature](rbac_features.md) that is checked when a decision is made whether or not the particular section is displayed.
 
@@ -38,12 +39,13 @@ Menu::Item.new('miq_policy', N_('Explorer'), 'control_explorer', {:feature => 'c
 ```
 
 Menu item consists of:
- * **Identifier**,
- * **text**,
- * **feature**,
- * **rbac\_feature hash**,
- * **href**,
- * **type**
+
+* **Identifier**,
+* **text**,
+* **feature**,
+* **rbac\_feature hash**,
+* **href**,
+* **type**
 
 Identifier is used to identify menu items e.g. for styling the active menu item.
 

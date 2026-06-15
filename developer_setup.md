@@ -1,6 +1,6 @@
 # New Developer Setup
 
-### Requirements Summary
+## Requirements Summary
 
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
@@ -39,7 +39,7 @@
 
    **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly.
    If build steps below fail for you then run `export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"`and retry the failing build step.
-   See here for additional information: https://github.com/Homebrew/brew/issues/13481
+   See here for additional information: <https://github.com/Homebrew/brew/issues/13481>
 
 ### Services
 
@@ -175,13 +175,13 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 
 A NodeJS version manager is *strongly* recommended. Use any one of the following:
 
- - [nvm](https://github.com/nvm-sh/nvm)
- - [fnm](https://github.com/Schniz/fnm)
- - [n](https://github.com/tj/n)
+* [nvm](https://github.com/nvm-sh/nvm)
+* [fnm](https://github.com/Schniz/fnm)
+* [n](https://github.com/tj/n)
 
 Using the NodeJS version manager, install NodeJS (See [Requirements Summary](#requirements-summary) above).
 
-Additionally, install yarn globally. You can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
+Additionally, install yarn globally. You can find the recommended way for your platform at <https://classic.yarnpkg.com/en/docs/install>, or, if that fails, via npm.
 
 ```bash
 npm install --global yarn
@@ -218,11 +218,11 @@ A setup script is available to quickly set up the application. This script insta
 bin/setup
 ```
 
-###### NOTE
+### NOTE
 
-- macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
+* macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
 
-- If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
+* If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
 
   ```bash
   export DATABASE_URL='postgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
@@ -237,6 +237,7 @@ bundle exec rails server
 The web UI should now be available at `http://localhost:3000`. The default username is `admin` and the default password is `smartvm`. If you can login, then everything is working! Press Ctrl-C to stop the Rails server.
 
 ManageIQ runs a lot of work asynchronously via background queue workers, to simulate this we recommend running:
+
 ```bash
 bundle exec rails console
 simulate_queue_worker

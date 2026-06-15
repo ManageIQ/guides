@@ -46,6 +46,7 @@ Example:
 For our purposes here we're going to want to create a `CloudManager` with VCR support, provider specific JavaScript, and scaffolding.
 
 So lets go ahead and create our provider plugin:
+
 ```bash
 $ bundle exec rails generate manageiq:provider ManageIQ::Providers::AwesomeCloud --manager-type=cloud --vcr --js --scaffolding
 
@@ -154,6 +155,7 @@ bundle update
 ```
 
 This tells your core repo where to find your local changes, now lets let your plugin know where your local core repo is:
+
 ```bash
 ln -s $(pwd) plugins/manageiq-providers-awesome_cloud/spec/manageiq
 cd plugins/manageiq-providers-awesome_cloud
@@ -161,12 +163,14 @@ bin/setup
 ```
 
 Lets also take this opportunity to commit the initial code built by the generator before we make any changes:
+
 ```bash
 git add .
 git commit  -m "Initial commit"
 ```
 
 Now that we have both sides linked up lets verify that everything worked:
+
 ```ruby
 $ bundle exec rails c
 >> ManageIQ::Providers::AwesomeCloud
@@ -178,6 +182,7 @@ $ bundle exec rails c
 Success! That means that core ManageIQ knows about our new cloud provider.
 
 Now lets get that provider added so we have something to play with:
+
 ```ruby
 >> ems = ManageIQ::Providers::AwesomeCloud::CloudManager.create!(:name => "My Awesome Cloud", :zone => Zone.default_zone)
 ```
@@ -187,6 +192,7 @@ Now that we have that done it is time to start filling out our new provider. The
 ### Add your provider's SDK to the gemspec
 
 Let's add this to our provider's gemspec:
+
 ```bash
 $ git diff
 diff --git a/manageiq-providers-awesome_cloud.gemspec b/manageiq-providers-awesome_cloud.gemspec
@@ -277,7 +283,7 @@ With these in place we should be able to test our provider that we added to MIQ:
 
 Creating the provider record from a rails console is great for developers but it is much nicer to be able to do this from the UI. ManageIQ has a very simple way of telling the UI what your provider needs to be able to be added via the UI, [Data-Driven-Forms](https://data-driven-forms.org/).
 
-You basically define what forms you need in a hash in your provider plugin and the ManageIQ UI will display it for you. If you want a good introduction check out https://data-driven-forms.org/introduction. For now we'll just create a basic form that takes a provider region, access key, and secret key.
+You basically define what forms you need in a hash in your provider plugin and the ManageIQ UI will display it for you. If you want a good introduction check out <https://data-driven-forms.org/introduction>. For now we'll just create a basic form that takes a provider region, access key, and secret key.
 
 ```ruby
 class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::CloudManager
@@ -345,6 +351,7 @@ class ManageIQ::Providers::AwesomeCloud::CloudManager < ManageIQ::Providers::Clo
 ```
 
 Now create a `app/models/manageiq/providers/awesome_cloud/regions.rb`
+
 ```ruby
 module ManageIQ
   module Providers::AwesomeCloud

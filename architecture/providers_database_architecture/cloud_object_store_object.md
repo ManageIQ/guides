@@ -4,7 +4,6 @@ Stores data content, such as documents, images, and so on. You can also store cu
 
 Store an unlimited number of objects. Each object can be as large as 5 GB, which is the default. You can configure the maximum object size.
 
-
 * Table: cloud_object_store_objects
 * Used in: OpenStack
 

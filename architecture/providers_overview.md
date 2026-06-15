@@ -160,6 +160,7 @@ When a refresh request is received by a Refresh Worker, the worker uses the [`Em
 Refresh Workers are created for each registered manager. In other words, if you have registered two Amazon Cloud managers, there will be two unique Amazon Refresh Worker processes running.
 
 Amazon Example:
+
 * Model Class: [`Amazon::CloudManager::RefreshWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/refresh_worker.rb)
 * Worker Class: [`Amazon::CloudManager::RefreshWorker::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/refresh_worker/runner.rb)
 
@@ -175,6 +176,7 @@ TODO
 * Worker Class: [`BaseManager::EventCatcher::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/base_manager/event_catcher/runner.rb)
 
 Amazon Example:
+
 * Model Class: [`Amazon::CloudManager::EventCatcher`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/event_catcher.rb)
 * Worker Class: [`Amazon::CloudManager::EventCatcher::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/event_catcher/runner.rb)
 
@@ -203,6 +205,7 @@ TODO
 * Worker Class: [`BaseManager::MetricsCollectorWorker::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/base_manager/metrics_collector_worker/runner.rb)
 
 Amazon Example:
+
 * Model Class: [`Amazon::CloudManager::MetricsCollectorWorker`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/metrics_collector_worker.rb)
 * Worker Class: [`Amazon::CloudManager::MetricsCollectorWorker::Runner`](https://github.com/ManageIQ/manageiq/blob/fd90bedc57ee51c77bc8fbb6dd2ea850191a8d4f/app/models/manageiq/providers/amazon/cloud_manager/metrics_collector_worker/runner.rb)
 

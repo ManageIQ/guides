@@ -10,7 +10,6 @@ bundle exec rake
 Components that require non-standard invocation of the test suite are
 documented in the remaining part of the document.
 
-
 ### Running the vmdb suite
 
 The ManageIQ test database needs to be setup before the test suite can be run.
@@ -30,7 +29,6 @@ running
 bundle exec rake -T test
 ```
 
-
 ### Running the vmdb suite in parallel
 
 The main `vmdb` suite of tests can be run in parallel, utilizing multiple
@@ -49,6 +47,7 @@ bin/rake parallel:rake[test:vmdb:setup]
 ```
 
 Depending on how many cores you have you might hit
+
 ```text
 Caused by:
 PG::OutOfMemory: ERROR:  out of shared memory (PG::OutOfMemory)
@@ -123,7 +122,6 @@ Note you do not need `PARALLEL=true` using `parallel_rspec`.
 * We use the [parallel_tests](https://github.com/grosser/parallel_tests) gem to
   make all of this possible - Go check out the documentation to learn even more
   things you can do with running ManageIQ tests in parallel!
-
 
 ### Running UI specs
 

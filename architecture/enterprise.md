@@ -27,6 +27,7 @@ configured to provide specific functionalities, however the grouping is
 completely up to the user.
 
 Some examples of zones are
+
 * A UI zone
 * A reporting zone
 * A test zone

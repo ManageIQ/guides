@@ -1,9 +1,10 @@
 # Inventory Collection
+
 2018/06/19
 
 [back](../dev-guide.md)
 
-**Inventory Collection** (```ManagerRefresh::InventoryCollection``` - subsequently called **"IC"**) is an object used by Refresh process. 
+**Inventory Collection** (```ManagerRefresh::InventoryCollection``` - subsequently called **"IC"**) is an object used by Refresh process.
 It represents types of inventory such as **VM**, **Hardware**, **Operating system**, **Host** etc.
 
 Each IC is defined by persister (```ManagerRefresh::Inventory::Persister```), stored in a hash called ```@collections``` and accessible as persister's method. It's name is equal to the IC's association property (will be described later). One persister usually contains many IC definitions.
@@ -25,12 +26,14 @@ We can split this process into following areas:
 
 ### add_collection() method
 
-_This interface is intended to replace older interfaces ```add_inventory_collection()``` and ```has_inventory()```_
+*This interface is intended to replace older interfaces ```add_inventory_collection()``` and ```has_inventory()```*
 
 Entry point for creating IC definition. It defines parameters:
+
 ```ruby
 add_collection(builder_class, collection_name, extra_properties = {}, settings = {}, &block)
 ```
+
 which we'll see more detailed in this chapter.
 
 It creates ```ManagerRefresh::InventoryCollection``` and assigns it to **persister's @collections[:vms]**
@@ -40,6 +43,7 @@ Method can throw exception **`ManagerRefresh::InventoryCollection::Builder::Miss
 #### - builder_class [*mandatory*]
 
 There is a builder class for every manager type. Because they're used as parameter of ```add_collection()``` they are wrapped to methods with short name (persister's methods):
+
 - cloud
 - infra
 - network
@@ -47,7 +51,7 @@ There is a builder class for every manager type. Because they're used as paramet
 - automation
 - [see details](https://github.com/ManageIQ/manageiq/blob/master/app/models/manager_refresh/inventory_collection/builder/persister_helper.rb#L39-L62)
 
-_**Note**: Not all ICs defined in ..Builder::NetworkManager have to be called only from NetworkManager (e.g. in case of targeted refresh) etc._
+***Note**: Not all ICs defined in ..Builder::NetworkManager have to be called only from NetworkManager (e.g. in case of targeted refresh) etc.*
 
 ##### Example
 
@@ -59,11 +63,11 @@ Instantiates `cloud` builder class, searches for `vms` method in it, searches fo
 
 #### - collection_name [*mandatory*]
 
-Name (also `InventoryCollection.association`) is unique identifier of IC definition (in scope of one persister). 
+Name (also `InventoryCollection.association`) is unique identifier of IC definition (in scope of one persister).
 
 It has several functions:
 
-- name of IC 
+- name of IC
 - key in persister's @collections hash
 - name of persister's public method
 - name of method in builder class with common properties (if exists)
@@ -89,9 +93,10 @@ Mix of builder settings and shared properties for from ICs.
 
 Contains shared properties from UI's Configuration/Advanced settings, which **can be set by user** (typically ```:saver_strategy``` property).
 
-Applied at **lowest level priority** so these properties cannot overwrite properties written in code. 
+Applied at **lowest level priority** so these properties cannot overwrite properties written in code.
 
 Can be found in tab Advanced(yaml editor):
+
 ```text
 ems/ems_refresh/<ExtManagementSystem.ems_type>/inventory_collections/
 ```
@@ -99,7 +104,7 @@ ems/ems_refresh/<ExtManagementSystem.ems_type>/inventory_collections/
 ##### Shared options
 
 Contains shared properties for all ICs defined in persister's method ```shared_options()```.
-Usually have properties _**:targeted**_, _**:strategy**_ and _**parent**_
+Usually have properties ***:targeted***, ***:strategy*** and ***parent***
 
 Applied at **low level priority** so these properties overwrites Advanced settings but doesn't overwrite IC specific properties.
 
@@ -129,11 +134,13 @@ end
 ### InventoryCollection Builder
 
 Contains two basic things:
+
 - Methods for construction InventoryCollection with their properties
 - Common IC definitions usable accross providers
 - Subclasses with IC definitions usable for providers of certain type
 
 Features for defining IC:
+
 - *add_properties*
   - basic function to add properties to IC
 - *add_default_values*
@@ -145,14 +152,16 @@ Features for defining IC:
 
 You can see all functions described in spec [link](https://github.com/ManageIQ/manageiq/blob/master/spec/models/manager_refresh/inventory_collection/builder_spec.rb#L24).
 
-#### Automatic model_class 
+#### Automatic model_class
 
 **```model_class```** property contains class where are stored data from inventory.  
 There are two attemps:
+
 - find provider specific class
 - find generic class
 
 Provider specific class is composed by:
+
 - provider module of persister
   - e.g. `ManageIQ::Providers::Amazon`
 - manager module of builder
@@ -161,9 +170,9 @@ Provider specific class is composed by:
   - e.g. `Vm`
 - => **`ManageIQ::Providers::Amazon::CloudManager::Vm`**
 
-If this class doesn't exist, generic class **Vm** is tested for presence. 
+If this class doesn't exist, generic class **Vm** is tested for presence.
 
-_**Note**: Automatic choice is **always** overwritten by manual setting, either in common definitions or in provider specific definition._
+***Note**: Automatic choice is **always** overwritten by manual setting, either in common definitions or in provider specific definition.*
 
 If neither any class matches criteria nor model_class defined manually, ```add_collection``` throws **`ManagerRefresh::InventoryCollection::Builder::MissingModelClassError`** exception.  
 You can disable it by builder setting *without_model_class* => **true**.
@@ -172,6 +181,7 @@ You can disable it by builder setting *without_model_class* => **true**.
 
 **```inventory_object_attributes```** property contains possible columns of *model_class*. These attributes are constructed from setter methods of model_class (```model_class#some_method=```).  
 It fits 99% of IC definitions, for there rest you can use builder methods:
+
 - *add_inventory_attributes*
 - *remove_inventory_attributes*
 - *clear_inventory_attributes*
@@ -183,6 +193,7 @@ Or you can disable this feature by builder setting *auto_inventory_attributes* =
 Many of IC definitions are common to 2+ providers, for example ```:vms```. That's why their properties were extracted to builder so defining IC in provider is then very simple.
 
 #### Example
+
 Let's look how it works:
 
 ```ruby
@@ -195,9 +206,10 @@ This simple definition performs following steps:
 - It searches for ```::ManagerRefresh::InventoryCollection::Builder::InfraManager#host_networks``` method
 - There is manually defined *model_class* **::Network**
 - *inventory_object_attributes* are derived from **::Network** class
-  - _**Important**: If ```model_class``` is defined in common definitions, provider specific class **is not derived automatically** even if it exists!_
+  - ***Important**: If ```model_class``` is defined in common definitions, provider specific class **is not derived automatically** even if it exists!*
 
 So properties given to `InventoryCollection` object are following:
+
 ```ruby
 {
   :association => :host_networks,
@@ -217,6 +229,7 @@ So properties given to `InventoryCollection` object are following:
 ```
 
 #### Example 2
+
 ```ruby
 add_collection(infra, :host_networks) do |builder|
   builder.add_properties(
@@ -244,10 +257,10 @@ produces `InventoryCollection` attributes:
 }
 ```
 
-
 ### Provider specific definitions
 
 Following conventions should be applied:
+
 - define collections belonging to CloudManager (using `cloud` Builder) in concern <persister's path>/definitions/cloud_manager.rb
 - define collections belonging to NetworkManager (using `network` Builder) in concern <persister's path>/definitions/network_manager.rb
 - define `shared_options` method with common properties, if possible
@@ -255,15 +268,18 @@ Following conventions should be applied:
 
 #### Example
 
-Let's consider persister for cloud_manager in Amazon: 
+Let's consider persister for cloud_manager in Amazon:
+
 - ```ManageIQ::Providers::Amazon::Inventory::Persister::TargetCollection```
 
 Simple definition of :vms is following:
+
 ```ruby
 add_collection(cloud, :vms)
 ```
 
 It produces IC with attributes:
+
 ```ruby
 {
   :association => :vms,
@@ -290,4 +306,3 @@ It simplifies definitions using several IC Builders and its common definitions.
 Basic properties, like model class and its attributes can be derived automatically by name of persister's class and builder's class.  
 
 Persister's methods ```has_inventory()``` and ```add_inventory_collection()``` are *deprecated* now.
-

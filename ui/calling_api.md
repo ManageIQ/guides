@@ -17,6 +17,7 @@ ManageIQ.angular.app.controller('arbitrationProfileFormController', ['$scope', '
 ```
 
 then you can use the API. GET example:
+
 ```js
 API.get(url).then(function(response) {
   $scope.cloud_subnets   = response.cloud_subnets;
@@ -27,6 +28,7 @@ API.get(url).then(function(response) {
 ```
 
 POST example:
+
 ```js
 API.post(url, {"action" : "create", "resource" : resource}).then(function (response) {
   'use strict';

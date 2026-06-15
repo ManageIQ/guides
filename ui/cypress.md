@@ -65,8 +65,9 @@ CYPRESS=true bin/webpack
 ```
 
 ##### Webpack Options
-- Use `CYPRESS=true bin/webpack` for a one-time build
-- Use `CYPRESS=true bin/webpack --watch` for automatic rebuilds when editing UI files
+
+* Use `CYPRESS=true bin/webpack` for a one-time build
+* Use `CYPRESS=true bin/webpack --watch` for automatic rebuilds when editing UI files
 
 **Note:** If you skip this step, Cypress will show an error and refuse to start.
 
@@ -76,13 +77,13 @@ CYPRESS=true bin/webpack
 
 ##### Required
 
-- `CYPRESS=true` - disables debug notifications that would prevent Cypress from accessing UI elements, development mode code reloading, and [rate limiting](https://github.com/ManageIQ/manageiq/blob/master/lib/manageiq/rack_attack.rb)
+* `CYPRESS=true` - disables debug notifications that would prevent Cypress from accessing UI elements, development mode code reloading, and [rate limiting](https://github.com/ManageIQ/manageiq/blob/master/lib/manageiq/rack_attack.rb)
 
 ##### Optional
 
-- `HEADED=true` - Run with visible browser (default: headless)
-- `SPEC="**/reports.cy.js"` - Run specific test file (default: all tests)
-- `CYPRESS_BROWSER=chromium|edge|firefox` - Run with alternative browser (default: chrome)
+* `HEADED=true` - Run with visible browser (default: headless)
+* `SPEC="**/reports.cy.js"` - Run specific test file (default: all tests)
+* `CYPRESS_BROWSER=chromium|edge|firefox` - Run with alternative browser (default: chrome)
 
 #### Running Tests: Self-contained
 
@@ -160,9 +161,9 @@ This opens the Cypress UI. From there:
 2. Choose your browser (Chrome recommended for development)
 3. Click on a spec file to run it
 4. Watch tests run in real time with:
-   - Left side: test results with pass/fail status
-   - Right side: live browser view of the application
-   - Top bar: controls to pause, rerun, and see pass/fail counts
+   * Left side: test results with pass/fail status
+   * Right side: live browser view of the application
+   * Top bar: controls to pause, rerun, and see pass/fail counts
 
 Note: Without `--watch`, you can run webpack and Cypress UI in the same terminal.
 
@@ -181,8 +182,9 @@ It's good practice to run all commands from the `manageiq-ui-classic` directory.
 The `cypress.config.js` file contains `numTestsKeptInMemory: 0` to prevent memory issues with large test files (like `menu.cy.js` which visits every page in the UI). However, this prevents viewing snapshot history when debugging.
 
 To enable snapshot history for easier debugging:
-- Comment out the line: `// numTestsKeptInMemory: 0`
-- Or change to a value > 0: `numTestsKeptInMemory: 50`
+
+* Comment out the line: `// numTestsKeptInMemory: 0`
+* Or change to a value > 0: `numTestsKeptInMemory: 50`
 
 Remember to reset this before committing if you're working on large test files.
 
@@ -199,26 +201,30 @@ Remember to reset this before committing if you're working on large test files.
 Understanding these files will help you write and debug Cypress tests:
 
 #### `cypress.config.js`
-- Contains Cypress configuration settings
-- Defines base URL, viewport size, video recording settings
-- Controls `numTestsKeptInMemory` for debugging vs. performance
+
+* Contains Cypress configuration settings
+* Defines base URL, viewport size, video recording settings
+* Controls `numTestsKeptInMemory` for debugging vs. performance
 
 #### `cypress/support/e2e.js`
-- Imports all Cypress commands and assertions
-- Contains global error handling logic
-- Example: Handles `uncaught:exception` errors that don't affect tests but would cause false failures in certain browsers
+
+* Imports all Cypress commands and assertions
+* Contains global error handling logic
+* Example: Handles `uncaught:exception` errors that don't affect tests but would cause false failures in certain browsers
 
 #### `cypress/support/assertions/`
-- Contains reusable test assertion functions
-- Use these to verify expected UI behavior
-- Example: `cy.expect_text(element, text)` verifies element contains expected text
-- Think of assertions as "test case commands" that verify conditions
+
+* Contains reusable test assertion functions
+* Use these to verify expected UI behavior
+* Example: `cy.expect_text(element, text)` verifies element contains expected text
+* Think of assertions as "test case commands" that verify conditions
 
 #### `cypress/support/commands/`
-- Contains reusable Cypress commands for common UI interactions
-- Use these to navigate, click, read data, etc.
-- Example: `cy.login()`, `cy.menu()`, `cy.toolbar()`
-- Think of commands as "UI interaction helpers" that aren't tests themselves
+
+* Contains reusable Cypress commands for common UI interactions
+* Use these to navigate, click, read data, etc.
+* Example: `cy.login()`, `cy.menu()`, `cy.toolbar()`
+* Think of commands as "UI interaction helpers" that aren't tests themselves
 
 Actual tests can be found in `cypress/e2e/ui/` in the [manageiq-ui-classic repository](https://github.com/ManageIQ/manageiq-ui-classic/tree/master/cypress/e2e/ui).
 
@@ -336,9 +342,9 @@ ManageIQ implements the following cypress extensions:
 
 ## Test Writing Guidelines
 
-#### 1. Database State Management
+### 1. Database State Management
 
-##### Resetting Test Data
+#### Resetting Test Data
 
 Our Cypress configuration captures the database table state (rows that exist) before all tests run. You can restore this state between tests using `cy.appDbState('restore')`:
 
@@ -349,11 +355,13 @@ afterEach(() => {
 ```
 
 What `appDbState('restore')` does:
-- Removes rows created during the test - Use `afterEach` with `cy.appDbState('restore')` for tests that create new records
-- Does NOT restore deleted or modified rows - If your test deletes or modifies existing rows, you must manually restore them in your test
+
+* Removes rows created during the test - Use `afterEach` with `cy.appDbState('restore')` for tests that create new records
+* Does NOT restore deleted or modified rows - If your test deletes or modifies existing rows, you must manually restore them in your test
 
 **Examples:**
-- [Tests using appDbState('restore')](https://github.com/search?q=repo%3AManageIQ%2Fmanageiq-ui-classic+appDbState%28%27restore%27%29&type=code)
+
+* [Tests using appDbState('restore')](https://github.com/search?q=repo%3AManageIQ%2Fmanageiq-ui-classic+appDbState%28%27restore%27%29&type=code)
 
 ##### Creating Test Data with FactoryBot
 
@@ -380,16 +388,19 @@ cy.appFactories([
 ```
 
 **Important requirements:**
-- **Factory names must match existing Ruby-side factories** - The argument after 'create' (e.g., 'service_template') must correspond to a defined FactoryBot factory in the Ruby codebase
-- **All factory names must be unique** - When creating new factories for Cypress tests, ensure the factory name doesn't conflict with existing factories
-- **Design factories to return the needed object** - If your Cypress test needs specific information (id, name, etc.) from a created object, structure the Ruby factory so that object is the top-level return value. You may need to flip the order of how dependent associations are created in the factory
+
+* **Factory names must match existing Ruby-side factories** - The argument after 'create' (e.g., 'service_template') must correspond to a defined FactoryBot factory in the Ruby codebase
+* **All factory names must be unique** - When creating new factories for Cypress tests, ensure the factory name doesn't conflict with existing factories
+* **Design factories to return the needed object** - If your Cypress test needs specific information (id, name, etc.) from a created object, structure the Ruby factory so that object is the top-level return value. You may need to flip the order of how dependent associations are created in the factory
 
 **Best practices:**
-- Put complicated logic for creating records in the factory itself (in Ruby)
-- Use `cy.appFactories()` to string together simple relationships in tests
+
+* Put complicated logic for creating records in the factory itself (in Ruby)
+* Use `cy.appFactories()` to string together simple relationships in tests
 
 **Examples:**
-- [Tests using cy.appFactories()](https://github.com/search?q=repo%3AManageIQ%2Fmanageiq-ui-classic+cy.appFactories&type=code)
+
+* [Tests using cy.appFactories()](https://github.com/search?q=repo%3AManageIQ%2Fmanageiq-ui-classic+cy.appFactories&type=code)
 
 **Note:** Both factories and resetting test data can be used in combination with combining/splitting tests (see "Test Structure and Granularity" section below) to simplify test setup and make feature testing more readable.
 
@@ -403,6 +414,7 @@ Test File: cypress/e2e/ui/Overview/Chargeback/rates.cy.js
 ```
 
 For very large test files, split them by feature or feature category so the file names describe what each test covers:
+
 ```text
 cypress/e2e/ui/Overview/Chargeback/Rates/rate-list.cy.js
 cypress/e2e/ui/Overview/Chargeback/Rates/rate-form.cy.js
@@ -418,18 +430,20 @@ See [issue #8859](https://github.com/ManageIQ/manageiq-ui-classic/issues/8859) f
 #### 4. Create Baseline Tests
 
 For each spec file, create baseline tests that verify:
-- Page loads properly
-- Default data is present and correct
-- Basic UI elements are visible
+
+* Page loads properly
+* Default data is present and correct
+* Basic UI elements are visible
 
 **Example:** In [rates.cy.js](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/cypress/e2e/ui/Overview/Chargeback/rates.cy.js), baseline tests check that default rates are in the table with correct values.
 
 #### 5. Test All Browsers
 
 Before creating a PR, ensure your tests pass on:
-- Chrome
-- Edge
-- Firefox
+
+* Chrome
+* Edge
+* Firefox
 
 **Note:** Run tests on all browsers using the commands in the Usage section above.
 
@@ -440,10 +454,11 @@ Use `describe()` for organizing related tests and `it()` for individual test cas
 These are integration tests that simulate real user workflows through the UI - they're not unit tests. You'll need to decide whether to combine operations (add/edit/delete) into workflow tests or keep them separate. There are tradeoffs between test speed, test readability, and failure reporting, so weigh the pros/cons:
 
 **Combined workflow tests:**
-- Faster, simulates real user behavior
-- Actions build on each other (edit and delete can use the previously added record)
-- Easier to follow when setup is complex
-- Less specific failures and can become long
+
+* Faster, simulates real user behavior
+* Actions build on each other (edit and delete can use the previously added record)
+* Easier to follow when setup is complex
+* Less specific failures and can become long
 
 ```javascript
 it('can add, edit, and delete a rate', () => {
@@ -452,8 +467,9 @@ it('can add, edit, and delete a rate', () => {
 ```
 
 **Separate tests:**
-- Clearer failure reporting, easier to maintain
-- Slower and harder to follow (setup often in separate beforeEach blocks)
+
+* Clearer failure reporting, easier to maintain
+* Slower and harder to follow (setup often in separate beforeEach blocks)
 
 ```javascript
 it('can add a rate', () => { /* ... */ });

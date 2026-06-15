@@ -12,6 +12,7 @@ Plugins can even bring their own UI (e.g.: [V2V](https://github.com/ManageIQ/man
 Plugins can also extend existing core properties, subclassing an STI model is a common example of this.
 
 In addition to anything that a rails engine can bring, MIQ also loads the following from registered plugins:
+
 * Ansible Content (`plugin-dir/content/ansible`)
 * Ansible Runner Content (`plugin-dir/content/ansible_runner`)
 * Automate Domains (`plugin-dir/content/automate`)
