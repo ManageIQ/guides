@@ -31,33 +31,33 @@ Based on instructions for deploying Kubernetes manually from here: <https://kube
 
 Ensure the following conditions are met:
 
-0. In `/etc/kubernetes/kubelet`, ensure `KUBELET_ARGS` contains `--allow-privileged`
-0. On the master node, generate a default serviceaccount key with `openssl genrsa -out /tmp/serviceaccount.key 2048`
-0. In `/etc/kubernetes/apiserver`, ensure `KUBE_API_ARGS` contains `--service_account_key_file=/tmp/serviceaccount.key` (or the correct path to your default serviceaccount key).
-0. In `/etc/kubernetes/apiserver`, ensure `KUBE_API_ARGS` contains `--allow-privileged`
+1. In `/etc/kubernetes/kubelet`, ensure `KUBELET_ARGS` contains `--allow-privileged`
+2. On the master node, generate a default serviceaccount key with `openssl genrsa -out /tmp/serviceaccount.key 2048`
+3. In `/etc/kubernetes/apiserver`, ensure `KUBE_API_ARGS` contains `--service_account_key_file=/tmp/serviceaccount.key` (or the correct path to your default serviceaccount key).
+4. In `/etc/kubernetes/apiserver`, ensure `KUBE_API_ARGS` contains `--allow-privileged`
 
 ### Prepare cluster for use with ManageIQ
 
-0. Create `management-infra` namespace:
+1. Create `management-infra` namespace:
 
     ```bash
     kubectl create ns management-infra
     ```
 
-0. Create required serviceaccounts:
+2. Create required serviceaccounts:
 
     ```bash
-    kubectl create sa -n management-infra management-admin   
-    kubectl create sa -n management-infra inspector-admin   
+    kubectl create sa -n management-infra management-admin
+    kubectl create sa -n management-infra inspector-admin
     ```
 
-0. Grant cluster-reader cluster role to `management-admin` SA:
+3. Grant cluster-reader cluster role to `management-admin` SA:
 
     ```bash
     kubectl create clusterrolebinding management-infra-cluster-reader --clusterrole=cluster-reader --user=system:serviceaccount:management-infra:management-admin
     ```
 
-0. Retrieve the serviceaccount token for `management-admin` (this will be the auth token ManageIQ uses):
+4. Retrieve the serviceaccount token for `management-admin` (this will be the auth token ManageIQ uses):
 
     ```bash
     kubectl describe secret -n management-infra $(kubectl get secrets -n management-infra | grep management-admin | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d '\t'

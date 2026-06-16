@@ -24,7 +24,7 @@ Menu sections looks like the example above. It consists of:
 
 Identifier is the same as the [RBAC feature](rbac_features.md) that is checked when a decision is made whether or not the particular section is displayed.
 
-Text needs to be marked for translation but not translated at the time of definition, therefor ``N_`` see [I18n](i18n.md)
+Text needs to be marked for translation but not translated at the time of definition, therefor ``N_`` see [I18n](../i18n.md)
 
 Menu section structure (tree) forms the base of the RBAC tree that is available in the Role Editor. (See [RBAC features](rbac_features.md).)
 

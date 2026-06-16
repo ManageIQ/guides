@@ -17,7 +17,7 @@ ManageIQ is a Rails application with the following standard layout
 | Rakefile    | This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of Rails. Rather than changing Rakefile, you should add your own tasks by adding files to the lib/tasks directory of your application. |
 | README.md   | Overview of the ManageIQ project. |
 | [spec/](#spec)       | Tests using RSpec. |
-| [tools/](#tools) | Special purpose Ruby scripts that should not be executed without full understanding of what they do. |
+| tools       | Special purpose Ruby scripts that should not be executed without full understanding of what they do. |
 | tmp/        | Temporary files (like cache, pid, and session files). |
 | vendor/     | A place for all third-party code. |
 

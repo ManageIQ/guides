@@ -3,7 +3,7 @@
 ManageIQ uses the standard Ruby [Logger](https://ruby-doc.org/stdlib-2.6.6/libdoc/logger/rdoc/Logger.html)
 interface, with a custom formatter that is mostly just minor changes from the
 default formatter. Additionally, we use a logger abstraction library, called
-[manageiq-loggers](github.com/ManageIQ/manageiq-loggers) in order to support
+[manageiq-loggers](https://github.com/ManageIQ/manageiq-loggers) in order to support
 multiple log targets and formats.
 
 An example log message looks like:

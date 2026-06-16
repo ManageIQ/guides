@@ -73,7 +73,7 @@ collisions when database synchronization combines the various regions into the
 
 ### Visual example
 
-<pre>
+```text
  Region
 +--------------------------------------------------------------+
 |                                                              |
@@ -92,4 +92,4 @@ collisions when database synchronization combines the various regions into the
 |  +--------------------------+  +--------------------------+  |
 |                                                              |
 +--------------------------------------------------------------+
-</pre>
+```

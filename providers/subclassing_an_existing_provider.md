@@ -59,7 +59,7 @@ Follow the steps from [Creating a new provider](writing_a_new_provider.md) for s
 
 You'll notice however that we chose "--no-scaffolding" option, this is going to allow us to define the classes that we need as subclasses of the OpenStack provider.
 
-### Creating the subclasses
+### Creating the Manager class
 
 Now that we have an empty plugin we have to start adding the subclasses that we need for the provider to work.
 

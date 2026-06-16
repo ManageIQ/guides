@@ -18,10 +18,10 @@ The Automate Model has grown to be a very large and central piece of ManageIQ. T
 ## Proposal
 
 * Provide clear separation between core automate model and user space where built-in automate methods are viewable but read-only. Allow end users to duplicate built-in automate model objects and utilize them. Any modifications that bridge core automate and user space must survive model upgrade.
-* Reorganize classes and folders logically. [See proposal below](Automate-Model-Redesign#proposed-namespaceclass-restructure).
+* Reorganize classes and folders logically. [See proposal below](#proposed-namespaceclass-restructure).
 * Reorganize integration namespace to be a central place for all customer integration
 * Enable text-based editing through familiar directory hierarchy and files (see below)
-  * schema: YAML syntax. [example](Automate-Model-Redesign#proposed-example-schemayaml)
+  * schema: YAML syntax. [example](#proposed-example-schemayaml)
   * methods: ruby files
 * Provide command-line simulation tool for complete CLI-based development/debugging workflow. This will also provide a tool for automated testing.
 * Automate hierarchy should have a view of the "community" models which may be selected and imported into ManageIQ. See planned [Github space](https://github.com/RedHatIntegrate/CloudForms-Management-Engine) for community models.
