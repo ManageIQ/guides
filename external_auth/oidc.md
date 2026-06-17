@@ -8,7 +8,7 @@ running an OIDC server and Apache on a local development setup.
 2. Launch KeyCloak
 
    ```sh
-   docker run --rm --name keycloak \
+   podman run --rm --name keycloak \
      -p 8443:8443 \
      -v $(pwd)/certs:/etc/x509/https \
      -v $(pwd)/realms:/tmp/realms \
@@ -25,7 +25,7 @@ running an OIDC server and Apache on a local development setup.
 3. Launch the httpd container
 
    ```sh
-   docker run --rm -it --name httpd \
+   podman run --rm -it --name httpd \
      -p 80:80 \
      -v $(pwd)/oidc-httpd-configs:/etc/httpd/conf.d \
      -e HTTPD_AUTH_OIDC_CLIENT_ID=manageiq-oidc-client \
@@ -62,7 +62,7 @@ running an OIDC server and Apache on a local development setup.
 If you've made changes in KeyCloak that you'd like to save, leave KeyCloak running and in another terminal run:
 
 ```sh
-docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
+podman exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
   -Djboss.socket.binding.port-offset=100 \
   -Dkeycloak.migration.action=export \
   -Dkeycloak.migration.provider=singleFile \
@@ -91,7 +91,7 @@ When it completes, `Ctrl-C` to end the process and the `realms/ManageIQ-realm.js
 3. Launch KeyCloak
 
    ```sh
-   docker run --rm --name keycloak \
+   podman run --rm --name keycloak \
      -p 8443:8443 \
      -v $(pwd)/certs:/etc/x509/https \
      -v $(pwd)/realms:/tmp/realms \
