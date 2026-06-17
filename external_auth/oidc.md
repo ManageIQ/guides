@@ -53,8 +53,9 @@ running an OIDC server and Apache on a local development setup.
       | Provider Type         | `Enable OpenID-Connect` |
       | Get User Groups from External Authentication (httpd) | checked |
 
-   4. Logout
-   5. Click `Log In to Corporate System`
+   4. Save the changes
+   5. Logout
+   6. Click `Log In to Corporate System`
 
 ## Updating KeyCloak data
 
