@@ -8,7 +8,7 @@ running an OIDC server and Apache on a local development setup.
 2. Launch KeyCloak
 
    ```sh
-   podman run --rm --name keycloak \
+   podman run --rm -it --name keycloak \
      -p 8443:8443 \
      -v $(pwd)/certs:/etc/x509/https \
      -v $(pwd)/realms:/tmp/realms \
