@@ -26,18 +26,19 @@ running an OIDC server and Apache on a local development setup.
 
    ```sh
    podman run --rm -it --name httpd \
-     -p 80:80 \
+     -p 8080:8080 \
      -v $(pwd)/oidc-httpd-configs:/etc/httpd/conf.d \
      -e HTTPD_AUTH_OIDC_CLIENT_ID=manageiq-oidc-client \
      -e HTTPD_AUTH_OIDC_CLIENT_SECRET=3167ae6f-762d-49cd-b246-ef8856315957 \
      -e HTTPD_AUTH_HOST=127.0.0.1.nip.io \
+     -e HTTPD_AUTH_PORT=8080 \
      --add-host=127.0.0.1.nip.io:192.168.65.2 \
      manageiq/httpd:latest
    ```
 
 4. Launch ManageIQ
 
-   Run your Rails server as you normally would for development, however, instead of accessing via the browser at `https://localhost:3000`, use `http://127.0.0.1.nip.io` (notice `http` as opposed to `https`).
+   Run your Rails server as you normally would for development, however, instead of accessing via the browser at `https://localhost:3000`, use `http://127.0.0.1.nip.io:8080` (notice `http` as opposed to `https` and port `8080`).
 
    If ManageIQ is not yet configured for OIDC, do the following:
 
@@ -129,7 +130,7 @@ When it completes, `Ctrl-C` to end the process and the `realms/ManageIQ-realm.js
       | Access Type              | `confidential` |
       | Service Accounts Enabled | `ON` |
       | Authorization Enabled    | `ON` |
-      | Valid Redirect URIs      | `http://127.0.0.1.nip.io/*` |
+      | Valid Redirect URIs      | `http://127.0.0.1.nip.io:8080/*` |
 
    2. Mappers -> Create
 
