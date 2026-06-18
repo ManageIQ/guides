@@ -32,9 +32,10 @@ running an OIDC server and Apache on a local development setup.
      -e HTTPD_AUTH_OIDC_CLIENT_SECRET=3167ae6f-762d-49cd-b246-ef8856315957 \
      -e HTTPD_AUTH_HOST=127.0.0.1.nip.io \
      -e HTTPD_AUTH_PORT=8080 \
-     --add-host=127.0.0.1.nip.io:192.168.65.2 \
+     --add-host=127.0.0.1.nip.io:192.168.127.254 \
      manageiq/httpd:latest
    ```
+   Note: 192.168.65.2 / 192.168.127.254 is a hardcoded proxy for host.docker.internal / host.containers.internal on docker / podman
 
 4. Launch ManageIQ
 
