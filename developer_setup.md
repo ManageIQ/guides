@@ -264,4 +264,5 @@ Alternatively, you can use [foreman](developer_setup/foreman.md) to start worker
 * [Running the test suites](developer_setup/running_test_suites.md)
 * [Seeding inventory data from provider tests](developer_setup/seeding_test_inventory.md)
 * [Provider, UI and plugin development](developer_setup/plugins.md) describes the plugin and external provider development process.
+* [Service UI development](developer_setup/service_ui.md)
 * [ManageIQ Bot](https://github.com/ManageIQ/miq_bot#manageiq-bot) a bot to automate various developer problems such as commit monitoring, Github pull request and Travis monitoring.
