@@ -14,7 +14,7 @@ The identifier of the button that was pressed is passed in `params[:pressed]`.
 
 The `x_button` or `button` handlers should follow this pattern:
 
-```
+```ruby
  def x_button
    generic_x_button(AE_CUSTOM_X_BUTTON_ALLOWED_ACTIONS)
  end
@@ -27,6 +27,7 @@ Cleaning up the handlers to this form will allow us to do furter refactorings
 and make the button actions plugable.
 
 #### Client-side Button Actions
+
 In [Toolbars and Buttons](toolbars.md#javascript-only-buttons) you can see how to define javascript-only buttons.
 
 Such button can perform changes in the UI or it can call the ManageIQ REST API

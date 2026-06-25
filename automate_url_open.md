@@ -28,12 +28,12 @@ Create custom button with Automate method:
 
 ![Create Automate Method](images/automate_url_open.png?raw=true "Create Automate Method")
 
-```
+```ruby
       vm = $evm.root['vm']
       $evm.log(:info, "VM to launch SSH for is #{vm.hostnames[0]}")
       vm.external_url = "https://www.google.com"
-
 ```
+
 *Important: Use URL including the protocol (https) or the browser will ignore the request*
 
 *Also disable URL pop-up blocking in your browser to make this work*
@@ -48,10 +48,9 @@ After clicking the button or after submitting the dialog (if you selected one) y
 
 #### Example automate code for User
 
-```
+```ruby
 $evm.log(:info, "Current user_id #{$evm.root['user_id']}")
 object = $evm.vmdb($evm.root['vmdb_object_type']).find_by(:id => $evm.root['user_id'])
 $evm.log(:info, "Current object #{object}")
 object.external_url = "https://www.linkedin.com"
 ```
-

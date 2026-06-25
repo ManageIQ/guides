@@ -12,10 +12,7 @@ For data driven form specific details, please consult [ddf documentation](https:
 
 For an example of a data driven form used in a ManageIQ plugin, see [ManageIQ/manageiq-providers-redfish#107](https://github.com/ManageIQ/manageiq-providers-redfish/pull/107).
 
-
-
 ### Minimal example
-
 
 `MiqFormRenderer` is our wrapper around DDF with our custom components and implicitly translated button labels.
 For more information see the [component definition](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/javascript/forms/data-driven-form.jsx).
@@ -28,7 +25,6 @@ A DDF form consists of 2 parts:
 
 * schema - essentially an array of field definitions, possibly dynamically generated (forms with conditional fields, etc.)
 * a react component using the schema, MiqFormRenderer, and a backend (API) endpoint to talk to the server
-
 
 ```js
 import React from 'react';

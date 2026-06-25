@@ -11,19 +11,20 @@ The main menu styling supports 3 level, that is 2 levels of menu section. Menus 
 
 #### Menu Sections
 
-```
+```ruby
 Menu::Section.new(:clo, N_("Clouds"), 'fa fa-plus fa-2x', [
 ```
 
 Menu sections looks like the example above. It consists of:
- * Identifier,
- * text,
- * icon and
- * items.
+
+* Identifier,
+* text,
+* icon and
+* items.
 
 Identifier is the same as the [RBAC feature](rbac_features.md) that is checked when a decision is made whether or not the particular section is displayed.
 
-Text needs to be marked for translation but not translated at the time of definition, therefor ``N_`` see [I18n](i18n.md)
+Text needs to be marked for translation but not translated at the time of definition, therefor ``N_`` see [I18n](../i18n.md)
 
 Menu section structure (tree) forms the base of the RBAC tree that is available in the Role Editor. (See [RBAC features](rbac_features.md).)
 
@@ -33,17 +34,18 @@ Items are a list of sections and items.
 
 #### Menu Items
 
-```
+```ruby
 Menu::Item.new('miq_policy', N_('Explorer'), 'control_explorer', {:feature => 'control_explorer_view'}, '/miq_policy/explorer'),
 ```
 
 Menu item consists of:
- * **Identifier**,
- * **text**,
- * **feature**,
- * **rbac\_feature hash**,
- * **href**,
- * **type**
+
+* **Identifier**,
+* **text**,
+* **feature**,
+* **rbac\_feature hash**,
+* **href**,
+* **type**
 
 Identifier is used to identify menu items e.g. for styling the active menu item.
 
@@ -68,9 +70,8 @@ This requires a relationship between controller and menu section.
 This relationship is declared by specifying the menu section in each controller
 whose GET request should be remembered under a menu section:
 
-```
+```ruby
 class FoobarController < ApplicationController
   menu_section :opt
 ...
 ```
-

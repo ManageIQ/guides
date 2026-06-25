@@ -5,21 +5,21 @@ provider specific inventory to be present in your local database when you don't 
 access to the provider.
 
 Most providers have something called a "VCR Cassette" to aid in running spec tests
-without access to a real provider.  It is a YAML file which "replays" HTTP calls back
+without access to a real provider. It is a YAML file which "replays" HTTP calls back
 to a calling method making it appear that it is interacting with a real native provider.
 
 While this is critical for running specs, we can also make use of this for development
-by treating it as an offline dump of real inventory data.  It is possible to configure
+by treating it as an offline dump of real inventory data. It is possible to configure
 VCR in a development environment and use a VCR cassette when running a refresh, thereby
 creating inventory records in our development database from the data stored in the VCR.
 
 VCR is fairly unforgiving, if any data doesn't match it will throw an exception and
 fail the refresh so it is critical to set everything up the same way it would run in
-spec tests.  Specifically, things like provider hostname/port/region and authentication
+spec tests. Specifically, things like provider hostname/port/region and authentication
 userid/password have to match what is in the VCR cassette or the vcr gem won't recognize
 the request.
 
-For this example we'll use an Amazon provider.  We first have to create a "fake" Amazon
+For this example we'll use an Amazon provider. We first have to create a "fake" Amazon
 provider to use for the VCR backed refresh.
 
 ```ruby

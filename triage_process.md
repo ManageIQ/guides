@@ -33,14 +33,14 @@ The ManageIQ core team holds regular meetings to triage issues, pull requests, a
     * If the author has responded, treat it like a `question` label, otherwise defer to next triage.
   * If invalid, close with a comment and/or label describing the reason.
   * Assign the issue
-    * Assign someone to make them aware of the issue.  This *does not* mean that the assignee is expected to start work on the issue.
-    * Apply the `help wanted` label.  This means that while the issue is valid, the team does not have plans to work on it in the near future.
+    * Assign someone to make them aware of the issue. This *does not* mean that the assignee is expected to start work on the issue.
+    * Apply the `help wanted` label. This means that while the issue is valid, the team does not have plans to work on it in the near future.
 * Issues (and PRs) without scope label
   * Apply [scope labels][]
 * Stale issues
   * If they have a `bug` label
     * and the bug is `verified`, decide if it should be closed, otherwise request the author to retest on a newer version.
-    * and the bug is not `verified`, comment back to the opener of the issue for more info.  If there is no response, then close after it goes stale again.
+    * and the bug is not `verified`, comment back to the opener of the issue for more info. If there is no response, then close after it goes stale again.
   * Other
     * If the issue should be kept, label it `pinned` to prevent the `stale` label from being applied, otherwise close
 * Stale PRs

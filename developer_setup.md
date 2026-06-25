@@ -1,6 +1,6 @@
 # New Developer Setup
 
-### Requirements Summary
+## Requirements Summary
 
 | **Name**   | **Min Version** | **Max Version** |
 | ---------- | --------------- | --------------- |
@@ -34,12 +34,12 @@
    | apt  | `sudo apt -y install build-essential libffi-dev libpq-dev libxml2-dev libcurl4-openssl-dev cmake python libssh2-1-dev ansible-core` |
    | brew | `brew install cmake libssh2 iproute2mac ansible` |
 
-   On Fedora 41+  you have to also run `sudo dnf install -y openssl-devel-engine`
+   On Fedora 41+ you have to also run `sudo dnf install -y openssl-devel-engine`
    On the mac, `iproute2mac` provides the `ip` command for `appliance_console`.
 
    **Note**: Users with MacOS running on Apple M1 CPU might need to specify location of the `Homebrew` libraries explicitly.
    If build steps below fail for you then run `export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"`and retry the failing build step.
-   See here for additional information: https://github.com/Homebrew/brew/issues/13481
+   See here for additional information: <https://github.com/Homebrew/brew/issues/13481>
 
 ### Services
 
@@ -175,13 +175,13 @@ ManageIQ requires a memcached instance for session caching and a PostgreSQL data
 
 A NodeJS version manager is *strongly* recommended. Use any one of the following:
 
- - [nvm](https://github.com/nvm-sh/nvm)
- - [fnm](https://github.com/Schniz/fnm)
- - [n](https://github.com/tj/n)
+* [nvm](https://github.com/nvm-sh/nvm)
+* [fnm](https://github.com/Schniz/fnm)
+* [n](https://github.com/tj/n)
 
 Using the NodeJS version manager, install NodeJS (See [Requirements Summary](#requirements-summary) above).
 
-Additionally, install yarn globally. You can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
+Additionally, install yarn globally. You can find the recommended way for your platform at <https://classic.yarnpkg.com/en/docs/install>, or, if that fails, via npm.
 
 ```bash
 npm install --global yarn
@@ -218,11 +218,11 @@ A setup script is available to quickly set up the application. This script insta
 bin/setup
 ```
 
-###### NOTE
+### NOTE
 
-- macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
+* macOS requires platform specific Gems. Run `bundle config specific_platform true` before running `bin/setup`.
 
-- If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
+* If you've run PostgreSQL in a container, be sure to export the `DATABASE_URL` variable to connect to the container over TCP instead of a UNIX file socket.
 
   ```bash
   export DATABASE_URL='postgresql://localhost:5432' # optional, only necessary if PostgreSQL is running in a container
@@ -234,9 +234,10 @@ bin/setup
 bundle exec rails server
 ```
 
-The web UI should now be available at `http://localhost:3000`. The default username is `admin` and the default password is `smartvm`.  If you can login, then everything is working!  Press Ctrl-C to stop the Rails server.
+The web UI should now be available at `http://localhost:3000`. The default username is `admin` and the default password is `smartvm`. If you can login, then everything is working! Press Ctrl-C to stop the Rails server.
 
 ManageIQ runs a lot of work asynchronously via background queue workers, to simulate this we recommend running:
+
 ```bash
 bundle exec rails console
 simulate_queue_worker
@@ -246,13 +247,13 @@ simulate_queue_worker
 
 If you run workers like we do on appliances using `ruby lib/workers/bin/evm_server.rb`, remote console workers will try to bind to port 5000. This can fail on macOS with:
 
-```
+```text
 Address already in use - bind(2) for "0.0.0.0" port 5000
 ```
 
-This is because the AirPlay Receiver on macOS listens on port 5000.  You can disable this feature here:
+This is because the AirPlay Receiver on macOS listens on port 5000. You can disable this feature here:
 
-```
+```text
 System Settings > General > AirDrop & Handoff > AirPlay Receiver.
 ```
 
