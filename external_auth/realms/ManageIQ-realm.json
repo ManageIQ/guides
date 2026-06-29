@@ -1028,7 +1028,7 @@
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
     "secret" : "3167ae6f-762d-49cd-b246-ef8856315957",
-    "redirectUris" : [ "http://127.0.0.1.nip.io/*" ],
+    "redirectUris" : [ "http://127.0.0.1.nip.io/*", "http://127.0.0.1.nip.io:8080/*" ],
     "webOrigins" : [ ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1134,12 +1134,12 @@
       "policies" : [ {
         "id" : "826a055d-64db-4753-894b-37b631af0ef3",
         "name" : "Default Policy",
-        "description" : "A policy that grants access only for users within this realm",
-        "type" : "js",
+        "description" : "A policy that grants access to authenticated users",
+        "type" : "role",
         "logic" : "POSITIVE",
-        "decisionStrategy" : "AFFIRMATIVE",
+        "decisionStrategy" : "UNANIMOUS",
         "config" : {
-          "code" : "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+          "roles" : "[{\"id\":\"offline_access\",\"required\":false}]"
         }
       }, {
         "id" : "ff2d3984-0bec-4c17-a819-b6afed869abe",
