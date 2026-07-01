@@ -14,6 +14,11 @@ params:
   open_pr: &open_pr
   - is:pr
   - is:open
+  bot_dependencies: &bot_dependencies
+  - (author:app/dependabot OR author:app/renovate)
+  no_bot_dependencies: &no_bot_dependencies
+  - -author:app/dependabot
+  - -author:app/renovate
   missing_scope: &missing_scope
   - -label:blog
   - -label:bug
@@ -101,11 +106,19 @@ links:
   - *base_params
   - *open_issue
   - *stale
-- name: Unassigned PRs
+- name: Unassigned PRs (except bot dependencies)
   params:
   - *base_params
   - *open_pr
   - *no_wip
+  - *no_bot_dependencies
+  - *unassigned
+- name: Unassigned PRs (bot dependencies)
+  params:
+  - *base_params
+  - *open_pr
+  - *no_wip
+  - *bot_dependencies
   - *unassigned
 - name: PRs without scope label
   params:
@@ -126,7 +139,6 @@ links:
   params:
   - *base_params
   - *backport_direct_prs_tal
-
 - name: Backport requests (Spassky)
   params:
   - *base_params
