@@ -35,7 +35,7 @@ running an OIDC server and Apache on a local development setup.
      -e HTTPD_AUTH_HOST=127.0.0.1.nip.io \
      -e HTTPD_AUTH_PORT=8080 \
      --add-host=127.0.0.1.nip.io:192.168.127.254 \
-     manageiq/httpd:latest
+     manageiq/httpd:2-el10
    ```
    Note: 192.168.65.2 / 192.168.127.254 is a hardcoded proxy for host.docker.internal / host.containers.internal on docker / podman
 
