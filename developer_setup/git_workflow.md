@@ -43,4 +43,3 @@ git pull upstream master --ff
 ### Pull Request
 
 Once your changes are ready, open a [Pull Request](https://github.com/ManageIQ/manageiq/compare) against the upstream project.
-

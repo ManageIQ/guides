@@ -28,7 +28,6 @@ SOAP calls.
 |GET  /api/automation_requests/\<Rid\>/tasks         |Get all Tasks for an Automation Requet    |
 |GET  /api/automation_requests/\<Rid\>/tasks/\<Tid\> |Get a Task of an Automation Request by Id |
 
-
 ### SOAP Call => REST API Mapping
 
 |SOAP Call  |REST API  |
@@ -45,9 +44,9 @@ SOAP calls.
 |GetVmProvisionTask      |GET  /api/provision_requests/\<Rid\>/tasks/\<Tid\>  |
 |                        |or GET  /api/request_tasks/\<Tid\>                  |
 
-
 ---
-### Sample Provisioning Request:
+
+### Sample Provisioning Request
 
 ```http
 POST /api/provision_requests
@@ -87,7 +86,8 @@ POST /api/provision_requests
 ```
 
 ---
-### Sample Automation Request:
+
+### Sample Automation Request
 
 ```http
 POST /api/automation_requests
@@ -113,4 +113,3 @@ POST /api/automation_requests
   }
 }
 ```
-

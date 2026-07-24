@@ -10,19 +10,19 @@ be collected using a custom form.
 
 ### User interaction example
 
- * User opens a list of Instances.
- * From the list, the user selects one Instance and displays its detail page.
- * On the detail page in the top toolbar extra button (button groups) are displayed with special actions relevant only for Instances coming from a specific provider.
- * User presses a button.
- * (optional step) a dialog comes up for the user to fill in whatever arguments are needed for the special action.
- * User clicks "Ok".
- * Special operation is executed using the ManageIQ API. A simple message is displayed on the screen (flash message) informing that the operation was fired.
+* User opens a list of Instances.
+* From the list, the user selects one Instance and displays its detail page.
+* On the detail page in the top toolbar extra button (button groups) are displayed with special actions relevant only for Instances coming from a specific provider.
+* User presses a button.
+* (optional step) a dialog comes up for the user to fill in whatever arguments are needed for the special action.
+* User clicks "Ok".
+* Special operation is executed using the ManageIQ API. A simple message is displayed on the screen (flash message) informing that the operation was fired.
 
 ### Provider workflow
 
- * Implement Ansible playbooks and place them in the provider repo `manageiq-provider-xxx`.
- * Implement custom forms as React components or a ManageIQ Dynamic (service) Dialog. Place them in the provider repo.
- * Create a toolbar extension class and place it in the provider repo under `app/helpers`.
+* Implement Ansible playbooks and place them in the provider repo `manageiq-provider-xxx`.
+* Implement custom forms as React components or a ManageIQ Dynamic (service) Dialog. Place them in the provider repo.
+* Create a toolbar extension class and place it in the provider repo under `app/helpers`.
 
 ### Extending the toolbars
 
@@ -68,8 +68,9 @@ The example above references a React class `CreateAmazonSecurityGroupForm`. In t
 The React code can be part of the provider repository or it can be added as the dependency. Provider repositories can add dependencies in their `package.json`.
 
 It's recommended that the React class be split into two parts:
- * UI only part implementing the form elements and
- * part adding the handling of "Ok" and "Cancel" buttons and implementing the [API call](calling_api.md).
+
+* UI only part implementing the form elements and
+* part adding the handling of "Ok" and "Cancel" buttons and implementing the [API call](calling_api.md).
 
 This is shown in the examples here:
 

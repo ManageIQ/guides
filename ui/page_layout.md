@@ -4,12 +4,14 @@ Almost all screens consist of the main menu, top right menu (see [Menus](menus.m
  and content area.
 
 Content area has usually [toolbars](toolbars.md) on top and 2 parts:
- * left panel and
- * main content.
+
+* left panel and
+* main content.
 
 We have 2 main variations of the layout:
- * Explorer and
- * Non explorer.
+
+* Explorer and
+* Non explorer.
 
 #### Explorer
 
@@ -19,6 +21,7 @@ fully on click. These screens make heavy use of `ExplorerPresenter` -- a class
 that encapsulates the DOM manipulation on these screens.
 
 #### Non-explorer
+
 Non-explorer layout screen have [listnavs](listnav.md) in one or more accordions on the
 left side and mostly do a full reload on each click (unless in a form or
 Angular form).
@@ -27,7 +30,5 @@ Angular form).
 
 There are 2 very typical types of content for the main content area:
 
- * [GTL](gtl.md),
- * [Textual summaries](textual_summary.md).
-
-
+* [GTL](gtl.md),
+* [Textual summaries](textual_summary.md).
