@@ -3,7 +3,7 @@
 Listnavs are the left parts of the non-explorer screens. They typically contain information about entities and their relationships organized into accordions.
 Listnavs are defined under `app/views/layouts/listnav/`.
 
-```
+```haml
 - if @record.try(:name)
   #accordion.panel-group
     = miq_accordion_panel(truncate(@record.name, :length => truncate_length), true, "icon") do

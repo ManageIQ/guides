@@ -2,19 +2,20 @@
 
 Breadcrumbs help to expose the hierarchy, not the particular clicks of a user.
 
-##### Table of Contents
+#### Table of Contents
+
 - [Breadcrumbs](#breadcrumbs)
-    - [Table of Contents](#table-of-contents)
+  - [Table of Contents](#table-of-contents)
 - [Usage](#usage)
   - [Breadcrumbs](#breadcrumbs-1)
 - [Structure](#structure)
   - [Non-explorer controllers](#non-explorer-controllers)
-    - [Default list](#default-list)
-    - [Detail](#detail)
-    - [Action](#action)
+  - [Default list](#default-list)
+  - [Detail](#detail)
+  - [Action](#action)
   - [Explorer controllers](#explorer-controllers)
-    - [Default + detail view](#default--detail-view)
-    - [Action](#action-1)
+  - [Default + detail view](#default--detail-view)
+  - [Action](#action-1)
 - [Design](#design)
 - [Examples](#examples)
   - [1) Explorer screens](#1-explorer-screens)
@@ -53,6 +54,7 @@ end
 |`:x_node`|string|`x_node`|explorer|Use custom node id instead of default `x_node`.|
 
 #### Breadcrumbs
+
 ```ruby
 {
 :breadcrumbs => [
@@ -130,6 +132,7 @@ Accordion title should lead to the tree's root.
 ex. `Compute` > `Infrastructure` > `Virtual Machines` > `VMs & Templates` > `3.9ocp` > `Editing Virtual Machine "3.9ocp"`
 
 As a `action title` it used one of these variables (sorted by the highest priority):
+
 - `right_cell_text` as a local variable provided to the breadcrumbs template (if you provide it in `replace_right_cell` method)
 - `@title_for_breadcrumbs` (non standard use)
 - `@right_cell_text` (standard use)
@@ -138,6 +141,7 @@ As a `action title` it used one of these variables (sorted by the highest priori
 Breadcrumbs should not be deeper than this.
 
 ### [Design](https://www.patternfly.org/pattern-library/navigation/breadcrumbs/)
+
 - this design follows [Patternfly guidelines](https://www.patternfly.org/pattern-library/navigation/breadcrumbs/)
 - First, show the path from the navigation (E.g.: Compute > Infrastructure > Providers)
 - Only breadcrumbs which lead somewhere should be clickable (last breadcrumb in the menu, etc.)
@@ -145,10 +149,10 @@ Breadcrumbs should not be deeper than this.
 - When using breadcrumbs, be sure to include them on every page throughout the application.
   - Exception: when content is shown on in a separate window without navigation (ex. reports), breadcrumbs are not required.
 
-
 ![breadcrumbs](https://user-images.githubusercontent.com/36040135/57836403-e6bbbc00-77c0-11e9-8f13-26b1dbef2633.png)
 
 ### Examples
+
 #### 1) Explorer screens
 
 **Default**
@@ -163,20 +167,17 @@ Breadcrumbs should not be deeper than this.
 
 ![Screenshot from 2019-10-02 13-18-59](https://user-images.githubusercontent.com/32869456/66040957-fc841080-e518-11e9-8959-fbba06feb988.png)
 
-
 **Tagging/Ownership/etc.**
+
 - Show the item breadcrumb only when there is only one item
 
 One item
 
 ![Screenshot from 2019-10-02 13-21-03](https://user-images.githubusercontent.com/32869456/66040956-fc841080-e518-11e9-98d2-c143a0d02198.png)
 
-
 More items
 
 ![Screenshot from 2019-10-02 13-22-32](https://user-images.githubusercontent.com/32869456/66040954-fc841080-e518-11e9-8321-1e3ce1da30fe.png)
-
-
 
 **Ancestry**
 
@@ -200,6 +201,7 @@ More items
 ![Screenshot from 2019-10-02 13-37-03](https://user-images.githubusercontent.com/32869456/66041372-fe9a9f00-e519-11e9-9da3-ec8bb5a18cd1.png)
 
 **Tagging/Ownership/etc.**
+
 - Show item breadcrumb only when there is only one item
 
 One item

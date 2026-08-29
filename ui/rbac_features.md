@@ -20,6 +20,6 @@ Example below fetches cloud volumes whose IDs are either passed in as checked
 items from a GTL view or in `params[:id]`.
 
 
-```
+```ruby
   volumes = find_records_with_rbac(CloudVolume, checked_or_params)
 ```

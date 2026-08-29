@@ -1,7 +1,7 @@
 
 # External Authentication (httpd) Configuration
 
-### Sample Domain and Systems
+## Sample Domain and Systems
 
 For the purpose of these instructions, the following
 fully qualified host names and IP addresses will be used:
@@ -16,6 +16,7 @@ controller, Kerberos server, and as the LDAP DIT, hosting
 the Root DSE dc=test,dc=company,dc=com.
 
 ---
+
 ## Configuration
 
 ### Configuring the Network
@@ -26,7 +27,7 @@ IPA Server and Appliance:
 
 **/etc/hosts**
 
-```
+```text
 192.168.100.11   ipaserver.test.company.com
 192.168.100.12   appliance.test.company.com
 ```
@@ -37,11 +38,10 @@ the systems must reflect their FQDN.
 If specifying both FQDN and Hostname in the /etc/hosts file,
 make sure the FQDN comes first:
 
-```
+```text
 192.168.100.11   ipaserver.test.company.com   ipaserver
 192.168.100.12   appliance.test.company.com   appliance
 ```
-
 
 **/etc/sysconfig/network** on Appliance.
 
@@ -57,6 +57,7 @@ hostname appliance.test.company.com
 ```
 
 ---
+
 ### Installing and Configuring the IPA Client Software
 
 ```sh
@@ -68,6 +69,7 @@ hostname appliance.test.company.com
 ```
 
 ---
+
 ### Configure SSSD
 
 Update the SSSD configuration file /etc/sssd/sssd.conf to
@@ -78,7 +80,7 @@ the Apache modules for external authentication:
 
 * Add to the [domain/test.company.com] section:
 
-```
+```ini
 [domain/test.company.com]
   ldap_user_extra_attrs = mail, givenname, sn, displayname
 ```
@@ -86,39 +88,41 @@ the Apache modules for external authentication:
 * In the [sssd] section, update the services section
 to include ", ifp":
 
-```
+```ini
 [sssd]
    services = nss, pam, ssh, ifp
 ```
 
 * Add an [ifp] section at the end of the file:
 
-```
+```ini
 [ifp]
   allowed_uids = apache, root, manageiq
   user_attributes = +mail, +givenname, +sn, +displayname
 ```
 
 ---
+
 ### Configure PAM
 
 Create a PAM Config file for the Appliance Apache authentication.
 
 **/etc/pam.d/httpd-auth**
 
-```
+```text
 auth    required pam_sss.so
 account required pam_sss.so
 ```
 
 ---
+
 ### Configure Apache
 
 #### Create an Apache Authentication file for the Appliance
 
 **/etc/httpd/conf.d/manageiq-external-auth**
 
-```
+```text
 LoadModule authnz_pam_module modules/mod_authnz_pam.so
 LoadModule intercept_form_submit_module modules/mod_intercept_form_submit.so
 LoadModule lookup_identity_module modules/mod_lookup_identity.so
@@ -170,24 +174,23 @@ LoadModule lookup_identity_module modules/mod_lookup_identity.so
 
 #### Update the Appliance Apache Configuration to enable External Authentication
 
-
 Modify /etc/httpd/conf.d/manageiq-https-application.conf as follows:
 
 **/etc/httpd/conf.d/manageiq-https-application.conf**
 
 * add this line before the *VirtualHost* directive:
 
-```
+```text
 Include conf.d/manageiq-external-auth
 ```
 
 * Within the VirtualHost section, after this line:
 
-	*RequestHeader set X_FORWARDED_PROTO 'https'*
+  *RequestHeader set X_FORWARDED_PROTO 'https'*
 
-    add the following lines:
+  add the following lines:
 
-```
+```text
 RequestHeader unset X_REMOTE_USER
 RequestHeader set X_REMOTE_USER           %{REMOTE_USER}e            env=REMOTE_USER
 RequestHeader set X_EXTERNAL_AUTH_ERROR   %{EXTERNAL_AUTH_ERROR}e    env=EXTERNAL_AUTH_ERROR
@@ -200,6 +203,7 @@ RequestHeader set X_REMOTE_USER_PRINCIPAL %{REMOTE_USER_PRINCIPAL}e  env=REMOTE_
 ```
 
 ---
+
 ### Configure SELinux
 
 For external authentication to work with Apache through
@@ -216,6 +220,7 @@ setsebool -P httpd_dbus_sssd on
 ```
 
 ---
+
 ### Restart SSSD and Apache
 
 Make sure SSSD starts upon reboot:
@@ -232,4 +237,5 @@ service httpd restart
 ```
 
 ---
+
 Back to [External Authentication](../external_auth.md)

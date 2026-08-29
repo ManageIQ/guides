@@ -1,0 +1,23 @@
+[global]
+# https://rumdl.dev/global-settings/#toml-configuration-rumdltoml
+disable = [
+  "first-line-h1", # Disabled as these pages are embedded into manageiq.org
+  "line-length",
+
+  "descriptive-link-text", # TODO: Give each link proper link text
+  "no-alt-text",           # TODO: Give each image Alt text
+  "no-emphasis-as-heading" # TODO: rumdl is inaccurately autofixing some of these -
+                           #       Need to determine if they are emphasis or headings
+]
+flavor = "gfm"
+
+[code-block-style]
+style = "fenced"
+
+[code-fence-style]
+style = "backtick"
+
+[no-inline-html]
+allowed-elements = ["details", "summary"]
+fix = true
+table-allowed-elements = ["br"]

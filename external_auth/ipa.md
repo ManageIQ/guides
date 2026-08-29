@@ -26,13 +26,13 @@ Appliance Web UI and then the Appliance Console.
 
 ---
 
-# Testing IPA configuration with the Demo IPA server
+## Testing IPA configuration with the Demo IPA server
 
 If you want to test basic IPA client configuration and connectivity, the
 free ipa team has a demo server sandbox that they frequently wipe clean
 and comes with basic accounts, groups, and services.
 
-See: https://www.freeipa.org/page/Demo
+See: <https://www.freeipa.org/page/Demo>
 
 In this way, you can configure your client using `ipa-client-install`,
 `kinit helpdesk` or another user they configure in their demo, and try
@@ -49,7 +49,6 @@ Advanced Settings to Synchronize Time. Both Appliance and IPA Server
 must have their clocks synchronized otherwise Kerberos and LDAP based
 authentication will fail.
 
-
 * The IPA Server needs to be known by DNS and accessible by name.
 If DNS is not configured accordingly, the hosts files need to be
 updated to reflect both IPA server and the Appliance on
@@ -57,7 +56,7 @@ both virtual machines.
 
 ---
 
-### Configuring Appliance for External Authentication:
+#### Configuring Appliance for External Authentication
 
 * Appliance UI
     1. Login to the Appliance via an administrative account
@@ -67,7 +66,6 @@ both virtual machines.
     5. In the Role Settings section, select the *Get User Groups from
 External Authentication (https)*
     6. Click on **Save**
-
 
 * Appliance Console
     1. Login via the **root** Username and run the `appliance_console`.
@@ -92,7 +90,7 @@ i.e. *ipaserver.test.company.com*
 
 ---
 
-### Configuring Appliance back to Internal Database Authentication:
+#### Configuring Appliance back to Internal Database Authentication
 
 * Appliance UI
     1. Login to the Appliance via an administrative account
@@ -100,7 +98,6 @@ i.e. *ipaserver.test.company.com*
     3. Click on *Authentication*
     4. In the Authentication section, set Mode to **Database**
     5. Click on **Save**
-
 
 * Appliance Console
     1. Login via the **admin** Username
@@ -114,7 +111,7 @@ configured IPA Server Hostname and Domain.
 
 ---
 
-### Optional Configuration via the Appliance Console CLI
+#### Optional Configuration via the Appliance Console CLI
 
 In addition to using the Appliance Console, External Authentication can be
 optionally configured and un-configured via the Appliance Console Command Line Interface.
@@ -141,7 +138,7 @@ can be omitted.
 * \-\-iparealm will be based on the domain name of the ipaserver if not specified.
 * \-\-ipaprincipal will default to **admin** if not specified.
 
-#### Configuring External Authentication Example:
+##### Configuring External Authentication Example
 
 ```sh
 $ ssh root@appliance.test.company.com
@@ -153,7 +150,7 @@ appliance# /bin/appliance_console_cli --host appliance.test.company.com \
                                       --ipapassword smartvm1
 ```
 
-#### Un-Configuring External Authentication Example:
+##### Un-Configuring External Authentication Example
 
 ```sh
 $ ssh root@appliance.test.company.com
@@ -162,18 +159,17 @@ appliance# /bin/appliance_console_cli --uninstall-ipa
 
 ---
 
-### Manual Configuration
+#### Manual Configuration
 
 The following Instructions are for informational purposes and describe how to manually install the
 necessary packages and configure the External Authentication (i.e. what is currently done behind
 the scene via the Appliance Console):
 
 * Installing the required packages - [Installation](./ipa-installation.md)
-    * The packages required for enabling External Authentication are
+  * The packages required for enabling External Authentication are
 installed by default on the Appliance so these steps are intended
 to assist when building an appliance from scratch.
-    * The installation instructions are targeted for the CentOS 6.x
+  * The installation instructions are targeted for the CentOS 6.x
 based ManageIQ Appliance.
-
 
 * Enabling External Authentication - [Configuration](./ipa-configuration.md)

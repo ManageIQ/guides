@@ -17,4 +17,3 @@ Current architecture diagram:
 ![container metrics diagram](/images/containers-metrics.png "container metrics")
 
 For the future it is planned for Kubelet to update statistics in the Master API Server and Heapster will collect the metrics from there.
-

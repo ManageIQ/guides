@@ -7,6 +7,7 @@
 [`%dialog-editor`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/dialog-editor) is the component on the top of the hierarchy of the whole editor.
 
 The overall dialog editor hierarchy is as follows:
+
 ```haml
 %dialog-editor
   %dialog-editor-tabs
@@ -33,7 +34,6 @@ The structure of JSON object used to describe the service dialogs is as follows:
 }],
 ```
 
-
 ### Dialog Tabs
 
 [`%dialog-editor-tabs`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/tab-list) displays a list of tabs assigned to the dialog.
@@ -41,14 +41,17 @@ The structure of JSON object used to describe the service dialogs is as follows:
 It is the main component as all the content is stored inside the object.
 
 At the beginning, the component's controller loads the tabs of the dialog:
+
 ```javascript
 this.tabList = this.DialogEditor.getDialogTabs();
 ```
-and assigns id of the currently active tab in the  `activeTab` variable in the `DialogEditor` service.
+
+and assigns id of the currently active tab in the `activeTab` variable in the `DialogEditor` service.
 
 #### `addTab()`
 
 function `addTab` creates a new empty tab, pushes it to the array with the other tabs, and updates `activeTab` to the new tab.
+
 ```javascript
 {
   description: __('New tab ') + nextIndex,
@@ -67,6 +70,7 @@ removes the tab with the ID sent in parameter and updates the `activeTab`.
 #### Update positions of tabs
 
 Because it is possible to remove (or just move the position) tab in the middle of the list, after every change the positions are updated by calling `updatePosition` method defined in the `Dialog Editor` service:
+
 ```javascript
 this.DialogEditor.updatePositions(this.tabList);
 ```
@@ -111,7 +115,6 @@ public droppableOptions(e: any, ui: any) {
   );
 }
 ```
-
 
 ### Dialog Fields
 
@@ -173,6 +176,7 @@ The main purpose of [`dialog-editor-modal-field`](https://github.com/ManageIQ/ui
 The component's template mostly consists of `ng-switch`, which renders templates of specific fields from the `modal-field-template` component described lower, with necessary methods passed into the component through the binding described in [`%dialog-editor-modal`](https://github.com/ManageIQ/ui-components/tree/master/src/dialog-editor/components/modal) component.
 
 Example for the Radio Button Dialog Field:
+
 ```html
 <dialog-editor-modal-field-template
 ng-switch-when="DialogFieldRadioButton"
@@ -185,6 +189,7 @@ add-entry="vm.addEntry"
 remove-entry="vm.removeEntry"
 modal-data="vm.modalData">
 ```
+
 Label and Description for the Dialog Field are also set in this component, as well as setting Dialog Field to be *Dynamic* or *Reconfigurable*, as these properties are same for all the fields except Tag Control types.
 
 #### Field Template
@@ -203,161 +208,161 @@ All the other parameters for the components the can be set in *Options* or *Over
 
 ##### Text Box
 
-  - **if `dynamic` is not checked:**
-    - `data_type` *(select - string / integer)*
+- **if `dynamic` is not checked:**
+  - `data_type` *(select - string / integer)*
+  - `default_value` *(string)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `options.protected` *(boolean)* -- for passwords, value will be replaced with `*`
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `validator_type` *('regex' (string) / false (boolean))*
+  - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
+  - `visible` *(boolean)*
+- **if the field is `dynamic`:**
+  - `data_type` *(select - string / integer)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `load_values_on_init` *(boolean)*
+  - `options.protected` *(boolean)* -- for passwords, value will be replaced with `*`
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - `validator_type` *('regex' (string) / false (boolean))*
+  - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
+  - **In *Overridable Options* tab:**
     - `default_value` *(string)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `options.protected` *(boolean)* -- for passwords, value will be replaced with `*`
-    - `required` *(boolean)*
     - `read_only` *(boolean)*
-    - `validator_type` *('regex' (string) / false (boolean))*
-    - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
     - `visible` *(boolean)*
-  - **if the field is `dynamic`:**
-    - `data_type` *(select - string / integer)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `load_values_on_init` *(boolean)*
-    - `options.protected` *(boolean)* -- for passwords, value will be replaced with `*`
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - `validator_type` *('regex' (string) / false (boolean))*
-    - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
-    - **In *Overridable Options* tab:**
-      - `default_value` *(string)*
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Text Area
 
-  - **if `dynamic` is not checked:**
+- **if `dynamic` is not checked:**
+  - `default_value` *(string)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `validator_type` *('regex' (string) / false (boolean))*
+  - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
+  - `visible` *(boolean)*
+- **if the field is `dynamic`:**
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `load_values_on_init` *(boolean)*
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - `validator_type` *('regex' (string) / false (boolean))*
+  - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
+  - **In *Overridable Options* tab:**
     - `default_value` *(string)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `required` *(boolean)*
     - `read_only` *(boolean)*
-    - `validator_type` *('regex' (string) / false (boolean))*
-    - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
     - `visible` *(boolean)*
-  - **if the field is `dynamic`:**
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `load_values_on_init` *(boolean)*
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - `validator_type` *('regex' (string) / false (boolean))*
-    - `validator_rule` *(string; only if `validatior_type` has a value `'regex'`)*
-    - **In *Overridable Options* tab:**
-      - `default_value` *(string)*
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Check Box
 
-  - **if `dynamic` is not checked:**
-    - `default_value` *(boolean)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `required` *(boolean)*
+- **if `dynamic` is not checked:**
+  - `default_value` *(boolean)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `visible` *(boolean)*
+- **if the field is `dynamic`:**
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `load_values_on_init` *(boolean)*
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - **In *Overridable Options* tab:**
     - `read_only` *(boolean)*
     - `visible` *(boolean)*
-  - **if the field is `dynamic`:**
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `load_values_on_init` *(boolean)*
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - **In *Overridable Options* tab:**
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Date Control
 
-  - **if `dynamic` is not checked:**
-    - `default_value` *(Date object, after [#373](https://github.com/ManageIQ/ui-components/pull/373/files))*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `required` *(boolean)*
+- **if `dynamic` is not checked:**
+  - `default_value` *(Date object, after [#373](https://github.com/ManageIQ/ui-components/pull/373/files))*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `show_past_dates` *(boolean)*
+  - `visible` *(boolean)*
+- **if the field is `dynamic`:**
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `options.show_past_dates` *(boolean)*
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - **In *Overridable Options* tab:**
     - `read_only` *(boolean)*
-    - `show_past_dates` *(boolean)*
     - `visible` *(boolean)*
-  - **if the field is `dynamic`:**
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `options.show_past_dates` *(boolean)*
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - **In *Overridable Options* tab:**
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Date Time Control
 
-  - **if `dynamic` is not checked:**
-    - `default_value` *(Date object, after [#373](https://github.com/ManageIQ/ui-components/pull/373/files))*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `required` *(boolean)*
+- **if `dynamic` is not checked:**
+  - `default_value` *(Date object, after [#373](https://github.com/ManageIQ/ui-components/pull/373/files))*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `show_past_dates` *(boolean)*
+  - `visible` *(boolean)*
+- **if the field is `dynamic`:**
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `options.show_past_dates` *(boolean)*
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - **In *Overridable Options* tab:**
     - `read_only` *(boolean)*
-    - `show_past_dates` *(boolean)*
     - `visible` *(boolean)*
-  - **if the field is `dynamic`:**
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `options.show_past_dates` *(boolean)*
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - **In *Overridable Options* tab:**
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Dropdown List
 
-  - **if `dynamic` is not checked:**
-    - `data_type` *(select - string / integer)*
-    - `default_value` *(string, or a string representing an array for multiselect -- `default_value: "[\"1\", \"2\"]"`)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `options.force_multi_value` *(boolean)*
+- **if `dynamic` is not checked:**
+  - `data_type` *(select - string / integer)*
+  - `default_value` *(string, or a string representing an array for multiselect -- `default_value: "[\"1\", \"2\"]"`)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `options.force_multi_value` *(boolean)*
+  - `options.sort_by` *(select - none / value / description)*
+  - `options.sort_order` *(select - ascending / descending)*
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `visible` *(boolean)*
+  - `values` *(array, [0] - value, [1] - key)*
+- **if the field is `dynamic`:**
+  - `data_type` *(select - string / integer)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `load_values_on_init` *(boolean)*
+  - `options.force_multi_value` *(boolean)*
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - **In *Overridable Options* tab:**
     - `options.sort_by` *(select - none / value / description)*
     - `options.sort_order` *(select - ascending / descending)*
-    - `required` *(boolean)*
     - `read_only` *(boolean)*
     - `visible` *(boolean)*
-    - `values` *(array, [0] - value, [1] - key)*
-  - **if the field is `dynamic`:**
-    - `data_type` *(select - string / integer)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `load_values_on_init` *(boolean)*
-    - `options.force_multi_value` *(boolean)*
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - **In *Overridable Options* tab:**
-      - `options.sort_by` *(select - none / value / description)*
-      - `options.sort_order` *(select - ascending / descending)*
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Radio Button
 
-  - **if `dynamic` is not checked:**
-    - `data_type` *(select - string / integer)*
-    - `default_value` *(string or array for multiselect)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
+- **if `dynamic` is not checked:**
+  - `data_type` *(select - string / integer)*
+  - `default_value` *(string or array for multiselect)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `options.sort_by` *(select - none / value / description)*
+  - `options.sort_order` *(select - ascending / descending)*
+  - `required` *(boolean)*
+  - `read_only` *(boolean)*
+  - `visible` *(boolean)*
+  - `values` *(array, [0] - value, [1] - key)*
+- **if the field is `dynamic`:**
+  - `data_type` *(select - string / integer)*
+  - `dialog_field_responders` *(multiple select - dynamic fields list)*
+  - `load_values_on_init` *(boolean)*
+  - `required` *(boolean)*
+  - `resource_action` *(path to automate method)*
+  - `show_refresh_button` *(boolean)*
+  - **In *Overridable Options* tab:**
     - `options.sort_by` *(select - none / value / description)*
     - `options.sort_order` *(select - ascending / descending)*
-    - `required` *(boolean)*
     - `read_only` *(boolean)*
     - `visible` *(boolean)*
-    - `values` *(array, [0] - value, [1] - key)*
-  - **if the field is `dynamic`:**
-    - `data_type` *(select - string / integer)*
-    - `dialog_field_responders` *(multiple select - dynamic fields list)*
-    - `load_values_on_init` *(boolean)*
-    - `required` *(boolean)*
-    - `resource_action` *(path to automate method)*
-    - `show_refresh_button` *(boolean)*
-    - **In *Overridable Options* tab:**
-      - `options.sort_by` *(select - none / value / description)*
-      - `options.sort_order` *(select - ascending / descending)*
-      - `read_only` *(boolean)*
-      - `visible` *(boolean)*
 
 ##### Tag Control
 
@@ -370,7 +375,6 @@ All the other parameters for the components the can be set in *Options* or *Over
 - `required` *(boolean)*
 - `read_only` *(boolean)*
 - `visible` *(boolean)*
-
 
 **A [note](https://github.com/ManageIQ/ui-components/pull/392#discussion_r296871830) by @eclarizio related to accessing values of the fields:*
 
@@ -441,22 +445,23 @@ public restoreSessionStorage(id: string) {
 The [`DialogValidation`](https://github.com/ManageIQ/ui-components/blob/master/src/dialog-editor/services/dialogValidationService.ts) service contains set of rules that needs to be fulfilled in order to be able to submit the Dialog.
 
 The rules are:
- - rules for Dialog:
-	 - Dialog needs to have a label
-	 - Dialog needs to have at least one tab
- - rules for Dialog Tabs:
-	 - Dialog tab needs to have a label
-	 - Dialog tab needs to have at least one group
- - rules for Dialog Groups:
-	 - Dialog group needs to have a label
-	 - Dialog group needs to have at least one field
- - rules for Dialog Fields:
-	 - Dialog field needs to have a name
-	 - Dialog field needs to have a label
-	 - Dropdown needs to have entries
-	 - Category needs to be set for TagControl field
-	 - Entry Point needs to be set for Dynamic elements
-	 - If the value is set as Integer, entered values must be a number
+
+- rules for Dialog:
+  - Dialog needs to have a label
+  - Dialog needs to have at least one tab
+- rules for Dialog Tabs:
+  - Dialog tab needs to have a label
+  - Dialog tab needs to have at least one group
+- rules for Dialog Groups:
+  - Dialog group needs to have a label
+  - Dialog group needs to have at least one field
+- rules for Dialog Fields:
+  - Dialog field needs to have a name
+  - Dialog field needs to have a label
+  - Dropdown needs to have entries
+  - Category needs to be set for TagControl field
+  - Entry Point needs to be set for Dynamic elements
+  - If the value is set as Integer, entered values must be a number
 
 ## Workflow
 
@@ -477,10 +482,12 @@ ManageIQ.angular.app.value('dialogIdAction', '#{ dialog_id_action.to_json }');
 Service Dialogs are serialized together from four database tables - [dialog](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog.rb), [dialog tab](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_tab.rb), [dialog group](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_group.rb), and [dialog fields](https://github.com/ManageIQ/manageiq/blob/master/app/models/dialog_field.rb). The data are serialized into a single object, before being passed to the Dialog Editor.
 
 The data are loaded by [Dialog Editor HTTP service](https://github.com/ManageIQ/manageiq-ui-classic/blob/master/app/assets/javascripts/services/dialog_editor_http_service.js) from API by the request:
+
 ```javascript
 return API.get('/api/service_dialogs/' + id + '?attributes=content,buttons,label');
 ```
-or in case of a new Dialog, an empty dialog structure, defined  in [Dialog Editor controller](https://github.com/ManageIQ/manageiq-ui-classic/blob/62c50e0af7324eee16bc333b65d801e4398a5674/app/assets/javascripts/controllers/dialog_editor/dialog_editor_controller.js#L23-L35) is used:
+
+or in case of a new Dialog, an empty dialog structure, defined in [Dialog Editor controller](https://github.com/ManageIQ/manageiq-ui-classic/blob/62c50e0af7324eee16bc333b65d801e4398a5674/app/assets/javascripts/controllers/dialog_editor/dialog_editor_controller.js#L23-L35) is used:
 
 ```javascript
 var dialogInitContent = {
@@ -521,6 +528,6 @@ return API.post('/api/service_dialogs' + id, { action: action, resource: data },
 
 ## Demo
 
-To play with the Dialog Editor and see what the JSON object of the dialog looks like, you can run [ui-components](https://github.com/ManageIQ/ui-components) and play with the Dialog Editor at http://localhost:4000/#/dialog/editor but please remember that
+To play with the Dialog Editor and see what the JSON object of the dialog looks like, you can run [ui-components](https://github.com/ManageIQ/ui-components) and play with the Dialog Editor at <http://localhost:4000/#/dialog/editor> but please remember that
 
-_The demo is not connected to a real instance and there is no way to connect dynamic fields to Automate methods in it._
+*The demo is not connected to a real instance and there is no way to connect dynamic fields to Automate methods in it.*

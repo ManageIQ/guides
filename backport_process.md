@@ -1,8 +1,8 @@
 # Backport Process
 
-Beginning with the Jansa release of ManageIQ, we will be using the following backport process.  Here are the details!
+Beginning with the Jansa release of ManageIQ, we will be using the following backport process. Here are the details!
 
-* We are adding a new label `release_to_backport_to/yes?` 
+* We are adding a new label `release_to_backport_to/yes?`
 * Anyone can request a backport by typing `@miq-bot add_label release_to_backport_to/yes?` in a comment in the pull request.
 * During the [triage meetings](triage_process.md), the pull request will be evaluated for backportability.  
   * The label will be set to `release_to_backport_to/no` if the backport should be denied for any reason.

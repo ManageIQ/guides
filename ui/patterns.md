@@ -25,6 +25,6 @@ quick start for new contributors for the UI.
 * [Dialog Editor](dialog_editor.md) -- components and workflow of Angular dialog editor.
 * [Breadcrumbs](https://github.com/ManageIQ/manageiq-ui-classic/wiki/Breadcrumbs) -- how breadcrumbs work
 
-
 To write new Javascript components for ManageIQ e.g. in Typescript and Angular, please, read
+
 * [UI Components Readme](https://github.com/ManageIQ/ui-components/blob/master/README.md)

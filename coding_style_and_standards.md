@@ -24,7 +24,7 @@ maintained by the ManageIQ team.
   difference is minimal.
 * If you can convince others why we should violate a guideline, then violate
   the guideline.
-* These guides are living documents and are subject to change.  Feel free
+* These guides are living documents and are subject to change. Feel free
   to comment or submit pull requests for changes, additions, or removals.
 
 ## Ruby Style Guide
@@ -69,9 +69,9 @@ documentation server which regenerates the docs on each request.
   ```
 
 * When wrapping a block of code in logging, consider using the same
-  string with ellipses, to make it easier to search them in the logs.  As a
+  string with ellipses, to make it easier to search them in the logs. As a
   corollary, avoid using words that would not make sense on both ends, such as
-  "Starting".  Attach any extra information after the latter message using
+  "Starting". Attach any extra information after the latter message using
   `" - #{extra_info}"`
 
   ```ruby
@@ -87,15 +87,15 @@ documentation server which regenerates the docs on each request.
 
 ## Commits
 
-* Write a good commit message.  The format for a commit message is as follows.
-  * A short summary of the commit under 72 characters.  Do not use a ticket
+* Write a good commit message. The format for a commit message is as follows.
+  * A short summary of the commit under 72 characters. Do not use a ticket
     number as the subject alone.
   * A blank line.
   * An optional body of text, preferably wrapped at 72 characters.
     The line length is flexible, particularly in cases where data such as
-    tables or URLs are being copied.  The body's purpose is to convey more
+    tables or URLs are being copied. The body's purpose is to convey more
     detailed information about the commit, especially to someone who may need
-    to search the code history for changes.  Feel free to include URLs, Git
+    to search the code history for changes. Feel free to include URLs, Git
     SHA references to other commits, and even raw data to make the purpose
     of the commit clearer (e.g. "Was broken by commit 0f3a459b").
   * A blank line if you've written a body.
@@ -104,7 +104,7 @@ documentation server which regenerates the docs on each request.
     * GitHub issues should be of the form "Issue #n", where n is the issue number.
     * Other tickets should be in the form of a full URL to the ticket or the form
       appropriate for that system.
-* Each commit should have its own unique subject.  Do not use the same
+* Each commit should have its own unique subject. Do not use the same
   subject for a series of commits in a branch of work.
 * Avoid using [@-mentions](https://github.com/blog/821) in the body of the commit
   message as GitHub will notify the user every time the commit is pushed. As a
@@ -119,12 +119,12 @@ documentation server which regenerates the docs on each request.
   * You find yourself using lots of bullet points to enumerate all the work
     the commit does.
 * Squash (combine) commits to keep logical units of changes grouped together
-  in the same commit.  Don't squash unrelated changes.
+  in the same commit. Don't squash unrelated changes.
 * Avoid mixing logical changes with style changes of unrelated code.
-  Keep them as separate commits.  If the style change makes it hard to see
+  Keep them as separate commits. If the style change makes it hard to see
   the logical change, do the style change in a different pull request.
-* Avoid mixing code changes with code relocation.  Keep them as separate
-  commits.  If the moved method has high churn, perhaps move the method in
+* Avoid mixing code changes with code relocation. Keep them as separate
+  commits. If the moved method has high churn, perhaps move the method in
   a separate pull request.
 
 ## Pull Requests and Branches
@@ -132,7 +132,7 @@ documentation server which regenerates the docs on each request.
 * Use descriptive names for feature branches as they are included in the
   Git history.
 
-  ```
+  ```text
   # bad
   faster_tests
   rework_amazon_code
@@ -142,8 +142,8 @@ documentation server which regenerates the docs on each request.
   change_ems_amazon_to_be_region_specific
   ```
 
-* Write a good pull request message.  By default, GitHub will use your
-  branch name as the title.  Adjust the title if this is not appropriate for
+* Write a good pull request message. By default, GitHub will use your
+  branch name as the title. Adjust the title if this is not appropriate for
   the pull request.
   * See [writing a good commit message](#commits) for information about
     writing a good pull request message, exchanging the word "subject" with
@@ -156,7 +156,7 @@ documentation server which regenerates the docs on each request.
   * Use the number of lines added/removed as an indicator of possible
     code smells.
 * Try to avoid having a commit with, for example, a spelling mistake, that
-  is fixed in a subsequent commit in the same pull request.  Use `git rebase -i`
+  is fixed in a subsequent commit in the same pull request. Use `git rebase -i`
   to squash those commits to keep the history clean.
 * If a pull request involves UI changes, consider adding a before/after
   set of screenshots to show what has changed visually.
@@ -170,18 +170,18 @@ documentation server which regenerates the docs on each request.
 * Under no circumstances should customer names or customer related information
   be referenced in GitHub issues, error reports, commits, or pull requests.
 * For UI errors, the error message and stack trace are usually in
-  production.log.  A snippet from there with the entire UI transaction is
-  needed, including the error message and the stack trace.  A UI transaction
+  production.log. A snippet from there with the entire UI transaction is
+  needed, including the error message and the stack trace. A UI transaction
   starts with something that looks like
 
-  ```
+  ```text
   [----] I, [2013-08-22T04:39:11.910803 #24340:3fd36e0349dc]  INFO -- : Started GET "/ems_infra/show/7" for 127.0.0.1 at 2013-08-22 00:39:11 -0400
   [----] I, [2013-08-22T04:39:11.929926 #24340:3fd36e0349dc]  INFO -- : Processing by EmsInfraController#show as HTML
   ```
 
   and ends with something that looks like
 
-  ```
+  ```text
   [----] I, [2013-08-22T04:39:12.127578 #24340:3fd36e0349dc]  INFO -- : Rendered layouts/_global_footer.html.erb (0.1ms)
   [----] I, [2013-08-22T04:39:12.127794 #24340:3fd36e0349dc]  INFO -- : Completed 200 OK in 198ms (Views: 110.1ms | ActiveRecord: 15.4ms)
   ```
@@ -189,7 +189,7 @@ documentation server which regenerates the docs on each request.
   Everything in between with the same PID (the number between the # and :
   symbols in the log line header) is important.
 * For non-UI errors (or errors that appear in the UI but are really
-  backend errors), the error message is usually in the evm.log.  Typically,
+  backend errors), the error message is usually in the evm.log. Typically,
   we need more information than just the error message and stack trace, so
   it is helpful to have some extra context lines above and below the error.
   The amount is hard to quantify, so we will have to build up a list of things
@@ -200,16 +200,16 @@ documentation server which regenerates the docs on each request.
 
   * The MiqQueue.put or MiqQueue.merge line from the worker that placed
     the item on the queue.
-  * Context around why the item was placed on the queue.  For example, if
+  * Context around why the item was placed on the queue. For example, if
     some operation caused a policy item to be placed on the queue, is useful
     to have the log lines around what that operation was that triggered a
-    policy check.  This trail going backwards usually continues until you
+    policy check. This trail going backwards usually continues until you
     get a UI action or a scheduler action.
   * The MiqQueue.get line from the worker that picked up the queue item.
   * All work from the PID of the worker that picked up the item, up to and
     including the error message and stack trace.
   * On occasion, incidental work done by other workers in the same time
-    frame.  Since all logs are UTC based, it makes it easier to coordinate
+    frame. Since all logs are UTC based, it makes it easier to coordinate
     log times from multiple appliances, regardless of where the logs live.
     This type of information is usually needed when there are environmental
     or coincidental errors occurring across all or part of the system.
@@ -217,7 +217,7 @@ documentation server which regenerates the docs on each request.
   shows is the exact error that is in the logs, but without all of the rest
   of the required information listed above.
 * For bugs on an old version of the product, it is helpful to know if the
-  behavior is repeatable on the latest version on that z-stream.  In addition,
+  behavior is repeatable on the latest version on that z-stream. In addition,
   it is helpful to know if the behavior is repeatable on the latest of the
   next release, or even upstream.
 
@@ -227,7 +227,7 @@ When extracting code into a new gem or creating a new gem:
 
 * Follow [SemVer](http://semver.org/).
 * Follow the internal guide for a creating a new gem.
-  * Create a CONTRIBUTING.md that references these guides.  Project-specific
+  * Create a CONTRIBUTING.md that references these guides. Project-specific
     changes or additions to the guides can be put here.
   * Create a LICENSE.txt with an appropriate license.
 
@@ -273,16 +273,16 @@ already pushed them before.
 
 * Uncommit a file from an existing commit
 
-  ```
+  ```bash
   git reset HEAD^ path/to/file/to/revert
   git commit --amend
   ```
 
 ## TODO
 
-* Rails style guide see https://github.com/bbatsov/rails-style-guide
+* Rails style guide see <https://github.com/bbatsov/rails-style-guide>
 
-# License
+## License
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
 This work is licensed under a [Creative Commons Attribution 3.0 Unported

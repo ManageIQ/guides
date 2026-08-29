@@ -2,12 +2,12 @@
 
 ### Plugin layout
 
-Plugins in ManageIQ are developed as [Rails Engines](http://guides.rubyonrails.org/engines.html). All models, 
+Plugins in ManageIQ are developed as [Rails Engines](http://guides.rubyonrails.org/engines.html). All models,
 controllers etc. are loaded during boot time of ManageIQ and are just available as you would expect.
 
 ### Cloning plugins
 
-Before anything, you have to create a fork of the plugin on Github. 
+Before anything, you have to create a fork of the plugin on Github.
 
 * Go to the plugins repository page, e.g. [ManageIQ/manageiq-ui-classic](https://github.com/ManageIQ/manageiq-ui-classic)
 * Click the Fork button and choose "Fork to \<yourname\>"
@@ -29,7 +29,7 @@ git clone git@github.com:JoeSmith/manageiq-ui-classic.git
 
 The `plugins/` directory inside the core repository is ignored by `.gitignore`. This means you can clone plugins
 into this directory. The benefit is, e.g. when working with a project oriented IDE, you have all code under one
-directory. This way you can easily search across the core _and_ plugin code base. 
+directory. This way you can easily search across the core _and_ plugin code base.
 
 You still have to change into the plugin root directory to run the tests - running `rspec` from the ManageIQ root will
 not pickup your plugin code, but the core code. This is a drawback which can lead to some confusion.
@@ -107,15 +107,17 @@ ln -s /path/to/manageiq spec/manageiq
 #### Dependency on a local gem
 
 Inside ManageIQ core, you can override gem dependencies with `override_gem`. This is a small helper to be used under
-`bundler.d` directory. Use it to point the dependency to a local version of your plugin. 
+`bundler.d` directory. Use it to point the dependency to a local version of your plugin.
 
 Please, use absolute path in
+
 ```ruby
 # bundler.d/local_plugins.rb:
 override_gem 'manageiq-providers-amazon', :path => File.expand_path('/home/developer/repos/manageiq-providers-amazon')
 ```
 
 or use relative path to current file and `__dir__` like
+
 ```ruby
 # bundler.d/local_plugins.rb:
 override_gem 'manageiq-providers-amazon', :path => File.expand_path('../../manageiq-providers-amazon', __dir__)
@@ -127,7 +129,7 @@ Once path is updated in local_plugins.rb, run bin/update and restart the server.
 bin/update
 # == Updating manageiq sample app ==
 ```
- 
+
  If you plan to change any javsacript files in plugins, please run `bin/webpack --watch --follow` in another tab in manageiq-ui-classic repo to see the reflected changes.
 
 #### Rails console

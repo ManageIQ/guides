@@ -2,7 +2,7 @@
 
 To prevent system capacities from being exhausted without notification, you can set up quotas. Quotas are operational limits. For example, the number of gigabytes allowed for each tenant can be controlled so that cloud resources are optimized. Quotas can be enforced at both the tenant (or project) and the tenant-user level.
 
-For OpenStack, list of available quotas can be found here http://docs.openstack.org/user-guide-admin/content/cli_set_quotas.html
+For OpenStack, list of available quotas can be found here <http://docs.openstack.org/user-guide-admin/content/cli_set_quotas.html>
 Using the command-line interface, you can manage quotas for the OpenStack Compute service, the OpenStack Block Storage service, and the OpenStack Networking service.
 
 * Table: cloud_resource_quotas

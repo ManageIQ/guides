@@ -21,14 +21,15 @@ task still cannot be done directly as the Appliance running the UI might not be
 even able to reach the API endpoint of the underlying provider.
 
 Examples of this might be:
- * verifying credentials when adding a provider,
- * opening a remote console to a VM.
+
+* verifying credentials when adding a provider,
+* opening a remote console to a VM.
 
 In such cases we have the `wait\_for\_task` call.
 
 Example in `create` we do a call that returns a `task\_id`. Then we call `initiate\_wait\_for\_task`.
 
-```
+```ruby
 def create
   ...
 
@@ -49,7 +50,7 @@ This results in a transaction that fired busy waiting in the browser and polling
 
 When the task is finished, the `:action` passed in is called with the original parameters passed to the `create` call plus the task\_id.
 
-```
+```ruby
   def create_finished
     task_id = params[:task_id]
     tenant_name = params[:name]
