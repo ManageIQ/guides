@@ -463,4 +463,36 @@ it('can delete a rate', () => { /* ... */ });
 
 **Guidelines:** Start with workflow tests for happy paths, use separate tests for edge cases and validations.
 
+#### 7. Typing into React-controlled inputs
+
+When typing into React-controlled inputs (DDF fields backed by final-form, Carbon `TextInput`, `TextArea`, or `NumberInput`), Cypress may trigger a **"Maximum update depth exceeded"** React error or produce **wrong final values** in number fields. This does not happen in the live app because real users type slowly enough for React to batch updates.
+
+**Root cause:** Cypress v16 sets `keystrokeDelay` to `0 ms` by default (down from `10 ms` in v15). At 0 ms each keystroke fires a synchronous React update cycle:
+- DDF's `useFieldApi` calls final-form's `onChange` → runs `runRecordLevelValidation` + `notifyFieldListeners` + `notifyFormListeners` on every character.
+- Carbon's `TextInput`/`TextArea` runs a `useEffect` that calls `setTextCount` on every re-render triggered by the value change.
+- Stacking these synchronous cycles on a long string hits React's internal 50-level nested-update guard → *"Maximum update depth exceeded"*.
+- Carbon's `NumberInput` has an internal `useState` + `useEffect` feedback loop that resets the DOM value from intermediate form-state values (e.g. `3` while typing `30`), producing the wrong final number at 0 ms.
+
+**Fix:** Pass `{ delay: 10 }` to `.type()` on the affected fields. This restores the inter-keystroke gap that React needs to process updates one at a time:
+
+```javascript
+// textarea (e.g. a long JSON auth key)
+cy.getFormTextareaById({ textareaId: field.id }).type(values[field.id], { delay: 10 });
+
+// number input
+cy.getFormInputFieldByIdAndType({ inputId: field.id, inputType: 'number' })
+  .clear()
+  .type(values[field.id], { delay: 10 });
+
+// text input with maxLength validator (256-char boundary triggers an extra spurious onChange)
+cy.get('input#description').type(longText, { delay: 10 });
+```
+
+**When to apply it:**
+- Any `textarea` field bound to a DDF/final-form schema (especially ones holding long values like JSON keys).
+- Any `input[type="number"]` rendered by Carbon's `NumberInput` via DDF.
+- Any `input[type="text"]` that has both a `maxLength` HTML attribute **and** a DDF `MAX_LENGTH` validator — the attribute silently drops the character at the boundary, producing a spurious `onChange` with the same value that re-triggers the full validator chain.
+
+**Note:** The `uncaught:exception` handler in `cypress/support/e2e.js` does **not** suppress `Maximum update depth exceeded` — if you see this error it means the input needs `{ delay: 10 }`, not a new suppression rule.
+
 </details>
